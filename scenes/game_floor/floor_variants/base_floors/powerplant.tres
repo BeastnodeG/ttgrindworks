@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FloorVariant" load_steps=5 format=3 uid="uid://bp4h06b4x60e6"]
+
+[ext_resource type="Script" uid="uid://dhyadt7p1gv78" path="res://objects/modules/facility_room.gd" id="1_hn572"]
+[ext_resource type="Texture2D" uid="uid://c1u45a4o8oyty" path="res://icon.svg" id="2_hn572"]
+[ext_resource type="Resource" uid="uid://cw0iyxp4tentp" path="res://scenes/game_floor/department_floors/rooms_pplant.tres" id="3_tmkx5"]
+[ext_resource type="Script" uid="uid://cxvrtrods5hgg" path="res://scenes/game_floor/floor_variants/floor_variant.gd" id="4_nluwv"]
+
+[resource]
+script = ExtResource("4_nluwv")
+floor_difficulty = 0
+floor_type = ExtResource("3_tmkx5")
+floor_name = "The Power Plant"
+modifiers = Array[Script]([])
+end_rooms = Array[ExtResource("1_hn572")]([])
+floor_icon = ExtResource("2_hn572")
+anomalies = Array[Script]([])
+level_range = Vector2i(1, 12)
+room_count = 13

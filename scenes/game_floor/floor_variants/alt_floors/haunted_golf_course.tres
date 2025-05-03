@@ -21,3 +21,6 @@ floor_name = "Haunted Cog Golf Course"
 modifiers = Array[Script]([ExtResource("4_pdr5m"), ExtResource("6_q5ag6")])
 end_rooms = Array[ExtResource("1_qwy8y")]([SubResource("Resource_oopbd")])
 floor_icon = ExtResource("2_pa2hh")
+anomalies = Array[Script]([])
+level_range = Vector2i(1, 12)
+room_count = 13

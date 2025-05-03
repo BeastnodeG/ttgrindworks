@@ -1,0 +1,118 @@
+[gd_resource type="Resource" script_class="DepartmentFloor" load_steps=40 format=3 uid="uid://cw0iyxp4tentp"]
+
+[ext_resource type="AudioStream" uid="uid://ta7s86ku5kvp" path="res://audio/music/installer.ogg" id="1_w7fjy"]
+[ext_resource type="AudioStream" uid="uid://dqgiuok6f03if" path="res://audio/music/encntr_suit_winning.ogg" id="2_28e2n"]
+[ext_resource type="Script" uid="uid://dhyadt7p1gv78" path="res://objects/modules/facility_room.gd" id="3_1gbum"]
+[ext_resource type="PackedScene" uid="uid://jntxin7vcjnp" path="res://objects/modules/mint/variants/mint_diamond_room_battle.tscn" id="4_y0wgd"]
+[ext_resource type="PackedScene" uid="uid://2rshqkhhqxy6" path="res://objects/modules/mint/variants/mint_skele_room_battle.tscn" id="5_uxmbp"]
+[ext_resource type="PackedScene" uid="uid://c8kkjyolhf1dt" path="res://objects/modules/mint/variants/mint_skele_room2_battle.tscn" id="6_e3pic"]
+[ext_resource type="PackedScene" uid="uid://cgikj7t8vhs6m" path="res://objects/modules/mint/variants/mint_goon_room_battle.tscn" id="7_pj4ie"]
+[ext_resource type="PackedScene" uid="uid://bjw1mdiiwnr18" path="res://objects/modules/mint/variants/mint_obstacle_battle_room.tscn" id="8_led6g"]
+[ext_resource type="PackedScene" uid="uid://okwocfndw684" path="res://objects/modules/mint/base_rooms/mint_connector1.tscn" id="9_rd706"]
+[ext_resource type="PackedScene" uid="uid://ddfk765qkh6me" path="res://objects/modules/mint/base_rooms/mint_connector2.tscn" id="10_dbmy0"]
+[ext_resource type="PackedScene" uid="uid://cyq5xvfku4ltx" path="res://objects/modules/mint/variants/mint_standard_entrance.tscn" id="11_pfgdv"]
+[ext_resource type="PackedScene" uid="uid://b2ia8h86cdjo2" path="res://objects/modules/mint/variants/mint_lava_boss.tscn" id="12_q37qu"]
+[ext_resource type="PackedScene" uid="uid://bxnc8400cjdt1" path="res://objects/modules/mint/variants/mint_golden_goose_room.tscn" id="13_ir72t"]
+[ext_resource type="PackedScene" uid="uid://dfqkm6eljjh2b" path="res://objects/modules/mint/variants/mint_paint_room_standard.tscn" id="14_85tb8"]
+[ext_resource type="PackedScene" uid="uid://dfotlcburhyqo" path="res://objects/modules/mint/variants/mint_lava_room_standard.tscn" id="15_jok5x"]
+[ext_resource type="PackedScene" uid="uid://dw4ed1x08ulld" path="res://objects/modules/mint/variants/mint_obstacle_room_lava.tscn" id="16_3bjss"]
+[ext_resource type="PackedScene" uid="uid://d23a7o8nv0cqc" path="res://objects/modules/mint/variants/mint_skele_stompers.tscn" id="17_rjwsm"]
+[ext_resource type="PackedScene" uid="uid://c8h76u7dspxxc" path="res://objects/modules/mint/variants/mint_obstacle_lava_mixer.tscn" id="18_53djv"]
+[ext_resource type="PackedScene" uid="uid://cmwth04hxrxf4" path="res://objects/modules/mint/base_rooms/mint_conveyor_room.tscn" id="19_vk60m"]
+[ext_resource type="PackedScene" uid="uid://bweee2f872ar" path="res://objects/modules/mint/variants/mint_shop.tscn" id="20_adslj"]
+[ext_resource type="Script" uid="uid://bs13ap551050v" path="res://scenes/game_floor/department_floors/department_floor.gd" id="21_bjohd"]
+[ext_resource type="PackedScene" uid="uid://dqaa0qju4et1a" path="res://objects/modules/mint/variants/mint_ceiling_chests_room.tscn" id="22_ou830"]
+[ext_resource type="PackedScene" uid="uid://b8xrlx4lbhy1q" path="res://objects/modules/mint/variants/mint_special_pipe_room.tscn" id="23_et3tn"]
+
+[sub_resource type="Resource" id="Resource_6f1he"]
+script = ExtResource("3_1gbum")
+room = ExtResource("4_y0wgd")
+rarity_weight = 0.8
+
+[sub_resource type="Resource" id="Resource_m2s7n"]
+script = ExtResource("3_1gbum")
+room = ExtResource("5_uxmbp")
+rarity_weight = 0.9
+
+[sub_resource type="Resource" id="Resource_5leen"]
+script = ExtResource("3_1gbum")
+room = ExtResource("6_e3pic")
+rarity_weight = 0.8
+
+[sub_resource type="Resource" id="Resource_thipa"]
+script = ExtResource("3_1gbum")
+room = ExtResource("7_pj4ie")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_ivu7f"]
+script = ExtResource("3_1gbum")
+room = ExtResource("8_led6g")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_kcq8j"]
+script = ExtResource("3_1gbum")
+room = ExtResource("12_q37qu")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_ehsvc"]
+script = ExtResource("3_1gbum")
+room = ExtResource("13_ir72t")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_bs3kq"]
+script = ExtResource("3_1gbum")
+room = ExtResource("14_85tb8")
+rarity_weight = 0.75
+
+[sub_resource type="Resource" id="Resource_s8bwj"]
+script = ExtResource("3_1gbum")
+room = ExtResource("15_jok5x")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_sxmou"]
+script = ExtResource("3_1gbum")
+room = ExtResource("16_3bjss")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_dbq1y"]
+script = ExtResource("3_1gbum")
+room = ExtResource("17_rjwsm")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_bpdqh"]
+script = ExtResource("3_1gbum")
+room = ExtResource("18_53djv")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_qrqdp"]
+script = ExtResource("3_1gbum")
+room = ExtResource("19_vk60m")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_bdt7p"]
+script = ExtResource("3_1gbum")
+room = ExtResource("20_adslj")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_w1gik"]
+script = ExtResource("3_1gbum")
+room = ExtResource("22_ou830")
+rarity_weight = 1.0
+
+[sub_resource type="Resource" id="Resource_0826d"]
+script = ExtResource("3_1gbum")
+room = ExtResource("23_et3tn")
+rarity_weight = 1.0
+
+[resource]
+script = ExtResource("21_bjohd")
+entrances = Array[PackedScene]([ExtResource("11_pfgdv")])
+battle_rooms = Array[ExtResource("3_1gbum")]([SubResource("Resource_6f1he"), SubResource("Resource_m2s7n"), SubResource("Resource_5leen"), SubResource("Resource_thipa"), SubResource("Resource_ivu7f")])
+obstacle_rooms = Array[ExtResource("3_1gbum")]([SubResource("Resource_bs3kq"), SubResource("Resource_s8bwj"), SubResource("Resource_sxmou"), SubResource("Resource_dbq1y"), SubResource("Resource_bpdqh"), SubResource("Resource_qrqdp")])
+connectors = Array[PackedScene]([ExtResource("9_rd706"), ExtResource("10_dbmy0")])
+pre_final_rooms = Array[ExtResource("3_1gbum")]([SubResource("Resource_bdt7p")])
+final_rooms = Array[ExtResource("3_1gbum")]([SubResource("Resource_kcq8j"), SubResource("Resource_ehsvc")])
+one_time_rooms = Array[PackedScene]([])
+special_rooms = Array[ExtResource("3_1gbum")]([SubResource("Resource_w1gik"), SubResource("Resource_0826d")])
+background_music = Array[AudioStream]([ExtResource("1_w7fjy")])
+battle_music = ExtResource("2_28e2n")

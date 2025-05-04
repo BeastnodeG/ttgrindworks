@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy20p6y5myko4"]
+
+[ext_resource type="PackedScene" uid="uid://d5evl8gp74kq" path="res://models/props/toon_props/treasure_map/trimap.fbx" id="1_5d7wo"]
+[ext_resource type="Texture2D" uid="uid://eummnbe6hnff" path="res://models/props/toon_props/cursed_treasure_map/trimap_0.png" id="2_ipmkr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8er3e"]
+albedo_texture = ExtResource("2_ipmkr")
+
+[node name="trimap" instance=ExtResource("1_5d7wo")]
+
+[node name="Map" parent="." index="0"]
+transform = Transform3D(-0.0441001, -0.129399, 99.9999, -99.9992, 0.394128, -0.0435896, -0.394071, -99.9991, -0.129572, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_8er3e")

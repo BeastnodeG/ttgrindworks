@@ -335,3 +335,28 @@ func display_item(item : Item) -> Control:
 	ui.item = item
 	get_tree().get_root().add_child(ui)
 	return ui
+
+#dumb debugging
+func _process(delta):
+	if OS.is_debug_build() and Input.is_action_just_pressed("alt_click"):
+		spawn_debug_active_item()
+
+func spawn_debug_active_item():
+	var item: Item = load("res://objects/items/resources/active/cursed_treasure_map.tres").duplicate()
+	
+	item_created(item)
+	seen_item(item)
+	
+	var player := Util.get_player()
+	if player:
+		if item is ItemActive:
+			item.apply_item(player, true)
+			player.stats.current_active_item = item
+			print("Equipped active item: ", item.item_name)
+		else:
+			player.stats.items.append(item)
+			apply_inventory()
+
+	# Show the UI popup
+	#display_item(item)
+	print("Spawned and equipped debug active item!")

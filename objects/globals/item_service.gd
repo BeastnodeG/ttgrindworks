@@ -342,7 +342,7 @@ func _process(delta):
 		spawn_debug_active_item()
 
 func spawn_debug_active_item():
-	var item: Item = load("res://objects/items/resources/active/cursed_treasure_map.tres").duplicate()
+	var item: Item = load("res://objects/items/resources/active/alphabet_soup.tres").duplicate()
 	
 	item_created(item)
 	seen_item(item)
@@ -358,5 +358,5 @@ func spawn_debug_active_item():
 			apply_inventory()
 
 	# Show the UI popup
-	#display_item(item)
+	display_item(item)
 	print("Spawned and equipped debug active item!")

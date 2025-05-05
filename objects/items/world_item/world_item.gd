@@ -284,3 +284,36 @@ func destroy_item() -> void:
 		ItemService.item_removed(item)
 	s_destroyed.emit()
 	queue_free()
+
+#start of modded additions
+func spindown() -> void:
+	# Free the model and remove the current item
+	if model:
+		model.queue_free()
+	ItemService.item_removed(item)
+
+	if bob_tween:
+		bob_tween.kill()
+	rotation_tween.kill()
+
+	var current_name := item.item_name
+	var next_item := _get_next_item_in_pool(current_name)
+	if next_item == null:
+		return
+
+	print("Spindown: %s → %s" % [current_name, next_item.item_name])
+	item = next_item
+	spawn_item()
+
+# Internal helper to find the next item in the sorted pool
+func _get_next_item_in_pool(current_name: String) -> Item:
+	var sorted_items := pool.items.duplicate()
+	sorted_items.sort_custom(func(a, b): return a.item_name < b.item_name)
+
+	for i in range(sorted_items.size()):
+		if sorted_items[i].item_name == current_name:
+			return sorted_items[(i + 1) % sorted_items.size()]
+
+	printerr("Spindown: current item not found in pool; freeing.")
+	queue_free()
+	return null

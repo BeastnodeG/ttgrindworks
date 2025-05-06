@@ -86,10 +86,10 @@ func get_status_name() -> String:
 func get_description() -> String:
 	var damage_threshold: int = ceili(target.stats.max_hp * (amount / 100.0) + 1)
 	print(additive_damage_boost)
-	return "You will go sad if your laff falls below %d!\nx%.2f damage multiplier." % [damage_threshold, additive_damage_boost]
+	return "You will go sad if the turn ends with your laff below %d!\nx%.2f damage multiplier." % [damage_threshold, additive_damage_boost]
 
 func combine(effect: StatusEffect) -> bool: #we probably don't want to keep this but im afraid of removing it and having everything break
 	if effect is StatusGreenDeal:
 		amount = max(amount, effect.amount)
 		return true
-	return false
+	return true

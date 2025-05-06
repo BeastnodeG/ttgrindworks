@@ -337,9 +337,12 @@ func display_item(item : Item) -> Control:
 	return ui
 
 #dumb debugging
+var debug_item_spawned := false
+
 func _process(delta):
-	if OS.is_debug_build() and Input.is_action_just_pressed("alt_click"):
+	if OS.is_debug_build() and Input.is_action_just_pressed("alt_click") and not debug_item_spawned:
 		spawn_debug_active_item()
+		debug_item_spawned = true
 
 func spawn_debug_active_item():
 	var item: Item = load("res://objects/items/resources/active/green_deal.tres").duplicate()

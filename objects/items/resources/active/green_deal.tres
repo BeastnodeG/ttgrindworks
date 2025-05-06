@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://qo2t7ml8dodc" path="res://ui_assets/player_ui/pocket_prank_icons/green_deal.png" id="1_xq0ix"]
 [ext_resource type="Script" uid="uid://bnug5noq0yqoj" path="res://objects/items/custom/green_deal/green_deal.gd" id="2_xq0ix"]
-[ext_resource type="PackedScene" uid="uid://5c8dojicg3an" path="res://objects/items/custom/green_deal/green_deal.tscn" id="3_on8dc"]
+[ext_resource type="PackedScene" uid="uid://3a8vwu35co24" path="res://objects/items/custom/green_deal/green_deal.tscn" id="3_on8dc"]
 [ext_resource type="AudioStream" uid="uid://48hfr175gfot" path="res://audio/sfx/items/green_deal.ogg" id="4_5n2eu"]
 [ext_resource type="Script" uid="uid://5uwfsntxdag6" path="res://objects/items/classes/item_active.gd" id="5_iai3s"]
 
@@ -20,11 +20,11 @@ realtime = false
 slot = 0
 world_scale = 0.5
 world_y_offset = 0.0
-want_ui_spin = false
+want_ui_spin = true
 ui_cam_offset = 0.0
 item_name = "Green Deal"
 item_description = "Impending doom"
-big_description = "Grants increasing power each turn as a damage multiplier. If your laff falls below the power, the prank automatically activates. Activating the prank deals damage to you based on the power shown in the status effect and resets it."
+big_description = "Gains power each turn, granting you a damage multiplier. If your laff is below a threshold determined by the power at the end of the turn, the prank automatically activates - dealing damage to you equal to the damage threshold and resetting the damage multiplier."
 model = ExtResource("3_on8dc")
 pickup_sfx = ExtResource("4_5n2eu")
 stats_add = {}

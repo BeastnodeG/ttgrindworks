@@ -1,17 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://5c8dojicg3an"]
+[gd_scene load_steps=5 format=3 uid="uid://3a8vwu35co24"]
 
-[ext_resource type="PackedScene" uid="uid://bwovn5qyuqkt0" path="res://models/props/cog_props/bounce_check/bouncecheck.glb" id="1_t63vk"]
-[ext_resource type="Texture2D" uid="uid://qo2t7ml8dodc" path="res://ui_assets/player_ui/pocket_prank_icons/green_deal.png" id="2_jsnxt"]
+[ext_resource type="Texture2D" uid="uid://qo2t7ml8dodc" path="res://ui_assets/player_ui/pocket_prank_icons/green_deal.png" id="1_71vx0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8lxf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_af6np"]
 transparency = 1
-albedo_texture = ExtResource("2_jsnxt")
+cull_mode = 2
+albedo_texture = ExtResource("1_71vx0")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_k3dnj"]
-material = SubResource("StandardMaterial3D_i8lxf")
+[sub_resource type="ArrayMesh" id="ArrayMesh_wra8v"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
 
-[node name="green_deal" instance=ExtResource("1_t63vk")]
+[sub_resource type="ArrayMesh" id="ArrayMesh_hjh8r"]
+resource_name = "bouncecheck_Plane"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_af6np"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 84, 213, 255, 255, 0, 0, 0, 0, 84, 213, 255, 255, 0, 0, 255, 255, 84, 213, 0, 0, 0, 0, 0, 0, 84, 213, 84, 213, 170, 42, 84, 213, 170, 42, 84, 213, 170, 42, 84, 213, 170, 42)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wra8v")
 
-[node name="Check" parent="." index="0"]
-transform = Transform3D(-0.00231558, 0.999996, -0.006703, 0.00297208, -0.00268006, -2.49999, -2.45374, -0.000946935, -0.00302178, -0.00562334, 1.67311, 1.43051e-05)
-mesh = SubResource("PlaneMesh_k3dnj")
+[node name="green_deal" type="Node3D"]
+
+[node name="planething" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.64402e-08, 0.15, 0, -0.376107, -6.55671e-09, 0, 0, 0, 0.375, 0, 0, 0)
+mesh = SubResource("ArrayMesh_hjh8r")
+skeleton = NodePath("")

@@ -17,3 +17,4 @@
 *.dmg
 
 *.zip
+objects/save_file/settings.gd

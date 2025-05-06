@@ -4,7 +4,7 @@ const SFX := preload("res://audio/sfx/items/green_deal.ogg")
 const STATUS := preload("res://objects/battle/battle_resources/status_effects/resources/status_green_deal.tres")
 
 var player: Player
-var green_deal_strength := 5.0 # starts at 5%
+var green_deal_strength := 2.5 # starts at 2.5%
 var greendeal_status: StatusEffect
 
 func on_collect(_item: Item, _object: Node3D) -> void:
@@ -37,7 +37,7 @@ func apply_status(manager: BattleManager) -> void:
 	greendeal_status = status
 
 func increase_strength(manager: BattleManager) -> void:
-	green_deal_strength += 5.0
+	green_deal_strength += 2.5
 
 func use() -> void:
 	print("trying to use this thing")

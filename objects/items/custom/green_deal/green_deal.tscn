@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://8jixqmbtd366"]
+[gd_scene load_steps=5 format=3 uid="uid://5c8dojicg3an"]
 
-[ext_resource type="Texture2D" uid="uid://ce0sy8ma2flt1" path="res://objects/items/custom/track_film/filmstrip.png" id="1_3sh4a"]
-[ext_resource type="Script" uid="uid://x34lh7fqix1i" path="res://objects/items/custom/track_film/track_frame.gd" id="2_83c3p"]
+[ext_resource type="PackedScene" uid="uid://bwovn5qyuqkt0" path="res://models/props/cog_props/bounce_check/bouncecheck.glb" id="1_t63vk"]
+[ext_resource type="Texture2D" uid="uid://qo2t7ml8dodc" path="res://ui_assets/player_ui/pocket_prank_icons/green_deal.png" id="2_jsnxt"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ql6t2"]
-cull_mode = 2
-albedo_texture = ExtResource("1_3sh4a")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8lxf"]
+transparency = 1
+albedo_texture = ExtResource("2_jsnxt")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_xgkfh"]
-material = SubResource("StandardMaterial3D_ql6t2")
-size = Vector2(0.5, 0.5)
+[sub_resource type="PlaneMesh" id="PlaneMesh_k3dnj"]
+material = SubResource("StandardMaterial3D_i8lxf")
 
-[node name="TrackFilm" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("PlaneMesh_xgkfh")
-script = ExtResource("2_83c3p")
+[node name="green_deal" instance=ExtResource("1_t63vk")]
+
+[node name="Check" parent="." index="0"]
+transform = Transform3D(-0.00231558, 0.999996, -0.006703, 0.00297208, -0.00268006, -2.49999, -2.45374, -0.000946935, -0.00302178, -0.00562334, 1.67311, 1.43051e-05)
+mesh = SubResource("PlaneMesh_k3dnj")

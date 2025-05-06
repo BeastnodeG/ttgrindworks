@@ -1,83 +1,71 @@
-extends MeshInstance3D
+extends ItemScriptActive
 
-const BASE_ITEM := "res://objects/items/resources/passive/track_frame.tres"
+const SFX := preload("res://audio/sfx/items/green_deal.ogg")
+const STATUS := preload("res://objects/battle/battle_resources/status_effects/resources/status_green_deal.tres")
 
-var track : String
+var player: Player
+var green_deal_strength := 5.0 # starts at 5%
+var greendeal_status: StatusEffect
 
-var resource : Item
-
-
-func setup(item : Item):
-	resource = item
-	
-	# Standard behavior
-	if not resource.arbitrary_data.has('track'):
-		randomize_track()
+func on_collect(_item: Item, _object: Node3D) -> void:
+	super.on_collect(_item, _object)
+	print("green deal picked up")
+	var _player: Player
+	if not Util.get_player():
+		print("yeah you just got player assigned buddy")
+		_player = await Util.s_player_assigned
 	else:
-		track = resource.arbitrary_data['track']
-	
-	# Color the mesh
-	var mesh_mat : StandardMaterial3D = mesh.surface_get_material(0).duplicate()
-	mesh_mat.albedo_color = get_color()
-	set_surface_override_material(0,mesh_mat)
+		print("yeah we're util get playering you")
+		_player = Util.get_player()
+	setup(_player)
 
-
-func modify(ui : MeshInstance3D) -> void:
-	ui.set_surface_override_material(0,ui.mesh.surface_get_material(0).duplicate())
-	ui.get_surface_override_material(0).albedo_texture = get_gag_got().icon
-	ui.get_surface_override_material(0).transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-
-# Weighted gag generation
-func randomize_track() -> void:
-	var hat := get_hat()
+func setup(_player: Player) -> void:
+	player = _player
+	BattleService.s_battle_started.connect(apply_status)
+	BattleService.s_round_ended.connect(end_round)
 	
-	if hat.is_empty():
-		resource.reroll()
-		return
+func end_round(manager: BattleManager) -> void:
+	increase_strength(manager)
+	apply_status(manager)
 	
-	track = hat[RandomService.randi_channel('gag_frames') % hat.size()]
-	
-	# Store the track in the item resource
-	resource.arbitrary_data['track'] = track
-	resource.item_description = "New %s Gag!" % track
-	resource.big_description = resource.item_description
+func apply_status(manager: BattleManager) -> void:
+	print("attempting to apply status")
+	var status := STATUS.duplicate()
+	status.amount = green_deal_strength
+	status.target = player
+	manager.add_status_effect(status)
+	greendeal_status = status
 
-func get_color() -> Color:
-	if get_track(track):
-		return get_track(track).track_color
-	else:
-		return Color.NAVY_BLUE
+func increase_strength(manager: BattleManager) -> void:
+	green_deal_strength += 5.0
 
-func collect() -> void:
-	Util.get_player().stats.gags_unlocked[track] += 1
-	resource.item_name = get_gag_got().action_name
+func use() -> void:
+	print("trying to use this thing")
+	var player := Util.get_player()
+	var battle := BattleService.ongoing_battle
 
-func get_track(track_name : String) -> Track:
-	var loadout := Util.get_player().stats.character.gag_loadout
-	
-	for gag_track in loadout.loadout:
-		if gag_track.track_name == track_name:
-			return gag_track
-	return null
+	battle.battle_ui.visible = false
+	if is_instance_valid(battle.battle_ui.timer):
+		battle.battle_ui.timer.timer.set_paused(true)
 
-func get_hat() -> Array[String]:
-	var loadout : GagLoadout = Util.get_player().character.gag_loadout
-	
-	# Put all missing gags in a hat
-	var hat : Array[String] = []
-	for gag_track in loadout.loadout:
-		var unlocked : int = Util.get_player().stats.gags_unlocked[gag_track.track_name]
-		var remaining := gag_track.gags.size() - unlocked
-		for i in remaining:
-			hat.append(gag_track.track_name)
-	
-	# Remove the gags from the floor that have already been spawned
-	for item : Item in ItemService.items_in_play:
-		if item.arbitrary_data.has('track'):
-			hat.erase(item.arbitrary_data['track'])
-	
-	return hat
+	AudioManager.play_sound(SFX)
 
-func get_gag_got() -> ToonAttack:
-	var gag_track := Util.get_player().stats.character.gag_loadout.get_track_of_name(track)
-	return gag_track.gags[Util.get_player().stats.gags_unlocked[track] - 1]
+	var effect := STATUS.duplicate()
+	effect.target = player
+	effect.amount = green_deal_strength
+	effect.manager = battle
+	green_deal_strength = 0.0
+	effect.force_trigger()
+
+	await battle.sleep(2.8)
+
+	battle.battle_ui.visible = true
+	battle.battle_node.focus_character(battle.battle_node)
+	if is_instance_valid(battle.battle_ui.timer):
+		battle.battle_ui.timer.timer.set_paused(false)
+
+	if greendeal_status:
+		await battle.expire_status_effect(greendeal_status)
+		greendeal_status = null
+
+	BattleService.s_refresh_statuses.emit()

@@ -287,7 +287,6 @@ func destroy_item() -> void:
 
 #start of modded additions
 func spindown() -> void:
-	# Free the model and remove the current item
 	if model:
 		model.queue_free()
 	ItemService.item_removed(item)
@@ -305,7 +304,6 @@ func spindown() -> void:
 	item = next_item
 	spawn_item()
 
-# Internal helper to find the next item in the sorted pool
 func _get_next_item_in_pool(current_name: String) -> Item:
 	var sorted_items := pool.items.duplicate()
 	sorted_items.sort_custom(func(a, b): return a.item_name < b.item_name)

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="StatEffectMonarch" load_steps=2 format=3 uid="uid://oa32eocvowiq"]
+
+[ext_resource type="Script" uid="uid://bdl61mjm8f45b" path="res://objects/battle/battle_resources/status_effects/status_effect_monarch.gd" id="1_hd8xa"]
+
+[resource]
+script = ExtResource("1_hd8xa")
+amount = 0
+instant_effect = false
+quality = 1
+rounds = 0
+rounds_offset = 0
+icon_color = Color(1, 1, 1, 1)
+icon_scale = 1.0
+mini_icon_color = Color(1, 1, 1, 1)
+mini_icon_scale = 1.0
+visible = true
+description = ""
+status_name = "Status Effect"
+id = 3

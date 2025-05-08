@@ -340,12 +340,14 @@ func display_item(item : Item) -> Control:
 var debug_item_spawned := false
 
 func _process(delta):
-	if OS.is_debug_build() and Input.is_action_just_pressed("alt_click") and not debug_item_spawned:
-		spawn_debug_active_item()
-		#debug_item_spawned = true
+	if OS.is_debug_build() and Input.is_action_just_pressed("alt_click"):
+		if not debug_item_spawned:
+			spawn_debug_active_item()
+		else:
+			charge_debug_item()
 
 func spawn_debug_active_item():
-	var item: Item = load("res://objects/items/resources/active/paint_brush.tres").duplicate()
+	var item: Item = load("res://objects/items/resources/active/monarch_butterfly.tres").duplicate()
 	
 	item_created(item)
 	seen_item(item)
@@ -360,6 +362,15 @@ func spawn_debug_active_item():
 			player.stats.items.append(item)
 			apply_inventory()
 
-	# Show the UI popup
 	display_item(item)
 	print("Spawned and equipped debug active item!")
+
+	debug_item_spawned = true
+
+func charge_debug_item():
+	var player := Util.get_player()
+	if player:
+		var item = player.stats.current_active_item
+		
+		item.current_charge = item.charge_count
+		print("Charged item to full.")

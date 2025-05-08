@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="ItemActive" load_steps=5 format=3 uid="uid://dte8uk3guasuw"]
+
+[ext_resource type="Texture2D" uid="uid://b4wafj4wbjsi7" path="res://ui_assets/player_ui/pocket_prank_icons/monarch_butterfly.png" id="1_x78cx"]
+[ext_resource type="Script" uid="uid://bkb0b4d73eygb" path="res://objects/items/custom/monarch_butterfly/item_monarch_butterfly.gd" id="2_hwtft"]
+[ext_resource type="PackedScene" uid="uid://li4l0nsd4kw4" path="res://objects/items/custom/monarch_butterfly/monarch_butterfly.tscn" id="3_6d8yh"]
+[ext_resource type="Script" uid="uid://5uwfsntxdag6" path="res://objects/items/classes/item_active.gd" id="4_mxlc0"]
+
+[resource]
+script = ExtResource("4_mxlc0")
+sfx = Array[AudioStream]([])
+active_type = 2
+charge_count = 3
+current_charge = 3
+item_tags = null
+qualitoon = 3
+rarity = 0
+evergreen = false
+realtime = false
+slot = 0
+world_scale = 1.0
+world_y_offset = 0.0
+want_ui_spin = true
+ui_cam_offset = 0.0
+item_name = "Monarch Butterfly"
+item_description = "Lord of the butterflies"
+big_description = "Aborbs the nearest item in exchange for a butterfly that damages cogs randomly.
+Damage of the butterflies scale with damage stat and qualitoon of item absorbed."
+model = ExtResource("3_6d8yh")
+stats_add = {}
+stats_multiply = {}
+player_values = {}
+arbitrary_data = {}
+item_script = ExtResource("2_hwtft")
+remember_item = true
+icon = ExtResource("1_x78cx")
+shop_category_title = "Pocket Prank"
+shop_category_color = Color(0.929412, 0.262745, 0.278431, 1)
+force_show_shop_category = false
+custom_shop_price = 0
+metadata/_custom_type_script = "uid://5uwfsntxdag6"

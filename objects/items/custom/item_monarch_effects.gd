@@ -39,20 +39,29 @@ func sendtheswarm(manager: BattleManager) -> void:
 
 		var cog: Cog = RandomService.array_pick_random('true_random', manager.cogs)
 		var status := MONARCH_STATUS.duplicate()
-		status.amount = total_damage
 		status.target = cog
-		status.SpecialEffect = get_special_effect(item.name)
-
+		status.ButterflyAmount = qualitoon + 1
+		
+		var special := get_special_effect(item.name)
+		
+		if special == "Candy": #this feels stupid. oh well
+			status.amount = round(total_damage * 1.25)
+			special = "Hex"
+		else:
+			status.amount = total_damage
+		
+		status.SpecialEffect = special
+		
 		manager.add_status_effect(status)
 
-#please don't yell at me if you looked at the active script and are looking at this
+#no one... will notice
 func get_special_effect(item_name: String) -> String:
 	var effect_map := {
 		"Jellybean": "Cash",
-		#"Super Candy": "SuperCandy",
-		#"Candy": "Candy",
-		#"Toonup": "Toonup",
-		# don't forget to uncomment these alder that would be a very silly mistake
+		"Super Candy": "Candy",
+		"Candy": "Candy",
+		"Toonup": "Hex",
+		"Treasure": "Vampire"
 	}
 	
 	for keyword in effect_map.keys():

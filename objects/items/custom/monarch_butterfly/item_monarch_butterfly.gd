@@ -9,6 +9,7 @@ const POOL_SHORTHANDS := {
 	"res://objects/items/pools/super_candies.tres": "Super Candy",
 	"res://objects/items/pools/candies.tres": "Candy",
 	"res://objects/items/custom/monarch_butterfly/toonup.tres": "Toonup",
+	"res://objects/items/pools/treasures.tres": "Treasure"
 }
 
 var LOADED_POOLS := {}

@@ -1,9 +1,19 @@
 extends ItemScript
 
 const MONARCH_STATUS := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
-const QUALITOON_DAMAGE := [3, 3, 6, 9, 12, 15] #15 doesn't get reached becauser q6 items don't exist... but whatever.
+const QUALITOON_DAMAGE := [3, 3, 6, 9, 12, 15] # q6 doesn't exist but we include it for safety
 
 var player: Player
+
+# Keyword-effect and damage multiplier map
+const EFFECT_MAP := {
+	"Jellybean": { effect = "Cash", damage_multiplier = 0.5 },
+	"Super Candy": { effect = "Hex", damage_multiplier = 1 },
+	"Candy": { effect = "Hex", damage_multiplier = 0.75 },
+	"Toonup": { effect = "Hex", damage_multiplier = 0.5 },
+	"Treasure": { effect = "Vampire", damage_multiplier = 0.5 },
+	"Laff Boost": { effect = "Vampire", damage_multiplier = 0.75 }
+}
 
 func on_collect(_item: Item, _object: Node3D) -> void:
 	var _player: Player
@@ -21,7 +31,7 @@ func setup(_player: Player) -> void:
 	print("yeah im doing some connecting")
 	BattleService.s_battle_started.connect(sendtheswarm)
 	BattleService.s_round_ended.connect(sendtheswarm)
-	
+
 func sendtheswarm(manager: BattleManager) -> void:
 	var absorbed_items = MonarchRegistry.get_absorbed_items()
 	print("Butterflies we're using: " + str(absorbed_items))
@@ -33,7 +43,6 @@ func sendtheswarm(manager: BattleManager) -> void:
 	for item in absorbed_items:
 		var qualitoon := int(item.get("qualitoon", 2))
 		var base_damage: int = QUALITOON_DAMAGE[clamp(qualitoon, 0, 5)]
-
 		var player_damage := player.stats.damage
 		var total_damage: int = round(base_damage + player_damage)
 
@@ -41,32 +50,16 @@ func sendtheswarm(manager: BattleManager) -> void:
 		var status := MONARCH_STATUS.duplicate()
 		status.target = cog
 		status.ButterflyAmount = qualitoon + 1
-		
-		var special := get_special_effect(item.name)
-		
-		if special == "Candy": #this feels stupid. oh well
-			status.amount = round(total_damage * 1.25)
-			special = "Hex"
-		else:
-			status.amount = total_damage
-		
-		status.SpecialEffect = special
-		
+
+		var effect_info := get_special_effect(item.name)
+		status.amount = round(total_damage * effect_info.damage_multiplier)
+		status.SpecialEffect = effect_info.effect
+
 		manager.add_status_effect(status)
 
-#no one... will notice
-func get_special_effect(item_name: String) -> String:
-	var effect_map := {
-		"Jellybean": "Cash",
-		"Super Candy": "Candy",
-		"Candy": "Candy",
-		"Toonup": "Hex",
-		"Treasure": "Vampire"
-	}
-	
-	for keyword in effect_map.keys():
+func get_special_effect(item_name: String) -> Dictionary:
+	for keyword in EFFECT_MAP.keys():
 		if item_name == keyword:
 			print("yeah you're special :3")
-			return effect_map[keyword]
-
-	return "Basic"
+			return EFFECT_MAP[keyword]
+	return { effect = "Basic", damage_multiplier = 1.0 }

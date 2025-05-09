@@ -12,6 +12,7 @@ sfx = Array[AudioStream]([])
 active_type = 2
 charge_count = 2
 current_charge = 2
+custom_discharge_time = 1.0
 item_tags = null
 qualitoon = 3
 rarity = 0

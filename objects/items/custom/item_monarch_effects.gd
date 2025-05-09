@@ -1,8 +1,8 @@
 extends ItemScript
 
 const MONARCH_STATUS := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
-const QUALITOON_DAMAGE := [3, 3, 6, 9, 12, 15] # q6 doesn't exist but we include it for safety
-
+const QUALITOON_DAMAGE := [3, 3, 6, 9, 12, 15] # q5 doesn't exist but we include it for safety... don't i sound so smart
+#                         [0, 1, 2, 3, 4, 5]
 var player: Player
 
 # Keyword-effect and damage multiplier map
@@ -10,9 +10,27 @@ const EFFECT_MAP := {
 	"Jellybean": { effect = "Cash", damage_multiplier = 0.5 },
 	"Super Candy": { effect = "Hex", damage_multiplier = 1 },
 	"Candy": { effect = "Hex", damage_multiplier = 0.75 },
-	"Toonup": { effect = "Hex", damage_multiplier = 0.5 },
 	"Treasure": { effect = "Vampire", damage_multiplier = 0.5 },
-	"Laff Boost": { effect = "Vampire", damage_multiplier = 0.75 }
+	"Laff Boost": { effect = "Vampire", damage_multiplier = 0.75 },
+	"Random": { effect = "Random", damage_multiplier = 0.75},
+	"Task Reroll": { effect = "Random", damage_multiplier = 1 },
+	"Toonup": { effect = "Hex", damage_multiplier = 0.5 },
+	"Squirt": { effect = "Soak", damage_multiplier = 1 },
+	"Trap": { effect = "Basic", damage_multiplier = 1.5 },
+	"Lure": { effect = "Hex", damage_multiplier = 1 },
+	"Sound": { effect = "Basic", damage_multiplier = 1.5 },
+	"Throw": { effect = "Vampire", damage_multiplier = 1 },
+	"Drop": { effect = "Aftershock", damage_multiplier = 0.9 }
+}
+
+# Define the consistent multipliers for each random effect
+const RANDOM_EFFECT := {
+	"Vampire": 0.5,
+	"Hex": 0.75,
+	"Soak": 0.75,
+	"Aftershock": 1.1,
+	"Basic": 1.25,
+	"Cash": 0.5
 }
 
 func on_collect(_item: Item, _object: Node3D) -> void:
@@ -60,6 +78,22 @@ func sendtheswarm(manager: BattleManager) -> void:
 func get_special_effect(item_name: String) -> Dictionary:
 	for keyword in EFFECT_MAP.keys():
 		if item_name == keyword:
-			print("yeah you're special :3")
-			return EFFECT_MAP[keyword]
+			var base_info = EFFECT_MAP[keyword]
+			var base_multiplier: float = float(base_info.damage_multiplier)
+
+			if base_info.effect == "Random":
+				var random_effects := RANDOM_EFFECT.keys()
+				var chosen_effect: String = RandomService.array_pick_random('true_random', random_effects)
+				var chosen_multiplier: float = float(RANDOM_EFFECT.get(chosen_effect, 1.0))
+				var final_multiplier: float = base_multiplier * chosen_multiplier
+
+				print("Random effect selected: %s (%.2f x %.2f = %.2f)" % [chosen_effect, base_multiplier, chosen_multiplier, final_multiplier])
+				return {
+					effect = chosen_effect,
+					damage_multiplier = final_multiplier
+				}
+
+			return base_info
+
+	# Fallback
 	return { effect = "Basic", damage_multiplier = 1.0 }

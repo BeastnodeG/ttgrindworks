@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemActive" load_steps=5 format=3 uid="uid://bd75j7m3tuaem"]
+[gd_resource type="Resource" script_class="ItemActive" load_steps=5 format=3 uid="uid://eddwyeqhdxok"]
 
 [ext_resource type="Texture2D" uid="uid://37tyf6yo6mu1" path="res://ui_assets/player_ui/pocket_prank_icons/cursed treasure map.png" id="1_qod4m"]
 [ext_resource type="Script" uid="uid://cg155iqrrk5u" path="res://objects/items/custom/cursed_treasure_map/item_cursed_treasure_map.gd" id="2_qod4m"]
@@ -11,6 +11,7 @@ sfx = Array[AudioStream]([])
 active_type = 2
 charge_count = 3
 current_charge = 3
+custom_discharge_time = 1.0
 item_tags = null
 qualitoon = 3
 rarity = 0

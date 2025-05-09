@@ -16,7 +16,6 @@ var LOADED_POOLS := {}
 var absorbed_items: Array[Dictionary] = []
 
 func _ready() -> void:
-	# Load all the item pools
 	for path in POOL_SHORTHANDS.keys():
 		var pool := load(path)
 		if pool:
@@ -42,17 +41,36 @@ func use() -> void:
 		cancel_use()
 		return
 
-	var shorthand := get_shorthand_label(world_item.item)
-	var qualitoon := ""
-	qualitoon = str(world_item.item.qualitoon)
+	var item_name := world_item.item.item_name
 
-	var entry := {
-		"name": shorthand,
-		"qualitoon": qualitoon
-	}
-	absorbed_items.append(entry)
+	if item_name == "Gag Point Boost":
+		for i in range(7):
+			var entry := {
+				"name": "Random",
+				"qualitoon": 2
+			}
+			absorbed_items.append(entry)
+		print("Added Gag Point entry.")
+	elif item_name == "Extra Turn":
+		for i in range(7):
+			var entry := {
+				"name": "Random",
+				"qualitoon": 1
+			}
+			absorbed_items.append(entry)
+		print("Added Extra Turn entry.")
+	else:
+		var shorthand := get_shorthand_label(world_item.item)
+		var qualitoon := str(world_item.item.qualitoon)
+
+		var entry := {
+			"name": shorthand,
+			"qualitoon": qualitoon
+		}
+		absorbed_items.append(entry)
+		print("Absorbed item and updated registry: %s" % entry)
+
 	MonarchRegistry.set_absorbed_items(absorbed_items)
-	print("Absorbed item and updated registry: %s" % entry)
 
 	var dust_cloud = Globals.DUST_CLOUD.instantiate()
 	world_item.get_parent().add_child(dust_cloud)
@@ -61,12 +79,32 @@ func use() -> void:
 
 	world_item.queue_free()
 
-
 func get_shorthand_label(item: Item) -> String:
+	# Priority: arbitrary_data.track
+	if "arbitrary_data" in item:
+		var data: Dictionary = item.arbitrary_data
+		if "track" in data:
+			var track_name := str(data["track"])
+			print("Track Label:", track_name)
+			return track_name
+
+	# Check known pools next
 	for path in LOADED_POOLS:
 		var pool: ItemPool = LOADED_POOLS[path]
 		if item_in_pool(item, pool):
 			return POOL_SHORTHANDS[path]
+
+	# Default fallback
+	return item.item_name
+
+
+	# Check known pools next
+	for path in LOADED_POOLS:
+		var pool: ItemPool = LOADED_POOLS[path]
+		if item_in_pool(item, pool):
+			return POOL_SHORTHANDS[path]
+
+	# Default fallback
 	return item.item_name
 
 func item_in_pool(item: Item, pool: ItemPool) -> bool:

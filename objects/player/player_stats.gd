@@ -85,6 +85,10 @@ signal s_active_item_changed(new_item : ItemActive)
 
 @export var battle_timers : Array[int] = []
 
+##Green Folio
+@export var monarch_absorbed_items : Array[Dictionary] = []
+@export var green_deal_strength := 2.5
+
 ## For pause screen display
 var prev_stats : Dictionary[String, float] = {}
 

@@ -1,8 +1,7 @@
 extends ItemScript
 
-const MONARCH_STATUS := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
+var MONARCH_STATUS := load("res://objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
 const QUALITOON_DAMAGE := [3, 3, 6, 9, 12, 15] # q5 doesn't exist but we include it for safety... don't i sound so smart
-#                         [0, 1, 2, 3, 4, 5]
 var player: Player
 
 # Keyword-effect and damage multiplier map
@@ -114,7 +113,10 @@ func setup(_player: Player) -> void:
 	BattleService.s_round_ended.connect(sendtheswarm)
 
 func sendtheswarm(manager: BattleManager) -> void:
-	var absorbed_items = MonarchRegistry.get_absorbed_items()
+	if not player:
+		return
+
+	var absorbed_items = player.stats.monarch_absorbed_items
 	print("Butterflies we're using: " + str(absorbed_items))
 
 	if not manager.cogs or manager.cogs.is_empty():

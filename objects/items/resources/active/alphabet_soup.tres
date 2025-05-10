@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://drtx5d081a8on" path="res://ui_assets/player_ui/pocket_prank_icons/alphabet soup.png" id="1_pvlbm"]
 [ext_resource type="Script" uid="uid://bernlt3jbkmcc" path="res://objects/items/custom/alphabet_soup/item_alphabet_soup.gd" id="2_pvlbm"]
-[ext_resource type="PackedScene" uid="uid://cxsmv15f1kmgs" path="res://models/props/facility_objects/factory/paint_bucket/rainbow_bucket.tscn" id="3_7a3ee"]
+[ext_resource type="PackedScene" uid="uid://iwfwihtnb1h6" path="res://objects/items/custom/alphabet_soup/alphabet_soup.tscn" id="3_pvlbm"]
 [ext_resource type="AudioStream" uid="uid://bo55gnnobpcnj" path="res://audio/sfx/battle/cogs/attacks/special/CHQ_FACT_paint_splash.ogg" id="4_q5lky"]
 [ext_resource type="Script" uid="uid://5uwfsntxdag6" path="res://objects/items/classes/item_active.gd" id="5_ate8j"]
 
@@ -26,7 +26,7 @@ ui_cam_offset = 0.0
 item_name = "Alphabet Soup"
 item_description = "Stir up the next letter!"
 big_description = "Reroll an item from the nearest chest to the next item alphabetically."
-model = ExtResource("3_7a3ee")
+model = ExtResource("3_pvlbm")
 pickup_sfx = ExtResource("4_q5lky")
 stats_add = {}
 stats_multiply = {}

@@ -287,6 +287,27 @@ func destroy_item() -> void:
 
 #start of modded additions
 func spindown() -> void:
+	var everything_pool := load("res://objects/items/pools/everything.tres") as ItemPool
+
+	var item_list: Array[Item] = everything_pool.items.duplicate()
+
+	item_list.sort_custom(func(a: Item, b: Item) -> bool:
+		return a.item_name.naturalnocasecmp_to(b.item_name) < 0
+	)
+
+	var current_name := item.item_name
+	var next_item: Item = null
+
+	for i in item_list.size():
+		if item_list[i].item_name.naturalnocasecmp_to(current_name) > 0:
+			next_item = item_list[i]
+			break
+
+	if next_item == null:
+		next_item = item_list[0]
+
+	print("Spindown: %s → %s" % [current_name, next_item.item_name])
+
 	if model:
 		model.queue_free()
 	ItemService.item_removed(item)
@@ -295,23 +316,5 @@ func spindown() -> void:
 		bob_tween.kill()
 	rotation_tween.kill()
 
-	var current_name := item.item_name
-	var next_item := _get_next_item_in_pool(current_name)
-	if next_item == null:
-		return
-
-	print("Spindown: %s → %s" % [current_name, next_item.item_name])
 	item = next_item
 	spawn_item()
-
-func _get_next_item_in_pool(current_name: String) -> Item:
-	var sorted_items := pool.items.duplicate()
-	sorted_items.sort_custom(func(a, b): return a.item_name < b.item_name)
-
-	for i in range(sorted_items.size()):
-		if sorted_items[i].item_name == current_name:
-			return sorted_items[(i + 1) % sorted_items.size()]
-
-	printerr("Spindown: current item not found in pool; freeing.")
-	queue_free()
-	return null

@@ -347,7 +347,7 @@ func _process(delta):
 			charge_debug_item()
 
 func spawn_debug_active_item():
-	var item: Item = load("res://objects/items/resources/active/monarch_butterfly.tres").duplicate()
+	var item: Item = load("res://objects/items/resources/active/alphabet_soup.tres").duplicate()
 	
 	item_created(item)
 	seen_item(item)

@@ -44,6 +44,24 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 			effect.manager = manager
 			effect.quality = StatusEffect.EffectQuality.NEGATIVE
 			manager.add_status_effect(effect)
+		"Princess":
+			var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres").duplicate()
+			effect.stat = "damage"
+			effect.boost = (0.9)
+			effect.rounds = 0
+			effect.target = target
+			effect.manager = manager
+			effect.quality = StatusEffect.EffectQuality.NEGATIVE
+			manager.add_status_effect(effect)
+		"Fedora":
+			var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres").duplicate()
+			effect.stat = "defense"
+			effect.boost = (0.9)
+			effect.rounds = 0
+			effect.target = target
+			effect.manager = manager
+			effect.quality = StatusEffect.EffectQuality.NEGATIVE
+			manager.add_status_effect(effect)
 		"Vampire":
 			if player:
 				if RandomService.randf_channel("true_random") <= 0.25:
@@ -64,7 +82,15 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 				if player.stats.get_stat("drop_aftershock_round_boost") != 0:
 					effect.rounds += player.stats.get_stat("drop_aftershock_round_boost")
 				manager.add_status_effect(effect)
-
+		"Poison":
+			if player:
+				var effect := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_poison.tres").duplicate()
+				effect.target = target
+				effect.rounds = -1
+				effect.amount = roundi(_damage * 0.25)
+				effect.icon = load("res://ui_assets/battle/statuses/poison.png")
+					
+				manager.add_status_effect(effect)
 		_:
 			pass
 
@@ -80,6 +106,14 @@ func get_icon() -> Texture2D:
 			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_toonup.png")
 		"Cash":
 			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_lure.png")
+		"Dragon":
+			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_dragon.png")
+		"Poison":
+			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_witch.png")
+		"Princess":
+			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_princess.png")
+		"Fedora":
+			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_fedora.png")
 		_:
 			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_basic.png")
 
@@ -89,12 +123,20 @@ func get_status_name() -> String:
 			return "Vampire Butterfly"
 		"Hex":
 			return "Hexarch Butterfly"
+		"Poison":
+			return "Sickly Butterfly"
 		"Cash":
 			return "Moneyarch Butterfly"
 		"Soak":
 			return "Monarch Waterfly"
 		"Aftershock":
 			return "Shocking Butterfly"
+		"Dragon":
+			return "Dragonfly"
+		"Princess":
+			return "Princess Butterfly"
+		"Fedora":
+			return "Dapper Butterfly"
 		_:
 			return "Monarch Butterfly"
 
@@ -112,6 +154,14 @@ func get_description() -> String:
 			desc += "\nApplies drenched on hit."
 		"Aftershock":
 			desc += "\nApplies aftershock on hit."
+		"Dragon":
+			desc += "\nYour wealth is it's power."
+		"Princess":
+			desc += "\nApplies attack down on hit."
+		"Poison":
+			desc += "\nApplies poison on hit."
+		"Fedora":
+			desc += "\nApplies defense down on hit."
 		_:
 			pass
 

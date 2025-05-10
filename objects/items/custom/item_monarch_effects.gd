@@ -16,14 +16,77 @@ const EFFECT_MAP := {
 	"Task Reroll": { effect = "Random", damage_multiplier = 1 },
 	"Toonup": { effect = "Hex", damage_multiplier = 0.5 },
 	"Squirt": { effect = "Soak", damage_multiplier = 1 },
-	"Trap": { effect = "Basic", damage_multiplier = 1.5 },
+	"Trap": { effect = "Basic", damage_multiplier = 1.25 },
 	"Lure": { effect = "Hex", damage_multiplier = 1 },
 	"Sound": { effect = "Basic", damage_multiplier = 1.5 },
 	"Throw": { effect = "Vampire", damage_multiplier = 1 },
-	"Drop": { effect = "Aftershock", damage_multiplier = 0.9 }
+	"Drop": { effect = "Aftershock", damage_multiplier = 0.9 },
+	
+	#start of specific accessories
+	"Dragon Wings": { effect = "Dragon", damage_multiplier = 1 },
+	
+	"Fedora": { effect = "Fedora", damage_multiplier = 2 },
+	
+	"Witch Hat": { effect = "Poison", damage_multiplier = 2 },
+	
+	"Princess Hat": { effect = "Princess", damage_multiplier = 2 },
+	"Crown": { effect = "Princess", damage_multiplier = 1.5 },
+	"Tiara": { effect = "Princess", damage_multiplier = 1.25 },
+	
+	"Chef Hat": { effect = "Vampire", damage_multiplier = 0.75 },
+	"Pixie Wings": { effect = "Vampire", damage_multiplier = 1.25 },
+	"Bat Wings": { effect = "Vampire", damage_multiplier = 2 },
+	"Heart Glasses": { effect = "Vampire", damage_multiplier = 1 },
+	"Heart Headband": { effect = "Vampire", damage_multiplier = 1 },
+	"Sandwich": { effect = "Vampire", damage_multiplier = 1 },
+	"Green Deal": { effect = "Vampire", damage_multiplier = 1 },
+	
+	"Baseball Cap": { effect = "Basic", damage_multiplier = 1.1 },
+	"Roman Helmet": { effect = "Basic", damage_multiplier = 1.1 },
+	"Toys Backpack": { effect = "Basic", damage_multiplier = 1.1 },
+	"Viking Helmet": { effect = "Basic", damage_multiplier = 1.1 },
+	"Wooden Sword": { effect = "Basic", damage_multiplier = 1.75 },
+	"Aviators": { effect = "Basic", damage_multiplier = 1.5 },
+	
+	"Bowler Hat": { effect = "Cash", damage_multiplier = 1 },
+	"Fez": { effect = "Cash", damage_multiplier = 1 },
+	"Fruit Hat": { effect = "Cash", damage_multiplier = 1.25 },
+	"Pirate Hat": { effect = "Cash", damage_multiplier = 1 },
+	"Jellybean Jar": { effect = "Cash", damage_multiplier = 1 },
+	"Golden Jellybean": { effect = "Cash", damage_multiplier = 1 },
+	"Tax Write-Off": { effect = "Cash", damage_multiplier = 1 },
+	
+	"Gag Attack Pack": { effect = "Random", damage_multiplier = 1.25 },
+	"Medium Pouch": { effect = "Random", damage_multiplier = 1.25 },
+	"Celebrity Shades": { effect = "Random", damage_multiplier = 1 },
+	"Star Glasses": { effect = "Random", damage_multiplier = 1 },
+	"Mini Blinds": { effect = "Random", damage_multiplier = 1 },
+	"Goggles": { effect = "Random", damage_multiplier = 1.5 },
+	"Alien Glasses": { effect = "Random", damage_multiplier = 2 },
+	"White-Out": { effect = "Random", damage_multiplier = 1 },
+	"Paint Bucket": { effect = "Random", damage_multiplier = 1.5 },
+	"Paint Brush": { effect = "Random", damage_multiplier = 1.25 },
+	
+	"Scuba Tank": { effect = "Soaked", damage_multiplier = 1 },
+	"Shark Fin": { effect = "Soaked", damage_multiplier = 1 },
+	"Scuba Mask": { effect = "Soaked", damage_multiplier = 2 },
+	
+	"Anvil Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
+	"Big Weight Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
+	"Bird Nest": { effect = "Aftershock", damage_multiplier = 0.9 },
+	"Flowerpot Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
+	
+	"3D Glasses": { effect = "Hex", damage_multiplier = 1 },
+	"Jester Hat": { effect = "Hex", damage_multiplier = 1.25 },
+	"Police Hat": { effect = "Hex", damage_multiplier = 1 },
+	"Pompadour Hairdo": { effect = "Hex", damage_multiplier = 1 },
+	"Propeller Hat": { effect = "Hex", damage_multiplier = 1.25 },
+	"Rainbow Wig": { effect = "Hex", damage_multiplier = 1.25 },
+	"Wizard Hat": { effect = "Hex", damage_multiplier = 1.25 },
+	"Toy Hammer": { effect = "Hex", damage_multiplier = 1 },
+	
 }
 
-# Define the consistent multipliers for each random effect
 const RANDOM_EFFECT := {
 	"Vampire": 0.5,
 	"Hex": 0.75,
@@ -70,9 +133,15 @@ func sendtheswarm(manager: BattleManager) -> void:
 		status.ButterflyAmount = qualitoon + 1
 
 		var effect_info := get_special_effect(item.name)
-		status.amount = round(total_damage * effect_info.damage_multiplier)
-		status.SpecialEffect = effect_info.effect
 
+		# Apply special Dragon calculation
+		if effect_info.effect == "Dragon":
+			var money_bonus := int(player.stats.money / 5)
+			status.amount = total_damage + money_bonus
+		else:
+			status.amount = round(total_damage * effect_info.damage_multiplier)
+
+		status.SpecialEffect = effect_info.effect
 		manager.add_status_effect(status)
 
 func get_special_effect(item_name: String) -> Dictionary:

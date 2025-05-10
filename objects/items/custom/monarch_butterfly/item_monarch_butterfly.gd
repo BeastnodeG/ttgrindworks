@@ -35,6 +35,30 @@ func setup() -> void:
 		ItemService.seen_item(monarch)
 		monarch.apply_item(player)
 
+		# Define an array of starting butterflies
+		var starting_butterflies := [
+			{ "name": "Dragon Wings", "qualitoon": 1 },
+			{ "name": "Jellybean", "qualitoon": 1 },
+			{ "name": "Super Candy", "qualitoon": 1 },
+			{ "name": "Awesome", "qualitoon": 1 },
+			{ "name": "Fedora", "qualitoon": 1 },
+			{ "name": "Witch Hat", "qualitoon": 1 },
+			{ "name": "Throw", "qualitoon": 1 },
+			{ "name": "Drop", "qualitoon": 1 },
+			{ "name": "Toonup", "qualitoon": 1 },
+			{ "name": "Squirt", "qualitoon": 1 },
+			{ "name": "Princess Hat", "qualitoon": 1 }
+		]
+
+		# Append each starting butterfly to absorbed_items
+		for butterfly in starting_butterflies:
+			absorbed_items.append(butterfly)
+			print("Added starting butterfly: %s" % butterfly)
+
+		# Save to registry
+		MonarchRegistry.set_absorbed_items(absorbed_items)
+
+
 func use() -> void:
 	var world_item := ItemService.get_closest_item()
 	if not world_item or not world_item.has_node("CollisionShape3D"):

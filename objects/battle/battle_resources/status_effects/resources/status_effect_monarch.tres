@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_hd8xa")
+SpecialEffect = "Basic"
+ButterflyAmount = 1
 amount = 0
 instant_effect = false
 quality = 1
@@ -16,4 +18,4 @@ mini_icon_scale = 1.0
 visible = true
 description = ""
 status_name = "Status Effect"
-id = 3
+id = 665

@@ -1,7 +1,7 @@
 extends ItemScript
 
 var MONARCH_STATUS := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
-const QUALITOON_DAMAGE := [3, 3, 6, 9, 12, 15] # q5 doesn't exist but we include it for safety... don't i sound so smart
+const QUALITOON_DAMAGE := [4, 4, 7, 10, 13, 16] # q5 doesn't exist but we include it for safety... don't i sound so smart
 var player: Player
 var gf : Node = null
 
@@ -15,9 +15,9 @@ const EFFECT_MAP := {
 	"Task Reroll": { effect = "Random", damage_multiplier = 1 },
 	"Toonup": { effect = "Hex", damage_multiplier = 0.5 },
 	"Squirt": { effect = "Soak", damage_multiplier = 1 },
-	"Trap": { effect = "Basic", damage_multiplier = 1.25 },
+	"Trap": { effect = "Basic", damage_multiplier = 1.15 },
 	"Lure": { effect = "Hex", damage_multiplier = 1 },
-	"Sound": { effect = "Basic", damage_multiplier = 1.5 },
+	"Sound": { effect = "Basic", damage_multiplier = 1.15 },
 	"Throw": { effect = "Vampire", damage_multiplier = 1 },
 	"Drop": { effect = "Aftershock", damage_multiplier = 0.9 },
 	
@@ -87,12 +87,12 @@ const EFFECT_MAP := {
 }
 
 const RANDOM_EFFECT := {
-	"Vampire": 0.5,
+	"Vampire": 0.75,
 	"Hex": 0.75,
 	"Soak": 0.75,
 	"Aftershock": 1.1,
 	"Basic": 1.25,
-	"Cash": 0.5
+	"Cash": 0.75
 }
 
 func on_collect(_item: Item, _object: Node3D) -> void:

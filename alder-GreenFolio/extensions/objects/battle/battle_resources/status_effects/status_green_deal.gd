@@ -2,8 +2,8 @@
 extends StatusEffect
 class_name StatusGreenDeal
 
-const GREEN_DEAL_PARTICLES := preload("res://objects/battle/effects/poison/poison_cog.tscn")
-const SFX := preload("res://audio/sfx/items/green_deal.ogg")
+var GREEN_DEAL_PARTICLES := load("res://objects/battle/effects/poison/poison_cog.tscn")
+var SFX := load("res://audio/sfx/items/green_deal.ogg")
 
 @export var amount: int
 

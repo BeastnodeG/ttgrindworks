@@ -1,10 +1,10 @@
 extends ItemScript
 
-var MONARCH_STATUS := load("res://objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
+var MONARCH_STATUS := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
 const QUALITOON_DAMAGE := [3, 3, 6, 9, 12, 15] # q5 doesn't exist but we include it for safety... don't i sound so smart
 var player: Player
+var gf : Node = null
 
-# Keyword-effect and damage multiplier map
 const EFFECT_MAP := {
 	"Jellybean": { effect = "Cash", damage_multiplier = 0.5 },
 	"Super Candy": { effect = "Hex", damage_multiplier = 1 },
@@ -108,15 +108,23 @@ func on_load(item: Item) -> void:
 
 func setup(_player: Player) -> void:
 	player = _player
-	print("yeah im doing some connecting")
+	getGF()
 	BattleService.s_battle_started.connect(sendtheswarm)
 	BattleService.s_round_ended.connect(sendtheswarm)
+
+func getGF() -> void:
+	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
+	if get_tree().get_root().has_node(path):
+		gf = get_tree().get_root().get_node(path)
+		print("Loaded GFglobal")
+	else:
+		print("GFglobal not found at", path)
 
 func sendtheswarm(manager: BattleManager) -> void:
 	if not player:
 		return
 
-	var absorbed_items = player.stats.monarch_absorbed_items
+	var absorbed_items = gf.monarch_absorbed_items
 	print("Butterflies we're using: " + str(absorbed_items))
 
 	if not manager.cogs or manager.cogs.is_empty():
@@ -136,7 +144,6 @@ func sendtheswarm(manager: BattleManager) -> void:
 
 		var effect_info := get_special_effect(item.name)
 
-		# Apply special Dragon calculation
 		if effect_info.effect == "Dragon":
 			var money_bonus := int(player.stats.money / 5)
 			status.amount = total_damage + money_bonus
@@ -166,5 +173,4 @@ func get_special_effect(item_name: String) -> Dictionary:
 
 			return base_info
 
-	# Fallback
 	return { effect = "Basic", damage_multiplier = 1.0 }

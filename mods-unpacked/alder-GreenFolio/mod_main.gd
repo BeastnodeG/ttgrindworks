@@ -1,8 +1,7 @@
 extends Node
 
-
-const MOD_DIR := "AuthorName-ModName"
-const LOG_NAME := "AuthorName-ModName:Main"
+const MOD_DIR := "alder-GreenFolio"
+const LOG_NAME := "alder-GreenFolio:Main"
 
 var mod_dir_path := ""
 var extensions_dir_path := ""
@@ -18,20 +17,26 @@ func _init() -> void:
 	# Add translations
 	add_translations()
 
+	#add "global class"
+	_add_global_class()
 
 func install_script_extensions() -> void:
 	extensions_dir_path = mod_dir_path.path_join("extensions")
 
-
 func install_script_hook_files() -> void:
 	extensions_dir_path = mod_dir_path.path_join("extensions")
-
+	print("installing script hooks")
+	ModLoaderMod.install_script_hooks("res://objects/globals/save_file_service.gd", extensions_dir_path.path_join("objects/globals/save_file_service.hooks.gd"))
 
 func add_translations() -> void:
 	translations_dir_path = mod_dir_path.path_join("translations")
 
+func _add_global_class():
+	var global_instance = load("res://mods-unpacked/alder-GreenFolio/GFglobal.gd").new()
+	global_instance.name = "GFglobal"
+	add_child(global_instance)
 
 func _ready() -> void:
-	pass
-
-
+	Globals.ADDITIONAL_TOON_PATHS.append("res://mods-unpacked/alder-GreenFolio/extensions/objects/player/character/flutterby.tres")
+	# This can now be moved to overwrites.gd
+	print("green folio ACTIVATED!!!!!!!!!!!!!!!.")

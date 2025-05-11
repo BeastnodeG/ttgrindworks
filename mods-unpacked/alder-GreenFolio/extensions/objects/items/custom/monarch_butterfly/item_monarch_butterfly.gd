@@ -1,12 +1,13 @@
 extends ItemScriptActive
 
-var MONARCH_ITEM := load("res://objects/items/resources/passive/monarch_effects.tres")
+var MONARCH_ITEM := load("res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/monarch_effects.tres")
+var gf : Node = null
 
 const POOL_SHORTHANDS := {
 	"res://objects/items/pools/jellybeans.tres": "Jellybean",
 	"res://objects/items/pools/super_candies.tres": "Super Candy",
 	"res://objects/items/pools/candies.tres": "Candy",
-	"res://objects/items/custom/monarch_butterfly/toonup.tres": "Toonup",
+	"res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/monarch_butterfly/toonup.tres": "Toonup",
 	"res://objects/items/pools/treasures.tres": "Treasure"
 }
 
@@ -23,8 +24,9 @@ func on_collect(_item: Item, _object: Node3D) -> void:
 	setup()
 
 func setup() -> void:
+	getGF()
 	var player := Util.get_player()
-	if not player or not player.stats:
+	if not player or not gf:
 		return
 
 	if not player.stats.has_item("MonarchEffects"):
@@ -37,21 +39,36 @@ func setup() -> void:
 		]
 		for butterfly: Dictionary in starting_butterflies:
 			var exists := false
-			for existing in player.stats.monarch_absorbed_items:
+			for existing in gf.monarch_absorbed_items:
 				if existing.get("name", "") == butterfly.get("name", ""):
 					exists = true
 					break
 
 			if not exists:
-				player.stats.monarch_absorbed_items.append(butterfly)
+				gf.monarch_absorbed_items.append(butterfly)
 				print("Added starting butterfly: %s" % butterfly)
 			else:
 				print("Skipped duplicate butterfly: %s" % butterfly)
 
 
+func getGF() -> void:
+	if not is_inside_tree():
+		await ready
+	if not get_tree():
+		print("get_tree() is null!")
+		return
+
+	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
+	var root := get_tree().get_root()
+	if root and root.has_node(path):
+		gf = root.get_node(path)
+		print("Loaded GFglobal")
+	else:
+		print("GFglobal not found at", path)
+
 func use() -> void:
 	var player := Util.get_player()
-	if not player or not player.stats:
+	if not player or not gf:
 		cancel_use()
 		return
 
@@ -61,7 +78,7 @@ func use() -> void:
 		return
 
 	var item_name := world_item.item.item_name
-	var absorbed_list: Array[Dictionary] = player.stats.monarch_absorbed_items
+	var absorbed_list: Array[Dictionary] = gf.monarch_absorbed_items
 
 	if item_name == "Gag Point Boost":
 		for i in range(7):

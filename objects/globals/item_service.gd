@@ -335,3 +335,42 @@ func display_item(item : Item) -> Control:
 	ui.item = item
 	get_tree().get_root().add_child(ui)
 	return ui
+
+#dumb debugging
+var debug_item_spawned := false
+
+func _process(delta):
+	if OS.is_debug_build() and Input.is_action_just_pressed("alt_click"):
+		if not debug_item_spawned:
+			spawn_debug_active_item()
+		else:
+			charge_debug_item()
+
+func spawn_debug_active_item():
+	var item: Item = load("res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/monarch_butterfly.tres").duplicate()
+	
+	item_created(item)
+	seen_item(item)
+	
+	var player := Util.get_player()
+	if player:
+		if item is ItemActive:
+			item.apply_item(player, true)
+			player.stats.current_active_item = item
+			print("Equipped active item: ", item.item_name)
+		else:
+			player.stats.items.append(item)
+			apply_inventory()
+
+	display_item(item)
+	print("Spawned and equipped debug active item!")
+
+	debug_item_spawned = true
+
+func charge_debug_item():
+	var player := Util.get_player()
+	if player:
+		var item = player.stats.current_active_item
+		
+		item.current_charge = item.charge_count
+		print("Charged item to full.")

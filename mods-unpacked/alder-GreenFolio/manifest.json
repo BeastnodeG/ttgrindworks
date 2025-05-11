@@ -1,13 +1,14 @@
 {
 	"dependencies": [],
-	"description": "Description of your mod...",
+	"description": "this description isn't accessible ingame why are you reading this\n\nthis mod is like if greening was in a blender instead of IN REAL LIFE\nisn't that so true??????????????????\nthis mod is like... if corporate clash zap was... like 1.2\nwow!\nthis this this mod is like if\nTRUE!!!!!!!!!",
 	"extra": {
 		"godot": {
 			"authors": [
-				"AuthorName"
+				"alder"
 			],
 			"compatible_game_version": [
-				"0.0.1"
+				"1.1.1",
+				"1.1.1a"
 			],
 			"compatible_mod_loader_version": [
 				"7.0.0"
@@ -25,6 +26,6 @@
 	},
 	"name": "GreenFolio",
 	"namespace": "alder",
-	"version_number": "0.0.1",
+	"version_number": "1.0.0",
 	"website_url": "https://github.com/exampleauthor/examplemod"
 }

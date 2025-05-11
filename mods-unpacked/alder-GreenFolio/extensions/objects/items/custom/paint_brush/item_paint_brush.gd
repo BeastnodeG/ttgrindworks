@@ -1,7 +1,7 @@
 extends ItemScriptActive
 
-const SFX := preload("res://audio/sfx/battle/cogs/attacks/special/CHQ_FACT_paint_splash.ogg")
-const SPLASH := preload("res://objects/battle/effects/rainbow_paint_splash/rainbow_paint_splash_effect.tscn")
+var SFX := load("res://audio/sfx/battle/cogs/attacks/special/CHQ_FACT_paint_splash.ogg")
+var SPLASH := load("res://objects/battle/effects/rainbow_paint_splash/rainbow_paint_splash_effect.tscn")
 
 func use() -> void:
 	var world_item := ItemService.get_closest_item()
@@ -17,7 +17,7 @@ func use() -> void:
 		dust_cloud.scale *= world_item.scale
 		dust_cloud.global_position = world_item.global_position
 		world_item.queue_free()
-		print("Paintbrush destroyed a world item!")
+		print("all my homies hate paintbrush")
 		return
 	
 	# Normal paint splash behavior

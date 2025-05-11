@@ -5,6 +5,11 @@ class_name StatEffectMonarch
 @export var SpecialEffect: String = "Basic"
 @export var ButterflyAmount: int = 1
 
+func apply():
+	# please work please work
+	pass
+
+
 func renew() -> void:
 	if not is_instance_valid(target) or target.stats.hp <= 0:
 		return
@@ -12,6 +17,7 @@ func renew() -> void:
 	manager.battle_node.focus_character(target)
 
 	var final_damage := amount
+	print("effecting target with: ", final_damage)
 	manager.affect_target(target, final_damage)
 
 	apply_special_effects_on_hit(final_damage)
@@ -76,7 +82,7 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 				manager.add_status_effect(effect)
 		"Aftershock":
 			if player:
-				var effect := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_aftershock.tres").duplicate()
+				var effect := load("res://objects/battle/battle_resources/status_effects/resources/status_effect_aftershock.tres").duplicate()
 				effect.target = target
 				effect.amount = roundi(_damage * 0.25)
 				if player.stats.get_stat("drop_aftershock_round_boost") != 0:
@@ -84,7 +90,7 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 				manager.add_status_effect(effect)
 		"Poison":
 			if player:
-				var effect := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_poison.tres").duplicate()
+				var effect := load("res://objects/battle/battle_resources/status_effects/resources/status_effect_poison.tres").duplicate()
 				effect.target = target
 				effect.rounds = -1
 				effect.amount = roundi(_damage * 0.25)
@@ -97,25 +103,25 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 func get_icon() -> Texture2D:
 	match SpecialEffect:
 		"Vampire":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_throw.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_throw.png")
 		"Soak":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_squirt.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_squirt.png")
 		"Aftershock":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_drop.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_drop.png")
 		"Hex":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_toonup.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_toonup.png")
 		"Cash":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_lure.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_lure.png")
 		"Dragon":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_dragon.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_dragon.png")
 		"Poison":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_witch.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_witch.png")
 		"Princess":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_princess.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_princess.png")
 		"Fedora":
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_fedora.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_fedora.png")
 		_:
-			return load("res://ui_assets/battle/statuses/monarch_butterfly/monarch_basic.png")
+			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_basic.png")
 
 func get_status_name() -> String:
 	match SpecialEffect:

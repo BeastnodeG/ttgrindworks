@@ -1,7 +1,7 @@
 extends ItemScript
 
 var MONARCH_STATUS := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
-const QUALITOON_DAMAGE := [4, 4, 7, 10, 13, 16] # q5 doesn't exist but we include it for safety... don't i sound so smart
+const QUALITOON_DAMAGE := [4, 5, 7, 10, 13, 16] # q5 doesn't exist but we include it for safety... don't i sound so smart
 var player: Player
 var gf : Node = null
 
@@ -27,6 +27,7 @@ const EFFECT_MAP := {
 	"Fedora": { effect = "Fedora", damage_multiplier = 2 },
 	
 	"Witch Hat": { effect = "Poison", damage_multiplier = 2 },
+	"Green Deal": { effect = "Poison", damage_multiplier = 1.25 },
 	
 	"Princess Hat": { effect = "Princess", damage_multiplier = 2 },
 	"Crown": { effect = "Princess", damage_multiplier = 1.5 },
@@ -38,9 +39,8 @@ const EFFECT_MAP := {
 	"Heart Glasses": { effect = "Vampire", damage_multiplier = 1 },
 	"Heart Headband": { effect = "Vampire", damage_multiplier = 1 },
 	"Sandwich": { effect = "Vampire", damage_multiplier = 1 },
-	"Green Deal": { effect = "Vampire", damage_multiplier = 1 },
 	
-	"Baseball Cap": { effect = "Basic", damage_multiplier = 1.1 },
+	"Baseball Cap": { effect = "Basic", damage_multiplier = 1.5 },
 	"Roman Helmet": { effect = "Basic", damage_multiplier = 1.1 },
 	"Toys Backpack": { effect = "Basic", damage_multiplier = 1.1 },
 	"Viking Helmet": { effect = "Basic", damage_multiplier = 1.1 },

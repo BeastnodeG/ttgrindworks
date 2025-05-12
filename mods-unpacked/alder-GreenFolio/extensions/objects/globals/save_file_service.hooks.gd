@@ -36,6 +36,6 @@ func delete_run_file(chain: ModLoaderHookChain) -> void:
 	var gf = owner_node.get_tree().get_root().get_node_or_null("/root/ModLoader/alder-GreenFolio/GFglobal")
 	if gf:
 		gf.delete_save()
-		print("GFglobal data saved.")
+		print("GFglobal data deleted.")
 	else:
 		print("GFglobal not found at /root/ModLoader/alder-GreenFolio/GFglobal")

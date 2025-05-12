@@ -27,7 +27,7 @@ func renew() -> void:
 	else:
 		target.set_animation("pie-small")
 
-	await manager.sleep(3.0)
+	await manager.sleep(1.25)
 	await manager.check_pulses([target])
 
 func apply_special_effects_on_hit(_damage: int) -> void:

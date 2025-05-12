@@ -27,7 +27,7 @@ func renew() -> void:
 	else:
 		target.set_animation("pie-small")
 
-	await manager.sleep(1.25)
+	await manager.sleep(1.3)
 	await manager.check_pulses([target])
 
 func apply_special_effects_on_hit(_damage: int) -> void:
@@ -37,7 +37,7 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 		"Cash":
 			if player:
 				for i in ButterflyAmount:
-					if RandomService.randf_channel("true_random") <= 0.1:
+					if RandomService.randf_channel("true_random") <= 0.2:
 						player.stats.add_money(1)
 						print("wow you just won some money")
 		"Hex":

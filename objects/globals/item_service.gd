@@ -348,6 +348,19 @@ func _process(delta):
 
 func spawn_debug_active_item():
 	var item: Item = load("res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/monarch_butterfly.tres").duplicate()
+	#this is lazy
+	#var everything_pool_path := "res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/everything.tres"
+	#var everything_pool := load(everything_pool_path)
+	#
+	#if everything_pool:
+		#print("=== Item List with Qualitoon Values ===")
+		#for iteme in everything_pool.items:
+			#if iteme:
+				#print("%s, %s" % [iteme.item_name, str(iteme.qualitoon)])
+			#else:
+				#print("Invalid or incomplete item found.")
+	#else:
+		#print("Failed to load item pool or 'items' array not found.")
 	
 	item_created(item)
 	seen_item(item)

@@ -2,7 +2,7 @@ extends Node
 class_name GFglobal
 
 var green_deal_strength = 2.5
-var monarch_absorbed_items : Array[Dictionary] = []
+var monarch_absorbed_items : Array[Dictionary] = [{ "name": "The Monarch", "qualitoon": 1 },]
 
 # Save function
 func save_to():
@@ -38,8 +38,9 @@ func delete_save():
 		print("green folio save deleted")
 	else:
 		print("green folio save file not found")
+	reset_stats()
 
 func reset_stats():
 	print("resetting green folio stats")
 	green_deal_strength = 2.5
-	monarch_absorbed_items = []
+	monarch_absorbed_items = [{ "name": "The Monarch", "qualitoon": 1 },]

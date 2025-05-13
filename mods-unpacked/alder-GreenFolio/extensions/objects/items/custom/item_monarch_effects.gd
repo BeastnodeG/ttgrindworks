@@ -60,7 +60,7 @@ const EFFECT_MAP := {
 	"Medium Pouch": { effect = "Random", damage_multiplier = 1.25 },
 	"Celebrity Shades": { effect = "Random", damage_multiplier = 1 },
 	"Star Glasses": { effect = "Random", damage_multiplier = 1 },
-	"Mini Blinds": { effect = "Random", damage_multiplier = 1 },
+	"Mini Blinds": { effect = "Random", damage_multiplier = 2 },
 	"Goggles": { effect = "Random", damage_multiplier = 1.5 },
 	"Alien Glasses": { effect = "Random", damage_multiplier = 2 },
 	"White-Out": { effect = "Random", damage_multiplier = 1 },
@@ -85,7 +85,7 @@ const EFFECT_MAP := {
 	"Wizard Hat": { effect = "Hex", damage_multiplier = 1.25 },
 	"Toy Hammer": { effect = "Hex", damage_multiplier = 1 },
 	"Groucho Glasses": { effect = "Hex", damage_multiplier = 1 },
-	"Pink Slip": { effect = "Hex", damage_multiplier = 2 },
+	"Pink Slip": { effect = "Hex", damage_multiplier = 1 },
 }
 
 const RANDOM_EFFECT := {

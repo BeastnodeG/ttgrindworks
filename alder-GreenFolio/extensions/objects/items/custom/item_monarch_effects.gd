@@ -24,16 +24,16 @@ const EFFECT_MAP := {
 	#start of specific accessories
 	"Dragon Wings": { effect = "Dragon", damage_multiplier = 1.25 },
 	
-	"Fedora": { effect = "Fedora", damage_multiplier = 2 },
+	"Fedora": { effect = "Fedora", damage_multiplier = 2.25 },
 	
 	"Witch Hat": { effect = "Poison", damage_multiplier = 2 },
 	"Green Deal": { effect = "Poison", damage_multiplier = 1.25 },
 	
-	"Princess Hat": { effect = "Princess", damage_multiplier = 2 },
+	"Princess Hat": { effect = "Princess", damage_multiplier = 2.25 },
 	"Crown": { effect = "Princess", damage_multiplier = 1.5 },
 	"Tiara": { effect = "Princess", damage_multiplier = 1.25 },
 	
-	"Chef Hat": { effect = "Vampire", damage_multiplier = 0.75 },
+	"Chef Hat": { effect = "Vampire", damage_multiplier = 1 },
 	"Pixie Wings": { effect = "Vampire", damage_multiplier = 1.25 },
 	"Bat Wings": { effect = "Vampire", damage_multiplier = 2 },
 	"Heart Glasses": { effect = "Vampire", damage_multiplier = 1 },

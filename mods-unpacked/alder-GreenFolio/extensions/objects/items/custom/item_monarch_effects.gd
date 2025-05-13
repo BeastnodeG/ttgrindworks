@@ -41,7 +41,7 @@ const EFFECT_MAP := {
 	"Sandwich": { effect = "Vampire", damage_multiplier = 1 },
 	"Emergency Unite": {effect = "Vampire", damage_multiplier = 1.5},
 	
-	"Baseball Cap": { effect = "Basic", damage_multiplier = 1.5 },
+	"Baseball Cap": { effect = "Basic", damage_multiplier = 2 },
 	"Roman Helmet": { effect = "Basic", damage_multiplier = 1.1 },
 	"Toys Backpack": { effect = "Basic", damage_multiplier = 1.1 },
 	"Viking Helmet": { effect = "Basic", damage_multiplier = 1.1 },

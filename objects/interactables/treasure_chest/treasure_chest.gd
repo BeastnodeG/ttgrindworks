@@ -91,6 +91,9 @@ func body_entered(body: Node3D) -> void:
 	opened = true
 
 func open():
+	print("trying to print items in pool")
+	print(item_pool)
+	item_pool.print_items()
 	AudioManager.play_sound(SFX_OPEN)
 	$AnimationPlayer.play('open')
 	var item: WorldItem = WORLD_ITEM.instantiate()
@@ -101,7 +104,7 @@ func open():
 	light_ray.show()
 	item.s_collected.connect(kill_the_lights, CONNECT_ONE_SHOT)
 	item.s_destroyed.connect(kill_the_lights)
-
+	
 func kill_the_lights() -> void:
 	var shader : ShaderMaterial = light_ray.get_surface_override_material(0)
 	var light_tween := create_tween().set_trans(Tween.TRANS_QUAD)

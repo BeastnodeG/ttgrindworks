@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ItemPool" load_steps=21 format=3 uid="uid://b1kxfv4i3k1h5"]
+
+[ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="1_8dqnu"]
+[ext_resource type="Resource" uid="uid://c8wjy8fdkxarx" path="res://objects/items/resources/active/gag_button.tres" id="2_ab3dx"]
+[ext_resource type="Resource" uid="uid://08861uv78r5r" path="res://objects/items/resources/active/goon_foot.tres" id="3_vqkl3"]
+[ext_resource type="Resource" uid="uid://csrgfcqxhl18x" path="res://objects/items/resources/active/golden_jellybean.tres" id="4_wr8h6"]
+[ext_resource type="Resource" uid="uid://bjtq481jok2t4" path="res://objects/items/resources/active/big_foghorn.tres" id="5_0op1e"]
+[ext_resource type="Resource" uid="uid://w47mu07t0gki" path="res://objects/items/resources/active/treasure_map.tres" id="6_2giax"]
+[ext_resource type="Resource" uid="uid://wfdgusu3acxl" path="res://objects/items/resources/active/paint_bucket.tres" id="7_pgdi2"]
+[ext_resource type="Resource" uid="uid://cyq101ymuq6la" path="res://objects/items/resources/active/cash_register.tres" id="8_fikmk"]
+[ext_resource type="Resource" uid="uid://b6h44ufinocuu" path="res://objects/items/resources/active/jellybean_jar.tres" id="9_ifsau"]
+[ext_resource type="Resource" uid="uid://d4nsekncalswu" path="res://objects/items/resources/active/sandwich.tres" id="10_2xjc3"]
+[ext_resource type="Resource" uid="uid://dyt4cqi2xkctw" path="res://objects/items/resources/active/bounce_check.tres" id="11_qb8jr"]
+[ext_resource type="Resource" uid="uid://wu70ua24wujr" path="res://objects/items/resources/active/unstoppable_gobstopper.tres" id="12_dquex"]
+[ext_resource type="Resource" uid="uid://bpctsghink3ao" path="res://objects/items/resources/active/gumball_machine.tres" id="13_mlcqp"]
+[ext_resource type="Resource" uid="uid://cmlaxrdbmxvfu" path="res://objects/items/resources/active/toy_hammer.tres" id="14_jeahu"]
+[ext_resource type="Resource" uid="uid://dkbg3o5aa81j8" path="res://objects/items/resources/active/white_out.tres" id="15_o5lie"]
+[ext_resource type="Resource" uid="uid://cikp7tlx5pb6f" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/green_deal.tres" id="16_0op1e"]
+[ext_resource type="Script" uid="uid://wiibpvvki8vs" path="res://objects/items/classes/item_pool.gd" id="16_ijac6"]
+[ext_resource type="Resource" uid="uid://dte8uk3guasuw" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/monarch_butterfly.tres" id="17_2giax"]
+[ext_resource type="Resource" uid="uid://dwo8eldqx4wsy" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/paint_brush.tres" id="18_pgdi2"]
+[ext_resource type="Resource" uid="uid://du50oyjoyaslo" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/alphabet_soup.tres" id="19_fikmk"]
+
+[resource]
+script = ExtResource("16_ijac6")
+items = Array[ExtResource("1_8dqnu")]([ExtResource("2_ab3dx"), ExtResource("3_vqkl3"), ExtResource("4_wr8h6"), ExtResource("5_0op1e"), ExtResource("6_2giax"), ExtResource("7_pgdi2"), ExtResource("8_fikmk"), ExtResource("9_ifsau"), ExtResource("10_2xjc3"), ExtResource("11_qb8jr"), ExtResource("12_dquex"), ExtResource("13_mlcqp"), ExtResource("14_jeahu"), ExtResource("15_o5lie"), ExtResource("16_0op1e"), ExtResource("17_2giax"), ExtResource("18_pgdi2"), ExtResource("19_fikmk")])
+metadata/_custom_type_script = "uid://wiibpvvki8vs"

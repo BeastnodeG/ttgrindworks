@@ -11,7 +11,7 @@ const EFFECT_MAP := {
 	"Candy": { effect = "Hex", damage_multiplier = 0.75 },
 	"Treasure": { effect = "Vampire", damage_multiplier = 0.5 },
 	"Laff Boost": { effect = "Vampire", damage_multiplier = 0.75 },
-	"Random": { effect = "Random", damage_multiplier = 0.9},
+	"Random": { effect = "Random", damage_multiplier = 1},
 	"Task Reroll": { effect = "Random", damage_multiplier = 1 },
 	"Toonup": { effect = "Hex", damage_multiplier = 0.5 },
 	"Squirt": { effect = "Soak", damage_multiplier = 1 },

@@ -83,7 +83,7 @@ const EFFECT_MAP := {
 	"Rainbow Wig": { effect = "Hex", damage_multiplier = 1.25 },
 	"Wizard Hat": { effect = "Hex", damage_multiplier = 1.25 },
 	"Toy Hammer": { effect = "Hex", damage_multiplier = 1 },
-	
+	"Groucho Glasses": { effect = "Hex", damage_multiplier = 1 },
 }
 
 const RANDOM_EFFECT := {

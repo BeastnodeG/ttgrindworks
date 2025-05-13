@@ -81,7 +81,7 @@ func use() -> void:
 	var absorbed_list: Array[Dictionary] = gf.monarch_absorbed_items
 
 	if item_name == "Gag Point Boost":
-		for i in range(7):
+		for i in range(10):
 			var entry := {
 				"name": "Random",
 				"qualitoon": 2
@@ -91,7 +91,7 @@ func use() -> void:
 		for i in range(7):
 			var entry := {
 				"name": "Random",
-				"qualitoon": 1
+				"qualitoon": 2
 			}
 			absorbed_list.append(entry)
 	elif item_name == "Monarch Butterfly":

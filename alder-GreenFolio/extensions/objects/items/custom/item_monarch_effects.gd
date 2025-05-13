@@ -22,7 +22,7 @@ const EFFECT_MAP := {
 	"Drop": { effect = "Aftershock", damage_multiplier = 0.9 },
 	
 	#start of specific accessories
-	"Dragon Wings": { effect = "Dragon", damage_multiplier = 1 },
+	"Dragon Wings": { effect = "Dragon", damage_multiplier = 1.25 },
 	
 	"Fedora": { effect = "Fedora", damage_multiplier = 2 },
 	
@@ -145,7 +145,7 @@ func sendtheswarm(manager: BattleManager) -> void:
 		var effect_info := get_special_effect(item.name)
 
 		if effect_info.effect == "Dragon":
-			var money_bonus := int(player.stats.money / 5)
+			var money_bonus := int((player.stats.money*2) / 5)
 			status.amount = total_damage + money_bonus
 		else:
 			status.amount = round(total_damage * effect_info.damage_multiplier)

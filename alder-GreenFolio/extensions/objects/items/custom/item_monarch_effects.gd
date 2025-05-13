@@ -39,6 +39,7 @@ const EFFECT_MAP := {
 	"Heart Glasses": { effect = "Vampire", damage_multiplier = 1 },
 	"Heart Headband": { effect = "Vampire", damage_multiplier = 1 },
 	"Sandwich": { effect = "Vampire", damage_multiplier = 1 },
+	"Emergency Unite": {effect = "Vampire", damage_multiplier = 1.5},
 	
 	"Baseball Cap": { effect = "Basic", damage_multiplier = 1.5 },
 	"Roman Helmet": { effect = "Basic", damage_multiplier = 1.1 },

@@ -3,7 +3,7 @@ extends ItemScript
 const BOOST_STATS :={
 	'damage': 0.005,
 	'speed': -0.01,
-	'evasiveness': -0.01
+	'evasiveness': -0.005
 }
 var multipliers: Array[StatMultiplier]
 

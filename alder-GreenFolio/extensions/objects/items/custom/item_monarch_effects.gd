@@ -32,6 +32,7 @@ const EFFECT_MAP := {
 	"Princess Hat": { effect = "Princess", damage_multiplier = 2.25 },
 	"Crown": { effect = "Princess", damage_multiplier = 1.5 },
 	"Tiara": { effect = "Princess", damage_multiplier = 1.25 },
+	"Opossum Tail": { effect = "Princess", damage_multiplier = 1},
 	
 	"Chef Hat": { effect = "Vampire", damage_multiplier = 1 },
 	"Pixie Wings": { effect = "Vampire", damage_multiplier = 1.25 },

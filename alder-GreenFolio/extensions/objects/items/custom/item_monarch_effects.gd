@@ -78,6 +78,9 @@ const EFFECT_MAP := {
 	"Big Weight Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
 	"Bird Nest": { effect = "Aftershock", damage_multiplier = 0.9 },
 	"Flowerpot Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
+	"Taser": { effect = "Aftershock", damage_multiplier = 1 },
+	"Joybuzzer": { effect = "Aftershock", damage_multiplier = 1 },
+	"Lightbulb": { effect = "Aftershock", damage_multiplier = 1 },
 	
 	"3D Glasses": { effect = "Hex", damage_multiplier = 1 },
 	"Jester Hat": { effect = "Hex", damage_multiplier = 1.25 },

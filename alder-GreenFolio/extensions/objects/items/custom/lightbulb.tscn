@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfff6pafwreyr"]
+[gd_scene load_steps=5 format=3 uid="uid://fqhacvcpml71"]
 
-[ext_resource type="Texture2D" uid="uid://bbwk8wfkmprvq" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/taser.png" id="1_0x8on"]
+[ext_resource type="Texture2D" uid="uid://cidx2lu26sl43" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/lightbulb.png" id="1_kjviy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bshu"]
 transparency = 1
 cull_mode = 2
-albedo_texture = ExtResource("1_0x8on")
+albedo_texture = ExtResource("1_kjviy")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wra8v"]
 _surfaces = [{

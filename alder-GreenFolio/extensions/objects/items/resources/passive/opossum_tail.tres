@@ -8,8 +8,8 @@
 [resource]
 script = ExtResource("4_bqj1p")
 item_tags = null
-qualitoon = 1
-rarity = 4
+qualitoon = 2
+rarity = 0
 evergreen = false
 realtime = false
 slot = 0
@@ -22,7 +22,7 @@ item_description = "Your luck weighs you down"
 big_description = "Every 1% luck you have over 100% gives:
 + 0.5% Damage
 - 1% Speed
-- 1% Evasion"
+- 0.5% Evasion"
 model = ExtResource("5_66eo4")
 stats_add = {}
 stats_multiply = {}

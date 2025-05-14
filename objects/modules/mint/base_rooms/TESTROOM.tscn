@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://c72xdn0nwkaug" path="res://models/facilities/mint/textures/CFOCeiling2.png" id="23_5t2mt"]
 [ext_resource type="PackedScene" uid="uid://dmv7dbgr2b2nr" path="res://objects/obstacles/lava_floor/lava_floor.tscn" id="24_k15y5"]
 [ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="25_ox24q"]
-[ext_resource type="Resource" uid="uid://kcxno616hkgc" path="res://objects/items/pools/special_items.tres" id="26_22hq5"]
+[ext_resource type="Resource" uid="uid://v7w5xrdb3eh4" path="res://objects/items/pools/battle_clears.tres" id="26_22hq5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ksdy"]
 resource_name = "FINALFACTORY_66"
@@ -242,7 +242,7 @@ cull_mode = 2
 albedo_texture = ExtResource("15_t7cgb")
 roughness = 0.552786
 uv1_scale = Vector3(1, 15, 1)
-uv1_offset = Vector3(0, -17.0328, 0)
+uv1_offset = Vector3(0, -0.176556, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_viimi"]
 resource_name = "ConveyerBeltV3SHD"
@@ -250,7 +250,7 @@ cull_mode = 2
 albedo_texture = ExtResource("15_t7cgb")
 roughness = 0.552786
 uv1_scale = Vector3(1, 15, 1)
-uv1_offset = Vector3(0, -0.956619, 0)
+uv1_offset = Vector3(0, -0.743885, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2y4s"]
 size = Vector3(1.53235, 4.8617, 16.5046)

@@ -66,6 +66,8 @@ const EFFECT_MAP := {
 	"White-Out": { effect = "Random", damage_multiplier = 1 },
 	"Paint Bucket": { effect = "Random", damage_multiplier = 1.5 },
 	"Paint Brush": { effect = "Random", damage_multiplier = 1.25 },
+	"Paintball": { effect = "Random", damage_multiplier = 0.5 },
+	"Angel Wings": { effect = "Random", damage_mutliplier = 1.25},
 	
 	"Scuba Tank": { effect = "Soaked", damage_multiplier = 1 },
 	"Shark Fin": { effect = "Soaked", damage_multiplier = 1 },

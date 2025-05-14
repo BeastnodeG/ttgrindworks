@@ -32,7 +32,7 @@ func setup() -> void:
 func on_money_changed(luck) -> void:
 	for mult: StatMultiplier in multipliers:
 		if mult.stat in BOOST_STATS.keys():
-			mult.amount = ceili(((luck - 1.0)/2) * 100.0) * BOOST_STATS[mult.stat]
+			mult.amount = floori(((luck - 1.0)/2) * 100.0) * BOOST_STATS[mult.stat]
 
 func create_multipliers() -> void:
 	print("making multipliers")

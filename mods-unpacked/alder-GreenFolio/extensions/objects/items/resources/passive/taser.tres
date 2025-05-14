@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cc3snysroc6r8"]
+
+[ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="4_r1mio"]
+
+[resource]
+script = ExtResource("4_r1mio")
+item_tags = null
+qualitoon = 3
+rarity = 0
+evergreen = false
+realtime = false
+slot = 0
+world_scale = 1.0
+world_y_offset = 0.0
+want_ui_spin = true
+ui_cam_offset = 0.15
+item_name = "Taser"
+item_description = "Prank charge from the scrap!"
+big_description = "Adds 1 charge to your Pocket Prank for every 8 cogs you destroy."
+stats_add = {}
+stats_multiply = {}
+player_values = {}
+arbitrary_data = {}
+remember_item = true
+shop_category_title = "Boost Item"
+shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)
+force_show_shop_category = false
+custom_shop_price = 0

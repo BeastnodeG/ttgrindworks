@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://cj7jnn60f2dsn"]
+
+[ext_resource type="Texture2D" uid="uid://bnhuv81edru5h" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/opossum_tail.png" id="3_66eo4"]
+[ext_resource type="Script" uid="uid://brwjppyg05snw" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/item_opossum_tail.gd" id="3_jrmys"]
+[ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="4_bqj1p"]
+[ext_resource type="PackedScene" uid="uid://dylotikbdl2bb" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/opossum_tail.tscn" id="5_66eo4"]
+
+[resource]
+script = ExtResource("4_bqj1p")
+item_tags = null
+qualitoon = 2
+rarity = 0
+evergreen = false
+realtime = false
+slot = 0
+world_scale = 1.0
+world_y_offset = 0.0
+want_ui_spin = true
+ui_cam_offset = 0.15
+item_name = "Opossum Tail"
+item_description = "Your luck weighs you down"
+big_description = "Every 1% luck you have over 100% gives:
++ 1% Damage
+- 1% Speed"
+model = ExtResource("5_66eo4")
+stats_add = {}
+stats_multiply = {}
+player_values = {
+"less_shop_items": true
+}
+arbitrary_data = {}
+item_script = ExtResource("3_jrmys")
+remember_item = true
+icon = ExtResource("3_66eo4")
+shop_category_title = "Boost Item"
+shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)
+force_show_shop_category = false
+custom_shop_price = 0

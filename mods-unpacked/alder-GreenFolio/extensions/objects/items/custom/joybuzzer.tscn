@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cr5wa2ma3ed5l"]
 
-[ext_resource type="Texture2D" uid="uid://bnhuv81edru5h" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/opossum_tail.png" id="1_n46kx"]
+[ext_resource type="Texture2D" uid="uid://12b1yut1a1f4" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/joybuzzer.png" id="1_n46kx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bshu"]
 transparency = 1

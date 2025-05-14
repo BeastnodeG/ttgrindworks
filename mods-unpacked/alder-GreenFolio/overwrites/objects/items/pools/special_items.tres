@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemPool" load_steps=38 format=3 uid="uid://cqb7n04mqp1ol"]
+[gd_resource type="Resource" script_class="ItemPool" load_steps=40 format=3 uid="uid://cqb7n04mqp1ol"]
 
 [ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="1_7u0ce"]
 [ext_resource type="Resource" uid="uid://mcma7hjx2dbi" path="res://objects/items/resources/passive/candies/candy_super_luck.tres" id="2_14byw"]
@@ -37,8 +37,10 @@
 [ext_resource type="Resource" uid="uid://cikp7tlx5pb6f" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/green_deal.tres" id="34_tkk3l"]
 [ext_resource type="Resource" uid="uid://du50oyjoyaslo" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/alphabet_soup.tres" id="35_iqyuv"]
 [ext_resource type="Resource" uid="uid://dwo8eldqx4wsy" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/paint_brush.tres" id="36_soxnd"]
+[ext_resource type="Resource" uid="uid://cc3snysroc6r8" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/taser.tres" id="37_iqyuv"]
+[ext_resource type="Resource" uid="uid://dnqeyxpsx5ufs" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/joybuzzer.tres" id="38_soxnd"]
 
 [resource]
 script = ExtResource("33_qvvfg")
-items = Array[ExtResource("1_7u0ce")]([ExtResource("2_14byw"), ExtResource("3_gpi60"), ExtResource("4_d5j3a"), ExtResource("5_14qkt"), ExtResource("6_o64lw"), ExtResource("7_myvr2"), ExtResource("8_m4tpr"), ExtResource("9_ytfor"), ExtResource("10_31r3k"), ExtResource("11_4kkwe"), ExtResource("12_yv2kv"), ExtResource("13_qar40"), ExtResource("14_jgqtt"), ExtResource("15_ixap3"), ExtResource("16_kour1"), ExtResource("17_lirv4"), ExtResource("18_rmbci"), ExtResource("19_0womd"), ExtResource("20_7kepu"), ExtResource("21_0lfhu"), ExtResource("22_fkm8c"), ExtResource("23_uv2u5"), ExtResource("24_6nvsq"), ExtResource("25_5t4rc"), ExtResource("26_sg66b"), ExtResource("27_is673"), ExtResource("28_8lucy"), ExtResource("29_aiijt"), ExtResource("30_8aakp"), ExtResource("31_tynvi"), ExtResource("32_q8yef"), ExtResource("33_wh20e"), ExtResource("34_tkk3l"), ExtResource("35_iqyuv"), ExtResource("36_soxnd")])
+items = Array[ExtResource("1_7u0ce")]([ExtResource("2_14byw"), ExtResource("3_gpi60"), ExtResource("4_d5j3a"), ExtResource("5_14qkt"), ExtResource("6_o64lw"), ExtResource("7_myvr2"), ExtResource("8_m4tpr"), ExtResource("9_ytfor"), ExtResource("10_31r3k"), ExtResource("11_4kkwe"), ExtResource("12_yv2kv"), ExtResource("13_qar40"), ExtResource("14_jgqtt"), ExtResource("15_ixap3"), ExtResource("16_kour1"), ExtResource("17_lirv4"), ExtResource("18_rmbci"), ExtResource("19_0womd"), ExtResource("20_7kepu"), ExtResource("21_0lfhu"), ExtResource("22_fkm8c"), ExtResource("23_uv2u5"), ExtResource("24_6nvsq"), ExtResource("25_5t4rc"), ExtResource("26_sg66b"), ExtResource("27_is673"), ExtResource("28_8lucy"), ExtResource("29_aiijt"), ExtResource("30_8aakp"), ExtResource("31_tynvi"), ExtResource("32_q8yef"), ExtResource("33_wh20e"), ExtResource("34_tkk3l"), ExtResource("35_iqyuv"), ExtResource("36_soxnd"), ExtResource("37_iqyuv"), ExtResource("38_soxnd")])
 metadata/_custom_type_script = "uid://wiibpvvki8vs"

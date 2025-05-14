@@ -14,6 +14,7 @@ func _init():
 	var progressives:= preload("res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/progressives.tres")
 	var shop_progressives:= preload("res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/shop_progressives.tres")
 	#var battle_clears:= preload("res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/battle_clears.tres")
+	var floor_clears:= preload("res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/floor_clears.tres")
 	
 	everything.take_over_path("res://objects/items/pools/everything.tres")
 	special_items.take_over_path("res://objects/items/pools/special_items.tres")
@@ -23,3 +24,4 @@ func _init():
 	progressives.take_over_path("res://objects/items/pools/progressives.tres")
 	shop_progressives.take_over_path("res://objects/items/pools/shop_progressives.tres")
 	#battle_clears.take_over_path("res://objects/items/pools/battle_clears.tres")
+	floor_clears.take_over_path("res://objects/items/pools/floor_clears.tres")

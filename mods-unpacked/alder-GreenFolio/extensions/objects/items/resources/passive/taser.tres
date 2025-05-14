@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cc3snysroc6r8"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://cc3snysroc6r8"]
 
+[ext_resource type="Texture2D" uid="uid://bbwk8wfkmprvq" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/taser.png" id="1_oaf6m"]
+[ext_resource type="PackedScene" uid="uid://cfff6pafwreyr" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/taser.tscn" id="2_e75st"]
+[ext_resource type="Script" uid="uid://cn60h6o7edpbj" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/item_taser.gd" id="2_s5esb"]
 [ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="4_r1mio"]
 
 [resource]
 script = ExtResource("4_r1mio")
 item_tags = null
-qualitoon = 3
+qualitoon = 2
 rarity = 0
 evergreen = false
 realtime = false
@@ -15,13 +18,16 @@ world_y_offset = 0.0
 want_ui_spin = true
 ui_cam_offset = 0.15
 item_name = "Taser"
-item_description = "Prank charge from the scrap!"
-big_description = "Adds 1 charge to your Pocket Prank for every 8 cogs you destroy."
+item_description = "Prank charge from the scrap"
+big_description = "Adds 1 charge to your Pocket Prank for every 8 cogs you destroy"
+model = ExtResource("2_e75st")
 stats_add = {}
 stats_multiply = {}
 player_values = {}
 arbitrary_data = {}
+item_script = ExtResource("2_s5esb")
 remember_item = true
+icon = ExtResource("1_oaf6m")
 shop_category_title = "Boost Item"
 shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)
 force_show_shop_category = false

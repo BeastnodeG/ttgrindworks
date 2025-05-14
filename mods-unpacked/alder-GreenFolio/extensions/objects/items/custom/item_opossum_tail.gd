@@ -1,9 +1,9 @@
 extends ItemScript
 
 const BOOST_STATS :={
-	'damage': 0.005,
-	'speed': -0.01,
-	'evasiveness': -0.005
+	'damage': 0.01,
+	'speed': -0.02,
+	'evasiveness': -0.01
 }
 var multipliers: Array[StatMultiplier]
 
@@ -32,9 +32,7 @@ func setup() -> void:
 func on_money_changed(luck) -> void:
 	for mult: StatMultiplier in multipliers:
 		if mult.stat in BOOST_STATS.keys():
-			mult.amount = ceili((luck - 1.0) * 100.0) * BOOST_STATS[mult.stat]
-		print("printing equation")
-		print(((luck - 1.0) * 100.0))
+			mult.amount = ceili(((luck - 1.0)/2) * 100.0) * BOOST_STATS[mult.stat]
 
 func create_multipliers() -> void:
 	print("making multipliers")

@@ -56,6 +56,7 @@ const EFFECT_MAP := {
 	"Jellybean Jar": { effect = "Cash", damage_multiplier = 1 },
 	"Golden Jellybean": { effect = "Cash", damage_multiplier = 1 },
 	"Tax Write-Off": { effect = "Cash", damage_multiplier = 1 },
+	"Cash Register": { effect = "Cash", damage_multiplier = 1 },
 	
 	"Gag Attack Pack": { effect = "Random", damage_multiplier = 1.25 },
 	"Medium Pouch": { effect = "Random", damage_multiplier = 1.25 },
@@ -68,7 +69,7 @@ const EFFECT_MAP := {
 	"Paint Bucket": { effect = "Random", damage_multiplier = 1.5 },
 	"Paint Brush": { effect = "Random", damage_multiplier = 1.25 },
 	"Paintball": { effect = "Random", damage_multiplier = 0.5 },
-	"Angel Wings": { effect = "Random", damage_mutliplier = 1.25},
+	"Angel Wings": { effect = "Random", damage_multiplier = 1.25},
 	
 	"Scuba Tank": { effect = "Soaked", damage_multiplier = 1 },
 	"Shark Fin": { effect = "Soaked", damage_multiplier = 1 },
@@ -117,6 +118,7 @@ func on_load(item: Item) -> void:
 func setup(_player: Player) -> void:
 	player = _player
 	getGF()
+	generate_item_markdown()
 	BattleService.s_battle_started.connect(sendtheswarm)
 	BattleService.s_round_ended.connect(sendtheswarm)
 
@@ -182,3 +184,66 @@ func get_special_effect(item_name: String) -> Dictionary:
 			return base_info
 
 	return { effect = "Basic", damage_multiplier = 1.0 }
+	
+func generate_item_markdown() -> void:
+	var pool: Resource = load("res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/everything.tres")
+	var markdown: Dictionary = {}  # Dictionary<String, Array[String]>
+	var extras: Array[String] = []
+
+	# Use a dictionary as a set substitute
+	var force_unused := {
+		"Dragon Wings": true,
+		"Monarch Butterfly": true,
+		"Gag Point Boost": true,
+		"Extra Turn": true,
+		"Gag Track Frame": true
+	}
+
+	# Track all item names found in pool that are in EFFECT_MAP
+	var found_names := {}  # Dictionary<String, bool> or Set workaround
+
+	for item in pool.items:
+		var name: String = item.item_name
+		var quality: int = clamp(item.qualitoon, 0, 5)
+		var damage: int = QUALITOON_DAMAGE[quality]
+
+		if EFFECT_MAP.has(name):
+			# Mark this EFFECT_MAP item as found
+			found_names[name] = true
+
+			var data: Dictionary = EFFECT_MAP[name]
+			var effect: String = data.effect
+			var multiplier: float = data.damage_multiplier
+			var final_damage: int = round(damage * multiplier)
+
+			if not markdown.has(effect):
+				markdown[effect] = []
+			markdown[effect].append("%s - %s, %d damage" % [name, effect, final_damage])
+		else:
+			extras.append("%s - no mapping, %d base damage" % [name, damage])
+
+	# Now build list of unused EFFECT_MAP items (those not found in pool or forced unused)
+	var unused_items: Array = []
+	for key in EFFECT_MAP.keys():
+		if not found_names.has(key) or force_unused.has(key):
+			unused_items.append(key)
+
+	var final_output: String = ""
+	for effect in markdown.keys():
+		final_output += "#### %s:\n" % effect
+		for line in markdown[effect]:
+			final_output += "%s\n" % line
+		final_output += "\n"
+
+	#if extras.size() > 0:
+		#final_output += "#### Extra:\n"
+		#for line in extras:
+			#final_output += "%s\n" % line
+		#final_output += "\n"
+
+	if unused_items.size() > 0:
+		final_output += "#### Unused Items:\n"
+		for name in unused_items:
+			final_output += "%s\n" % name
+
+	print(final_output)

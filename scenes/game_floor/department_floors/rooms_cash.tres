@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://okwocfndw684" path="res://objects/modules/mint/base_rooms/mint_connector1.tscn" id="8_gkehy"]
 [ext_resource type="PackedScene" uid="uid://ddfk765qkh6me" path="res://objects/modules/mint/base_rooms/mint_connector2.tscn" id="9_8ktwm"]
 [ext_resource type="PackedScene" uid="uid://b2ia8h86cdjo2" path="res://objects/modules/mint/variants/mint_lava_boss.tscn" id="10_y1bhy"]
-[ext_resource type="PackedScene" uid="uid://ckgngxyaff50p" path="res://objects/modules/mint/base_rooms/TESTROOM.tscn" id="11_vma8a"]
+[ext_resource type="PackedScene" uid="uid://cyq5xvfku4ltx" path="res://objects/modules/mint/variants/mint_standard_entrance.tscn" id="11_vma8a"]
 [ext_resource type="PackedScene" uid="uid://dfotlcburhyqo" path="res://objects/modules/mint/variants/mint_lava_room_standard.tscn" id="12_7i0uv"]
 [ext_resource type="PackedScene" uid="uid://bxnc8400cjdt1" path="res://objects/modules/mint/variants/mint_golden_goose_room.tscn" id="13_3f88r"]
 [ext_resource type="PackedScene" uid="uid://dw4ed1x08ulld" path="res://objects/modules/mint/variants/mint_obstacle_room_lava.tscn" id="13_cuaol"]

@@ -33,5 +33,5 @@ remember_item = true
 icon = ExtResource("3_66eo4")
 shop_category_title = "Boost Item"
 shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)
-force_show_shop_category = false
+force_show_shop_category = true
 custom_shop_price = 0

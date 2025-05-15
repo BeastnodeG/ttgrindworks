@@ -32,7 +32,7 @@ func on_hp_changed(current_hp: int) -> void:
 
 	var lost_hp = last_hp - current_hp
 	var lost_ratio = float(lost_hp) / float(max_hp)
-	var chance = lost_ratio * 0.6
+	var chance = lost_ratio * 0.75
 
 	print("Took ", lost_hp, "damage out of ", max_hp, "- Roll chance:", chance)
 

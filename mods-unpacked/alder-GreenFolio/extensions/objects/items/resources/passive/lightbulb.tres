@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("3_8gnhb")
 item_tags = null
-qualitoon = 3
+qualitoon = 2
 rarity = 0
 evergreen = false
 realtime = false

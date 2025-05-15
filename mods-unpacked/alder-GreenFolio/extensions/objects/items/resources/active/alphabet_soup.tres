@@ -37,6 +37,6 @@ remember_item = true
 icon = ExtResource("1_jy4ck")
 shop_category_title = "Pocket Prank"
 shop_category_color = Color(0.929412, 0.262745, 0.278431, 1)
-force_show_shop_category = false
+force_show_shop_category = true
 custom_shop_price = 0
 metadata/_custom_type_script = "uid://5uwfsntxdag6"

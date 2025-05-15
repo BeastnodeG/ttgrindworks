@@ -28,6 +28,11 @@ func use() -> void:
 	item_list.sort_custom(func(a: Item, b: Item) -> bool:
 		return a.item_name.naturalnocasecmp_to(b.item_name) < 0
 	)
+
+	#print("Sorted items in Everything Pool:")
+	#for item in item_list:
+		#print("%s" % item.item_name)
+
 	var current_name := world_item.item.item_name
 	var next_item: Item = null
 	for i in item_list.size():

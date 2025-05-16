@@ -24,6 +24,7 @@ func install_script_extensions() -> void:
 func install_script_hook_files() -> void:
 	extensions_dir_path = mod_dir_path.path_join("extensions")
 	ModLoaderMod.install_script_hooks("res://objects/save_file/settings.gd", extensions_dir_path.path_join("objects/save_file/settings.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/general_ui/settings_menu/settings_menu.gd", extensions_dir_path.path_join("objects/general_ui/settings_menu/settings_menu.hooks.gd"))
 
 
 func add_translations() -> void:

@@ -1,0 +1,31 @@
+{
+	"dependencies": [],
+	"description": "displays seeds while paused and adds a way to enter a seed on the main menu",
+	"extra": {
+		"godot": {
+			"authors": [
+				"alder"
+			],
+			"compatible_game_version": [
+				"1.1.1a",
+				"1.1.1"
+			],
+			"compatible_mod_loader_version": [
+				"7.0.0"
+			],
+			"config_schema": {
+
+			},
+			"description_rich": "",
+			"image": null,
+			"incompatibilities": [],
+			"load_before": [],
+			"optional_dependencies": [],
+			"tags": []
+		}
+	},
+	"name": "SeededRuns",
+	"namespace": "alder",
+	"version_number": "1.0.0",
+	"website_url": "https://github.com/BeastnodeG/ttgrindworks/tree/modloadermods"
+}

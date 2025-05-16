@@ -32,6 +32,8 @@ func generate_seed() -> int:
 	randomize()
 	base_seed = randi()
 	seed(base_seed)
+	print("printing base_seed")
+	print(base_seed)
 	return base_seed
 
 func randi_channel(channel_name : String) -> int:

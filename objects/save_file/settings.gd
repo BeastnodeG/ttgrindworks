@@ -58,10 +58,10 @@ var REMAPPABLE_CONTROLS := [
 @export var saved_controls := {}
 var controls := {}
 
-func save_to(file_name: String):
+func vanilla_3302875687_save_to(file_name: String):
 	ResourceSaver.save(self, SaveFileService.SAVE_FILE_PATH + file_name)
 
-func sync_settings() -> void:
+func vanilla_3302875687_sync_settings() -> void:
 	# Video
 	if fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -93,13 +93,44 @@ func sync_settings() -> void:
 				saved_controls[action] = controls[action]
 	SaveFileService.s_settings_changed.emit()
 
-func get_bus_index(bus: String) -> int:
+func vanilla_3302875687_get_bus_index(bus: String) -> int:
 	for i in AudioServer.bus_count:
 		if AudioServer.get_bus_name(i) == bus:
 			return i
 	return -1
 
-func set_bus_volume(bus: String, volume_db: float) -> void:
+func vanilla_3302875687_set_bus_volume(bus: String, volume_db: float) -> void:
 	AudioServer.set_bus_volume_db(get_bus_index(bus), volume_db)
 	if OS.has_feature('debug'):
 		print(bus + " volume set to: " + str(AudioServer.get_bus_volume_db(get_bus_index(bus))))
+
+
+# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
+
+
+func save_to(file_name: String):
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_3302875687_save_to, [file_name], 2775650616)
+	else:
+		return vanilla_3302875687_save_to(file_name)
+
+
+func sync_settings():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3302875687_sync_settings, [], 935974004)
+	else:
+		vanilla_3302875687_sync_settings()
+
+
+func get_bus_index(bus: String) -> int:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_3302875687_get_bus_index, [bus], 4131099015)
+	else:
+		return vanilla_3302875687_get_bus_index(bus)
+
+
+func set_bus_volume(bus: String, volume_db: float):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3302875687_set_bus_volume, [bus, volume_db], 2736407731)
+	else:
+		vanilla_3302875687_set_bus_volume(bus, volume_db)

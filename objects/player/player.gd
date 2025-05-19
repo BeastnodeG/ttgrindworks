@@ -5,6 +5,7 @@ var PAUSE_MENU : PackedScene
 const DEATH_THRESHOLD := -20.0
 const COYOTE_TIME := 0.07
 const IFRAME_TIME := 3.0
+const PAUSE_DELAY := 0.25
 
 ## Object states
 enum PlayerState {
@@ -84,6 +85,7 @@ var moving := false:
 			assess_anim()
 var base_anim := 'neutral'
 var animator: AnimationPlayer
+var pause_delay := 0.0
 
 ## Item-Manipulated Values
 var see_descriptions: bool = false:
@@ -124,12 +126,12 @@ signal s_died
 signal s_jumped
 signal s_stats_connected(stats: PlayerStats)
 
-func vanilla_3143482626__init() -> void:
+func _init() -> void:
 	GameLoader.queue_into(GameLoader.Phase.GAMEPLAY, self, {
 		'PAUSE_MENU': "res://objects/pause_menu/pause_menu.tscn",
 	})
 
-func vanilla_3143482626__ready() -> void:
+func _ready() -> void:
 	# Make player globally accessible
 	Util.player = self
 	
@@ -150,7 +152,7 @@ func vanilla_3143482626__ready() -> void:
 	# Hook up stats
 	connect_stats()
 
-func vanilla_3143482626__physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if state == PlayerState.WALK:
 		_physics_process_walk(delta)
 	
@@ -171,7 +173,7 @@ func vanilla_3143482626__physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed('ui_focus_next') and laff_lock_enabled:
 		laff_lock = not laff_lock
 
-func vanilla_3143482626__physics_process_walk(delta: float) -> void:
+func _physics_process_walk(delta: float) -> void:
 	# Ensure mouse is captured while moving
 	if Util.window_focused and not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -269,10 +271,6 @@ func vanilla_3143482626__physics_process_walk(delta: float) -> void:
 	if global_position.y < DEATH_THRESHOLD:
 		s_fell_out_of_world.emit(self)
 	
-	if Input.is_action_just_pressed("pause"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().get_root().add_child(PAUSE_MENU.instantiate())
-	
 	if Input.is_action_just_pressed('toggle_freecam') and SaveFileService.settings_file.dev_tools:
 		var cam := PlayerFreeCam.new(self)
 		cam.fov = camera.fov
@@ -280,7 +278,18 @@ func vanilla_3143482626__physics_process_walk(delta: float) -> void:
 		cam.global_transform = camera.camera.global_transform
 		set_animation('neutral')
 
-func vanilla_3143482626_should_sprint() -> bool:
+func _process(delta: float) -> void:
+	if not state == PlayerState.WALK:
+		return
+	if pause_delay < PAUSE_DELAY:
+		pause_delay += delta
+		return
+	if Input.is_action_just_pressed("pause"):
+		pause_delay = 0.0
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().get_root().add_child(PAUSE_MENU.instantiate())
+
+func should_sprint() -> bool:
 	if not can_sprint:
 		return false
 	
@@ -289,7 +298,7 @@ func vanilla_3143482626_should_sprint() -> bool:
 	else:
 		return Input.is_action_pressed('sprint')
 
-func vanilla_3143482626_assess_anim() -> void:
+func assess_anim() -> void:
 	var anim := base_anim
 	if is_on_floor() and not Input.is_action_just_pressed('jump'):
 		if moving:
@@ -300,7 +309,7 @@ func vanilla_3143482626_assess_anim() -> void:
 		if not get_animation() == anim:
 			set_animation(anim)
 
-func vanilla_3143482626_move_to(new_pos: Vector3, spd: float = run_speed, override_anim := "") -> Tween:
+func move_to(new_pos: Vector3, spd: float = run_speed, override_anim := "") -> Tween:
 	# Stop player if not already
 	if state == PlayerState.WALK:
 		state = PlayerState.STOPPED
@@ -321,14 +330,14 @@ func vanilla_3143482626_move_to(new_pos: Vector3, spd: float = run_speed, overri
 	move_tween.finished.connect(move_tween_finished.bind(move_tween))
 	return move_tween
 
-func vanilla_3143482626_move_tween_finished(tween: Tween):
+func move_tween_finished(tween: Tween):
 	set_animation('neutral')
 	tween.kill()
 
-func vanilla_3143482626_face_position(pos: Vector3):
+func face_position(pos: Vector3):
 	toon.look_at(Vector3(pos.x, global_position.y, pos.z), Vector3.UP, true)
 
-func vanilla_3143482626_turn_to_position(pos: Vector3, time: float):
+func turn_to_position(pos: Vector3, time: float):
 	set_animation('walk')
 	var toon_scale: Vector3 = toon.scale
 	var cur_rot: Vector3 = toon.global_rotation
@@ -343,18 +352,18 @@ func vanilla_3143482626_turn_to_position(pos: Vector3, time: float):
 	turn_tween.kill()
 	set_animation('neutral')
 
-func vanilla_3143482626_toon_lerp_angle(weight: float, start_angle: float, end_angle: float, toon_scale: Vector3) -> void:
+func toon_lerp_angle(weight: float, start_angle: float, end_angle: float, toon_scale: Vector3) -> void:
 	toon.rotation.y = lerp_angle(start_angle, end_angle, weight)
 	toon.set_scale(toon_scale)
 
-func vanilla_3143482626_set_animation(anim : String):
+func set_animation(anim : String):
 	if not get_animation() == anim:
 		toon.body.set_animation(anim)
 
-func vanilla_3143482626_get_animation() -> String:
+func get_animation() -> String:
 	return animator.current_animation
 
-func vanilla_3143482626_lose():
+func lose():
 	if state == PlayerState.SAD:
 		# Thog don't care if we're already in the sad state
 		return
@@ -373,20 +382,20 @@ func vanilla_3143482626_lose():
 	SaveFileService.progress_file.deaths += 1
 	s_died.emit()
 
-func vanilla_3143482626_speak(phrase: String) -> void:
+func speak(phrase: String) -> void:
 	toon.speak(phrase)
 
-func vanilla_3143482626_teleport_in(set_to_walk := false) -> void:
+func teleport_in(set_to_walk := false) -> void:
 	state = PlayerState.STOPPED
 	await toon.teleport_in()
 	if set_to_walk:
 		state = PlayerState.WALK
 
-func vanilla_3143482626_teleport_out() -> void:
+func teleport_out() -> void:
 	state = PlayerState.STOPPED
 	await toon.teleport_out()
 
-func vanilla_3143482626_fall_in(set_to_walk := false) -> void:
+func fall_in(set_to_walk := false) -> void:
 	state = PlayerState.STOPPED
 	toon.position.y = 50.0
 	toon.set_animation('slip_forwards')
@@ -399,7 +408,7 @@ func vanilla_3143482626_fall_in(set_to_walk := false) -> void:
 	if set_to_walk:
 		state = PlayerState.WALK
 
-func vanilla_3143482626_reset_stats() -> void:
+func reset_stats() -> void:
 	var newstats := PlayerStats.new()
 	newstats.character = stats.character
 	newstats.quests = stats.quests
@@ -423,7 +432,7 @@ func vanilla_3143482626_reset_stats() -> void:
 		connect_stats()
 	
 
-func vanilla_3143482626_connect_stats() -> void:
+func connect_stats() -> void:
 	# Update laff meter on hp/max hp update
 	laff_meter.max_laff = stats.max_hp
 	laff_meter.laff = stats.hp
@@ -448,7 +457,7 @@ func vanilla_3143482626_connect_stats() -> void:
 	s_stats_connected.emit(stats)
 
 var prev_hp := -1
-func vanilla_3143482626_check_hp(hp : int) -> void:
+func check_hp(hp : int) -> void:
 	if prev_hp > -1 and laff_lock and hp > prev_hp:
 		stats.hp = prev_hp
 	
@@ -456,7 +465,7 @@ func vanilla_3143482626_check_hp(hp : int) -> void:
 		lose()
 	prev_hp = stats.hp
 
-func vanilla_3143482626_quick_heal(amount: int) -> void:
+func quick_heal(amount: int) -> void:
 	var pre_hp := stats.hp
 	# Apply healing effectiveness if we have it
 	if amount > 0 and not is_equal_approx(stats.healing_effectiveness, 1.0):
@@ -473,12 +482,12 @@ func vanilla_3143482626_quick_heal(amount: int) -> void:
 	else:
 		Util.do_3d_text(self, "+" + str(diff), Color.GREEN, Color.DARK_GREEN)
 
-func vanilla_3143482626_recenter_camera(instant := true) -> void:
+func recenter_camera(instant := true) -> void:
 	if instant:
 		camera.rotation = Vector3.ZERO
 		camera.rotation_degrees.y = toon.rotation_degrees.y + 180.0
 
-func vanilla_3143482626_do_invincibility_frames(time := IFRAME_TIME) -> void:
+func do_invincibility_frames(time := IFRAME_TIME) -> void:
 	set_collision_mask_value(Globals.HAZARD_COLLISION_LAYER, false)
 	set_collision_layer_value(Globals.HAZARD_COLLISION_LAYER, false)
 	await do_iframe_tween(time).finished
@@ -486,7 +495,7 @@ func vanilla_3143482626_do_invincibility_frames(time := IFRAME_TIME) -> void:
 	set_collision_mask_value(Globals.HAZARD_COLLISION_LAYER, true)
 
 var iframe_tween : Tween
-func vanilla_3143482626_do_iframe_tween(time := IFRAME_TIME) -> Tween:
+func do_iframe_tween(time := IFRAME_TIME) -> Tween:
 	if iframe_tween:
 		iframe_tween.kill()
 	iframe_tween = create_tween()
@@ -507,13 +516,13 @@ func vanilla_3143482626_do_iframe_tween(time := IFRAME_TIME) -> Tween:
 	iframe_tween.tween_callback(toon.body.show)
 	return iframe_tween
 
-func vanilla_3143482626_is_invincible() -> bool:
+func is_invincible() -> bool:
 	return (iframe_tween and iframe_tween.is_running())
 
-func vanilla_3143482626_swap_toon_visibility() -> void:
+func swap_toon_visibility() -> void:
 	toon.body.visible = not toon.body.visible
 
-func vanilla_3143482626_update_accessories() -> void:
+func update_accessories() -> void:
 	var hat : ItemAccessory
 	var glasses : ItemAccessory
 	var backpack : ItemAccessory
@@ -531,202 +540,3 @@ func vanilla_3143482626_update_accessories() -> void:
 	
 	if backpack: backpack.place_accessory(self)
 	else: Util.free_all_children(toon.backpack_bone)
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func _init():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626__init, [], 1209580501)
-	else:
-		vanilla_3143482626__init()
-
-
-func _ready():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626__ready, [], 1271791606)
-	else:
-		vanilla_3143482626__ready()
-
-
-func _physics_process(delta: float):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626__physics_process, [delta], 1680014018)
-	else:
-		vanilla_3143482626__physics_process(delta)
-
-
-func _physics_process_walk(delta: float):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626__physics_process_walk, [delta], 1049757680)
-	else:
-		vanilla_3143482626__physics_process_walk(delta)
-
-
-func should_sprint() -> bool:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3143482626_should_sprint, [], 3047102736)
-	else:
-		return vanilla_3143482626_should_sprint()
-
-
-func assess_anim():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_assess_anim, [], 1600957688)
-	else:
-		vanilla_3143482626_assess_anim()
-
-
-func move_to(new_pos: Vector3, spd: float=run_speed, override_anim: ="") -> Tween:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3143482626_move_to, [new_pos, spd, override_anim], 4117992443)
-	else:
-		return vanilla_3143482626_move_to(new_pos, spd, override_anim)
-
-
-func move_tween_finished(tween: Tween):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3143482626_move_tween_finished, [tween], 989883460)
-	else:
-		return vanilla_3143482626_move_tween_finished(tween)
-
-
-func face_position(pos: Vector3):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3143482626_face_position, [pos], 3456955813)
-	else:
-		return vanilla_3143482626_face_position(pos)
-
-
-func turn_to_position(pos: Vector3, time: float):
-	if _ModLoaderHooks.any_mod_hooked:
-		return await _ModLoaderHooks.call_hooks_async(vanilla_3143482626_turn_to_position, [pos, time], 3764807969)
-	else:
-		return await vanilla_3143482626_turn_to_position(pos, time)
-
-
-func toon_lerp_angle(weight: float, start_angle: float, end_angle: float, toon_scale: Vector3):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_toon_lerp_angle, [weight, start_angle, end_angle, toon_scale], 2173715834)
-	else:
-		vanilla_3143482626_toon_lerp_angle(weight, start_angle, end_angle, toon_scale)
-
-
-func set_animation(anim: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3143482626_set_animation, [anim], 2426314029)
-	else:
-		return vanilla_3143482626_set_animation(anim)
-
-
-func get_animation() -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3143482626_get_animation, [], 3626642209)
-	else:
-		return vanilla_3143482626_get_animation()
-
-
-func lose():
-	if _ModLoaderHooks.any_mod_hooked:
-		return await _ModLoaderHooks.call_hooks_async(vanilla_3143482626_lose, [], 2119536213)
-	else:
-		return await vanilla_3143482626_lose()
-
-
-func speak(phrase: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_speak, [phrase], 1233540406)
-	else:
-		vanilla_3143482626_speak(phrase)
-
-
-func teleport_in(set_to_walk: =false):
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_3143482626_teleport_in, [set_to_walk], 4000431655)
-	else:
-		await vanilla_3143482626_teleport_in(set_to_walk)
-
-
-func teleport_out():
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_3143482626_teleport_out, [], 3165232616)
-	else:
-		await vanilla_3143482626_teleport_out()
-
-
-func fall_in(set_to_walk: =false):
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_3143482626_fall_in, [set_to_walk], 3108147735)
-	else:
-		await vanilla_3143482626_fall_in(set_to_walk)
-
-
-func reset_stats():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_reset_stats, [], 566752787)
-	else:
-		vanilla_3143482626_reset_stats()
-
-
-func connect_stats():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_connect_stats, [], 2065532378)
-	else:
-		vanilla_3143482626_connect_stats()
-
-
-func check_hp(hp: int):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_check_hp, [hp], 649490519)
-	else:
-		vanilla_3143482626_check_hp(hp)
-
-
-func quick_heal(amount: int):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_quick_heal, [amount], 2181087384)
-	else:
-		vanilla_3143482626_quick_heal(amount)
-
-
-func recenter_camera(instant: =true):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_recenter_camera, [instant], 1458936994)
-	else:
-		vanilla_3143482626_recenter_camera(instant)
-
-
-func do_invincibility_frames(time: =IFRAME_TIME):
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_3143482626_do_invincibility_frames, [time], 1196069518)
-	else:
-		await vanilla_3143482626_do_invincibility_frames(time)
-
-
-func do_iframe_tween(time: =IFRAME_TIME) -> Tween:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3143482626_do_iframe_tween, [time], 1670482154)
-	else:
-		return vanilla_3143482626_do_iframe_tween(time)
-
-
-func is_invincible() -> bool:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3143482626_is_invincible, [], 2866396608)
-	else:
-		return vanilla_3143482626_is_invincible()
-
-
-func swap_toon_visibility():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_swap_toon_visibility, [], 1027412899)
-	else:
-		vanilla_3143482626_swap_toon_visibility()
-
-
-func update_accessories():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3143482626_update_accessories, [], 1225728184)
-	else:
-		vanilla_3143482626_update_accessories()

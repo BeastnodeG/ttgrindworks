@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://ckgngxyaff50p"]
+[gd_scene load_steps=91 format=4 uid="uid://ckgngxyaff50p"]
 
 [ext_resource type="PackedScene" uid="uid://bbpa14c3mhbii" path="res://models/facilities/mint/mint_conveyor_room.fbx" id="1_tkbgo"]
 [ext_resource type="Script" uid="uid://bxhii68t1wesv" path="res://objects/modules/mint/base_rooms/mint_conveyor_room.gd" id="2_22hq5"]
@@ -25,8 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://c72xdn0nwkaug" path="res://models/facilities/mint/textures/CFOCeiling2.png" id="23_5t2mt"]
 [ext_resource type="PackedScene" uid="uid://dmv7dbgr2b2nr" path="res://objects/obstacles/lava_floor/lava_floor.tscn" id="24_k15y5"]
 [ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="25_ox24q"]
-[ext_resource type="Resource" uid="uid://v7w5xrdb3eh4" path="res://objects/items/pools/battle_clears.tres" id="26_22hq5"]
-[ext_resource type="Resource" uid="uid://cj7jnn60f2dsn" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/opossum_tail.tres" id="27_viimi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ksdy"]
 resource_name = "FINALFACTORY_66"
@@ -237,21 +235,21 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkbgo"]
+resource_name = "ConveyerBeltV3SHD"
+cull_mode = 2
+albedo_texture = ExtResource("15_t7cgb")
+roughness = 0.552786
+uv1_scale = Vector3(1, 15, 1)
+uv1_offset = Vector3(0, -1.24771, 0)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22hq5"]
 resource_name = "ConveyerBeltV3SHD"
 cull_mode = 2
 albedo_texture = ExtResource("15_t7cgb")
 roughness = 0.552786
 uv1_scale = Vector3(1, 15, 1)
-uv1_offset = Vector3(0, -12.143, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_viimi"]
-resource_name = "ConveyerBeltV3SHD"
-cull_mode = 2
-albedo_texture = ExtResource("15_t7cgb")
-roughness = 0.552786
-uv1_scale = Vector3(1, 15, 1)
-uv1_offset = Vector3(0, -0.721072, 0)
+uv1_offset = Vector3(0, -0.327357, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2y4s"]
 size = Vector3(1.53235, 4.8617, 16.5046)
@@ -705,7 +703,7 @@ unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.191, 0, -2.625)
 constant_linear_velocity = Vector3(-7.54979e-07, 0, -5)
 size = Vector3(1.49, 1, 15)
-platform_mat = SubResource("StandardMaterial3D_22hq5")
+platform_mat = SubResource("StandardMaterial3D_tkbgo")
 speed = 5.0
 
 [node name="CBUpper" parent="Conveyors" index="1" instance=ExtResource("14_78wp1")]
@@ -713,7 +711,7 @@ unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 3.95, 3.5)
 constant_linear_velocity = Vector3(7, 0, -3.0598e-07)
 size = Vector3(1.5, 1, 15)
-platform_mat = SubResource("StandardMaterial3D_viimi")
+platform_mat = SubResource("StandardMaterial3D_22hq5")
 speed = 7.0
 
 [node name="Crates" type="Node3D" parent="." index="22"]
@@ -1193,308 +1191,307 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1413, 0, -12.0068)
 
 [node name="treasure_chest3" parent="." index="42" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.2918, -0.00163293, -2.27014)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest4" parent="." index="43" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.2527, -0.00163293, -2.27015)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest5" parent="." index="44" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.1406, -0.00163293, -2.27015)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest6" parent="." index="45" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.2582, -0.00163293, -2.27015)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest7" parent="." index="46" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.45836, -0.00163293, -2.27015)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest8" parent="." index="47" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.4288, -0.00163293, -2.27015)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest9" parent="." index="48" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -2.27015)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest10" parent="." index="49" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -3.25445)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest11" parent="." index="50" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.53357, -0.00163293, -3.25445)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest12" parent="." index="51" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.48451, -0.00163293, -3.25445)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest13" parent="." index="52" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.3641, -0.00163293, -3.25445)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest14" parent="." index="53" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.4087, -0.00163293, -3.25445)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest15" parent="." index="54" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.3962, -0.00163293, -3.25445)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest16" parent="." index="55" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.3805, -0.00163293, -3.25445)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest17" parent="." index="56" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.2918, -0.00163293, -4.25657)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest18" parent="." index="57" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.2527, -0.00163293, -4.25657)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest19" parent="." index="58" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.1406, -0.00163293, -4.25657)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest20" parent="." index="59" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.2582, -0.00163293, -4.25657)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest21" parent="." index="60" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.45836, -0.00163293, -4.25657)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest22" parent="." index="61" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.4288, -0.00163293, -4.25657)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest23" parent="." index="62" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -4.25657)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest24" parent="." index="63" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -5.24088)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest25" parent="." index="64" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.53357, -0.00163293, -5.24088)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest26" parent="." index="65" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.48451, -0.00163293, -5.24088)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest27" parent="." index="66" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.3641, -0.00163293, -5.24088)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest28" parent="." index="67" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.4087, -0.00163293, -5.24088)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest29" parent="." index="68" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.3962, -0.00163293, -5.24088)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest30" parent="." index="69" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.3805, -0.00163293, -5.24088)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest31" parent="." index="70" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.2918, -0.00163293, -6.19971)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest32" parent="." index="71" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.2527, -0.00163293, -6.19971)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest33" parent="." index="72" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.1406, -0.00163293, -6.19971)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest34" parent="." index="73" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.2582, -0.00163293, -6.19971)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest35" parent="." index="74" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.45836, -0.00163293, -6.19971)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest36" parent="." index="75" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.4288, -0.00163293, -6.19971)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest37" parent="." index="76" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -6.19971)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest38" parent="." index="77" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -7.18402)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest39" parent="." index="78" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.53357, -0.00163293, -7.18402)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest40" parent="." index="79" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.48451, -0.00163293, -7.18402)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest41" parent="." index="80" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.3641, -0.00163293, -7.18402)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest42" parent="." index="81" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.4087, -0.00163293, -7.18402)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest43" parent="." index="82" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.3962, -0.00163293, -7.18402)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest44" parent="." index="83" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.3805, -0.00163293, -7.18402)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest45" parent="." index="84" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.2918, -0.00163293, -8.18614)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest46" parent="." index="85" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.2527, -0.00163293, -8.18614)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest47" parent="." index="86" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.1406, -0.00163293, -8.18614)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest48" parent="." index="87" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.2582, -0.00163293, -8.18614)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest49" parent="." index="88" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.45836, -0.00163293, -8.18614)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest50" parent="." index="89" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.4288, -0.00163293, -8.18614)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest51" parent="." index="90" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -8.18614)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest52" parent="." index="91" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -9.17045)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest53" parent="." index="92" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.53357, -0.00163293, -9.17045)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest54" parent="." index="93" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.48451, -0.00163293, -9.17045)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest55" parent="." index="94" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.3641, -0.00163293, -9.17045)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest56" parent="." index="95" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.4087, -0.00163293, -9.17045)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest57" parent="." index="96" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.3962, -0.00163293, -9.17045)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest58" parent="." index="97" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.3805, -0.00163293, -9.17045)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest59" parent="." index="98" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.2918, -0.00163293, -10.0322)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest60" parent="." index="99" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.2527, -0.00163293, -10.0322)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest61" parent="." index="100" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.1406, -0.00163293, -10.0322)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest62" parent="." index="101" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.2582, -0.00163293, -10.0322)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest63" parent="." index="102" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.45836, -0.00163293, -10.0322)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest64" parent="." index="103" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.4288, -0.00163293, -10.0322)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest65" parent="." index="104" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -10.0322)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest66" parent="." index="105" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -7.27188, -0.00163293, -11.0165)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest67" parent="." index="106" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.53357, -0.00163293, -11.0165)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest68" parent="." index="107" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.48451, -0.00163293, -11.0165)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest69" parent="." index="108" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.3641, -0.00163293, -11.0165)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest70" parent="." index="109" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.4087, -0.00163293, -11.0165)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest71" parent="." index="110" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.3962, -0.00163293, -11.0165)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest72" parent="." index="111" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.3805, -0.00163293, -11.0165)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest73" parent="." index="112" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.2918, -0.00163293, -12.0186)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest74" parent="." index="113" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -12.2527, -0.00163293, -12.0186)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest75" parent="." index="114" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.1406, -0.00163293, -12.0186)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest76" parent="." index="115" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -10.2582, -0.00163293, -12.0186)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest77" parent="." index="116" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -9.45836, -0.00163293, -12.0186)
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="treasure_chest78" parent="." index="117" instance=ExtResource("19_v6xmi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -8.4288, -0.00163293, -12.0186)
-override_item = ExtResource("27_viimi")
-item_pool = ExtResource("26_22hq5")
+item_pool = ExtResource("20_0mlue")
 
 [node name="SPAWNPOINT" type="Node3D" parent="." index="118"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9553, 0.865403, -16.0809)

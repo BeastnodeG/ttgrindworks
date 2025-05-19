@@ -7,10 +7,11 @@ var SPLASH := load("res://objects/battle/effects/rainbow_paint_splash/rainbow_pa
 func on_collect(_item: Item, _object: Node3D) -> void:
 	print("doing the setup for paintball")
 	super.on_collect(_item, _object)
-	for i in ItemService.seen_items:
-		if i.item_name == "Paintball":
-			ItemService.seen_items.erase(i)
-			print("we've found it!!! the paintball!!!")
+	##1.1.1b made this no longer needed
+	#for i in ItemService.seen_items:
+		#if i.item_name == "Paintball":
+			#ItemService.seen_items.erase(i)
+			#print("we've found it!!! the paintball!!!")
 
 func use() -> void:
 	var world_item := ItemService.get_closest_item()

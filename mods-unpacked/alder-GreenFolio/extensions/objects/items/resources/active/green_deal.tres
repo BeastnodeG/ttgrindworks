@@ -25,7 +25,9 @@ want_ui_spin = true
 ui_cam_offset = 0.0
 item_name = "Green Deal"
 item_description = "Impending doom"
-big_description = "Gains power each turn, granting you a damage multiplier. If your laff is below a threshold determined by the power at the end of the turn, the prank automatically activates - dealing damage to you equal to the damage threshold and resetting the damage multiplier."
+big_description = "Grants a damage multiplier that increases every turn.
+Also applies an increasing laff threshold that will immediately turn you sad when crossed.
+Activating the prank will reset the multiplier and laff threshold."
 model = ExtResource("3_on8dc")
 pickup_sfx = ExtResource("4_0ojdb")
 stats_add = {}

@@ -28,7 +28,8 @@ func install_script_hook_files() -> void:
 	print("installing script hooks")
 	ModLoaderMod.install_script_hooks("res://objects/globals/save_file_service.gd", extensions_dir_path.path_join("objects/globals/save_file_service.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/player/player.gd", extensions_dir_path.path_join("objects/player/player.hooks.gd"))
-
+	ModLoaderMod.install_script_hooks("res://scenes/title_screen/title_screen.gd", extensions_dir_path.path_join("scenes/title_screen/title_screen.hooks.gd"))
+	
 func add_translations() -> void:
 	translations_dir_path = mod_dir_path.path_join("translations")
 
@@ -39,5 +40,6 @@ func _add_global_class():
 
 func _ready() -> void:
 	Globals.ADDITIONAL_TOON_PATHS.append("res://mods-unpacked/alder-GreenFolio/extensions/objects/player/character/flutterby.tres")
+	Globals.ADDITIONAL_TOON_PATHS.append("res://mods-unpacked/alder-GreenFolio/extensions/objects/player/character/nedslinger.tres")
 	# This can now be moved to overwrites.gd
 	print("green folio ACTIVATED!!!!!!!!!!!!!!!.")

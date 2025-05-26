@@ -7,3 +7,5 @@ Windows/Linux: Create a "mods" folder next to your "ToontownTheGrindworks.exe" a
 MacOS: Create a "mods" folder in the /Applications folder and the desired mod(s) .zip into it. (Do not extract the zip)
 Changes:
 - Ned Slinger added.
+- Parry Glower added.
+- Paintball rarity increased to Q6.

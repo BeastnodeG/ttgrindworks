@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7hcrpxad2j4c"]
+
+[ext_resource type="Texture2D" uid="uid://cqep68ok6hntb" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/parry glower.png" id="1_gcoki"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_af6np"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_gcoki")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wra8v"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hjh8r"]
+resource_name = "bouncecheck_Plane"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_af6np"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 84, 213, 255, 255, 0, 0, 0, 0, 84, 213, 255, 255, 0, 0, 255, 255, 84, 213, 0, 0, 0, 0, 0, 0, 84, 213, 84, 213, 170, 42, 84, 213, 170, 42, 84, 213, 170, 42, 84, 213, 170, 42)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wra8v")
+
+[node name="green_deal" type="Node3D"]
+
+[node name="planething" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.64402e-08, 0.15, 0, -0.376107, -6.55671e-09, 0, 0, 0, 0.375, 0, 0, 0)
+mesh = SubResource("ArrayMesh_hjh8r")
+skeleton = NodePath("")

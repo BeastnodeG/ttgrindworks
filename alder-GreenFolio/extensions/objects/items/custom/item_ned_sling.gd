@@ -47,7 +47,7 @@ func on_battle_change(_arg = null) -> void:
 
 	# add an additional turn if it increased
 	var current_turns = player.stats.turns
-	if current_turns > last_known_turns:
+	if current_turns > last_known_turns and current_turns != 2: #hardcode because whynot
 		print("incrementing turns")
 		player.stats.turns += 1
 	last_known_turns = player.stats.turns

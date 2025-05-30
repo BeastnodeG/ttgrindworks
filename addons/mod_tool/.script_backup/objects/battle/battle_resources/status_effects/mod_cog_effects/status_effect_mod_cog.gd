@@ -15,18 +15,8 @@ const MOD_EFFECTS : Array[StatusEffect] = [
 	#preload("res://objects/battle/battle_resources/status_effects/resources/mod_cog_leverage.tres"),
 ]
 
-func vanilla_4249675048_apply() -> void:
+func apply() -> void:
 	if not MOD_EFFECTS.is_empty():
 		var mod_effect: StatusEffect = RandomService.array_pick_random('mod_cog_effects', MOD_EFFECTS).duplicate()
 		mod_effect.target = target
 		manager.add_status_effect(mod_effect)
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func apply():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_4249675048_apply, [], 3196910670)
-	else:
-		vanilla_4249675048_apply()

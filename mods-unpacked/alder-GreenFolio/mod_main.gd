@@ -29,7 +29,8 @@ func install_script_hook_files() -> void:
 	ModLoaderMod.install_script_hooks("res://objects/globals/save_file_service.gd", extensions_dir_path.path_join("objects/globals/save_file_service.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/player/player.gd", extensions_dir_path.path_join("objects/player/player.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://scenes/title_screen/title_screen.gd", extensions_dir_path.path_join("scenes/title_screen/title_screen.hooks.gd"))
-	
+	ModLoaderMod.install_script_hooks("res://objects/battle/battle_resources/status_effects/mod_cog_effects/status_effect_mod_cog.gd", extensions_dir_path.path_join("objects/battle/battle_resources/status_effects/mod_cog_effects/status_effect_mod_cog.hooks.gd"))
+
 func add_translations() -> void:
 	translations_dir_path = mod_dir_path.path_join("translations")
 

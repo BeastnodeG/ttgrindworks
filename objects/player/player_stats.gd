@@ -155,6 +155,7 @@ func on_round_end(_battle: BattleManager) -> void:
 	for track in gag_balance.keys():
 		if not gags_unlocked[track] > 0: continue
 		if gag_regeneration.has(track):
+			print(track, " ", gag_regeneration[track])
 			restock(track, gag_regeneration[track])
 
 func on_battle_started(_battle: BattleManager) -> void:

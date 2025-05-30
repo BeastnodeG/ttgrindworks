@@ -5,13 +5,13 @@ const CUSTOM_MOD_EFFECTS: Array[StatusEffect] = [
 ]
 
 func apply(chain: ModLoaderHookChain) -> void:
-	print("running mod cog effect hook")
 	var obj := chain.reference_object as StatusEffect
 
 	var all_effects: Array[StatusEffect] = []
-	var script := obj.get_script() as Script
-	all_effects = script.MOD_EFFECTS.duplicate()
-
+	if obj.has_script():
+		var script := obj.get_script() as Script
+		if script.has_constant("MOD_EFFECTS"):
+			all_effects = script.MOD_EFFECTS.duplicate()
 	all_effects += CUSTOM_MOD_EFFECTS
 
 	if not all_effects.is_empty():

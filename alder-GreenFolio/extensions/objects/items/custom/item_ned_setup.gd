@@ -3,8 +3,9 @@ extends ItemCharSetup
 func first_time_setup(player : Player) -> void:
 	player.stats.gags_unlocked['Lure'] = 1
 	player.stats.gags_unlocked['Throw'] = 1
-	player.stats.luck = 1.05
-	player.stats.damage = 0.9 #halved by neds item
+	player.stats.gags_unlocked['Squirt'] = 1
+	player.stats.luck = 1
+	player.stats.damage = 1 #halved by neds item
 	player.stats.speed = 1.1
 	player.stats.turns = 2
 	player.stats.max_turns = 6

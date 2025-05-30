@@ -16,12 +16,35 @@ var linked_items: Array = [
 	]
 ]
 
+const POOL_PATHS: Array[String] = [
+	"res://objects/items/pools/accessories.tres",
+	"res://objects/items/pools/active_items.tres",
+	"res://objects/items/pools/battle_clears.tres",
+	"res://objects/items/pools/candies.tres",
+	"res://objects/items/pools/doodle_treasure.tres",
+	"res://objects/items/pools/everything.tres",
+	"res://objects/items/pools/floor_clears.tres",
+	"res://objects/items/pools/item_roll_fails.tres",
+	"res://objects/items/pools/jellybeans.tres",
+	"res://objects/items/pools/progressives.tres",
+	"res://objects/items/pools/rewards.tres",
+	"res://objects/items/pools/shop_progressives.tres",
+	"res://objects/items/pools/shop_rewards.tres",
+	"res://objects/items/pools/special_items.tres",
+	"res://objects/items/pools/super_candies.tres",
+	"res://objects/items/pools/toontasks.tres",
+	"res://objects/items/pools/treasures.tres",
+]
+
+var POOLS: Dictionary[String, ItemPool] = {}
+
+
+
+
 func _init():
-	GameLoader.queue_into(
-		GameLoader.Phase.GAMEPLAY, self, {
-			'BEAN_POOL': 'res://objects/items/pools/jellybeans.tres',
-		}
-	)
+	# Assign our item pools
+	for path in POOL_PATHS:
+		create_centralized_pool(path)
 
 func _ready() -> void:
 	# Clear out temp seen items upon every floor start
@@ -52,6 +75,9 @@ func get_random_item(pool: ItemPool, override_rolls := false) -> Item:
 		#if bean_roll < get_bean_rate():
 			#print('Forcing bean spawn')
 			#return get_random_item(BEAN_POOL, true)
+	
+	# Get the centralized version of the pool
+	pool = get_centralized_pool(pool)
 	
 	# 50% chance to remove all active items from the pool
 	var exclude_actives := not override_rolls and RandomService.randi_channel('active_item_discard') % 2 == 0
@@ -273,7 +299,6 @@ func get_laff_rate() -> float:
 
 const BEAN_GOAL := 30
 const LIKELIHOOD_PER_BEAN := 0.05
-var BEAN_POOL: ItemPool
 func get_bean_rate() -> float:
 	if not is_instance_valid(Util.get_player()):
 		return 0.0
@@ -336,54 +361,35 @@ func display_item(item : Item) -> Control:
 	get_tree().get_root().add_child(ui)
 	return ui
 
-#dumb debugging
-var debug_item_spawned := false
+## Attempts to return the centralized version of the item pool
+## If none exists, just returns the pool given
+func get_centralized_pool(pool: ItemPool) -> ItemPool:
+	var path := pool.resource_path
+	if path in POOLS.keys():
+		return POOLS[path]
+	return pool
 
-func _process(delta):
-	if OS.is_debug_build() and Input.is_action_just_pressed("alt_click"):
-		if not debug_item_spawned:
-			spawn_debug_active_item()
-		else:
-			charge_debug_item()
+## If a centralized item pool exists, it will return that
+## Otherwise, it will make a new centralized pool and return that
+func pool_from_path(path: String) -> ItemPool:
+	if path in POOLS.keys():
+		return POOLS[path]
+	else:
+		return create_centralized_pool(path)
 
-func spawn_debug_active_item():
-	var item: Item = load("res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/parry_glower.tres").duplicate()
-	#this is lazy
-	#var everything_pool_path := "res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/everything.tres"
-	#var everything_pool := load(everything_pool_path)
-	#
-	#if everything_pool:
-		#print("=== Item List with Qualitoon Values ===")
-		#for iteme in everything_pool.items:
-			#if iteme:
-				#print("%s, %s" % [iteme.item_name, str(iteme.qualitoon)])
-			#else:
-				#print("Invalid or incomplete item found.")
-	#else:
-		#print("Failed to load item pool or 'items' array not found.")
-	
-	item_created(item)
-	seen_item(item)
-	
-	var player := Util.get_player()
-	if player:
-		if item is ItemActive:
-			item.apply_item(player, true)
-			player.stats.current_active_item = item
-			print("Equipped active item: ", item.item_name)
-		else:
-			player.stats.items.append(item)
-			apply_inventory()
+func create_centralized_pool(path: String) -> ItemPool:
+	var new_pool: ItemPool = load(path)
+	POOLS[path] = new_pool
+	return new_pool
 
-	display_item(item)
-	print("Spawned and equipped debug active item!")
 
-	debug_item_spawned = true
+#region Pool Pointers
+var BEAN_POOL: ItemPool:
+	get: return pool_from_path("res://objects/items/pools/jellybeans.tres")
+var REWARD_POOL: ItemPool:
+	get: return pool_from_path("res://objects/items/pools/rewards.tres")
+var PROGRESSIVE_POOL: ItemPool:
+	get: return pool_from_path("res://objects/items/pools/progressives.tres")
 
-func charge_debug_item():
-	var player := Util.get_player()
-	if player:
-		var item = player.stats.current_active_item
-		
-		item.current_charge = item.charge_count
-		print("Charged item to full.")
+
+#endregion

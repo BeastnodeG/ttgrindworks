@@ -45,18 +45,17 @@ func on_battle_change(_arg = null) -> void:
 	if not player:
 		return
 
-	# add an additional turn if it increased
 	var current_turns = player.stats.turns
-	if current_turns > last_known_turns and current_turns != 2: #hardcode because whynot
+	#yes this implementation is weird. i don't care anymore
+	if current_turns > last_known_turns and current_turns % 2 != 0:
 		print("incrementing turns")
 		player.stats.turns += 1
 	last_known_turns = player.stats.turns
 
-	# add an additional gag regen if it increased
 	var gags = player.stats.gag_regeneration
 	var first_track = gags.keys()[0]
 	var current_regen = gags[first_track]
-	if current_regen > last_known_regen:
+	if current_regen > last_known_regen and current_regen % 2 != 0:
 		print("incrementing gag regen")
 		for track in gags.keys():
 			gags[track] += 1

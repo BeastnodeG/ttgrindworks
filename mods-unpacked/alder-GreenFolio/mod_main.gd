@@ -42,5 +42,42 @@ func _add_global_class():
 func _ready() -> void:
 	Globals.ADDITIONAL_TOON_PATHS.append("res://mods-unpacked/alder-GreenFolio/extensions/objects/player/character/flutterby.tres")
 	Globals.ADDITIONAL_TOON_PATHS.append("res://mods-unpacked/alder-GreenFolio/extensions/objects/player/character/nedslinger.tres")
-	# This can now be moved to overwrites.gd
-	print("green folio ACTIVATED!!!!!!!!!!!!!!!.")
+	print("green folio ACTIVATED!!!!!!!!!!!!!!!")
+
+	var item_paths := {
+		"taser": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/taser.tres",
+		"opossum_tail": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/opossum_tail.tres",
+		"lightbulb": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/lightbulb.tres",
+		"joybuzzer": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/joybuzzer.tres",
+		"parry_glower": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/parry_glower.tres",
+		"paint_brush": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/paint_brush.tres",
+		"paintball": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/paintball.tres",
+		"monarch_butterfly": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/monarch_butterfly.tres",
+		"green_deal": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/green_deal.tres",
+		"alphabet_soup": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/alphabet_soup.tres",
+	}
+
+	var pool_memberships := {
+		"special_items.tres": ["green_deal", "monarch_butterfly", "alphabet_soup", "paint_brush", "taser", "joybuzzer"],
+		"shop_rewards.tres": ["taser", "opossum_tail", "lightbulb", "joybuzzer", "green_deal", "paint_brush", "parry_glower"],
+		"shop_progressive.tres": ["paintball"],
+		"rewards.tres": ["lightbulb", "opossum_tail", "green_deal", "parry_glower"],
+		"progressives.tres": ["paintball"],
+		"floor_clears.tres": ["opossum_tail", "joybuzzer", "lightbulb"],
+		"everything.tres": ["lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly"],
+		"battle_clears.tres": [],
+		"active_items.tres": ["alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal", "parry_glower"],
+		"accessories.tres": ["taser", "lightbulb", "opossum_tail", "joybuzzer"],
+	}
+
+	for pool_name in pool_memberships:
+		var pool: Object = ItemService.pool_from_path("res://objects/items/pools/%s" % pool_name)
+		if not pool:
+			push_error("Missing pool: %s" % pool_name)
+			continue
+
+		for item_name in pool_memberships[pool_name]:
+			var item := load(item_paths.get(item_name, ""))
+			if item and item not in pool.items:
+				pool.items.append(item)
+				print("Added %s to %s" % [item.item_name, pool_name])

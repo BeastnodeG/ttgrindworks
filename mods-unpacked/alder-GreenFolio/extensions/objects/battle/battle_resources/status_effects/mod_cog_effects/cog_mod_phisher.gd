@@ -2,13 +2,13 @@
 extends StatusEffect
 
 func apply() -> void:
-	var player_stats = manager.battle_stats[Util.get_player()]
-	for track in player_stats.gag_regeneration.keys():
-		player_stats.gag_regeneration[track] -= 1
-		print("lowered to ", player_stats.gag_regeneration[track])
+	var gagregen = Util.get_player().stats.gag_regeneration
+	for track in gagregen.keys():
+		gagregen[track] -= 1
+		print("lowered to ", gagregen[track])
 
 func cleanup() -> void:
-	var player_stats = manager.battle_stats[Util.get_player()]
-	for track in player_stats.gag_regeneration.keys():
-		player_stats.gag_regeneration[track] += 1
-		print("increased to ", player_stats.gag_regeneration[track])
+	var gagregen = Util.get_player().stats.gag_regeneration
+	for track in gagregen.keys():
+		gagregen[track] += 1
+		print("increased to ", gagregen[track])

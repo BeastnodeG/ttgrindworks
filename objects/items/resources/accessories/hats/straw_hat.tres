@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0eino5enyrqq" path="res://models/accessories/hats/straw_hat/straw_hat.glb" id="2_c0q3q"]
 [ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="2_ee2gm"]
 [ext_resource type="Texture2D" uid="uid://bh7bvnu40hc58" path="res://models/accessories/hats/straw_hat/straw_hat.glb-pix-1.png" id="2_g2ele"]
-[ext_resource type="Script" uid="uid://bjty0p78yjpb0" path="res://objects/items/custom/item_straw_hat.gd" id="4_8lw1e"]
+[ext_resource type="Script" path="res://objects/items/custom/item_straw_hat.gd" id="4_8lw1e"]
 
 [sub_resource type="Resource" id="Resource_0yrlx"]
 script = ExtResource("2_8lw1e")

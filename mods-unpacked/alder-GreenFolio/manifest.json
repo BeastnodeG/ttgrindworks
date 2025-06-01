@@ -9,7 +9,9 @@
 			"compatible_game_version": [
 				"1.1.1",
 				"1.1.1a",
-				"1.1.1b"
+				"1.1.1b",
+				"1.1.2",
+				"1.1.2a"
 			],
 			"compatible_mod_loader_version": [
 				"7.0.0"

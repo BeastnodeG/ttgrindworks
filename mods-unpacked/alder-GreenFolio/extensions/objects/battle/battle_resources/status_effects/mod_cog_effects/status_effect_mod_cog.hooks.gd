@@ -2,6 +2,7 @@ extends Node
 
 const CUSTOM_MOD_EFFECTS: Array[StatusEffect] = [
 	preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/mod_cog_dragon_king.tres"),
+	preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/mod_cog_phisher.tres"),
 ]
 
 func apply(chain: ModLoaderHookChain) -> void:

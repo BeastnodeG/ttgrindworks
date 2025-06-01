@@ -14,6 +14,6 @@ icon_scale = 1.0
 mini_icon_color = Color(1, 1, 1, 1)
 mini_icon_scale = 1.0
 visible = true
-description = "Your wealth is IT's power."
+description = "Your wealth is their power"
 status_name = "Dragon King"
 id = 702

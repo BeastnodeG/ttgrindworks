@@ -1,6 +1,6 @@
 extends StatusEffect
 
-const MONEY_PER_1_PERCENT := 2.5
+const STAT_PERCENT := 2.5
 const STATS := ["damage", "defense"]
 
 var current_boost := 1.0
@@ -11,7 +11,7 @@ func _update_boost():
 		return
 
 	var money := player.stats.money
-	var percent := int(floor(money / MONEY_PER_1_PERCENT))
+	var percent := int(floor(money / STAT_PERCENT))
 	current_boost = 1.0 + percent * 0.01
 
 func apply():

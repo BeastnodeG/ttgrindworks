@@ -2,8 +2,10 @@ extends StatusEffect
 
 const STAT_PERCENT := 2
 const STATS := ["damage", "defense"]
+const DEFENSE_CAP := 5.0
 
 var current_boost := 1.0
+var defense_capped := false
 
 func _update_boost():
 	var player := Util.get_player()
@@ -13,6 +15,10 @@ func _update_boost():
 	var money := player.stats.money
 	var percent := int(floor(money / STAT_PERCENT))
 	current_boost = 1.0 + percent * 0.01
+
+	defense_capped = current_boost > DEFENSE_CAP
+	if defense_capped:
+		current_boost = DEFENSE_CAP
 
 func apply():
 	_update_boost()
@@ -36,7 +42,10 @@ func expire():
 
 func get_description() -> String:
 	var bonus := int((current_boost - 1.0) * 100.0)
-	return "Your wealth is its power.\n+%d%% Damage\n+%d%% Defense" % [bonus, bonus]
+	var desc := "Your wealth is its power.\n"
+	desc += "+%d%% Damage\n" % bonus
+	desc += "+%d%% Defense%s" % [bonus, " (Capped)" if defense_capped else ""]
+	return desc
 
 func get_quality() -> EffectQuality:
 	return EffectQuality.POSITIVE

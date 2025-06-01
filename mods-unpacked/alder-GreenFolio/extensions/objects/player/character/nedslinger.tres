@@ -56,10 +56,10 @@ bottoms = SubResource("Resource_ugrs1")
 script = ExtResource("9_y1yum")
 character_name = "Ned Slinger"
 character_summary = "- Attack is halved
-- No Starting Luck
+- No starting Luck
 - Double Turns and Gag Regen
 - Starts with 15 Gag Capacity
-- Starts with Lure, Squirt, and Throw."
+- Starts with Lure, Squirt, and Throw"
 dna = SubResource("Resource_ax4gq")
 gag_loadout = ExtResource("8_xo3ud")
 starting_laff = 30

@@ -6,9 +6,4 @@ Windows/Linux: Create a "mods" folder next to your "ToontownTheGrindworks.exe" a
 MacOS: Create a "mods" folder in the /Applications folder and the desired mod(s) .zip into it. (Do not extract the zip)
 
 Changes:
-- Ned Slinger added.
-- Parry Glower added.
-- Dragon King added.
-- Phisher added.
-- Paintball rarity increased to Q6.
-- Migrated item pool overwrites to the new item pool system (thanks evan). This means the mod will now be compatible with things like OFTF/future updates without the need for a patch.
+- Actually use the correct Green Deal description.

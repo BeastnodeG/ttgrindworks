@@ -12,7 +12,7 @@ charge_count = 2
 current_charge = 2
 custom_discharge_time = 0.5
 item_tags = null
-qualitoon = 1
+qualitoon = 2
 rarity = 7
 evergreen = false
 realtime = false
@@ -23,9 +23,9 @@ want_ui_spin = true
 ui_cam_offset = 0.0
 item_name = "Parry Glower"
 item_description = "Q time events!"
-big_description = "Gives you +50% defense for 0.5 seconds.
+big_description = "Gives you +100% defense for 0.5 seconds.
 Prank is fully recharged if you are damaged in that time. 
-Failed to take damage in battle reduces your defense temporarily."
+Failing to take damage (in battle) reduces your defense temporarily."
 stats_add = {}
 stats_multiply = {}
 player_values = {}

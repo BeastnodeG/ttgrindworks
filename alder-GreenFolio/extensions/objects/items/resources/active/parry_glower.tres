@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="ItemActive" load_steps=5 format=3 uid="uid://kuh3h7y6s4if"]
+[gd_resource type="Resource" script_class="ItemActive" load_steps=4 format=3 uid="uid://kuh3h7y6s4if"]
 
 [ext_resource type="Texture2D" uid="uid://cqep68ok6hntb" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/parry glower.png" id="1_36533"]
 [ext_resource type="Script" uid="uid://vxupn36sep4h" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/parry_glower/parry_glower.gd" id="2_36533"]
-[ext_resource type="PackedScene" uid="uid://c7hcrpxad2j4c" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/parry_glower/parry_glower.tscn" id="3_36533"]
 [ext_resource type="Script" uid="uid://5uwfsntxdag6" path="res://objects/items/classes/item_active.gd" id="5_cqvbx"]
 
 [resource]
@@ -13,8 +12,8 @@ charge_count = 2
 current_charge = 2
 custom_discharge_time = 0.5
 item_tags = null
-qualitoon = 3
-rarity = 0
+qualitoon = 1
+rarity = 7
 evergreen = false
 realtime = false
 slot = 0
@@ -25,8 +24,8 @@ ui_cam_offset = 0.0
 item_name = "Parry Glower"
 item_description = "Q time events!"
 big_description = "Gives you +50% defense for 0.5 seconds.
-Prank is fully recharged if you are damaged in that time. Failed parries in combat reduce your defense."
-model = ExtResource("3_36533")
+Prank is fully recharged if you are damaged in that time. 
+Failed to take damage in battle reduces your defense temporarily."
 stats_add = {}
 stats_multiply = {}
 player_values = {}

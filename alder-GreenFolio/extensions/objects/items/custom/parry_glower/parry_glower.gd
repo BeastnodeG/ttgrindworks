@@ -5,6 +5,10 @@ var SUCCESS := preload("res://audio/sfx/battle/cogs/attacks/SA_writeoff_ding_onl
 var FAIL := preload("res://audio/sfx/misc/MG_neg_buzzer.ogg")
 var STATUS := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres")
 
+#i'm very Not Proud of this item, 
+#but i spent so much time making it i thought i may as well include it anyways as a "Q7"
+
+
 var player: Player
 var timer_active := false
 var parry_success := false

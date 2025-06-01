@@ -8,7 +8,6 @@ var STATUS := preload("res://objects/battle/battle_resources/status_effects/reso
 #i'm very Not Proud of this item, 
 #but i spent so much time making it i thought i may as well include it anyways as a "Q7"
 
-
 var player: Player
 var timer_active := false
 var parry_success := false
@@ -82,7 +81,7 @@ func use() -> void:
 
 	var defense_boost := StatMultiplier.new()
 	defense_boost.stat = "defense"
-	defense_boost.amount = 1.0 if out_of_combat else 0.5
+	defense_boost.amount = 1.0
 	defense_boost.additive = true
 	player.stats.multipliers.append(defense_boost)
 

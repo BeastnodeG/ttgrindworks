@@ -44,7 +44,7 @@ var page_current := 0:
 var open_time := 0.0
 
 
-func _ready() -> void:
+func vanilla_705564332__ready() -> void:
 	get_tree().paused = true
 	get_player_info()
 	
@@ -80,14 +80,14 @@ func _ready() -> void:
 	%Pages.show()
 	%TopLevelElements.show()
 
-func apply_stat_labels() -> void:
+func vanilla_705564332_apply_stat_labels() -> void:
 	for stat_array: Array in StatInfo:
 		stat_array[0].text = '%s: %d%%' % [
 			stat_array[1].capitalize(),
 			Util.get_player().stats.get_stat_as_percent(stat_array[1])
 		]
 
-func apply_stat_changes() -> void:
+func vanilla_705564332_apply_stat_changes() -> void:
 	var stat_up_color := Color("4de64d")
 	var stat_down_color := Color("e64d4d")
 	var stat_change_labels : Array[Label] = [
@@ -108,13 +108,13 @@ func apply_stat_changes() -> void:
 		do_stat_change_flash(label, 0.1 * stat_change_labels.find(label))
 	Util.get_player().stats.start_stat_monitors()
 
-func get_stat_change(stat : String) -> float:
+func vanilla_705564332_get_stat_change(stat : String) -> float:
 	var stats := Util.get_player().stats
 	if not stat in stats.prev_stats:
 		return stats.get_stat(stat)
 	return stats.get_stat(stat) - stats.prev_stats[stat]
 
-func do_stat_change_flash(label : Label, delay := 0.0) -> void:
+func vanilla_705564332_do_stat_change_flash(label : Label, delay := 0.0) -> void:
 	label.pivot_offset = Vector2(label.size.x / 2.0, label.size.y / 2.0)
 	label.scale = Vector2.ONE * 0.01
 	var tween := create_tween().set_trans(Tween.TRANS_QUAD)
@@ -131,18 +131,18 @@ func do_stat_change_flash(label : Label, delay := 0.0) -> void:
 	tween.parallel().tween_property(label, 'scale', Vector2.ONE, 0.2)
 	tween.finished.connect(tween.kill)
 
-func did_stats_change() -> bool:
+func vanilla_705564332_did_stats_change() -> bool:
 	var stats := Util.get_player().stats
 	for stat in stats.prev_stats:
 		if not is_equal_approx(stats.get_stat(stat), stats.prev_stats[stat]):
 			return true
 	return false
 
-func _exit_tree() -> void:
+func vanilla_705564332__exit_tree() -> void:
 	AudioManager.reset_fx_music_lpfilter()
 	AudioManager.play_sound(SFX_CLOSE)
 
-func get_player_info() -> void:
+func vanilla_705564332_get_player_info() -> void:
 	var player := Util.get_player()
 	if not is_instance_valid(player):
 		return
@@ -166,11 +166,11 @@ func get_player_info() -> void:
 		for scroll in quest_scrolls:
 			scroll.collect_button.set_disabled(true)
 
-func resume() -> void:
+func vanilla_705564332_resume() -> void:
 	get_tree().paused = false
 	queue_free()
 
-func quit() -> void:
+func vanilla_705564332_quit() -> void:
 	var quit_panel := Util.acknowledge("Quit game?")
 	quit_panel.cancelable = true
 	quit_panel.get_node('Panel/ConfirmButton').pressed.connect(
@@ -182,24 +182,24 @@ func quit() -> void:
 	quit_panel.process_mode = Node.PROCESS_MODE_ALWAYS
 	tree_exited.connect(quit_panel.queue_free)
 
-func open_settings() -> void:
+func vanilla_705564332_open_settings() -> void:
 	var settings_menu: UIPanel = SETTINGS_MENU.instantiate()
 	add_child(settings_menu)
 	tree_exited.connect(settings_menu.queue_free)
 
-func on_quest_rerolled() -> void:
+func vanilla_705564332_on_quest_rerolled() -> void:
 	Util.get_player().stats.quest_rerolls -= 1
 	for scroll: QuestScroll in quest_scrolls:
 		scroll.set_rerolls(Util.get_player().stats.quest_rerolls)
 
-func on_quest_complete() -> void:
+func vanilla_705564332_on_quest_complete() -> void:
 	if did_stats_change():
 		apply_stat_labels()
 		apply_stat_changes()
 	%GagPanel.refresh()
 
 
-func _process(delta : float) -> void:
+func vanilla_705564332__process(delta : float) -> void:
 	if open_time < INPUT_DELAY:
 		open_time += delta
 		return
@@ -210,22 +210,22 @@ func _process(delta : float) -> void:
 	if Input.is_action_just_pressed('move_right'):
 		view_next_page()
 
-func view_next_page() -> void:
+func vanilla_705564332_view_next_page() -> void:
 	if page_transition and page_transition.is_running():
 		return
 	page_current += 1
 
-func view_prev_page() -> void:
+func vanilla_705564332_view_prev_page() -> void:
 	if page_transition and page_transition.is_running():
 		return
 	page_current -= 1
 
-func set_page_view(index : int) -> void:
+func vanilla_705564332_set_page_view(index : int) -> void:
 	for i in menu_pages.get_child_count():
 		menu_pages.get_child(i).visible = index == i
 
 var page_transition : Tween
-func do_page_transition(old_page : Control, new_page : Control, side := 0) -> void:
+func vanilla_705564332_do_page_transition(old_page : Control, new_page : Control, side := 0) -> void:
 	old_page.show()
 	if page_transition and page_transition.is_running():
 		page_transition.kill()
@@ -248,7 +248,7 @@ func do_page_transition(old_page : Control, new_page : Control, side := 0) -> vo
 	)
 
 #region Reward Display
-func sync_reward() -> void:
+func vanilla_705564332_sync_reward() -> void:
 	var game_floor := Util.floor_manager
 	if is_instance_valid(game_floor) and game_floor.floor_variant and game_floor.floor_variant.reward:
 			set_reward(game_floor.floor_variant.reward)
@@ -256,7 +256,7 @@ func sync_reward() -> void:
 	else:
 		%NoReward.show()
 
-func set_reward(item: Item) -> void:
+func vanilla_705564332_set_reward(item: Item) -> void:
 	# Add new reward to menu
 	var reward_model = item.model.instantiate()
 	%RewardView.camera_position_offset = item.ui_cam_offset
@@ -270,6 +270,156 @@ func set_reward(item: Item) -> void:
 	%RewardView.mouse_entered.connect(hover_floor_reward.bind(item))
 	%RewardView.mouse_exited.connect(HoverManager.stop_hover)
 
-func hover_floor_reward(item: Item) -> void:
+func vanilla_705564332_hover_floor_reward(item: Item) -> void:
 	Util.do_item_hover(item)
 #endregion
+
+
+# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
+
+
+func _ready():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_705564332__ready, [], 1239640352)
+	else:
+		await vanilla_705564332__ready()
+
+
+func apply_stat_labels():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_apply_stat_labels, [], 255087199)
+	else:
+		vanilla_705564332_apply_stat_labels()
+
+
+func apply_stat_changes():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_apply_stat_changes, [], 1362712613)
+	else:
+		vanilla_705564332_apply_stat_changes()
+
+
+func get_stat_change(stat: String) -> float:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_705564332_get_stat_change, [stat], 3109051116)
+	else:
+		return vanilla_705564332_get_stat_change(stat)
+
+
+func do_stat_change_flash(label: Label, delay: =0.0):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_do_stat_change_flash, [label, delay], 2123958988)
+	else:
+		vanilla_705564332_do_stat_change_flash(label, delay)
+
+
+func did_stats_change() -> bool:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_705564332_did_stats_change, [], 3454005296)
+	else:
+		return vanilla_705564332_did_stats_change()
+
+
+func _exit_tree():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332__exit_tree, [], 466848276)
+	else:
+		vanilla_705564332__exit_tree()
+
+
+func get_player_info():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_get_player_info, [], 2523606755)
+	else:
+		vanilla_705564332_get_player_info()
+
+
+func resume():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_resume, [], 1968321021)
+	else:
+		vanilla_705564332_resume()
+
+
+func quit():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_quit, [], 2328722223)
+	else:
+		vanilla_705564332_quit()
+
+
+func open_settings():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_open_settings, [], 3815169998)
+	else:
+		vanilla_705564332_open_settings()
+
+
+func on_quest_rerolled():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_on_quest_rerolled, [], 1389496178)
+	else:
+		vanilla_705564332_on_quest_rerolled()
+
+
+func on_quest_complete():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_on_quest_complete, [], 1898258258)
+	else:
+		vanilla_705564332_on_quest_complete()
+
+
+func _process(delta: float):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332__process, [delta], 3585952938)
+	else:
+		vanilla_705564332__process(delta)
+
+
+func view_next_page():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_view_next_page, [], 1618235585)
+	else:
+		vanilla_705564332_view_next_page()
+
+
+func view_prev_page():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_view_prev_page, [], 2531053855)
+	else:
+		vanilla_705564332_view_prev_page()
+
+
+func set_page_view(index: int):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_set_page_view, [index], 795003566)
+	else:
+		vanilla_705564332_set_page_view(index)
+
+
+func do_page_transition(old_page: Control, new_page: Control, side: =0):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_do_page_transition, [old_page, new_page, side], 982645605)
+	else:
+		vanilla_705564332_do_page_transition(old_page, new_page, side)
+
+
+func sync_reward():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_sync_reward, [], 380447853)
+	else:
+		vanilla_705564332_sync_reward()
+
+
+func set_reward(item: Item):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_set_reward, [item], 3046952412)
+	else:
+		vanilla_705564332_set_reward(item)
+
+
+func hover_floor_reward(item: Item):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_705564332_hover_floor_reward, [item], 738373877)
+	else:
+		vanilla_705564332_hover_floor_reward(item)

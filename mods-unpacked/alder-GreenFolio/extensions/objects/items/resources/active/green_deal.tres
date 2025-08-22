@@ -25,8 +25,8 @@ want_ui_spin = true
 ui_cam_offset = 0.0
 item_name = "Green Deal"
 item_description = "Impending doom"
-big_description = "Passively increases damage and sets a laff threshold that greens you if below it. 
-Both scale each turn. Using the prank resets both and deals the thresholds damage to you."
+big_description = "Increases damage and sets a laff threshold that greens you if below it. 
+Both scale each turn. Using the prank resets both and deals the laff thresholds damage to you."
 model = ExtResource("3_on8dc")
 pickup_sfx = ExtResource("4_0ojdb")
 stats_add = {}

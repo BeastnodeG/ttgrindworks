@@ -1,6 +1,6 @@
 {
 	"dependencies": [],
-	"description": "displays seeds while paused and adds a way to enter a seed on the main menu",
+	"description": "adds a tool in the pause menu to give yourself an item. (by its resource path)",
 	"extra": {
 		"godot": {
 			"authors": [
@@ -24,7 +24,7 @@
 			"tags": []
 		}
 	},
-	"name": "SeededRuns",
+	"name": "ItemGiver",
 	"namespace": "alder",
 	"version_number": "1.0.0",
 	"website_url": "https://github.com/BeastnodeG/ttgrindworks/tree/modloadermods"

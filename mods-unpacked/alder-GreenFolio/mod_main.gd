@@ -64,7 +64,7 @@ func _ready() -> void:
 		"rewards.tres": ["lightbulb", "opossum_tail", "green_deal"],
 		"progressives.tres": ["paintball"],
 		"floor_clears.tres": ["opossum_tail", "joybuzzer", "lightbulb"],
-		"everything.tres": ["lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly"],
+		"everything.tres": ["lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly, green_deal"],
 		"battle_clears.tres": [],
 		"active_items.tres": ["alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal"],
 		"accessories.tres": ["taser", "lightbulb", "opossum_tail", "joybuzzer"],

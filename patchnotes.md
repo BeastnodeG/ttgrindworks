@@ -36,3 +36,6 @@ Changes:
 	- Generic Squirt - 1 dmg -> 0.7 dmg
 	- Generic Throw - 1 dmg -> 0.9 dmg
 	- Random Drop - 1.1 dmg -> 1 dmg
+- Dragon King
+	- +1% Attack and Defense for every 2 beans you have. -> - +1% Attack and Defense for every 1.5 beans you have.
+	- Defense Cap 500% -> 1000%

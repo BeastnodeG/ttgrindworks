@@ -6,9 +6,16 @@ Windows/Linux: Create a "mods" folder next to your "ToontownTheGrindworks.exe" a
 MacOS: Create a "mods" folder in the /Applications folder and the desired mod(s) .zip into it. (Do not extract the zip)
 
 Changes:
-- Actually use the correct Green Deal description.
-- Parry Glover removed from item pools. (item is unobtainable)
+- Green Deal
+	- Actually uses the better description now.
+	- Quality 4 -> 3 (Rarity remains the same.)
+	- Fix: Now exists in the "everything" item pool.
+- Parry Glover removed from all item pools. (item is unobtainable)
 - Ned Slinger
-	- Starting damaged reduced to 45% (was 50%)
+	- Starting damage 50% -> 45%
 - Flutterby
-	- Starting defense reduced to 100% (was 105%)
+	- Starting defense 105 -> 100%
+- Taser
+	- Fix: Cog destroyed count is properly tracked between saving/loading.
+- Paintball
+	- Fix: Now properly shows up in shop progressives.

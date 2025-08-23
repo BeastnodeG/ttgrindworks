@@ -42,6 +42,7 @@ func _add_global_class():
 func _ready() -> void:
 	Globals.ADDITIONAL_TOON_PATHS.append("res://mods-unpacked/alder-GreenFolio/extensions/objects/player/character/flutterby.tres")
 	Globals.ADDITIONAL_TOON_PATHS.append("res://mods-unpacked/alder-GreenFolio/extensions/objects/player/character/nedslinger.tres")
+	Globals.ADDITIONAL_TOON_PATHS.append("res://mods-unpacked/alder-GreenFolio/extensions/objects/player/character/sofiesquirt.tres")
 	print("green folio ACTIVATED!!!!!!!!!!!!!!!")
 
 	var item_paths := {

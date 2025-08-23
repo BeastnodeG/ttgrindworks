@@ -14,11 +14,11 @@ const EFFECT_MAP := {
 	"Random": { effect = "Random", damage_multiplier = 1.25},
 	"Task Reroll": { effect = "Random", damage_multiplier = 1 },
 	"Toonup": { effect = "Hex", damage_multiplier = 0.5 },
-	"Squirt": { effect = "Soak", damage_multiplier = 1 },
+	"Squirt": { effect = "Soak", damage_multiplier = 0.7 },
 	"Trap": { effect = "Basic", damage_multiplier = 1.15 },
 	"Lure": { effect = "Hex", damage_multiplier = 1 },
 	"Sound": { effect = "Basic", damage_multiplier = 1.15 },
-	"Throw": { effect = "Vampire", damage_multiplier = 1 },
+	"Throw": { effect = "Vampire", damage_multiplier = 0.9 },
 	"Drop": { effect = "Aftershock", damage_multiplier = 0.8 },
 	
 	#start of specific accessories
@@ -71,10 +71,10 @@ const EFFECT_MAP := {
 	"Paintball": { effect = "Random", damage_multiplier = 0.5 },
 	"Angel Wings": { effect = "Random", damage_multiplier = 1.25},
 	
-	"Scuba Tank": { effect = "Soaked", damage_multiplier = 1 },
-	"Shark Fin": { effect = "Soaked", damage_multiplier = 1 },
+	"Scuba Tank": { effect = "Soaked", damage_multiplier = 1.25 },
+	"Shark Fin": { effect = "Soaked", damage_multiplier = 1.1 },
 	"Scuba Mask": { effect = "Soaked", damage_multiplier = 2 },
-	"Fire Hydrant": { effect = "Soaked", damage_multiplier = 1 },
+	"Fire Hydrant": { effect = "Soaked", damage_multiplier = 1.1 },
 	
 	"Anvil Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
 	"Big Weight Hat": { effect = "Aftershock", damage_multiplier = 0.9 },

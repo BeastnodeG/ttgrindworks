@@ -21,8 +21,8 @@ Changes:
 - Paintball
 	- Fix: Now properly shows up in shop progressives.
 - Monarch Butterfly
-	Note: "dmg" listed is a multiplier on top of the damage they recieve from quality. (ie opossum tail is not equal to dragon wings)
-	Note2: I felt that track frames were a tad bit too reliable in granting you damage, for a character thats supposed to be more focused on absorbing "real" items.
+	- Note: "dmg" listed is a multiplier on top of the damage they recieve from quality. (ie opossum tail is not equal to dragon wings)
+	- Note2: I felt that track frames were a tad bit too reliable in granting you damage, for a character thats supposed to be more focused on absorbing "real" items.
 	- Fire Hydrant - Basic 1 dmg -> Waterfly 1.1 dmg
 	- Accessory Trunk - Basic -> 4x Quality 1 Random
 	- Dragon Wings - 1.25 dmg -> 1.75 dmg

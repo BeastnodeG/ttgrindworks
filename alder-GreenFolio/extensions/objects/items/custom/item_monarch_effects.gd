@@ -19,20 +19,20 @@ const EFFECT_MAP := {
 	"Lure": { effect = "Hex", damage_multiplier = 1 },
 	"Sound": { effect = "Basic", damage_multiplier = 1.15 },
 	"Throw": { effect = "Vampire", damage_multiplier = 1 },
-	"Drop": { effect = "Aftershock", damage_multiplier = 0.9 },
+	"Drop": { effect = "Aftershock", damage_multiplier = 0.8 },
 	
 	#start of specific accessories
-	"Dragon Wings": { effect = "Dragon", damage_multiplier = 1.25 },
+	"Dragon Wings": { effect = "Dragon", damage_multiplier = 1.75 },
 	
 	"Fedora": { effect = "Fedora", damage_multiplier = 2.25 },
 	
-	"Witch Hat": { effect = "Poison", damage_multiplier = 2 },
-	"Green Deal": { effect = "Poison", damage_multiplier = 1.25 },
+	"Witch Hat": { effect = "Poison", damage_multiplier = 2.5 },
+	"Green Deal": { effect = "Poison", damage_multiplier = 1.75 },
 	
 	"Princess Hat": { effect = "Princess", damage_multiplier = 2.25 },
 	"Crown": { effect = "Princess", damage_multiplier = 1.5 },
 	"Tiara": { effect = "Princess", damage_multiplier = 1.25 },
-	"Opossum Tail": { effect = "Princess", damage_multiplier = 1},
+	"Opossum Tail": { effect = "Princess", damage_multiplier = 1.5},
 	
 	"Chef Hat": { effect = "Vampire", damage_multiplier = 1 },
 	"Pixie Wings": { effect = "Vampire", damage_multiplier = 1.25 },
@@ -74,6 +74,7 @@ const EFFECT_MAP := {
 	"Scuba Tank": { effect = "Soaked", damage_multiplier = 1 },
 	"Shark Fin": { effect = "Soaked", damage_multiplier = 1 },
 	"Scuba Mask": { effect = "Soaked", damage_multiplier = 2 },
+	"Fire Hydrant": { effect = "Soaked", damage_multiplier = 1 },
 	
 	"Anvil Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
 	"Big Weight Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
@@ -99,7 +100,7 @@ const RANDOM_EFFECT := {
 	"Vampire": 0.75,
 	"Hex": 0.75,
 	"Soak": 0.75,
-	"Aftershock": 1.1,
+	"Aftershock": 1,
 	"Basic": 1.25,
 	"Cash": 0.75
 }

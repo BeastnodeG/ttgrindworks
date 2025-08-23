@@ -60,7 +60,7 @@ func _ready() -> void:
 	var pool_memberships := {
 		"special_items.tres": ["green_deal", "monarch_butterfly", "alphabet_soup", "paint_brush", "taser", "joybuzzer"],
 		"shop_rewards.tres": ["taser", "opossum_tail", "lightbulb", "joybuzzer", "green_deal", "paint_brush",],
-		"shop_progressive.tres": ["paintball"],
+		"shop_progressives.tres": ["paintball"],
 		"rewards.tres": ["lightbulb", "opossum_tail", "green_deal"],
 		"progressives.tres": ["paintball"],
 		"floor_clears.tres": ["opossum_tail", "joybuzzer", "lightbulb"],

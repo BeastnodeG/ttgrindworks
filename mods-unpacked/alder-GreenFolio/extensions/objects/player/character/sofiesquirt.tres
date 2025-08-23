@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="PlayerCharacter" load_steps=16 format=3 uid="uid://bfc403boa6v6t"]
+
+[ext_resource type="Script" uid="uid://o2fe7ud1faj6" path="res://objects/battle/battle_resources/stats.gd" id="1_5ad7k"]
+[ext_resource type="Script" uid="uid://c8kas2j4io1jh" path="res://objects/toon/clothing/toon_bottoms.gd" id="2_fqadn"]
+[ext_resource type="Texture2D" uid="uid://ugrsb3nsmlt4" path="res://models/toon/textures/clothes/shorts/desat_shorts_1_5.png" id="3_4d00y"]
+[ext_resource type="Script" uid="uid://yg7gxug4rab" path="res://objects/toon/toon_dna.gd" id="4_w32it"]
+[ext_resource type="Script" uid="uid://dfqwh4jmdy0iw" path="res://objects/toon/clothing/toon_shirt.gd" id="5_o1fap"]
+[ext_resource type="Texture2D" uid="uid://l5nmqw1hw5ti" path="res://models/toon/textures/clothes/shirts/desat_shirt_2_2.png" id="6_6r5bx"]
+[ext_resource type="Texture2D" uid="uid://dp1mwoshkp6pb" path="res://models/toon/textures/clothes/shirts/desat_sleeve_2_1.png" id="7_suawy"]
+[ext_resource type="Resource" uid="uid://8cn4g6x56p2q" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/gag_loadouts/loadouts/sofie_loadout.tres" id="8_6wjqs"]
+[ext_resource type="Script" uid="uid://ts8xpgftpmty" path="res://objects/player/character.gd" id="9_4i7sp"]
+[ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="10_vt635"]
+[ext_resource type="Resource" uid="uid://di877jnsi7l76" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/sofie_setup.tres" id="11_5ad7k"]
+
+[sub_resource type="Resource" id="Resource_jj61k"]
+script = ExtResource("1_5ad7k")
+damage = 1.0
+defense = 1.0
+evasiveness = 1.0
+accuracy = 1.0
+speed = 1.0
+max_turns = 3
+max_hp = 25
+hp = 25
+turns = 1
+
+[sub_resource type="Resource" id="Resource_ugrs1"]
+script = ExtResource("2_fqadn")
+texture = ExtResource("3_4d00y")
+base_color = Color(0.427451, 0.898039, 0.870588, 1)
+color_type = 0
+
+[sub_resource type="Resource" id="Resource_2lryd"]
+script = ExtResource("5_o1fap")
+shirt_texture = ExtResource("6_6r5bx")
+sleeve_texture = ExtResource("7_suawy")
+base_color = Color(0.54902, 0.819608, 0.321569, 1)
+sleeve_color = Color(0.54902, 0.819608, 0.321569, 1)
+color_type = 0
+
+[sub_resource type="Resource" id="Resource_ax4gq"]
+script = ExtResource("4_w32it")
+body_type = 1
+species = 3
+head_index = 2
+eyelashes = false
+skirt = false
+head_color = Color(0.996078, 0.898039, 0.321569, 1)
+torso_color = Color(0.996078, 0.898039, 0.321569, 1)
+leg_color = Color(0.996078, 0.898039, 0.321569, 1)
+shirt = SubResource("Resource_2lryd")
+bottoms = SubResource("Resource_ugrs1")
+
+[resource]
+script = ExtResource("9_4i7sp")
+character_name = "Sofie Squirt"
+character_summary = "- Soundless
+- Squirt has Sounds splash property.
+- -10% base gag damage to non-squirt gags."
+dna = SubResource("Resource_ax4gq")
+gag_loadout = ExtResource("8_6wjqs")
+starting_laff = 30
+starting_items = Array[ExtResource("10_vt635")]([ExtResource("11_5ad7k")])
+base_stats = SubResource("Resource_jj61k")
+override_index = -1
+achievement_qualities = Dictionary[int, String]({})
+random_character_stored_name = ""
+achievement_index = 0

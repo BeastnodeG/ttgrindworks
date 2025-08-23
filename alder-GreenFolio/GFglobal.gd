@@ -3,6 +3,7 @@ class_name GFglobal
 
 var green_deal_strength = 2.5
 var monarch_absorbed_items : Array[Dictionary] = [{ "name": "The Monarch", "qualitoon": 1 },]
+var squirt_splash = true
 var taser_count = 0
 
 # Save function
@@ -14,6 +15,7 @@ func save_to():
 	save_data.green_deal_strength = green_deal_strength
 	save_data.monarch_absorbed_items = monarch_absorbed_items
 	save_data.taser_count = taser_count
+	save_data.squirt_splash = squirt_splash
 
 	ResourceSaver.save(save_data, SaveFileService.SAVE_FILE_PATH + file_name)
 	print("green folio saved to: ", SaveFileService.SAVE_FILE_PATH + file_name)
@@ -27,6 +29,7 @@ func load_save():
 			green_deal_strength = loaded.green_deal_strength
 			monarch_absorbed_items = loaded.monarch_absorbed_items
 			taser_count = loaded.taser_count
+			squirt_splash = loaded.squirt_splash
 			print("green folio save loaded successfully")
 		else:
 			print("Failed to load green folio save file.")
@@ -48,3 +51,4 @@ func reset_stats():
 	green_deal_strength = 2.5
 	monarch_absorbed_items = [{ "name": "The Monarch", "qualitoon": 1 },]
 	taser_count = 0
+	squirt_splash = true

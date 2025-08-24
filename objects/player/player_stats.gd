@@ -36,7 +36,7 @@ var debug_gag_points := false
 @export var character: PlayerCharacter
 @export var quests: Array[Quest]
 @export var quest_rerolls := 3
-@export var pink_slips := 0
+@export var pink_slips := 5
 @export var luck := 1.0:
 	set(x):
 		luck = x

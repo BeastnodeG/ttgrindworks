@@ -40,7 +40,7 @@ var selected_gags: Array[ToonAttack] = []
 var fire_action: ToonAttackFire
 var timer : GameTimer
 
-func vanilla_2742677701__ready():
+func _ready():
 	refresh_turns()
 	reset()
 	
@@ -53,7 +53,7 @@ func vanilla_2742677701__ready():
 
 	status_container.target = Util.get_player()
 
-func vanilla_2742677701_gag_selected(gag: BattleAction) -> void:
+func gag_selected(gag: BattleAction) -> void:
 	if remaining_turns <= 0:
 		s_gag_canceled.emit(gag)
 		complete_turn()
@@ -106,7 +106,7 @@ func vanilla_2742677701_gag_selected(gag: BattleAction) -> void:
 	# Lower turns
 	turn += 1
 
-func vanilla_2742677701_refresh_turns() -> void:
+func refresh_turns() -> void:
 	attack_label.set_text("Turns Remaining: " + str(manager.battle_stats[Util.get_player()].turns - turn))
 	gag_order_menu.update_panels()
 	
@@ -119,16 +119,16 @@ func vanilla_2742677701_refresh_turns() -> void:
 			track.set_disabled(false)
 		check_pink_slips()
 
-func vanilla_2742677701_check_fires() -> bool:
+func check_fires() -> bool:
 	return Util.get_player().stats.pink_slips > 0
 
-func vanilla_2742677701_gag_hovered(gag: BattleAction):
+func gag_hovered(gag: BattleAction):
 	right_panel.preview_gag(gag)
 
-func vanilla_2742677701_gag_unhovered() -> void:
+func gag_unhovered() -> void:
 	right_panel.clear_display()
 
-func vanilla_2742677701_complete_turn():
+func complete_turn():
 	# Reset turns
 	turn = 0
 	
@@ -137,7 +137,7 @@ func vanilla_2742677701_complete_turn():
 	s_turn_complete.emit(gag_order)
 	selected_gags.clear()
 
-func vanilla_2742677701_sort_gags(gags: Array[ToonAttack]) -> Array[ToonAttack]:
+func sort_gags(gags: Array[ToonAttack]) -> Array[ToonAttack]:
 	if Util.get_player().custom_gag_order:
 		return gags
 	
@@ -154,7 +154,7 @@ func vanilla_2742677701_sort_gags(gags: Array[ToonAttack]) -> Array[ToonAttack]:
 	
 	return gag_order
 
-func vanilla_2742677701_reset():
+func reset():
 	show()
 	cog_panels.assign_cogs(get_parent().cogs)
 	for track in gag_tracks.get_children():
@@ -172,7 +172,7 @@ func vanilla_2742677701_reset():
 	
 	try_start_timer()
 
-func vanilla_2742677701_try_start_timer() -> void:
+func try_start_timer() -> void:
 	var player := Util.get_player()
 	if player.stats.get_battle_time() > 0:
 		timer = Util.run_timer(player.stats.get_battle_time(), Control.PRESET_TOP_RIGHT)
@@ -185,194 +185,51 @@ func vanilla_2742677701_try_start_timer() -> void:
 					timer.queue_free()
 		)
 
-func vanilla_2742677701_on_timer_timeout() -> void:
+func on_timer_timeout() -> void:
 	if visible:
 		complete_turn()
 
-func vanilla_2742677701_cancel_gag(index: int):
+func cancel_gag(index: int):
 	var gag: BattleAction = selected_gags[index]
 	selected_gags.remove_at(index)
 	s_gags_updated.emit(selected_gags)
 	turn -= 1
 	s_gag_canceled.emit(gag)
 
-func vanilla_2742677701_get_track_element(track: Track) -> TextureRect:
+func get_track_element(track: Track) -> TextureRect:
 	for track_elem in gag_tracks.get_children():
 		if track_elem.track == track:
 			return track_elem 
 	return null
 
-func vanilla_2742677701_fire_pressed() -> void:
+func fire_pressed() -> void:
 	Util.get_player().stats.pink_slips -= 1
 	check_pink_slips()
 	gag_selected(fire_action.duplicate())
 
-func vanilla_2742677701_check_pink_slips() -> void:
+func check_pink_slips() -> void:
 	if Util.get_player().stats.pink_slips <= 0:
 		fire_button.disable()
 	else:
 		fire_button.enable()
 
-func vanilla_2742677701_gag_canceled(gag: BattleAction) -> void:
+func gag_canceled(gag: BattleAction) -> void:
 	if gag is ToonAttackFire:
 		Util.get_player().stats.pink_slips += 1
 		check_pink_slips()
 
-func vanilla_2742677701_fire_hovered() -> void:
+func fire_hovered() -> void:
 	if fire_action:
 		gag_hovered(fire_action)
 
-func vanilla_2742677701_open_items() -> void:
+func open_items() -> void:
 	%ItemPanel.show()
 	main_container.hide()
 
-func vanilla_2742677701_refresh_tracks() -> void:
+func refresh_tracks() -> void:
 	for track: TrackElement in gag_tracks.get_children():
 		track.refresh()
 
-func vanilla_2742677701__process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('end_turn') and visible:
 		complete_turn()
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func _ready():
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_2742677701__ready, [], 1436596729)
-	else:
-		return vanilla_2742677701__ready()
-
-
-func gag_selected(gag: BattleAction):
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_2742677701_gag_selected, [gag], 1712553980)
-	else:
-		await vanilla_2742677701_gag_selected(gag)
-
-
-func refresh_turns():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_refresh_turns, [], 1760191279)
-	else:
-		vanilla_2742677701_refresh_turns()
-
-
-func check_fires() -> bool:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_2742677701_check_fires, [], 1409319835)
-	else:
-		return vanilla_2742677701_check_fires()
-
-
-func gag_hovered(gag: BattleAction):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_2742677701_gag_hovered, [gag], 3298695552)
-	else:
-		return vanilla_2742677701_gag_hovered(gag)
-
-
-func gag_unhovered():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_gag_unhovered, [], 1149718627)
-	else:
-		vanilla_2742677701_gag_unhovered()
-
-
-func complete_turn():
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_2742677701_complete_turn, [], 895027910)
-	else:
-		return vanilla_2742677701_complete_turn()
-
-
-func sort_gags(gags: Array[ToonAttack]) -> Array[ToonAttack]:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_2742677701_sort_gags, [gags], 3241304974)
-	else:
-		return vanilla_2742677701_sort_gags(gags)
-
-
-func reset():
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_2742677701_reset, [], 1627420232)
-	else:
-		return vanilla_2742677701_reset()
-
-
-func try_start_timer():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_try_start_timer, [], 1296536465)
-	else:
-		vanilla_2742677701_try_start_timer()
-
-
-func on_timer_timeout():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_on_timer_timeout, [], 20191560)
-	else:
-		vanilla_2742677701_on_timer_timeout()
-
-
-func cancel_gag(index: int):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_2742677701_cancel_gag, [index], 2293927033)
-	else:
-		return vanilla_2742677701_cancel_gag(index)
-
-
-func get_track_element(track: Track) -> TextureRect:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_2742677701_get_track_element, [track], 2509596226)
-	else:
-		return vanilla_2742677701_get_track_element(track)
-
-
-func fire_pressed():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_fire_pressed, [], 789077856)
-	else:
-		vanilla_2742677701_fire_pressed()
-
-
-func check_pink_slips():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_check_pink_slips, [], 4031814814)
-	else:
-		vanilla_2742677701_check_pink_slips()
-
-
-func gag_canceled(gag: BattleAction):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_gag_canceled, [gag], 1922323938)
-	else:
-		vanilla_2742677701_gag_canceled(gag)
-
-
-func fire_hovered():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_fire_hovered, [], 3244486263)
-	else:
-		vanilla_2742677701_fire_hovered()
-
-
-func open_items():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_open_items, [], 2127190328)
-	else:
-		vanilla_2742677701_open_items()
-
-
-func refresh_tracks():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701_refresh_tracks, [], 2247556539)
-	else:
-		vanilla_2742677701_refresh_tracks()
-
-
-func _process(_delta: float):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_2742677701__process, [_delta], 3323082691)
-	else:
-		vanilla_2742677701__process(_delta)

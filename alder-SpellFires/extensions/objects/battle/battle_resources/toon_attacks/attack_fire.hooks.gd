@@ -6,28 +6,23 @@ func action(chain: ModLoaderHookChain) -> void:
 	var user: Player = fire.user
 	var target: Cog = fire.targets[0]
 
-	if fire.cog_has_tenure(target):
-		await fire.miss(target)
-		return
-
 	manager.s_focus_char.emit(user)
 
 	var book_res := load("res://models/props/toon_props/shticker_book/shticker_bookopen.fbx")
 	var book: Node3D = book_res.instantiate()
 	user.toon.right_hand_bone.add_child(book)
-
 	user.set_animation("book_open")
 	book.get_node("AnimationPlayer").play("open")
 	await user.animator.animation_finished
-
 	user.set_animation("book_neutral")
 	user.toon.speak("*Reads spell that instantly kills opponent*")
 	await manager.sleep(4.0)
-
+	if fire.cog_has_tenure(target):
+		await fire.miss(target)
+		return
 	manager.s_focus_char.emit(target)
 	target.speak("There is no way that is going to-")
 	await manager.sleep(1.0)
-	
 	target.stats.hp = 0
 	manager.someone_died(target)
 	target.queue_free()

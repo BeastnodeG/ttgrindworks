@@ -15,6 +15,6 @@ func _ready(chain: ModLoaderHookChain) -> void:
 
 	if SaveFileService.settings_file:
 		var settings = SaveFileService.settings_file
-		settings.SpeedOptions = [1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0, 5.0, 7.5, 10.0, 25.0, 200.00]
+		settings.SpeedOptions = [1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0, 5.0, 7.5, 10.0, 25.0, 50.0]
 		settings.battle_speed_idx = raw_idx
 		print("restored battle_speed_idx:", settings.battle_speed_idx)

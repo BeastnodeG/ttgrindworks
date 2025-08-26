@@ -404,7 +404,7 @@ func _process(delta):
 			charge_debug_item()
 
 func spawn_debug_active_item():
-	var item: Item = load("res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/parry_glower.tres").duplicate()
+	var item: Item = load("res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/active/monarch_butterfly.tres").duplicate()
 	#this is lazy
 	#var everything_pool_path := "res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/everything.tres"
 	#var everything_pool := load(everything_pool_path)

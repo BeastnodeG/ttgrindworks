@@ -4,11 +4,51 @@ class_name StatEffectMonarch
 
 @export var SpecialEffect: String = "Basic"
 @export var ButterflyAmount: int = 1
+@export var TrueButterflyAmount: int = 1
+
+const PARTICLE := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/effects/monarch/monarchorbit.tscn")
+const MonarchParticleFollow := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/effects/monarch/monarchparticlefollow.gd")
+var particles : GPUParticles3D
+
+const BUTTERFLY_ICONS := {
+	"Vampire": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_throw.png"),
+	"Soak": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_squirt.png"),
+	"Aftershock": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_drop.png"),
+	"Hex": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_toonup.png"),
+	"Cash": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_lure.png"),
+	"Dragon": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_dragon.png"),
+	"Poison": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_witch.png"),
+	"Princess": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_princess.png"),
+	"Fedora": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_fedora.png"),
+	"Default": preload("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_basic.png")
+}
+
 
 func apply():
-	# please work please work
-	pass
+	call_deferred("_create_particles")
+pass
 
+
+func _create_particles():
+	# make particle
+	particles = PARTICLE.instantiate() as GPUParticles3D
+	target.body.head_bone.add_child(particles)
+	particles.transform.origin = Vector3.ZERO
+	print("printing true butterfly amount")
+	print(TrueButterflyAmount)
+	particles.amount = TrueButterflyAmount
+	
+	# make icon texture
+	var mat = particles.draw_pass_1.material as StandardMaterial3D
+	var shader = particles.process_material as ShaderMaterial
+	shader.set_shader_parameter("seed", int(RandomService.randf_range_channel("true_random", 1, 50000)))
+	mat.albedo_texture = BUTTERFLY_ICONS.get(SpecialEffect, BUTTERFLY_ICONS["Default"])
+
+	# make helper
+	var follow_helper = MonarchParticleFollow.new()
+	follow_helper.particle_node = particles
+	follow_helper.target_bone = target.body.head_bone
+	particles.add_child(follow_helper)
 
 func renew() -> void:
 	if not is_instance_valid(target) or target.stats.hp <= 0:
@@ -101,28 +141,8 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 			pass
 
 func get_icon() -> Texture2D:
-	match SpecialEffect:
-		"Vampire":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_throw.png")
-		"Soak":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_squirt.png")
-		"Aftershock":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_drop.png")
-		"Hex":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_toonup.png")
-		"Cash":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_lure.png")
-		"Dragon":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_dragon.png")
-		"Poison":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_witch.png")
-		"Princess":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_princess.png")
-		"Fedora":
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_fedora.png")
-		_:
-			return load("res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_basic.png")
-
+	return BUTTERFLY_ICONS.get(SpecialEffect, BUTTERFLY_ICONS["Default"])
+	
 func get_status_name() -> String:
 	match SpecialEffect:
 		"Vampire":
@@ -177,8 +197,16 @@ func combine(effect: StatusEffect) -> bool:
 	if effect.rounds == rounds and effect.SpecialEffect == SpecialEffect:
 		amount += effect.amount
 		ButterflyAmount += effect.ButterflyAmount
+		TrueButterflyAmount += effect.TrueButterflyAmount
+		print(TrueButterflyAmount)
 		return true
 	return false
+
+func cleanup():
+	if particles:
+		particles.queue_free()
+		particles = null
+	pass
 
 func randomize_effect() -> void:
 	super()

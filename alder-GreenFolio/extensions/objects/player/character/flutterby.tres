@@ -15,7 +15,7 @@
 
 [sub_resource type="Resource" id="Resource_jj61k"]
 script = ExtResource("1_my7ha")
-damage = 0.85
+damage = 0.8
 defense = 1.0
 evasiveness = 1.0
 accuracy = 1.0

@@ -15,12 +15,14 @@ Changes:
 - Ned Slinger
 	- Starting damage 50% -> 45%
 - Flutterby
-	- Starting defense 105 -> 100%
+	- Starting defense 105% -> 100%
+	- Starting attack 85% -> 80%
 - Taser
 	- Fix: Cog destroyed count is properly tracked between saving/loading.
 - Paintball
 	- Fix: Now properly shows up in shop progressives.
 - Monarch Butterfly
+	- Visuals have been enhanced greatly. Let me know if you have any performance issues!
 	- Note: "dmg" listed is a multiplier on top of the damage they recieve from quality. (ie opossum tail is not equal to dragon wings)
 	- Note2: I felt that track frames were a tad bit too reliable in granting you damage, for a character thats supposed to be more focused on absorbing "real" items.
 	- Fire Hydrant - Basic 1 dmg -> Waterfly 1.1 dmg
@@ -37,5 +39,5 @@ Changes:
 	- Generic Throw - 1 dmg -> 0.9 dmg
 	- Random Drop - 1.1 dmg -> 1 dmg
 - Dragon King
-	- +1% Attack and Defense for every 2 beans you have. -> +1% Attack and Defense for every 1.5 beans you have.
+	- +1% Attack and Defense for every 2 beans you have. -> +1% Attack and Defense for every 1.25 beans you have.
 	- Defense Cap 500% -> 1000%

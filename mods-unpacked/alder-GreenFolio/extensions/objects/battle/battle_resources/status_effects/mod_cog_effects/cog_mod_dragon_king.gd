@@ -1,6 +1,6 @@
 extends StatusEffect
 
-const STAT_PERCENT := 1.5
+const STAT_PERCENT := 1.25
 const STATS := ["damage", "defense"]
 const DEFENSE_CAP := 10.0
 

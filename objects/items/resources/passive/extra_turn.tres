@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("2_m68nj")
-item_tags = null
 qualitoon = 4
 evergreen = true
 item_name = "Extra Move"

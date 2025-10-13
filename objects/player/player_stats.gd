@@ -37,7 +37,7 @@ var debug_gag_points := false
 @export var character: PlayerCharacter
 @export var quests: Array[Quest]
 @export var quest_rerolls := 3
-@export var pink_slips := 5
+@export var pink_slips := 0
 @export var luck := 1.0:
 	set(x):
 		luck = x
@@ -187,7 +187,6 @@ func on_round_end(_battle: BattleManager) -> void:
 	for track in gag_balance.keys():
 		if not gags_unlocked[track] > 0: continue
 		if gag_regeneration.has(track):
-			print(track, " ", gag_regeneration[track])
 			restock(track, gag_regeneration[track])
 
 func on_battle_started(_battle: BattleManager) -> void:

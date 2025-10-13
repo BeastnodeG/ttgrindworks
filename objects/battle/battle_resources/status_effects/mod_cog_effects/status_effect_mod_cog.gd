@@ -22,18 +22,8 @@ static var MOD_EFFECTS: Array[StatusEffect] = [
 	preload("res://objects/battle/battle_resources/status_effects/resources/mod_cog_toxic.tres"),
 ]
 
-func vanilla_4249675048_apply() -> void:
+func apply() -> void:
 	if not MOD_EFFECTS.is_empty():
 		var mod_effect: StatusEffect = RNG.channel(RNG.ChannelModCogEffects).pick_random(MOD_EFFECTS).duplicate(true)
 		mod_effect.target = target
 		manager.add_status_effect(mod_effect)
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func apply():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_4249675048_apply, [], 3196910670)
-	else:
-		vanilla_4249675048_apply()

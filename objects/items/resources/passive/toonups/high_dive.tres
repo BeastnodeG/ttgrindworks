@@ -6,7 +6,6 @@
 
 [resource]
 script = ExtResource("2_vtgrh")
-item_tags = null
 qualitoon = 3
 evergreen = true
 world_scale = 0.4

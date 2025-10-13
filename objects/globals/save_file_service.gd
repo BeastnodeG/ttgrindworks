@@ -34,18 +34,18 @@ signal s_reset
 signal s_settings_changed
 
 
-func vanilla_3195152042__init():
+func _init():
 	GameLoader.queue_into(GameLoader.Phase.GAME_START, self, {
 		'ACHIEVEMENT_UI': 'res://objects/general_ui/achievement_notification/achievement_ui.tscn',
 		'SAVE_GAME_TEXT': 'res://objects/save_file/save_game_text.tscn',
 	})
 
-func vanilla_3195152042_save():
+func save():
 	_save_run()
 	_save_progress()
 	_show_save_text()
 
-func vanilla_3195152042__save_run() -> void:
+func _save_run() -> void:
 	if not run_file:
 		run_file = SaveFile.new()
 	run_file.get_run_info()
@@ -53,29 +53,29 @@ func vanilla_3195152042__save_run() -> void:
 	print("Run file saved")
 
 
-func vanilla_3195152042__save_progress() -> void:
+func _save_progress() -> void:
 	progress_file.save_to(GLOBALSAVE_FILE_NAME)
 	print("Progress file saved")
 
-func vanilla_3195152042_save_settings() -> void:
+func save_settings() -> void:
 	settings_file.save_to(SETTINGS_FILE_NAME)
 	print("Settings file saved")
 	SaveFileService.s_settings_changed.emit()
 
-func vanilla_3195152042_get_player_state() -> PlayerStats:
+func get_player_state() -> PlayerStats:
 	if Util.get_player() and is_instance_valid(Util.get_player()):
 		return Util.get_player().stats
 	else:
 		return null
 
-func vanilla_3195152042_delete_run_file() -> void:
+func delete_run_file() -> void:
 	if FileAccess.file_exists(SAVE_FILE_PATH+RUN_FILE_NAME):
 		DirAccess.remove_absolute(SAVE_FILE_PATH+RUN_FILE_NAME)
 	
 	run_file = null
 	s_reset.emit()
 
-func vanilla_3195152042__ready():
+func _ready():
 	if not DirAccess.dir_exists_absolute(SAVE_FILE_PATH):
 		DirAccess.make_dir_absolute(SAVE_FILE_PATH)
 	
@@ -103,7 +103,7 @@ func vanilla_3195152042__ready():
 	if not invalid_files.is_empty():
 		show_save_errors(invalid_files)
 
-func vanilla_3195152042_load_settings() -> String:
+func load_settings() -> String:
 	var file_path := SAVE_FILE_PATH + SETTINGS_FILE_NAME
 	if FileAccess.file_exists(file_path):
 		var file = ResourceLoader.load(file_path)
@@ -115,7 +115,7 @@ func vanilla_3195152042_load_settings() -> String:
 		settings_file = SettingsFile.new()
 	return ""
 
-func vanilla_3195152042_load_progress() -> String:
+func load_progress() -> String:
 	var file_path := SAVE_FILE_PATH + GLOBALSAVE_FILE_NAME
 	# Look for the global progress file
 	if FileAccess.file_exists(file_path):
@@ -129,7 +129,7 @@ func vanilla_3195152042_load_progress() -> String:
 		progress_file = ProgressFile.new()
 	return ""
 
-func vanilla_3195152042_load_run() -> String:
+func load_run() -> String:
 	var file_path := SAVE_FILE_PATH + RUN_FILE_NAME
 	# Try to get the current run
 	if FileAccess.file_exists(file_path):
@@ -150,7 +150,7 @@ func vanilla_3195152042_load_run() -> String:
 	return ""
 
 
-func vanilla_3195152042_on_game_over() -> void:
+func on_game_over() -> void:
 	delete_run_file()
 	run_file = null
 
@@ -170,15 +170,15 @@ func _process(delta: float) -> void:
 	#if Input.is_action_just_pressed('save'):
 	#	save()
 
-func vanilla_3195152042__notification(what):
+func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_save_progress()
 
-func vanilla_3195152042_make_progress(property : String, value : Variant) -> void:
+func make_progress(property : String, value : Variant) -> void:
 	if property in progress_file:
 		progress_file.set(property, value)
 
-func vanilla_3195152042__show_save_text() -> void:
+func _show_save_text() -> void:
 	var save_text_instance = SAVE_GAME_TEXT.instantiate()
 	add_child(save_text_instance)
 
@@ -190,14 +190,14 @@ func vanilla_3195152042__show_save_text() -> void:
 	tween.tween_property(label, "modulate:a", 0, 1.0)
 	tween.finished.connect(_on_tween_all_completed.bind(save_text_instance))
 
-func vanilla_3195152042__on_tween_all_completed(save_text_instance):
+func _on_tween_all_completed(save_text_instance):
 	save_text_instance.queue_free()
 
-func vanilla_3195152042_save_file_error(file_path : String) -> void:
+func save_file_error(file_path : String) -> void:
 	DirAccess.copy_absolute(file_path, file_path.trim_suffix(".tres") + "_BROKEN.tres")
 	DirAccess.remove_absolute(file_path)
 
-func vanilla_3195152042_is_achievement_unlocked(achievement: ProgressFile.GameAchievement) -> bool:
+func is_achievement_unlocked(achievement: ProgressFile.GameAchievement) -> bool:
 	if not progress_file: return false
 	if not progress_file.achievements_earned.has(achievement): return false
 	return progress_file.achievements_earned[achievement]
@@ -213,7 +213,7 @@ func take_screenshot() -> void:
 	
 
 const SAVE_ERROR_PANEL := "res://objects/general_ui/ui_panel/misc_panels/save_error_panel/save_error_panel.tscn"
-func vanilla_3195152042_show_save_errors(invalid_paths : Array[String]) -> void:
+func show_save_errors(invalid_paths : Array[String]) -> void:
 	await get_tree().process_frame
 	var error_panel : UIPanel = GameLoader.load(SAVE_ERROR_PANEL).instantiate()
 	get_tree().get_root().add_child(error_panel)

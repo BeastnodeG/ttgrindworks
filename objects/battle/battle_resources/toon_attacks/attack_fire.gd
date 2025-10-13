@@ -11,7 +11,7 @@ const SFX_FIRE := preload("res://audio/sfx/battle/gags/MG_cannon_fire_alt.ogg")
 const SFX_PRESS := preload("res://audio/sfx/battle/gags/AA_trigger_box.ogg")
 
 
-func vanilla_1139902975_action() -> void:
+func action() -> void:
 	# Get some initial values
 	var cog : Cog = targets[0]
 	var cannon := CANNON.instantiate()
@@ -85,7 +85,7 @@ func vanilla_1139902975_action() -> void:
 	manager.someone_died(cog, true)
 	BattleService.battle_participant_died(cog)
 
-func vanilla_1139902975_miss(cog : Cog) -> void:
+func miss(cog : Cog) -> void:
 	var miss_tween := manager.create_tween()
 	miss_tween.tween_callback(battle_node.focus_character.bind(cog))
 	miss_tween.tween_callback(manager.battle_text.bind(cog, 'MISSED'))
@@ -98,36 +98,5 @@ const TENURE_STATUS := "res://objects/battle/battle_resources/status_effects/res
 func cog_has_tenure(cog: Cog) -> bool:
 	return cog.status_effects.has(load(TENURE_STATUS))
 
-func vanilla_1139902975_get_stats() -> String:
-	return "Pink Slips: " + str(Util.get_player().stats.pink_slips)
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func action():
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_1139902975_action, [], 905713021)
-	else:
-		await vanilla_1139902975_action()
-
-
-func miss(cog: Cog):
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_1139902975_miss, [cog], 2513568955)
-	else:
-		await vanilla_1139902975_miss(cog)
-
-
-func cog_has_tenure(cog: Cog) -> bool:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_1139902975_cog_has_tenure, [cog], 3335140197)
-	else:
-		return vanilla_1139902975_cog_has_tenure(cog)
-
-
 func get_stats() -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_1139902975_get_stats, [], 3433861677)
-	else:
-		return vanilla_1139902975_get_stats()
+	return "Pink Slips: " + str(Util.get_player().stats.pink_slips)

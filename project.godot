@@ -63,8 +63,6 @@ folder_colors={
 "res://fonts/": "gray",
 "res://general_resources/": "yellow",
 "res://models/": "orange",
-"res://mods-unpacked/alder-GreenFolio/": "gray",
-"res://mods-unpacked/alder-GreenFolio/extensions/objects/": "yellow",
 "res://objects/": "blue",
 "res://scenes/": "red",
 "res://ui_assets/": "teal"

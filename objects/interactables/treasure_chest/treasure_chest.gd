@@ -94,9 +94,6 @@ func body_entered(body: Node3D) -> void:
 	opened = true
 
 func open():
-	#print("trying to print items in pool")
-	#print(item_pool)
-	#item_pool.print_items()
 	AudioManager.play_sound(SFX_OPEN)
 	$AnimationPlayer.play('open')
 	world_item = WORLD_ITEM.instantiate()

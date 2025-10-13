@@ -16,6 +16,11 @@ const INPUT_DELAY := 0.25
 ]
 @onready var menu_pages := %Pages
 
+@onready var seed_label: Label = %SeedLabel
+@onready var seed_button: Button = %SeedButton
+@onready var reward_view: TextureRect = %RewardView
+@onready var no_reward: TextureRect = %NoReward
+
 @export var AnimatePauseMenu: bool = true
 
 @export var quest_scrolls: Array[QuestScroll]
@@ -50,9 +55,12 @@ func vanilla_705564332__ready() -> void:
 	
 	if is_instance_valid(Util.floor_manager):
 		if Util.floor_manager.floor_variant:
+			var icons: Array[Texture2D] = Util.floor_manager.floor_variant.floor_icons
 			%FloorLabel.set_text(Util.floor_manager.floor_variant.floor_name)
-			for floor_icon: TextureRect in [%FacilityIcon, %FacilityIcon2]:
-				floor_icon.texture = Util.floor_manager.floor_variant.floor_icon
+			var texture_rects: Array[TextureRect] = [%FacilityIcon, %FacilityIcon2]
+			for floor_icon: TextureRect in texture_rects:
+				if not Util.floor_manager.floor_variant.floor_icons.is_empty():
+					floor_icon.set_texture(icons[mini(icons.size() - 1, texture_rects.find(floor_icon))])
 			if Util.floor_manager.anomalies:
 				for floor_mod: FloorModifier in Util.floor_manager.anomalies:
 					var new_icon: Control = ANOMALY_ICON.instantiate()
@@ -66,6 +74,10 @@ func vanilla_705564332__ready() -> void:
 	apply_stat_labels()
 	apply_stat_changes()
 	sync_reward()
+	seed_label.set_text("Seed: %s" % [RNG._str_seed if RNG._str_seed else str(RNG.base_seed)])
+	seed_button.mouse_entered.connect(_hover_seed_label)
+	seed_button.mouse_exited.connect(_stop_hover_seed_label)
+	seed_button.pressed.connect(_seed_label_clicked)
 	%VersionLabel.text = Globals.VERSION_NUMBER
 	
 	AudioManager.set_fx_music_lpfilter()
@@ -79,6 +91,7 @@ func vanilla_705564332__ready() -> void:
 	await get_tree().process_frame
 	%Pages.show()
 	%TopLevelElements.show()
+	seed_button.size = seed_label.size
 
 func vanilla_705564332_apply_stat_labels() -> void:
 	for stat_array: Array in StatInfo:
@@ -162,7 +175,7 @@ func vanilla_705564332_get_player_info() -> void:
 		scroll.s_quest_rerolled.connect(on_quest_rerolled)
 	
 	# Make quests uncompletable if not in walk state
-	if not player.state == Player.PlayerState.WALK:
+	if not player.controller.current_state.accepts_interaction():
 		for scroll in quest_scrolls:
 			scroll.collect_button.set_disabled(true)
 
@@ -252,174 +265,41 @@ func vanilla_705564332_sync_reward() -> void:
 	var game_floor := Util.floor_manager
 	if is_instance_valid(game_floor) and game_floor.floor_variant and game_floor.floor_variant.reward:
 			set_reward(game_floor.floor_variant.reward)
-			%NoReward.hide()
+			no_reward.hide()
 	else:
-		%NoReward.show()
+		no_reward.show()
 
 func vanilla_705564332_set_reward(item: Item) -> void:
 	# Add new reward to menu
-	var reward_model = item.model.instantiate()
-	%RewardView.camera_position_offset = item.ui_cam_offset
-	%RewardView.node = reward_model
-	%RewardView.want_spin_tween = item.want_ui_spin
+	var reward_model = item.get_model().instantiate()
+	reward_view.camera_position_offset = item.ui_cam_offset
+	reward_view.node = reward_model
+	reward_view.want_spin_tween = item.want_ui_spin
 	
 	# Let item set itself up
 	if reward_model.has_method('setup'):
 		reward_model.setup(item)
 
-	%RewardView.mouse_entered.connect(hover_floor_reward.bind(item))
-	%RewardView.mouse_exited.connect(HoverManager.stop_hover)
+	reward_view.mouse_entered.connect(hover_floor_reward.bind(item))
+	reward_view.mouse_exited.connect(HoverManager.stop_hover)
 
 func vanilla_705564332_hover_floor_reward(item: Item) -> void:
 	Util.do_item_hover(item)
 #endregion
 
+var _seed_ival: ActiveInterval
 
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
+func _hover_seed_label() -> void:
+	HoverManager.hover("Click to copy seed")
+	_seed_ival = LerpProperty.setup(seed_label, ^"self_modulate", 0.15, Color(0.4, 1, 1, 1)).interp(Tween.EASE_OUT, Tween.TRANS_QUAD).start(self)
 
+func _stop_hover_seed_label() -> void:
+	HoverManager.stop_hover()
+	_seed_ival = LerpProperty.setup(seed_label, ^"self_modulate", 0.15, Color.WHITE).interp(Tween.EASE_OUT, Tween.TRANS_QUAD).start(self)
 
-func _ready():
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_705564332__ready, [], 1239640352)
-	else:
-		await vanilla_705564332__ready()
-
-
-func apply_stat_labels():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_apply_stat_labels, [], 255087199)
-	else:
-		vanilla_705564332_apply_stat_labels()
-
-
-func apply_stat_changes():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_apply_stat_changes, [], 1362712613)
-	else:
-		vanilla_705564332_apply_stat_changes()
-
-
-func get_stat_change(stat: String) -> float:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_705564332_get_stat_change, [stat], 3109051116)
-	else:
-		return vanilla_705564332_get_stat_change(stat)
-
-
-func do_stat_change_flash(label: Label, delay: =0.0):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_do_stat_change_flash, [label, delay], 2123958988)
-	else:
-		vanilla_705564332_do_stat_change_flash(label, delay)
-
-
-func did_stats_change() -> bool:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_705564332_did_stats_change, [], 3454005296)
-	else:
-		return vanilla_705564332_did_stats_change()
-
-
-func _exit_tree():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332__exit_tree, [], 466848276)
-	else:
-		vanilla_705564332__exit_tree()
-
-
-func get_player_info():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_get_player_info, [], 2523606755)
-	else:
-		vanilla_705564332_get_player_info()
-
-
-func resume():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_resume, [], 1968321021)
-	else:
-		vanilla_705564332_resume()
-
-
-func quit():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_quit, [], 2328722223)
-	else:
-		vanilla_705564332_quit()
-
-
-func open_settings():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_open_settings, [], 3815169998)
-	else:
-		vanilla_705564332_open_settings()
-
-
-func on_quest_rerolled():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_on_quest_rerolled, [], 1389496178)
-	else:
-		vanilla_705564332_on_quest_rerolled()
-
-
-func on_quest_complete():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_on_quest_complete, [], 1898258258)
-	else:
-		vanilla_705564332_on_quest_complete()
-
-
-func _process(delta: float):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332__process, [delta], 3585952938)
-	else:
-		vanilla_705564332__process(delta)
-
-
-func view_next_page():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_view_next_page, [], 1618235585)
-	else:
-		vanilla_705564332_view_next_page()
-
-
-func view_prev_page():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_view_prev_page, [], 2531053855)
-	else:
-		vanilla_705564332_view_prev_page()
-
-
-func set_page_view(index: int):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_set_page_view, [index], 795003566)
-	else:
-		vanilla_705564332_set_page_view(index)
-
-
-func do_page_transition(old_page: Control, new_page: Control, side: =0):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_do_page_transition, [old_page, new_page, side], 982645605)
-	else:
-		vanilla_705564332_do_page_transition(old_page, new_page, side)
-
-
-func sync_reward():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_sync_reward, [], 380447853)
-	else:
-		vanilla_705564332_sync_reward()
-
-
-func set_reward(item: Item):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_set_reward, [item], 3046952412)
-	else:
-		vanilla_705564332_set_reward(item)
-
-
-func hover_floor_reward(item: Item):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_705564332_hover_floor_reward, [item], 738373877)
-	else:
-		vanilla_705564332_hover_floor_reward(item)
+func _seed_label_clicked() -> void:
+	DisplayServer.clipboard_set(RNG._str_seed)
+	HoverManager.hover("Seed copied!")
+	AudioManager.play_sound(load("res://audio/sfx/ui/GUI_balloon_popup.ogg"), 10.0)
+	seed_label.self_modulate = Color.ORANGE
+	_seed_ival = LerpProperty.setup(seed_label, ^"self_modulate", 0.6, Color(0.4, 1, 1, 1)).start(self)

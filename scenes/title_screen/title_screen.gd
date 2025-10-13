@@ -1,14 +1,15 @@
 extends Control
 
+
 const CAMERA_SPEED := 10.0
 const TOON_SEPARATION := 1.0
+const CLIPBOARD_DOWN_Y := 1410.0
 var TOON: PackedScene
 var PLAYER: PackedScene
 var SETTINGS_MENU: PackedScene
 var EXTRAS_MENU: PackedScene
 var ELEVATOR_SCENE: PackedScene
 
-var SFX_SELECT: AudioStreamOggVorbis
 var RELEASES_MENU: PackedScene
 
 
@@ -34,14 +35,17 @@ enum MenuState {
 @onready var continue_button: GeneralButton = %ContinueButton
 @onready var settings_button: GeneralButton = %SettingsButton
 @onready var quit_button: GeneralButton = %QuitButton
-@onready var toon_summary: Control = %ToonSummary
 @onready var click_label := %ClickLabel
 @onready var middle_buttons: VBoxContainer = %MiddleButtons
+@onready var clipboard := %CharacterClipboard
+@onready var character_select_fsm: FiniteStateMachine3D = %CharacterDisplay
+@onready var selected_toon: Toon = %CharacterDisplay/Toon
 
-var selected_toon: Toon
-var selected_character: PlayerCharacter
+var selected_character: PlayerCharacter:
+	get: return clipboard.character
 var random_toon_name := ""
 var elevator: BuildingElevator
+var clipboard_tween: Tween
 
 @onready var click_label_text: String = %ClickLabel.text
 var releases_menu: UIPanel = null
@@ -55,7 +59,6 @@ func vanilla_398685313__init():
 	GameLoader.queue_into(GameLoader.Phase.GAME_START, self, {
 		'SETTINGS_MENU': 'res://objects/general_ui/settings_menu/settings_menu.tscn',
 		'EXTRAS_MENU': 'res://scenes/title_screen/extras_menu.tscn',
-		'SFX_SELECT': 'res://audio/sfx/ui/Click.ogg',
 		'RELEASES_MENU': 'res://scenes/title_screen/release_notes/release_notes_panel.tscn',
 	})
 	GameLoader.queue_into(GameLoader.Phase.AVATARS, self, {
@@ -78,8 +81,8 @@ func vanilla_398685313__ready() -> void:
 	if Util.stored_try_again_char_name:
 		for character: PlayerCharacter in Globals.fetch_toon_unlock_order():
 			if character.character_name == Util.stored_try_again_char_name:
-				character = character.duplicate()
-				if character.character_name == "RandomToon":
+				character = character.duplicate(true)
+				if character.character_name == "Mystery Toon":
 					character.dna.randomize_dna()
 					character.random_character_stored_name = Globals.get_random_toon_name()
 				Util.stored_try_again_char_name = ""
@@ -118,13 +121,20 @@ func vanilla_398685313__ready() -> void:
 	fade_tween.tween_property(click_label, 'self_modulate:a', 1.0, 1.0)
 	fade_tween.set_loops()
 
+	var logo_tween := create_tween().set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
+	logo_tween.tween_property(%LogoScaler, 'scale', Vector2(1.25, 1.25), 0.5)
+	logo_tween.finished.connect(logo_tween.kill)
+
 	%VersionLabel.set_text(Globals.VERSION_NUMBER)
 	
-	AudioManager.stop_music(true)
-	AudioManager.set_default_music(load("res://audio/music/main_theme.ogg"))
+	var title_theme: AudioStream = load("res://audio/music/main_theme.ogg")
+	if not AudioManager.current_music == title_theme:
+		AudioManager.stop_music(true)
+		AudioManager.set_default_music(title_theme)
 	
 	Globals.s_title_screen_entered.emit(self)
-	check_for_new_version()
+	if OS.has_feature('release'):
+		check_for_new_version()
 
 func vanilla_398685313__process(delta: float) -> void:
 	if state == MenuState.ROTATING:
@@ -162,62 +172,15 @@ func vanilla_398685313_play_pressed() -> void:
 	state = MenuState.NEW_GAME
 	new_game_menu.show()
 
-func vanilla_398685313_create_toons() -> void:
-	await GameLoader.wait_for_phase(GameLoader.Phase.AVATARS)
-	var toons := get_character_list()
-	
-	var starting_point := (-floorf(toons.size() / 2)) * TOON_SEPARATION
-	if toons.size() % 2 == 0: starting_point += (TOON_SEPARATION / 2.0)
-	
-	for character : PlayerCharacter in toons:
-		await Task.delay(0.25)
-		var toon := spawn_toon(character)
-		toon_origin.add_child(toon)
-		toon.construct_toon(toon.toon_dna)
-		toon.position.x = starting_point
-		starting_point += TOON_SEPARATION
-		toon.teleport_in()
-		toon.animator.animation_finished.connect(toon.animator.play.bind('neutral').unbind(1))
-
-func vanilla_398685313_get_character_list() -> Array[PlayerCharacter]:
+func get_character_list() -> Array[PlayerCharacter]:
 	return Globals.get_unlocked_toons()
 
-func vanilla_398685313_spawn_toon(character : PlayerCharacter) -> Toon:
-	var toon := TOON.instantiate()
-	toon.toon_dna = character.dna
-	if character.character_name == "RandomToon":
-		randomize()
-		toon.toon_dna.randomize_dna()
-		RandomService.randi_channel('true_random')
-	var static_body := StaticBody3D.new()
-	var collision_shape := CollisionShape3D.new()
-	collision_shape.shape = toon_collision
-	static_body.add_child(collision_shape)
-	toon.add_child(static_body)
-	static_body.input_event.connect(toon_input_event.bind(toon, character))
-	return toon
-
-func vanilla_398685313_toon_input_event(_camera, event, _event_position, _normal, _shape_index, toon: Toon, character: PlayerCharacter) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if state == MenuState.TOON_SELECT and toon.animator.current_animation == "neutral":
-				toon_clicked(toon, character)
-
-func vanilla_398685313_toon_clicked(toon: Toon, character: PlayerCharacter) -> void:
-	print("toon clicked")
-	selected_character = character
-	selected_toon = toon
-	toon.set_animation('happy')
-	AudioManager.play_sound(SFX_SELECT)
-	set_selected_toon(character)
-
-func vanilla_398685313_toon_canceled() -> void:
-	print("toon cancelled")
-	toon_summary.hide()
-	%PickAToonLabel.show()
-
-func vanilla_398685313_new_game() -> void:
+func new_game() -> void:
+	%FullBlock.show()
 	state = MenuState.TRANSITIONING
+	await character_select_fsm.finish()
+	CameraTransition.from_current(SceneLoader.current_scene, %FinalCam, 2.0)
+	clipboard_out()
 	var toon_tween := create_tween()
 	toon_tween.tween_callback(make_toon_look.bind(selected_toon, elevator.player_pos.global_position))
 	toon_tween.tween_callback(selected_toon.set_animation.bind('run'))
@@ -240,13 +203,19 @@ func vanilla_398685313_make_toon_look(toon: Toon, where: Vector3) -> void:
 	toon.look_at(where)
 	toon.rotation_degrees = Vector3(0, toon.rotation_degrees.y - 180.0 , 0)
 
-func vanilla_398685313_begin_game(character: PlayerCharacter, falling_scene := false) -> void:
-	print("begin game")
-	if has_existing_run:
+func begin_game(character: PlayerCharacter, falling_scene := false) -> void:
+	if has_existing_run and SaveFileService.progress_file.win_streak > 0:
 		SaveFileService.progress_file.win_streak = 0
 
 	SaveFileService.delete_run_file()
-	RandomService.generate_seed()
+	if clipboard.custom_seed == "":
+		RNG.generate_seed()
+		RNG.is_custom_seed = false
+	else:
+		RNG._str_seed = clipboard.custom_seed
+		RNG.set_seed(RNG.get_numerical_seed_from_string(clipboard.custom_seed))
+		RNG.is_custom_seed = true
+	
 	Util.floor_number = -1
 	await GameLoader.wait_for_phase(GameLoader.Phase.PLAYER)
 	# Create the player object
@@ -255,6 +224,7 @@ func vanilla_398685313_begin_game(character: PlayerCharacter, falling_scene := f
 	player.stats.character = character.duplicate(true)
 	player.reset_stats()
 	SceneLoader.add_persistent_node(player)
+	player.state = player.PlayerState.STOPPED
 	player.stats.max_out()
 	SaveFileService.progress_file.new_games += 1
 	if falling_scene:
@@ -264,7 +234,6 @@ func vanilla_398685313_begin_game(character: PlayerCharacter, falling_scene := f
 
 func vanilla_398685313_update_state() -> void:
 	new_game_menu.visible = (state == MenuState.TOON_SELECT or state == MenuState.NEW_GAME)
-	toon_summary.hide()
 
 func vanilla_398685313_open_settings() -> void:
 	get_tree().get_root().add_child(SETTINGS_MENU.instantiate())
@@ -288,44 +257,52 @@ func vanilla_398685313_load_game() -> void:
 	player.stats.character.dna = SaveFileService.run_file.player_dna
 	player.stats.initialize()
 	SceneLoader.add_persistent_node(player)
-	player.game_timer.time = SaveFileService.run_file.game_time
 	ItemService.apply_inventory()
 	SceneLoader.load_into_scene(
 		"res://scenes/elevator_scene/elevator_scene.tscn",
 		GameLoader.Phase.GAMEPLAY
 	)
 
-func vanilla_398685313_set_selected_toon(character: PlayerCharacter) -> void:
-	print("toon selected")
-	%ToonName.label_settings.font_color = character.dna.head_color
-	toon_summary.show()
-	if character.character_name == "RandomToon":
-		%ToonName.set_text(random_toon_name)
-		character.random_character_stored_name = random_toon_name
-	else:
-		%ToonName.set_text(character.character_name)
-	%SummaryDesc.set_text(character.get_true_summary())
-	%PickAToonLabel.hide()
-
-var toons_created := false
-func vanilla_398685313_new_game_pressed() -> void:
-	print("new game pressed")
+func new_game_pressed() -> void:
 	middle_buttons.hide()
-	state = MenuState.TOON_SELECT
-	if not toons_created:
-		create_toons()
-		toons_created = true
+	transition_char_select()
 
 func vanilla_398685313_back_pressed() -> void:
 	print("back pressed")
 	if not middle_buttons.visible:
-		middle_buttons.show()
-		state = MenuState.NEW_GAME
-		toon_summary.hide()
+		transition_out_char_select()
 	else:
 		back_out_logo()
 
-func vanilla_398685313_back_out_logo() -> void:
+func transition_char_select() -> void:
+	%FullBlock.show()
+	state = MenuState.TRANSITIONING
+	new_game_menu.hide()
+	var transition_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_parallel()
+	transition_tween.tween_property(spring_arm, 'rotation_degrees', Vector3(-15.0, 0.0, 0.0), 1.75)
+	transition_tween.tween_property(spring_arm, 'position', Vector3(0.9, 1.0, 3.0), 1.75)
+	character_select_fsm.start(selected_character)
+	await transition_tween.finished
+	transition_tween.kill()
+	state = MenuState.TOON_SELECT
+	new_game_menu.show()
+	%FullBlock.hide()
+	clipboard_in()
+
+func transition_out_char_select() -> void:
+	state = MenuState.TRANSITIONING
+	new_game_menu.hide()
+	clipboard_out()
+	var transition_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_parallel()
+	transition_tween.tween_property(spring_arm, 'rotation_degrees', Vector3(-10.0, 0, 0), 1.0)
+	transition_tween.parallel().tween_property(spring_arm, 'position', Vector3(0.0, 1.5, 4.0), 1.0)
+	await character_select_fsm.teleport_out_and_finish()
+	transition_tween.kill()
+	state = MenuState.NEW_GAME
+	middle_buttons.show()
+	new_game_menu.show()
+
+func back_out_logo() -> void:
 	state = MenuState.TRANSITIONING
 	new_game_menu.hide()
 	var tween := create_tween().set_trans(Tween.TRANS_QUAD)
@@ -339,6 +316,20 @@ func vanilla_398685313_back_out_logo() -> void:
 			state = MenuState.ROTATING
 	)
 
+func clipboard_in() -> void:
+	if clipboard_tween and clipboard_tween.is_running():
+		clipboard_tween.kill()
+	clipboard_tween = create_tween().set_trans(Tween.TRANS_QUAD)
+	clipboard_tween.tween_property(clipboard, 'position:y', 0.0, 0.25)
+	clipboard_tween.finished.connect(clipboard_tween.kill)
+
+func clipboard_out() -> void:
+	if clipboard_tween and clipboard_tween.is_running():
+		clipboard_tween.kill()
+	clipboard_tween = create_tween().set_trans(Tween.TRANS_QUAD)
+	clipboard_tween.tween_property(clipboard, 'position:y', CLIPBOARD_DOWN_Y, 0.25)
+	clipboard_tween.finished.connect(clipboard_tween.kill)
+
 @onready var elevator_floor := $World3D/CogBuilding/suit_landmark_new_corp/locators/suit_landmark_new_corp_door_origin/GeometryTransformHelper11/sellbot_elevator/suit_elevator_1/ground
 func vanilla_398685313_alt_opening(tween : Tween) -> void:
 	tween.set_trans(Tween.TRANS_QUART)
@@ -350,34 +341,30 @@ func vanilla_398685313_alt_opening(tween : Tween) -> void:
 	tween.tween_callback(AudioManager.stop_music.bind(true))
 	tween.tween_callback(AudioManager.reset_music_pitch)
 	tween.tween_callback(AudioManager.play_sound.bind(load("res://audio/sfx/sequences/elevator_trick/elevator_trick_riser.ogg")))
-	tween.tween_callback(selected_toon.set_animation.bind('melt_nosink'))
+	tween.tween_callback(selected_toon.set_animation.bind('melt-nosink'))
 	tween.tween_interval(1.0)
 	tween.tween_callback(AudioManager.play_sound.bind(load("res://audio/sfx/sequences/elevator_trick/elevator_trick_react.ogg")))
 	tween.tween_callback(selected_toon.set_emotion.bind(Toon.Emotion.SAD))
-	tween.tween_callback(selected_toon.animator.set_speed_scale.bind(-1.0))
+	tween.tween_callback(selected_toon.anim_set_speed.bind(-1.0))
 	tween.tween_interval(1.0)
-	tween.tween_callback(selected_toon.animator.set_speed_scale.bind(1.0))
+	tween.tween_callback(selected_toon.anim_set_speed.bind(1.0))
 	tween.tween_interval(1.0)
 	tween.tween_callback(AudioManager.play_sound.bind(load("res://audio/sfx/sequences/elevator_trick/elevator_trick_fall.ogg")))
-	tween.tween_callback(selected_toon.set_animation.bind('melt_nosink'))
-	tween.tween_callback(selected_toon.animator.seek.bind(2.0))
+	tween.tween_callback(selected_toon.set_animation.bind('melt-nosink'))
+	tween.tween_callback(selected_toon.anim_seek.bind(2.0))
 	tween.tween_property(selected_toon, 'position:y', -10.0, 0.6)
 
-
-func vanilla_398685313_check_for_new_version() -> void:
+func check_for_new_version() -> void:
 	$HTTPRequest.request_completed.connect(_on_request_completed)
 	$HTTPRequest.request("https://api.github.com/repos/ToontownGrindworks/grindworks/releases/latest")
 
-func vanilla_398685313__on_request_completed(result, response_code, headers, body) -> void:
+func _on_request_completed(_result, _response_code, _headers, body) -> void:
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	if not json:
 		print("Failed to check latest game version.")
 		return
 	var version = json["tag_name"]
-	if version == Globals.VERSION_NUMBER:
-		print("you are on the newest version. hooray!!!")
-	else:
-		print("new version is available. what is wrong with you??")
+	if version != Globals.VERSION_NUMBER:
 		%NewVersionLabel.show()
 
 

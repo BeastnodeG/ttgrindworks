@@ -4,7 +4,7 @@ class_name SettingsFile
 
 ## VIDEO SETTINGS
 const FPSOptions = [60, 90, 120, 144, 165, 240, 360, 0]
-var SpeedOptions = [1.0, 1.25, 1.5, 1.75, 2.0]
+static var SpeedOptions = [1.0, 1.25, 1.5, 1.75, 2.0]
 
 @export var fullscreen := false
 @export var fps_idx := 0:
@@ -15,6 +15,8 @@ var SpeedOptions = [1.0, 1.25, 1.5, 1.75, 2.0]
 		elif fps_idx >= FPSOptions.size():
 			fps_idx = FPSOptions.size() - 1
 @export var anti_aliasing := false
+enum CameraShakeSetting {Standard, Reduced, None}
+@export var camera_shake_setting := CameraShakeSetting.Standard
 
 ## AUDIO SETTINGS
 @export var master_volume := 0.5
@@ -38,9 +40,13 @@ var SpeedOptions = [1.0, 1.25, 1.5, 1.75, 2.0]
 @export var auto_sprint := true
 @export var show_timer := false
 @export var skip_intro := false
-@export var dev_tools := false
+@export var dev_tools := false:
+	get:
+		return dev_tools or OS.has_feature("debug")
 @export var use_custom_cogs := true
 @export var button_prompts := true
+
+
 
 ## CONTROLS
 # To preserve the ordering of controls, we must have two dictionaries
@@ -54,7 +60,10 @@ var REMAPPABLE_CONTROLS := [
 	"sprint",
 	"pause",
 	"use_pocket_prank",
-	"end_turn"
+	"swap_pocket_prank",
+	"end_turn",
+	"screenshot",
+	"recenter_camera",
 ]
 @export var saved_controls := {}
 var controls := {}
@@ -105,33 +114,13 @@ func vanilla_3302875687_set_bus_volume(bus: String, volume_db: float) -> void:
 	if OS.has_feature('debug'):
 		print(bus + " volume set to: " + str(AudioServer.get_bus_volume_db(get_bus_index(bus))))
 
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func save_to(file_name: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3302875687_save_to, [file_name], 2775650616)
-	else:
-		return vanilla_3302875687_save_to(file_name)
-
-
-func sync_settings():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3302875687_sync_settings, [], 935974004)
-	else:
-		vanilla_3302875687_sync_settings()
-
-
-func get_bus_index(bus: String) -> int:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3302875687_get_bus_index, [bus], 4131099015)
-	else:
-		return vanilla_3302875687_get_bus_index(bus)
-
-
-func set_bus_volume(bus: String, volume_db: float):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3302875687_set_bus_volume, [bus, volume_db], 2736407731)
-	else:
-		vanilla_3302875687_set_bus_volume(bus, volume_db)
+static func add_battle_speed(speed: float) -> void:
+	for option in SpeedOptions:
+		if is_equal_approx(option, speed):
+			return
+	var insert_index := 0
+	while insert_index < SpeedOptions.size():
+		if speed < SpeedOptions[insert_index]:
+			break
+		insert_index += 1
+	SpeedOptions.insert(insert_index, speed)

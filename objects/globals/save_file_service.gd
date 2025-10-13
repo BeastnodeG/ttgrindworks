@@ -10,6 +10,7 @@ const SAVE_FILE_PATH := 'user://save/'
 const RUN_FILE_NAME := 'current_save.tres'
 const GLOBALSAVE_FILE_NAME := 'progress.tres'
 const SETTINGS_FILE_NAME := 'settings.tres'
+const SCREENSHOTS_PATH := 'user://screenshots'
 var ACHIEVEMENT_UI: PackedScene
 var SAVE_GAME_TEXT: PackedScene
 
@@ -18,6 +19,15 @@ var progress_file: ProgressFile
 var settings_file: SettingsFile
 
 var achievement_ui: Control
+
+## To modders:
+## If you want to add achievements to the end of the existing lists
+## Just add the resources to the specified array
+## Otherwise, I invite you to create your own section by making your own header here
+var mod_achievements: Dictionary[String, Array] = {
+	"": [], ## Standard achievements
+	"Items": [], ## Item achievements
+}
 
 signal s_game_loaded
 signal s_reset
@@ -87,7 +97,7 @@ func vanilla_3195152042__ready():
 	var run_result := load_run()
 	
 	var invalid_files : Array[String] = [progress_result, settings_result, run_result]
-	for entry in invalid_files.duplicate():
+	for entry in invalid_files.duplicate(true):
 		if entry == "" : invalid_files.erase("")
 	
 	if not invalid_files.is_empty():
@@ -127,14 +137,13 @@ func vanilla_3195152042_load_run() -> String:
 		if not test_file:
 			save_file_error(file_path)
 			return file_path
-		var file = ResourceLoader.load(file_path, "", ResourceLoader.CacheMode.CACHE_MODE_IGNORE).duplicate()
+		var file = ResourceLoader.load(file_path, "", ResourceLoader.CacheMode.CACHE_MODE_IGNORE).duplicate(true)
 		if file is SaveFile:
 			run_file = file
 			s_game_loaded.emit()
 	if not run_file:
 		return ""
-	RandomService.base_seed = (run_file.current_seed)
-	RandomService.channels = run_file.seed_channels
+	RNG.load_from_run_file(run_file)
 	Util.floor_number = run_file.floor_number
 	ItemService.seen_items = run_file.seen_items
 	ItemService.items_in_play = run_file.items_in_play
@@ -145,8 +154,18 @@ func vanilla_3195152042_on_game_over() -> void:
 	delete_run_file()
 	run_file = null
 
-func vanilla_3195152042__process(delta : float) -> void:
-	progress_file.total_playtime += delta / Engine.time_scale
+func _process(delta: float) -> void:
+	# Playtime counter
+	var time_scale := Engine.time_scale
+	if is_nan(time_scale):
+		time_scale = 1.0
+	if is_nan(delta):
+		delta = 0.0
+	progress_file.total_playtime += delta / time_scale
+	
+	# Screenshots
+	if Input.is_action_just_pressed('screenshot'):
+		take_screenshot()
 	
 	#if Input.is_action_just_pressed('save'):
 	#	save()
@@ -183,6 +202,16 @@ func vanilla_3195152042_is_achievement_unlocked(achievement: ProgressFile.GameAc
 	if not progress_file.achievements_earned.has(achievement): return false
 	return progress_file.achievements_earned[achievement]
 
+const SCREENSHOT_SYNTAX := "ttgw-%d-%d-%d-%d-%d-%d.png"
+func take_screenshot() -> void:
+	var image := get_viewport().get_texture().get_image()
+	var time := Time.get_datetime_dict_from_system()
+	var file_name := SCREENSHOT_SYNTAX % [time['year'], time['month'], time['day'], time['hour'], time['minute'], time['second']]
+	if not DirAccess.dir_exists_absolute(SCREENSHOTS_PATH):
+		DirAccess.make_dir_absolute(SCREENSHOTS_PATH)
+	image.save_png(SCREENSHOTS_PATH + '/' + file_name)
+	
+
 const SAVE_ERROR_PANEL := "res://objects/general_ui/ui_panel/misc_panels/save_error_panel/save_error_panel.tscn"
 func vanilla_3195152042_show_save_errors(invalid_paths : Array[String]) -> void:
 	await get_tree().process_frame
@@ -190,145 +219,8 @@ func vanilla_3195152042_show_save_errors(invalid_paths : Array[String]) -> void:
 	get_tree().get_root().add_child(error_panel)
 	error_panel.sync_faulty_files(invalid_paths)
 
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func _init():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042__init, [], 3443093117)
+func add_achievement(section: String, achievement: Achievement) -> void:
+	if section in mod_achievements.keys():
+		mod_achievements[section].append(achievement)
 	else:
-		vanilla_3195152042__init()
-
-
-func save():
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042_save, [], 1666852729)
-	else:
-		return vanilla_3195152042_save()
-
-
-func _save_run():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042__save_run, [], 7163148)
-	else:
-		vanilla_3195152042__save_run()
-
-
-func _save_progress():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042__save_progress, [], 1345206572)
-	else:
-		vanilla_3195152042__save_progress()
-
-
-func save_settings():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042_save_settings, [], 523510025)
-	else:
-		vanilla_3195152042_save_settings()
-
-
-func get_player_state() -> PlayerStats:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042_get_player_state, [], 2288618070)
-	else:
-		return vanilla_3195152042_get_player_state()
-
-
-func delete_run_file():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042_delete_run_file, [], 2064133872)
-	else:
-		vanilla_3195152042_delete_run_file()
-
-
-func _ready():
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042__ready, [], 1963263902)
-	else:
-		return vanilla_3195152042__ready()
-
-
-func load_settings() -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042_load_settings, [], 2890173018)
-	else:
-		return vanilla_3195152042_load_settings()
-
-
-func load_progress() -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042_load_progress, [], 3282297470)
-	else:
-		return vanilla_3195152042_load_progress()
-
-
-func load_run() -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042_load_run, [], 3652016926)
-	else:
-		return vanilla_3195152042_load_run()
-
-
-func on_game_over():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042_on_game_over, [], 3982274459)
-	else:
-		vanilla_3195152042_on_game_over()
-
-
-func _process(delta: float):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042__process, [delta], 1338016424)
-	else:
-		vanilla_3195152042__process(delta)
-
-
-func _notification(what):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042__notification, [what], 2544675408)
-	else:
-		return vanilla_3195152042__notification(what)
-
-
-func make_progress(property: String, value: Variant):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042_make_progress, [property, value], 2673702492)
-	else:
-		vanilla_3195152042_make_progress(property, value)
-
-
-func _show_save_text():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042__show_save_text, [], 1298106332)
-	else:
-		vanilla_3195152042__show_save_text()
-
-
-func _on_tween_all_completed(save_text_instance):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042__on_tween_all_completed, [save_text_instance], 441973628)
-	else:
-		return vanilla_3195152042__on_tween_all_completed(save_text_instance)
-
-
-func save_file_error(file_path: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3195152042_save_file_error, [file_path], 1568691745)
-	else:
-		vanilla_3195152042_save_file_error(file_path)
-
-
-func is_achievement_unlocked(achievement: ProgressFile.GameAchievement) -> bool:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3195152042_is_achievement_unlocked, [achievement], 1675404002)
-	else:
-		return vanilla_3195152042_is_achievement_unlocked(achievement)
-
-
-func show_save_errors(invalid_paths: Array[String]):
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_3195152042_show_save_errors, [invalid_paths], 2896775157)
-	else:
-		await vanilla_3195152042_show_save_errors(invalid_paths)
+		mod_achievements[section] = [achievement]

@@ -15,34 +15,33 @@ func vanilla_398913244__ready() -> void:
 		Globals.s_settings_opened.emit()
 	cancel_button.pressed.disconnect(close)
 	cancel_button.pressed.connect(cancel_changes)
+	Globals.s_settings_opened.emit(self)
 
 func vanilla_398913244__sync_settings() -> void:
 	_sync_video_settings()
 	_sync_audio_settings()
 	_sync_gameplay_settings()
 	_sync_controls()
+	_sync_mod_settings()
 
-func vanilla_398913244_backup_prev_settings() -> void:
-	#var battlespeedtemp = SaveFileService.settings_file.battle_speed_idx
-	#var speedindextemp = SaveFileService.settings_file.SpeedOptions
-	prev_file = SaveFileService.settings_file.duplicate()
-	#prev_file.SpeedOptions = speedindextemp
-	#prev_file.battle_speed_idx = battlespeedtemp
+func backup_prev_settings() -> void:
+	prev_file = SaveFileService.settings_file.duplicate(true)
 
-func vanilla_398913244_cancel_changes() -> void:
-	var panel : UIPanel = Util.confirm(
+func cancel_changes() -> void:
+	var _panel: UIPanel = Util.confirm(
 		"Cancel Changes?",
 		"Are you sure you want to revert your settings?"
 		)
-	panel.s_confirmed.connect(close)
-	panel.process_mode = Node.PROCESS_MODE_ALWAYS
-	tree_exited.connect(panel.queue_free)
+	_panel.s_confirmed.connect(close)
+	_panel.process_mode = Node.PROCESS_MODE_ALWAYS
+	tree_exited.connect(_panel.queue_free)
 
-## VIDEO SETTINGS
+#region Video Settings
 
 @onready var fullscreen_button: GeneralButton = %FullscreenButton
 @onready var fps_button: GeneralButton = %FPSButton
 @onready var alias_button: GeneralButton = %AliasButton
+@onready var camera_shake_button: GeneralButton = %CameraShakeButton
 
 const FPSOptionText: Dictionary = {
 	0: "60",
@@ -60,6 +59,7 @@ func vanilla_398913244__sync_video_settings() -> void:
 	Util.s_fullscreen_toggled.connect(func(_fullscreen: bool): fullscreen_button.text = get_toggle_text(get_setting('fullscreen')))
 	fps_button.text = FPSOptionText[get_setting('fps_idx')]
 	alias_button.text = get_toggle_text(get_setting('anti_aliasing'))
+	camera_shake_button.text = SettingsFile.CameraShakeSetting.keys()[get_setting('camera_shake_setting')]
 
 func vanilla_398913244_toggle_full_screen() -> void:
 	toggle_setting('fullscreen')
@@ -84,6 +84,15 @@ func vanilla_398913244_toggle_anti_aliasing() -> void:
 	alias_button.text = get_toggle_text(get_setting('anti_aliasing'))
 	RenderingServer.viewport_set_msaa_3d(SaveFileService.get_viewport().get_viewport_rid(),
 				RenderingServer.VIEWPORT_MSAA_4X if get_setting('anti_aliasing') else RenderingServer.VIEWPORT_MSAA_DISABLED)
+
+func toggle_camera_shake() -> void:
+	var index: int = SaveFileService.settings_file.camera_shake_setting as int
+	index += 1
+	if index >= SaveFileService.settings_file.CameraShakeSetting.size():
+		index = 0
+	var new_value: String = SettingsFile.CameraShakeSetting.keys()[index]
+	camera_shake_button.text = new_value
+	update_setting('camera_shake_setting', index as SettingsFile.CameraShakeSetting)
 
 ## AUDIO SETTINGS
 
@@ -114,8 +123,9 @@ func vanilla_398913244_toggle_ambient_sfx() -> void:
 	toggle_setting('ambient_sfx_enabled')
 	ambient_button.text = get_toggle_text(get_setting('ambient_sfx_enabled'))
 	AudioServer.set_bus_volume_db(get_bus_index("Ambient"), linear_to_db(1.0 if get_setting('ambient_sfx_enabled') else 0.0))
+#endregion
 
-## GAMEPLAY SETTINGS
+#region Gameplay Settings
 
 @onready var speed_button: GeneralButton = %SpeedButton
 @onready var reaction_button: GeneralButton = %ReactionButton
@@ -206,12 +216,14 @@ func vanilla_398913244_get_control_style(style : bool) -> String:
 		return "Default"
 	return "Classic"
 
+#endregion
 
-## SAVE FILE SETTINGS
-func vanilla_398913244_open_save_folder() -> void:
+#region Save File Settings
+func open_save_folder() -> void:
 	OS.shell_open(ProjectSettings.globalize_path("user://"))
+#endregion
 
-## Controls
+#region Control Settings
 
 @onready var control_template := %ControlTemplate
 @onready var control_settings: VBoxContainer = %ControlSettings
@@ -317,296 +329,65 @@ func vanilla_398913244_close(save := false) -> void:
 	if prev_file and not save:
 		SaveFileService.settings_file = prev_file
 		prev_file.sync_settings()
+		cancel_mod_changes()
 	else:
 		SaveFileService.save_settings()
-	super.close()
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func _ready():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244__ready, [], 95399248)
-	else:
-		vanilla_398913244__ready()
-
-
-func _sync_settings():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244__sync_settings, [], 1789595016)
-	else:
-		vanilla_398913244__sync_settings()
-
-
-func backup_prev_settings():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_backup_prev_settings, [], 2121776062)
-	else:
-		vanilla_398913244_backup_prev_settings()
-
-
-func cancel_changes():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_cancel_changes, [], 3011979002)
-	else:
-		vanilla_398913244_cancel_changes()
-
-
-func _sync_video_settings():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244__sync_video_settings, [], 1642715678)
-	else:
-		vanilla_398913244__sync_video_settings()
-
-
-func toggle_full_screen():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_full_screen, [], 133458863)
-	else:
-		vanilla_398913244_toggle_full_screen()
-
-
-func change_fps():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_change_fps, [], 1177344682)
-	else:
-		vanilla_398913244_change_fps()
-
-
-func toggle_anti_aliasing():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_anti_aliasing, [], 351096528)
-	else:
-		vanilla_398913244_toggle_anti_aliasing()
-
-
-func _sync_audio_settings():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244__sync_audio_settings, [], 1401710329)
-	else:
-		vanilla_398913244__sync_audio_settings()
-
-
-func set_bus_volume(volume: float, bus: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_set_bus_volume, [volume, bus], 610855464)
-	else:
-		vanilla_398913244_set_bus_volume(volume, bus)
-
-
-func get_bus_index(bus: String) -> int:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_get_bus_index, [bus], 3806387292)
-	else:
-		return vanilla_398913244_get_bus_index(bus)
-
-
-func toggle_ambient_sfx():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_ambient_sfx, [], 3196813869)
-	else:
-		vanilla_398913244_toggle_ambient_sfx()
-
-
-func _sync_gameplay_settings():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244__sync_gameplay_settings, [], 3666437815)
-	else:
-		vanilla_398913244__sync_gameplay_settings()
-
-
-func change_speed():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_change_speed, [], 2243509650)
-	else:
-		vanilla_398913244_change_speed()
-
-
-func get_speed_string(speed: float) -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_get_speed_string, [speed], 461294210)
-	else:
-		return vanilla_398913244_get_speed_string(speed)
-
-
-func toggle_item_reactions():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_item_reactions, [], 2204418931)
-	else:
-		vanilla_398913244_toggle_item_reactions()
-
-
-func toggle_auto_sprint():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_auto_sprint, [], 3602462933)
-	else:
-		vanilla_398913244_toggle_auto_sprint()
-
-
-func toggle_control_style():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_control_style, [], 1806677614)
-	else:
-		vanilla_398913244_toggle_control_style()
-
-
-func set_cam_sens(value: float):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_set_cam_sens, [value], 3097938128)
-	else:
-		vanilla_398913244_set_cam_sens(value)
-
-
-func toggle_timer():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_timer, [], 4053483998)
-	else:
-		vanilla_398913244_toggle_timer()
-
-
-func toggle_intro_skip():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_intro_skip, [], 1209630687)
-	else:
-		vanilla_398913244_toggle_intro_skip()
-
-
-func toggle_custom_cogs():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_custom_cogs, [], 3400036707)
-	else:
-		vanilla_398913244_toggle_custom_cogs()
-
-
-func toggle_button_prompts():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_button_prompts, [], 1112056973)
-	else:
-		vanilla_398913244_toggle_button_prompts()
-
-
-func cry_for_help():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_cry_for_help, [], 2306052248)
-	else:
-		vanilla_398913244_cry_for_help()
-
-
-func get_control_style(style: bool) -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_get_control_style, [style], 679793580)
-	else:
-		return vanilla_398913244_get_control_style(style)
-
-
-func open_save_folder():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_open_save_folder, [], 3854883127)
-	else:
-		vanilla_398913244_open_save_folder()
-
-
-func _sync_controls():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244__sync_controls, [], 2589597579)
-	else:
-		vanilla_398913244__sync_controls()
-
-
-func add_setting(action_title: String, action_name: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_add_setting, [action_title, action_name], 331138466)
-	else:
-		vanilla_398913244_add_setting(action_title, action_name)
-
-
-func update_control_setting(element: Control, action_title: String, action_name: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_update_control_setting, [element, action_title, action_name], 2650412572)
-	else:
-		vanilla_398913244_update_control_setting(element, action_title, action_name)
-
-
-func get_keybind(action_name: String) -> InputEvent:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_get_keybind, [action_name], 406412289)
-	else:
-		return vanilla_398913244_get_keybind(action_name)
-
-
-func input_to_text(input: InputEvent) -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_input_to_text, [input], 3528828178)
-	else:
-		return vanilla_398913244_input_to_text(input)
-
-
-func set_keybind(action_name: String, input: InputEvent):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_set_keybind, [action_name, input], 1485953805)
-	else:
-		vanilla_398913244_set_keybind(action_name, input)
-
-
-func get_action_title(action_name: String) -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_get_action_title, [action_name], 1846481370)
-	else:
-		return vanilla_398913244_get_action_title(action_name)
-
-
-func action_get_key(action_name: String) -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_action_get_key, [action_name], 1631643105)
-	else:
-		return vanilla_398913244_action_get_key(action_name)
-
-
-func await_input(element: Control, action_title: String, action_name: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_398913244_await_input, [element, action_title, action_name], 2077464769)
-	else:
-		await vanilla_398913244_await_input(element, action_title, action_name)
-
-
-func _input(event):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244__input, [event], 85066283)
-	else:
-		vanilla_398913244__input(event)
-
-
-func update_setting(setting: String, value: Variant):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_update_setting, [setting, value], 1738052636)
-	else:
-		vanilla_398913244_update_setting(setting, value)
-
-
-func get_setting(setting: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_get_setting, [setting], 2142938713)
-	else:
-		return vanilla_398913244_get_setting(setting)
-
-
-func toggle_setting(setting: String):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_setting, [setting], 1873485723)
-	else:
-		vanilla_398913244_toggle_setting(setting)
-
-
-func get_toggle_text(toggled: bool) -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_398913244_get_toggle_text, [toggled], 614849793)
-	else:
-		return vanilla_398913244_get_toggle_text(toggled)
-
-
-func close(save: =false):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_398913244_close, [save], 397882002)
-	else:
-		vanilla_398913244_close(save)
+	super()
+
+#endregion
+
+#region MOD SETTINGS
+@onready var mod_container: VBoxContainer = %ModSettings
+@onready var mod_template: HBoxContainer = %ModTemplate
+var enabled_mods: Dictionary[String, bool] = {}
+
+func _sync_mod_settings() -> void:
+	var mod_data := ModLoaderStore.mod_data.duplicate()
+	if mod_data.size() == 0:
+		mod_container.hide()
+		return
+	for mod in mod_data.keys():
+		mod_container.add_child(create_mod_setting(mod))
+		enabled_mods[mod] = get_mod_enabled(mod)
+
+func create_mod_setting(mod_id: String) -> HBoxContainer:
+	# Get the author and mod name
+	var mod_name := ""
+	var mod_author := ""
+	var mod_split := mod_id.split('-')
+	if mod_split.size() > 1:
+		mod_author = mod_split[0]
+		mod_name = mod_id.trim_prefix(mod_author + "-")
+	
+	# Create the new element
+	var new_mod_setting := mod_template.duplicate()
+	var button: GeneralButton = new_mod_setting.get_node('GeneralButton')
+	new_mod_setting.show()
+	button.pressed.connect(toggle_mod.bind(mod_id, button))
+	button.text = get_toggle_text(get_mod_enabled(mod_id))
+	
+	# Set the labels
+	new_mod_setting.get_node('ModNameContainer/Title').set_text(mod_name)
+	new_mod_setting.get_node('ModNameContainer/Author').set_text(mod_author)
+	
+	return new_mod_setting
+
+func get_mod_enabled(mod_id: String) -> bool:
+	var mod_profile := ModLoaderUserProfile.get_current()
+	return mod_profile.mod_list[mod_id].is_active
+
+func toggle_mod(mod_id: String, button: GeneralButton) -> void:
+	var mod_enabled: bool = get_mod_enabled(mod_id)
+	if mod_enabled: ModLoaderUserProfile.disable_mod(mod_id)
+	else: ModLoaderUserProfile.force_enable_mod(mod_id)
+	
+	button.text = get_toggle_text(not mod_enabled)
+
+func cancel_mod_changes() -> void:
+	for mod in enabled_mods:
+		if enabled_mods[mod] == true:
+			ModLoaderUserProfile.force_enable_mod(mod)
+		else:
+			ModLoaderUserProfile.disable_mod(mod)
+
+#endregion

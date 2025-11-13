@@ -22,7 +22,7 @@ static func get_game_install_dir() -> String:
 	if OS.get_name() == "macOS":
 		game_install_directory = game_install_directory.get_base_dir().get_base_dir()
 		if game_install_directory.ends_with(".app"):
-			game_install_directory = game_install_directory.get_base_dir()
+			game_install_directory = game_install_directory + "/Contents/Resources"
 
 	# Fix for running the game through the Godot editor (as the EXE path would be
 	# the editor's own EXE, which won't have any mod ZIPs)

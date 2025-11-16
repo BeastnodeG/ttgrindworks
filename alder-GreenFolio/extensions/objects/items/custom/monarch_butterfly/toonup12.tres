@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ItemPool" load_steps=2 format=3 uid="uid://djsmqg1m8sq1l"]
+
+[ext_resource type="Script" uid="uid://bllywk0dq1ug3" path="res://objects/items/classes/item_pool.gd" id="1_24jji"]
+
+[resource]
+script = ExtResource("1_24jji")
+items = PackedStringArray("res://objects/items/resources/passive/toonups/feather.tres", "res://objects/items/resources/passive/toonups/megaphone.tres", "res://objects/items/resources/passive/toonups/lipstick.tres", "res://objects/items/resources/passive/toonups/bamboo_cane.tres", "res://objects/items/resources/passive/toonups/juggling.tres", "res://objects/items/resources/passive/toonups/pixie.tres", "res://objects/items/resources/passive/toonups/high_dive.tres", "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/toonups/cannon.tres")

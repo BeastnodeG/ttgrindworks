@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6vyj5d31qrk0"]
+
+[ext_resource type="Material" uid="uid://du2koichr8sap" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/gratepanelmat.tres" id="1_58awn"]
+[ext_resource type="Material" uid="uid://c3r71c5qjnru8" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/xcrossmetal.tres" id="2_4amwm"]
+[ext_resource type="Material" uid="uid://ckf5bcrg62b1o" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/metalthing.tres" id="3_ic68m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_58awn"]
+size = Vector3(15, 0.001, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4amwm"]
+size = Vector3(15, 2, 0.001)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ic68m"]
+size = Vector3(15.2, 0.2, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v1mqt"]
+size = Vector3(15, 2, 0.001)
+
+[node name="Bridge2" type="Node3D"]
+
+[node name="crossing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -8)
+material_override = ExtResource("1_58awn")
+mesh = SubResource("BoxMesh_58awn")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Root Scene/CSG")
+
+[node name="crossingguard" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -10.4995)
+material_override = ExtResource("2_4amwm")
+mesh = SubResource("BoxMesh_4amwm")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Root Scene/CSG")
+
+[node name="crossingrail" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.4, -10.499)
+material_override = ExtResource("3_ic68m")
+mesh = SubResource("BoxMesh_ic68m")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Root Scene/CSG")
+
+[node name="crossingguard2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -5.4995)
+material_override = ExtResource("2_4amwm")
+mesh = SubResource("BoxMesh_v1mqt")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Root Scene/CSG")

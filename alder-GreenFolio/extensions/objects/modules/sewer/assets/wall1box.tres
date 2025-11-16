@@ -1,0 +1,8 @@
+[gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://blmqs8jvy52wc"]
+
+[ext_resource type="Material" uid="uid://c50n4cvbhanfo" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/wallbricks.tres" id="1_txxwp"]
+
+[resource]
+lightmap_size_hint = Vector2i(14, 21)
+material = ExtResource("1_txxwp")
+add_uv2 = true

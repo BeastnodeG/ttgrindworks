@@ -34,30 +34,39 @@ const EFFECT_MAP := {
 	"Laff Boost": { effect = "Vampire", damage_multiplier = 0.75 },
 	"Random": { effect = "Random", damage_multiplier = 1.25},
 	"Task Reroll": { effect = "Random", damage_multiplier = 1 },
-	"Toonup": { effect = "Hex", damage_multiplier = 0.5 },
-	"Squirt": { effect = "Soak", damage_multiplier = 0.7 },
+	"Toonup": { effect = "Hex", damage_multiplier = 0.75 },
+	"Squirt": { effect = "Soak", damage_multiplier = 0.5 },
 	"Trap": { effect = "Basic", damage_multiplier = 1.15 },
-	"Lure": { effect = "Hex", damage_multiplier = 1 },
+	"Lure": { effect = "Hex", damage_multiplier = 0.75 },
 	"Sound": { effect = "Basic", damage_multiplier = 1.15 },
 	"Throw": { effect = "Vampire", damage_multiplier = 0.9 },
-	"Drop": { effect = "Aftershock", damage_multiplier = 0.8 },
+	"Drop": { effect = "Aftershock", damage_multiplier = 0.75 },
 	
 	#start of specific accessories
 	"Dragon Wings": { effect = "Dragon", damage_multiplier = 1.75 },
-	"Fedora": { effect = "Fedora", damage_multiplier = 2.25 },
+	"Dragonfly Wings": { effect = "Dragon", damage_multiplier = 1.5 },
+	"Toonosaur Hat": { effect = "Dragon", damage_multiplier = 0.25},
+	
+	"Fedora": { effect = "Fedora", damage_multiplier = 2.5 },
+	
 	"Witch Hat": { effect = "Poison", damage_multiplier = 2.5 },
 	"Green Deal": { effect = "Poison", damage_multiplier = 1.75 },
-	"Princess Hat": { effect = "Princess", damage_multiplier = 2.25 },
+	"Space Helmet": { effect = "Poison", damage_multiplier = 2.5},
+	
+	"Princess Hat": { effect = "Princess", damage_multiplier = 3 },
 	"Crown": { effect = "Princess", damage_multiplier = 1.5 },
-	"Tiara": { effect = "Princess", damage_multiplier = 1.25 },
-	"Opossum Tail": { effect = "Princess", damage_multiplier = 1.5},
-	"Chef Hat": { effect = "Vampire", damage_multiplier = 1 },
+	"Tiara": { effect = "Princess", damage_multiplier = 1.5 },
+	"Opossum Charm": { effect = "Princess", damage_multiplier = 1.5},
+	
+	"Chef Hat": { effect = "Vampire", damage_multiplier = 1.1 },
 	"Pixie Wings": { effect = "Vampire", damage_multiplier = 1.25 },
-	"Bat Wings": { effect = "Vampire", damage_multiplier = 2 },
-	"Heart Glasses": { effect = "Vampire", damage_multiplier = 1 },
-	"Heart Headband": { effect = "Vampire", damage_multiplier = 1 },
+	"Bat Wings": { effect = "Vampire", damage_multiplier = 3 },
+	"Heart Glasses": { effect = "Vampire", damage_multiplier = 1.25 },
+	"Heart Headband": { effect = "Vampire", damage_multiplier = 1.25 },
 	"Sandwich": { effect = "Vampire", damage_multiplier = 1 },
 	"Emergency Unite": {effect = "Vampire", damage_multiplier = 1.5},
+	"Smooch Glasses": {effect = "Vampire", damage_multiplier = 1.5},
+	"Watering Can": {effect = "Vampire", damage_multiplier = 1.25},
 	
 	"Baseball Cap": { effect = "Basic", damage_multiplier = 2 },
 	"Roman Helmet": { effect = "Basic", damage_multiplier = 1.1 },
@@ -66,19 +75,20 @@ const EFFECT_MAP := {
 	"Wooden Sword": { effect = "Basic", damage_multiplier = 1.75 },
 	"Aviators": { effect = "Basic", damage_multiplier = 1.5 },
 	
-	"Bowler Hat": { effect = "Cash", damage_multiplier = 1 },
-	"Fez": { effect = "Cash", damage_multiplier = 1 },
-	"Fruit Hat": { effect = "Cash", damage_multiplier = 1.25 },
-	"Pirate Hat": { effect = "Cash", damage_multiplier = 1 },
-	"Jellybean Jar": { effect = "Cash", damage_multiplier = 1 },
-	"Golden Jellybean": { effect = "Cash", damage_multiplier = 1 },
-	"Tax Write-Off": { effect = "Cash", damage_multiplier = 1 },
-	"Cash Register": { effect = "Cash", damage_multiplier = 1 },
+	"Bowler Hat": { effect = "Cash", damage_multiplier = 1.25 },
+	"Fez": { effect = "Cash", damage_multiplier = 2 },
+	"Fruit Hat": { effect = "Cash", damage_multiplier = 1.5 },
+	"Pirate Hat": { effect = "Cash", damage_multiplier = 1.5 },
+	"Jellybean Jar": { effect = "Cash", damage_multiplier = 1.5 },
+	"Golden Jellybean": { effect = "Cash", damage_multiplier = 1.5 },
+	"Tax Write-Off": { effect = "Cash", damage_multiplier = 1.5 },
+	"Cash Register": { effect = "Cash", damage_multiplier = 1.5 },
+	"Calculator": { effect = "Cash", damage_multiplier = 1.25 },
 	
 	"Gag Attack Pack": { effect = "Random", damage_multiplier = 1.25 },
 	"Medium Pouch": { effect = "Random", damage_multiplier = 1.25 },
-	"Celebrity Shades": { effect = "Random", damage_multiplier = 1 },
-	"Star Glasses": { effect = "Random", damage_multiplier = 1 },
+	"Celebrity Shades": { effect = "Random", damage_multiplier = 1.25 },
+	"Star Glasses": { effect = "Random", damage_multiplier = 1.25 },
 	"Mini Blinds": { effect = "Random", damage_multiplier = 2 },
 	"Goggles": { effect = "Random", damage_multiplier = 1.5 },
 	"Alien Glasses": { effect = "Random", damage_multiplier = 2 },
@@ -87,30 +97,35 @@ const EFFECT_MAP := {
 	"Paint Brush": { effect = "Random", damage_multiplier = 1.25 },
 	"Paintball": { effect = "Random", damage_multiplier = 0.5 },
 	"Angel Wings": { effect = "Random", damage_multiplier = 1.25},
+	"Butterfly Wings": { effect = "Random", damage_multiplier = 3 },
+	"Philosopher's Stone": { effect = "Random", damage_multiplier = 1 },
+	"Dilly Dial": { effect = "Random", damage_multiplier = 1 },
+	"Moneybags Coin": { effect = "Random", damage_multiplier = 1 },
+	"Spinning Top": { effect = "Random", damage_multiplier = 2 },
 	
-	"Scuba Tank": { effect = "Soaked", damage_multiplier = 1.25 },
-	"Shark Fin": { effect = "Soaked", damage_multiplier = 1.1 },
-	"Scuba Mask": { effect = "Soaked", damage_multiplier = 2 },
-	"Fire Hydrant": { effect = "Soaked", damage_multiplier = 1.1 },
+	"Scuba Tank": { effect = "Soak", damage_multiplier = 1.25 },
+	"Shark Fin": { effect = "Soak", damage_multiplier = 1.1 },
+	"Scuba Mask": { effect = "Soak", damage_multiplier = 2 },
+	"Fire Hydrant": { effect = "Soak", damage_multiplier = 1.1 },
 	
-	"Anvil Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
-	"Big Weight Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
-	"Bird Nest": { effect = "Aftershock", damage_multiplier = 0.9 },
-	"Flowerpot Hat": { effect = "Aftershock", damage_multiplier = 0.9 },
+	"Anvil Hat": { effect = "Aftershock", damage_multiplier = 1.2 },
+	"Big Weight Hat": { effect = "Aftershock", damage_multiplier = 1.2 },
+	"Bird Nest": { effect = "Aftershock", damage_multiplier = 1.2 },
+	"Flowerpot Hat": { effect = "Aftershock", damage_multiplier = 1.2 },
 	"Taser": { effect = "Aftershock", damage_multiplier = 1 },
 	"Joybuzzer": { effect = "Aftershock", damage_multiplier = 1 },
 	"Lightbulb": { effect = "Aftershock", damage_multiplier = 1 },
 	
-	"3D Glasses": { effect = "Hex", damage_multiplier = 1 },
+	"3D Glasses": { effect = "Hex", damage_multiplier = 1.1 },
 	"Jester Hat": { effect = "Hex", damage_multiplier = 1.25 },
-	"Police Hat": { effect = "Hex", damage_multiplier = 1 },
-	"Pompadour Hairdo": { effect = "Hex", damage_multiplier = 1 },
+	"Police Hat": { effect = "Hex", damage_multiplier = 1.1 },
+	"Pompadour Hairdo": { effect = "Hex", damage_multiplier = 1.1 },
 	"Propeller Hat": { effect = "Hex", damage_multiplier = 1.25 },
 	"Rainbow Wig": { effect = "Hex", damage_multiplier = 1.25 },
 	"Wizard Hat": { effect = "Hex", damage_multiplier = 1.25 },
-	"Toy Hammer": { effect = "Hex", damage_multiplier = 1 },
-	"Groucho Glasses": { effect = "Hex", damage_multiplier = 1 },
-	"Pink Slip": { effect = "Hex", damage_multiplier = 1 },
+	"Toy Hammer": { effect = "Hex", damage_multiplier = 1.1 },
+	"Groucho Glasses": { effect = "Hex", damage_multiplier = 1.1 },
+	"Pink Slip": { effect = "Hex", damage_multiplier = 1.5 },
 }
 
 const RANDOM_EFFECT := {
@@ -234,7 +249,6 @@ func _update_player_particles() -> void:
 	
 	print("Butterfly counts: %s" % str(butterfly_counts))
 	
-	# Create particles for each butterfly type
 	var keys = butterfly_counts.keys()
 	for i in range(keys.size()):
 		var effect_type: String = keys[i]
@@ -286,7 +300,7 @@ func sendtheswarm(manager: BattleManager) -> void:
 		var total_damage: int = round(base_damage + player_damage)
 		
 		var cog: Cog = RandomService.array_pick_random('true_random', manager.cogs)
-		var status := MONARCH_STATUS.duplicate()
+		var status := MONARCH_STATUS.duplicate(true)
 		status.target = cog
 		status.ButterflyAmount = qualitoon + 1
 		

@@ -120,7 +120,7 @@ func recuperate_effect() -> void:
 	AudioManager.play_sound(SUCCESS)
 
 func disarmed(manager: BattleManager) -> void:
-	var status := STATUS.duplicate()
+	var status := STATUS.duplicate(true)
 	status.boost = 0.80
 	status.rounds = 1
 	status.quality = StatusEffect.EffectQuality.NEGATIVE

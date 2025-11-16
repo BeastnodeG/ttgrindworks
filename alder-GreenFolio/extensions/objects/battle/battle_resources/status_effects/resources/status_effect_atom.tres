@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="StatEffectPoison" load_steps=2 format=3 uid="uid://dqewalu2kxehu"]
+
+[ext_resource type="Script" uid="uid://b54x2cc5txlq" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/status_effect_atom.gd" id="1_o4io4"]
+
+[resource]
+script = ExtResource("1_o4io4")
+amount = 0
+instant_effect = true
+quality = 1
+rounds = 1
+rounds_offset = 0
+icon_color = Color(1, 1, 1, 1)
+icon_scale = 1.0
+mini_icon_color = Color(1, 1, 1, 1)
+mini_icon_scale = 1.0
+visible = true
+description = ""
+status_name = "Status Effect"
+id = 664

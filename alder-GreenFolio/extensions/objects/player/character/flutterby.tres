@@ -15,21 +15,13 @@
 
 [sub_resource type="Resource" id="Resource_jj61k"]
 script = ExtResource("1_my7ha")
-damage = 0.8
-defense = 1.0
-evasiveness = 1.0
-accuracy = 1.0
+damage = 0.85
 speed = 0.95
-max_turns = 3
-max_hp = 25
-hp = 25
-turns = 1
 
 [sub_resource type="Resource" id="Resource_ugrs1"]
 script = ExtResource("2_mcwcd")
 texture = ExtResource("3_uj3km")
 base_color = Color(0.427451, 0.898039, 0.870588, 1)
-color_type = 0
 
 [sub_resource type="Resource" id="Resource_2lryd"]
 script = ExtResource("5_otqvj")
@@ -37,15 +29,14 @@ shirt_texture = ExtResource("6_eicdf")
 sleeve_texture = ExtResource("7_2yt3r")
 base_color = Color(0.54902, 0.819608, 0.321569, 1)
 sleeve_color = Color(0.54902, 0.819608, 0.321569, 1)
-color_type = 0
 
 [sub_resource type="Resource" id="Resource_ax4gq"]
 script = ExtResource("4_5k6ts")
 body_type = 1
+leg_type = 1
 species = 3
 head_index = 2
 eyelashes = false
-skirt = false
 head_color = Color(0.996078, 0.898039, 0.321569, 1)
 torso_color = Color(0.996078, 0.898039, 0.321569, 1)
 leg_color = Color(0.996078, 0.898039, 0.321569, 1)
@@ -55,14 +46,23 @@ bottoms = SubResource("Resource_ugrs1")
 [resource]
 script = ExtResource("9_eno52")
 character_name = "Flutterby"
-character_summary = "- Low attack and speed, decent luck
-- Starts with Lure and.. a butterfly?"
+character_summary = "Low attack and speed, decent luck
+Lacks a starting offensive gag
+Starts with Monarch Butterfly"
+character_blurb = "A quaint toon with a an endless fascination for butterflies."
 dna = SubResource("Resource_ax4gq")
 gag_loadout = ExtResource("8_fev46")
 starting_laff = 30
 starting_items = Array[ExtResource("10_5c4wj")]([ExtResource("11_aetl6"), ExtResource("12_my7ha")])
 base_stats = SubResource("Resource_jj61k")
-override_index = -1
-achievement_qualities = Dictionary[int, String]({})
-random_character_stored_name = ""
-achievement_index = 0
+starting_gags = Dictionary[String, int]({
+"Drop": 0,
+"Lure": 1,
+"Sound": 0,
+"Squirt": 0,
+"Throw": 0,
+"Trap": 0
+})
+additional_stats = Dictionary[String, Variant]({
+"luck": 1.2
+})

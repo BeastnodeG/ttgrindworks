@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bd7q5fn1p845o"]
 
-[ext_resource type="Texture2D" uid="uid://cg6rtuj6m2q03" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/paintbrush.png" id="1_kagn0"]
+[ext_resource type="Texture2D" uid="uid://doyqxlj8q7rs2" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/remastered_paintbrush.png" id="1_kagn0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bshu"]
 transparency = 1

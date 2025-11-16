@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FloorVariant" load_steps=5 format=3 uid="uid://clrwuu8uyf443"]
+
+[ext_resource type="Texture2D" uid="uid://boq38fhrubyl2" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/floorsewercap.png" id="1_c6aek"]
+[ext_resource type="Resource" uid="uid://bk1jawbj2sfo0" path="res://mods-unpacked/alder-GreenFolio/extensions/scenes/game_floor/department_floors/rooms_sewer.tres" id="3_tke4i"]
+[ext_resource type="Script" uid="uid://whrtvgypb3vt" path="res://mods-unpacked/alder-GreenFolio/extensions/scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_sewers_sky.gd" id="4_d20sc"]
+[ext_resource type="Script" uid="uid://cxvrtrods5hgg" path="res://scenes/game_floor/floor_variants/floor_variant.gd" id="4_txtr1"]
+
+[resource]
+script = ExtResource("4_txtr1")
+floor_type = ExtResource("3_tke4i")
+floor_name = "The Sewers"
+modifiers = Array[Script]([ExtResource("4_d20sc")])
+floor_icons = Array[Texture2D]([ExtResource("1_c6aek")])

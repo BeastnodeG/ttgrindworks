@@ -38,7 +38,7 @@ func setup() -> void:
 		player.stats.multipliers.append(multiplier)
 
 	BattleService.s_battle_initialized.connect(on_battle_change)
-	BattleService.s_round_ended.connect(on_battle_change)
+	#BattleService.s_round_ended.connect(on_battle_change)
 
 func on_battle_change(_arg = null) -> void:
 	var player := Util.get_player()

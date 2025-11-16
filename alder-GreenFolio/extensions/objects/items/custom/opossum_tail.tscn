@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dylotikbdl2bb"]
 
-[ext_resource type="Texture2D" uid="uid://bnhuv81edru5h" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/opossum_tail.png" id="1_f3pj5"]
+[ext_resource type="Texture2D" uid="uid://bp0lkb6l43v0v" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/remastered_opossum_tail.png" id="1_f3pj5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bshu"]
 transparency = 1

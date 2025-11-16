@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba5jx1bfjtfr0"]
+
+[ext_resource type="PackedScene" uid="uid://6mcyu8yabbug" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/lightbulb.glb" id="1_jyyjv"]
+
+[node name="lightbulb2" instance=ExtResource("1_jyyjv")]
+
+[node name="glow" parent="on" index="0"]
+visible = false
+
+[node name="glow2" parent="on" index="1"]
+visible = false
+
+[node name="off" parent="." index="1"]
+visible = false

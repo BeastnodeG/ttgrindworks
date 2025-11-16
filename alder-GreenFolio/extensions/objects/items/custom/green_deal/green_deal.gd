@@ -34,7 +34,7 @@ func end_round(manager: BattleManager) -> void:
 	apply_status(manager)
 
 func apply_status(manager: BattleManager) -> void:
-	var status := STATUS.duplicate()
+	var status := STATUS.duplicate(true)
 	status.amount = gf.green_deal_strength
 	status.target = player
 	manager.add_status_effect(status)
@@ -52,7 +52,7 @@ func use() -> void:
 
 	AudioManager.play_sound(SFX)
 
-	var effect := STATUS.duplicate()
+	var effect := STATUS.duplicate(true)
 	effect.target = player
 	effect.amount = gf.green_deal_strength
 	effect.manager = battle

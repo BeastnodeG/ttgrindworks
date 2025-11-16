@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CogDNA" load_steps=5 format=3 uid="uid://cshxpa5cv1dyp"]
+
+[ext_resource type="Script" uid="uid://bb27him60xtnk" path="res://objects/battle/battle_resources/cog_attacks/cog_attack.gd" id="1_wdng1"]
+[ext_resource type="Resource" uid="uid://b4kaq7rjifwfc" path="res://objects/battle/battle_resources/cog_attacks/resources/liquidate.tres" id="2_syafn"]
+[ext_resource type="Resource" uid="uid://bxeasogxfcdk2" path="res://objects/battle/battle_resources/cog_attacks/resources/tabulate.tres" id="3_hwoqo"]
+[ext_resource type="Script" uid="uid://yc46vrmyfql1" path="res://objects/cog/cog_dna.gd" id="4_3r7wx"]
+
+[resource]
+script = ExtResource("4_3r7wx")
+department = 3
+suit = 2
+cog_name = "Waste Broker"
+head = "res://models/cogs/heads/sales_director.glb"
+scale = 6.0
+head_textures = PackedStringArray("res://mods-unpacked/alder-GreenFolio/extensions/objects/cog/WasteBroker.png")
+hand_color = Color(0.921569, 0.682353, 0.647059, 1)
+attacks = Array[ExtResource("1_wdng1")]([ExtResource("2_syafn"), ExtResource("3_hwoqo")])
+level_high = 20
+baked_status_effects = PackedStringArray("res://objects/battle/battle_resources/status_effects/resources/attentive.tres", "res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/status_wb_hedged_assets.tres")
+is_admin = true
+health_mod = 2.0
+battle_phrases = Array[String](["I'd rather not waste this opporunity."])
+external_assets = {
+&"head_model": "",
+&"head_textures": []
+}

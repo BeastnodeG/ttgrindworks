@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://1v4ipfkk3uy4"]
+
+[ext_resource type="Texture2D" uid="uid://dai74xkx6u3dv" path="res://models/facilities/factory/FINALFACTORY_107.png" id="1_sh6qd"]
+
+[resource]
+resource_name = "lambert167"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.716, 0.716, 0.716, 0.8)
+albedo_texture = ExtResource("1_sh6qd")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+uv1_world_triplanar = true

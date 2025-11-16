@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="Track" load_steps=12 format=3 uid="uid://cvh4me3eyea8g"]
+
+[ext_resource type="Script" uid="uid://cwnjrxjvy5kc3" path="res://objects/battle/battle_resources/toon_attacks/toon_attack.gd" id="1_wi24v"]
+[ext_resource type="Texture2D" uid="uid://h6jqac2vi0hb" path="res://ui_assets/battle/gags/inventory_water_gun.png" id="6_huaxl"]
+[ext_resource type="Script" uid="uid://dcf30lcach2kf" path="res://objects/battle/battle_resources/toon_attacks/squirt_gun.gd" id="7_khcqr"]
+[ext_resource type="Script" uid="uid://b6b6pfoqyolr" path="res://objects/battle/battle_resources/gag_loadouts/track.gd" id="16_guj2e"]
+
+[sub_resource type="Resource" id="Resource_wvknt"]
+script = ExtResource("7_khcqr")
+icon = ExtResource("6_huaxl")
+damage = 5
+crit_chance_mod = 1.0
+target_type = 0
+action_name = "Attack"
+one_time_use = false
+metadata/_custom_type_script = "uid://dcf30lcach2kf"
+
+[sub_resource type="Resource" id="Resource_n42u5"]
+script = ExtResource("7_khcqr")
+icon = ExtResource("6_huaxl")
+damage = 10
+crit_chance_mod = 1.0
+target_type = 0
+action_name = "Attack"
+one_time_use = false
+metadata/_custom_type_script = "uid://dcf30lcach2kf"
+
+[sub_resource type="Resource" id="Resource_0fqpw"]
+script = ExtResource("7_khcqr")
+icon = ExtResource("6_huaxl")
+damage = 18
+crit_chance_mod = 1.0
+target_type = 0
+action_name = "Squirt Gun"
+one_time_use = false
+
+[sub_resource type="Resource" id="Resource_she8y"]
+script = ExtResource("7_khcqr")
+icon = ExtResource("6_huaxl")
+damage = 30
+crit_chance_mod = 1.0
+target_type = 0
+action_name = "Attack"
+one_time_use = false
+metadata/_custom_type_script = "uid://dcf30lcach2kf"
+
+[sub_resource type="Resource" id="Resource_fqo4k"]
+script = ExtResource("7_khcqr")
+icon = ExtResource("6_huaxl")
+damage = 45
+crit_chance_mod = 1.0
+target_type = 0
+action_name = "Attack"
+one_time_use = false
+metadata/_custom_type_script = "uid://dcf30lcach2kf"
+
+[sub_resource type="Resource" id="Resource_d8fcq"]
+script = ExtResource("7_khcqr")
+icon = ExtResource("6_huaxl")
+damage = 60
+crit_chance_mod = 1.0
+target_type = 0
+action_name = "Attack"
+one_time_use = false
+metadata/_custom_type_script = "uid://dcf30lcach2kf"
+
+[sub_resource type="Resource" id="Resource_6mmiw"]
+script = ExtResource("7_khcqr")
+icon = ExtResource("6_huaxl")
+damage = 80
+crit_chance_mod = 1.0
+target_type = 0
+action_name = "Attack"
+one_time_use = false
+metadata/_custom_type_script = "uid://dcf30lcach2kf"
+
+[resource]
+script = ExtResource("16_guj2e")
+track_type = 1
+track_name = "Atomic"
+track_color = Color(0.529412, 0, 1, 1)
+gags = Array[ExtResource("1_wi24v")]([SubResource("Resource_wvknt"), SubResource("Resource_n42u5"), SubResource("Resource_0fqpw"), SubResource("Resource_she8y"), SubResource("Resource_fqo4k"), SubResource("Resource_d8fcq"), SubResource("Resource_6mmiw")])

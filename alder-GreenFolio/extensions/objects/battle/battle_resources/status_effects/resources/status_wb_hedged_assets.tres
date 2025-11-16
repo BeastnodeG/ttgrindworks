@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatusEffectWBHedgedAssets" load_steps=3 format=3 uid="uid://k6o2iasesbfg"]
+
+[ext_resource type="Script" uid="uid://bi07jane358e7" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/status_wb_hedged_assets.gd" id="1_0qxir"]
+[ext_resource type="Texture2D" uid="uid://cos47pgy467h3" path="res://ui_assets/battle/statuses/liability_waiver.png" id="1_o5wql"]
+
+[resource]
+script = ExtResource("1_0qxir")
+stat = "defense"
+boost = 1.0
+quality = 0
+rounds = -1
+rounds_offset = 0
+icon = ExtResource("1_o5wql")
+icon_color = Color(1, 1, 1, 1)
+icon_scale = 1.0
+mini_icon_color = Color(1, 1, 1, 1)
+mini_icon_scale = 1.0
+visible = false
+description = "this is a status effect?"
+status_name = "Hedged Assets"
+id = 704

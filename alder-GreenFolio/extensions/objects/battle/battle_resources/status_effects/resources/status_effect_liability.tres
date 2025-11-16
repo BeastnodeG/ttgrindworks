@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatusEffectLiability" load_steps=3 format=3 uid="uid://bq1403sxorhtw"]
+
+[ext_resource type="Texture2D" uid="uid://2qm6ei73imov" path="res://ui_assets/battle/statuses/attentive.png" id="1_rxjjv"]
+[ext_resource type="Script" uid="uid://napgcp0jb8jb" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/status_effect_liability.gd" id="2_rxjjv"]
+
+[resource]
+script = ExtResource("2_rxjjv")
+damage_amount = 1
+quality = 1
+rounds = -1
+rounds_offset = 0
+icon = ExtResource("1_rxjjv")
+icon_color = Color(1, 1, 1, 1)
+icon_scale = 1.0
+mini_icon_color = Color(1, 1, 1, 1)
+mini_icon_scale = 1.0
+visible = true
+description = "This is a Status Effect"
+status_name = "Liability"
+id = 703
+metadata/_custom_type_script = "uid://df7irk63ikx4k"

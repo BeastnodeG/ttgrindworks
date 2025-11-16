@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatusEffectExtraTurns" load_steps=3 format=3 uid="uid://baro74qsqbxts"]
+
+[ext_resource type="Texture2D" uid="uid://ytd41vxj2y4v" path="res://ui_assets/battle/statuses/agile.png" id="1_xjvtc"]
+[ext_resource type="Script" uid="uid://bk8u30lmefix6" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/status_effect_extraturns.gd" id="2_3u2nm"]
+
+[resource]
+script = ExtResource("2_3u2nm")
+extra_turns = 1
+quality = 0
+rounds = 1
+rounds_offset = 0
+icon = ExtResource("1_xjvtc")
+icon_color = Color(1, 1, 1, 1)
+icon_scale = 1.0
+mini_icon_color = Color(1, 1, 1, 1)
+mini_icon_scale = 1.0
+visible = true
+description = "This is a Status Effect"
+status_name = "Extra Turn"
+id = 704
+metadata/_custom_type_script = "uid://df7irk63ikx4k"

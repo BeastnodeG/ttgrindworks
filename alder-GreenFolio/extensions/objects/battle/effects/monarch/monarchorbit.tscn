@@ -29,6 +29,6 @@ material = SubResource("StandardMaterial3D_j5hqf")
 amount = 100
 lifetime = 0.01
 randomness = 1.0
-fixed_fps = 60
+fixed_fps = 144
 process_material = SubResource("ShaderMaterial_ft5d3")
 draw_pass_1 = SubResource("QuadMesh_u50b8")

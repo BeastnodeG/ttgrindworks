@@ -77,32 +77,32 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 		"Cash":
 			if player:
 				for i in ButterflyAmount:
-					if RandomService.randf_channel("true_random") <= 0.2:
+					if RandomService.randf_channel("true_random") <= 0.35:
 						player.stats.add_money(1)
 						print("wow you just won some money")
 		"Hex":
 			var stat = RandomService.array_pick_random("true_random", ["damage", "defense"])
-			var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres").duplicate()
+			var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres").duplicate(true)
 			effect.stat = stat
-			effect.boost = (1 - (0.02 * ButterflyAmount))
+			effect.boost = (-0.02 * ButterflyAmount)
 			effect.rounds = 0
 			effect.target = target
 			effect.manager = manager
 			effect.quality = StatusEffect.EffectQuality.NEGATIVE
 			manager.add_status_effect(effect)
 		"Princess":
-			var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres").duplicate()
+			var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres").duplicate(true)
 			effect.stat = "damage"
-			effect.boost = (0.9)
+			effect.boost = (-0.1)
 			effect.rounds = 0
 			effect.target = target
 			effect.manager = manager
 			effect.quality = StatusEffect.EffectQuality.NEGATIVE
 			manager.add_status_effect(effect)
 		"Fedora":
-			var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres").duplicate()
+			var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_stat_boost.tres").duplicate(true)
 			effect.stat = "defense"
-			effect.boost = (0.9)
+			effect.boost = (-0.1)
 			effect.rounds = 0
 			effect.target = target
 			effect.manager = manager
@@ -116,13 +116,14 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 					print("Vampire butterfly healed for", healing)
 		"Soak":
 			if player:
-				var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_drenched.tres").duplicate()
+				var effect: StatBoost = load("res://objects/battle/battle_resources/status_effects/resources/status_effect_drenched.tres").duplicate(true)
 				effect.target = target
+				effect.rounds = 1
 				effect.boost = player.stats.get_stat("squirt_defense_boost")
 				manager.add_status_effect(effect)
 		"Aftershock":
 			if player:
-				var effect := load("res://objects/battle/battle_resources/status_effects/resources/status_effect_aftershock.tres").duplicate()
+				var effect := load("res://objects/battle/battle_resources/status_effects/resources/status_effect_aftershock.tres").duplicate(true)
 				effect.target = target
 				effect.amount = roundi(_damage * 0.25)
 				if player.stats.get_stat("drop_aftershock_round_boost") != 0:
@@ -130,7 +131,7 @@ func apply_special_effects_on_hit(_damage: int) -> void:
 				manager.add_status_effect(effect)
 		"Poison":
 			if player:
-				var effect := load("res://objects/battle/battle_resources/status_effects/resources/status_effect_poison.tres").duplicate()
+				var effect := load("res://objects/battle/battle_resources/status_effects/resources/status_effect_poison.tres").duplicate(true)
 				effect.target = target
 				effect.rounds = -1
 				effect.amount = roundi(_damage * 0.25)

@@ -5,31 +5,36 @@ var green_deal_strength = 2.5
 var monarch_absorbed_items : Array[Dictionary] = [{ "name": "The Monarch", "qualitoon": 1 },]
 var squirt_splash = true
 var taser_count = 0
+var folio_level = 0
+var atomic_effect = "plutonium"
 
-# Save function
 func save_to():
-	var GFSaveData = preload("res://mods-unpacked/alder-GreenFolio/GFSaveData.gd")
+	var GFSaveData = preload("res://mods-unpacked/alder-GreenFolio/GFcurrent_save.gd")
 	var file_name = "GFcurrent_save.tres"
 	
-	var save_data = GFSaveData.new()
-	save_data.green_deal_strength = green_deal_strength
-	save_data.monarch_absorbed_items = monarch_absorbed_items
-	save_data.taser_count = taser_count
-	save_data.squirt_splash = squirt_splash
+	var current_save_data = GFSaveData.new()
+	current_save_data.green_deal_strength = green_deal_strength
+	current_save_data.monarch_absorbed_items = monarch_absorbed_items
+	current_save_data.taser_count = taser_count
+	current_save_data.squirt_splash = squirt_splash
+	current_save_data.folio_level = folio_level
+	current_save_data.atomic_effect = atomic_effect
 
-	ResourceSaver.save(save_data, SaveFileService.SAVE_FILE_PATH + file_name)
+	ResourceSaver.save(current_save_data, SaveFileService.SAVE_FILE_PATH + file_name)
 	print("green folio saved to: ", SaveFileService.SAVE_FILE_PATH + file_name)
 	
 func load_save():
 	print("loading green folio save")
 	var file_path = SaveFileService.SAVE_FILE_PATH + "GFcurrent_save.tres"
 	if FileAccess.file_exists(file_path):
-		var loaded = ResourceLoader.load(file_path)
-		if loaded:
-			green_deal_strength = loaded.green_deal_strength
-			monarch_absorbed_items = loaded.monarch_absorbed_items
-			taser_count = loaded.taser_count
-			squirt_splash = loaded.squirt_splash
+		var current_save_loaded = ResourceLoader.load(file_path)
+		if current_save_loaded:
+			green_deal_strength = current_save_loaded.green_deal_strength
+			monarch_absorbed_items = current_save_loaded.monarch_absorbed_items
+			taser_count = current_save_loaded.taser_count
+			squirt_splash = current_save_loaded.squirt_splash
+			folio_level = current_save_loaded.folio_level
+			atomic_effect = current_save_loaded.atomic_effect
 			print("green folio save loaded successfully")
 		else:
 			print("Failed to load green folio save file.")
@@ -52,3 +57,8 @@ func reset_stats():
 	monarch_absorbed_items = [{ "name": "The Monarch", "qualitoon": 1 },]
 	taser_count = 0
 	squirt_splash = true
+	folio_level = 0
+	atomic_effect = "plutonium"
+	var player = Util.get_player()
+	if player: #EVIL GREEN FOLIO - I WILL modify the VANILLA CURRENT SAVE file!!!!!!!!!!
+		player.stats.toonups[7] = 1

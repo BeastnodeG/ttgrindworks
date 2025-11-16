@@ -663,6 +663,9 @@ shape = SubResource("BoxShape3D_ytbdv")
 [node name="StomperPiston4" parent="SpinningGear5/platform8" index="2" instance=ExtResource("18_w25vm")]
 transform = Transform3D(-1.5527955, 0, -4.9357922e-08, 0, 1.6740409, 0, 7.142873e-08, 0, -2.2471921, 0, -7.597903, 0)
 
+[node name="DebugPlayerPositionMarker2" parent="." index="29" instance=ExtResource("12_byyin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -19)
+
 [connection signal="s_pressed" from="CogButton" to="WindowDoor" method="on_button_press"]
 
 [editable path="BurnerJump"]

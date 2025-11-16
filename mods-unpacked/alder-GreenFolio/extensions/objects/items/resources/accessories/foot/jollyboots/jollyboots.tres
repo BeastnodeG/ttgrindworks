@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ItemShoe" load_steps=6 format=3 uid="uid://dtwdd0uyuvbfy"]
+
+[ext_resource type="Texture2D" uid="uid://dreti4cp6i3m8" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/foot/jollyboots/jollyboots.png" id="1_ds8va"]
+[ext_resource type="Script" uid="uid://daw4hddrniqrx" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/foot/jollyboots/item_jollyboots.gd" id="2_tucpj"]
+[ext_resource type="Texture2D" uid="uid://6g7b1mdt1hxp" path="res://models/accessories/shoe_textures/boots/tt_t_chr_avt_acc_sho_santaBootsLL.png" id="3_ds8va"]
+[ext_resource type="Script" uid="uid://bb02y647us2n3" path="res://objects/items/classes/item_shoe.gd" id="5_ed5t0"]
+[ext_resource type="Texture2D" uid="uid://cq1n6gm8ah7i8" path="res://models/accessories/shoe_textures/boots/tt_t_chr_avt_acc_sho_santaBoots.png" id="6_qp6m4"]
+
+[resource]
+script = ExtResource("5_ed5t0")
+shoe_type = 3
+shoe_tex = ExtResource("6_qp6m4")
+long_leg_tex = ExtResource("3_ds8va")
+qualitoon = 2
+world_y_offset = -0.2
+ui_cam_offset = 0.15
+item_name = "Jolly Boots"
+item_description = "Walking on sunshine"
+big_description = "Receive a 5% heal after every battle"
+item_script = ExtResource("2_tucpj")
+icon = ExtResource("1_ds8va")
+shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)
+force_show_shop_category = true

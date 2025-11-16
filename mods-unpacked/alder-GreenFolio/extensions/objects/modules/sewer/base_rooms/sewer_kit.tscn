@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjdopjubw5eft"]
+
+[ext_resource type="PackedScene" uid="uid://c6sct1j8gf0xq" path="res://scenes/tool_scenes/entrance_placer/entrance_placer.tscn" id="5_1a8bh"]
+[ext_resource type="Material" uid="uid://c614gkwpxnouy" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/ceilingbricks.tres" id="10_q5hmy"]
+[ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="11_hnucq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mb8y"]
+size = Vector3(8, 13, 20.4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2omox"]
+lightmap_size_hint = Vector2i(12, 12)
+material = ExtResource("10_q5hmy")
+add_uv2 = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wa1d8"]
+size = Vector3(2.1, 0.001, 2)
+
+[node name="Root Scene" type="Node3D"]
+
+[node name="RoomArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3382, -0.2, 1.8967)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24146, 7.09836, -1.07303)
+shape = SubResource("BoxShape3D_5mb8y")
+
+[node name="PlayerStartPos" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.989103, -0.147222, 0, 0.147222, 0.989103, 2.4369, 5.15833, 4.22706)
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8, 7, 19.1)
+quality = 0
+bounces = 0
+use_texture_for_bounces = false
+interior = true
+bias = 0.03061
+texel_scale = 1.5
+generate_probes_subdiv = 1
+
+[node name="Lighting" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+visible = false
+
+[node name="altlighting" type="Node3D" parent="Lighting"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lighting/altlighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -34.5005, 9)
+light_color = Color(0.617455, 0.617455, 0.617455, 1)
+light_energy = 6.0
+light_indirect_energy = 1.478
+light_specular = 2.769
+light_bake_mode = 1
+spot_range = 213.851
+spot_angle = 73.3447
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lighting/altlighting/SpotLight3D"]
+light_energy = 2.0
+light_size = 1.0
+light_bake_mode = 1
+omni_range = 22.861
+
+[node name="EXIT" type="Node3D" parent="."]
+transform = Transform3D(-0.999996, -0.0025855, -0.000627622, -0.00258561, 0.999997, 0.000182113, 0.000627155, 0.000183713, -1, -4.617, 0.5, 12.976)
+
+[node name="ENTRANCE" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.717, 9.5, -10.099)
+
+[node name="Node3D" parent="." instance=ExtResource("5_1a8bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4995, -14)
+
+[node name="Node3D2" parent="." instance=ExtResource("5_1a8bh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.4995, 19)
+
+[node name="ceiling" type="MeshInstance3D" parent="."]
+transform = Transform3D(16.2, 0, 0, 0, -1, 2.41594e-06, 0, -1.50996e-07, -16, -3, 19.3, 20.5)
+mesh = SubResource("PlaneMesh_2omox")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ceiling"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0.050001, 0.0489993, 3.57628e-07)
+shape = SubResource("BoxShape3D_wa1d8")
+
+[node name="CSG" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17)
+use_collision = true
+size = Vector3(9, 1, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+use_collision = true
+size = Vector3(9, 1, 4)
+
+[node name="DebugPlayerPositionMarker" parent="." instance=ExtResource("11_hnucq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 18)

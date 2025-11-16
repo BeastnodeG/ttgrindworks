@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://n1trapjb4fq6" path="res://models/facilities/molten/textures/FINALFACTORY_52.png" id="2_eeier"]
 [ext_resource type="PackedScene" uid="uid://klxlslni1hnn" path="res://objects/props/mint/door_frame.tscn" id="2_so7rf"]
 [ext_resource type="Shader" uid="uid://bwqy10j7lib06" path="res://general_resources/shaders/lava_shader.gdshader" id="2_te6cc"]
-[ext_resource type="Texture2D" uid="uid://djg4yaniinjt3" path="res://models/facilities/molten/textures/Molten_CompiledSet1.png" id="3_opfxv"]
+[ext_resource type="Texture2D" uid="uid://cukeb4lk6t7ro" path="res://models/facilities/molten/textures/Molten_CompiledSet1.png" id="3_opfxv"]
 [ext_resource type="Texture2D" uid="uid://xq7dvm0xhhhw" path="res://models/facilities/molten/textures/FINALFACTORY_9.png" id="4_34bw1"]
 [ext_resource type="PackedScene" uid="uid://dmv7dbgr2b2nr" path="res://objects/obstacles/lava_floor/lava_floor.tscn" id="5_d8jvx"]
 [ext_resource type="PackedScene" uid="uid://dbip8tydrs1a3" path="res://objects/interactables/water_bucket/water_bucket.tscn" id="6_ntmsi"]

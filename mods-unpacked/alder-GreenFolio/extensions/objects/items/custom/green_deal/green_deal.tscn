@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://3a8vwu35co24"]
 
-[ext_resource type="Texture2D" uid="uid://beta6l27baoj1" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/green_deal.png" id="1_uy51k"]
+[ext_resource type="Texture2D" uid="uid://b55rvmga2gjws" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/remastered_green_deal.png" id="1_uy51k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_af6np"]
 transparency = 1

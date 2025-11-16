@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bynk8pha4n8u"]
+
+[ext_resource type="PackedScene" uid="uid://crvinyc2k85fq" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/toonups/cannon_item.tscn" id="1_i8hn7"]
+[ext_resource type="AudioStream" uid="uid://di6qrbes0f1pu" path="res://audio/sfx/battle/gags/delighted_06.ogg" id="2_al8ua"]
+[ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="3_c64q6"]
+
+[resource]
+script = ExtResource("3_c64q6")
+qualitoon = 4
+evergreen = true
+world_scale = 0.15
+world_y_offset = 0.25
+ui_cam_offset = 0.5
+item_name = "Confetti Cannon"
+item_description = "Extra Turn"
+big_description = "Lasts 2 rounds
++ 1 Turn"
+model = ExtResource("1_i8hn7")
+pickup_sfx = ExtResource("2_al8ua")
+remember_item = false
+shop_category_title = "Consumable"
+shop_category_color = Color(0.105882, 0.54902, 0.537255, 1)
+force_show_shop_category = true

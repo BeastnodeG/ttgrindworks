@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d2vv1tsex47d2"]
+
+[ext_resource type="Texture2D" uid="uid://d0tmuv2rep8vp" path="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/backpacks/battoon_cape/battooncaptex.png" id="1_1j11x"]
+
+[resource]
+resource_name = "default.300"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_1j11x")

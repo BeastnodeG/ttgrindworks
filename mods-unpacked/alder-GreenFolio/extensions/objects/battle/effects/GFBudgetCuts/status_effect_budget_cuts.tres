@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bln4sd78xhjto"]
+
+[ext_resource type="Script" uid="uid://bmistc2puf3db" path="res://objects/battle/battle_resources/status_effects/status_effect_budget_cuts.gd" id="1_koevb"]
+
+[resource]
+script = ExtResource("1_koevb")
+quality = 1
+rounds = 2
+status_name = "Budget Cuts"
+id = 15

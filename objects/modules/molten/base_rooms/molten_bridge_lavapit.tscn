@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cd0qr2yj0xeys" path="res://models/facilities/molten/molten_bridge_lavapit.fbx" id="1_3xip0"]
 [ext_resource type="Texture2D" uid="uid://dpxjd734t77ip" path="res://models/facilities/molten/textures/hq_chain.png" id="2_1mqwl"]
-[ext_resource type="Texture2D" uid="uid://dffrrakhq2nvo" path="res://models/facilities/molten/textures/metalgrate_rusted.png" id="2_3idh3"]
+[ext_resource type="Texture2D" uid="uid://b23d20tc3fen5" path="res://models/facilities/molten/textures/metalgrate_rusted.png" id="2_3idh3"]
 [ext_resource type="Texture2D" uid="uid://b6ghwokk377dn" path="res://models/facilities/molten/textures/FINALFACTORY_67.png" id="2_fmdi4"]
 [ext_resource type="PackedScene" uid="uid://c1rus4vu8jrlg" path="res://objects/battle/battle_node/dynamic/battle_node_dynamic.tscn" id="3_1mqwl"]
 [ext_resource type="PackedScene" uid="uid://dmv7dbgr2b2nr" path="res://objects/obstacles/lava_floor/lava_floor.tscn" id="4_4p5io"]
@@ -243,10 +243,12 @@ shape = SubResource("ConcavePolygonShape3D_4p5io")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="BridgeSupports/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.84217e-14, 0, 2.84217e-14, 1, -0.0801001, -3.87034e-09, 0.0593222)
 shape = SubResource("BoxShape3D_4jp1u")
+debug_color = Color(0.98, 0, 0.40833318, 1)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="BridgeSupports/StaticBody3D" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.84217e-14, 0, 2.84217e-14, 1, 0.0804653, -3.87034e-09, 0.0593222)
 shape = SubResource("BoxShape3D_4jp1u")
+debug_color = Color(0.98, 0, 0.40833318, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Chain Supports" index="0"]
 

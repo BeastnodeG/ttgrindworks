@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://iwfwihtnb1h6"]
 
-[ext_resource type="Texture2D" uid="uid://wnrsi1jxxk02" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/alphabet soup.png" id="1_busbm"]
+[ext_resource type="Texture2D" uid="uid://b31fq1eplel2t" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/remastered_alphabet soup.png" id="1_busbm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bshu"]
 transparency = 1

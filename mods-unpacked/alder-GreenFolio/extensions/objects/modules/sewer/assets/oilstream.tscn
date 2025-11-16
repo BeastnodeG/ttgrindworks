@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=4 uid="uid://cng2pebofco7w"]
+
+[ext_resource type="Script" uid="uid://gt7n3dpwhk77" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/oilstream.gd" id="1_qwc5a"]
+[ext_resource type="Material" uid="uid://uh2a7bojujbp" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/oil_mat_stream.tres" id="2_qwc5a"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pwwka"]
+_surfaces = [{
+"aabb": AABB(-0.553083, -2.31097, -0.48947, 1.10617, 4.62195, 0.978939),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEAAgADAAUABgAEAAAABQADAAcABgAIAAQABQAHAAkACgAIAAYACQAHAAsACgALAAgACQALAAoA"),
+"name": "Paint",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("U9j//8XbAABTWCEC//8AAFNYWv///wAAAAC+ADmkAABT2MUCxdsAAAAA+P05pAAA//9A/8VbAACsJwAAOSQAAP//BgLFWwAArCc5/TkkAACrp939AAAAAKunpAAAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3qfx6"]
+resource_name = "oilstream_Plane_001"
+_surfaces = [{
+"aabb": AABB(-0.553083, -2.31097, -0.48947, 1.10617, 4.62195, 0.978939),
+"attribute_data": PackedByteArray("/////7LWAAD/////S6n///////9LqQAA//////9/////////stb//////////wAA/////////////////38AAP////+zVv///////7NWAAD/////TCn///////9MKQAA/////wAA////////AAAAAA=="),
+"format": 34896613407,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABQAEAAAABQAGAAQAAgADAAcABwADAAgABwAIAAkACQAIAAoACQAKAAsACwAKAAwACwAMAA0A"),
+"material": ExtResource("2_qwc5a"),
+"name": "Paint",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 14,
+"vertex_data": PackedByteArray("U9j//8XbNZFTWCEC//+ZjFNYWv////uWAAC+ADmkHbdT2MUCxduYmf//QP/FW2W8//8GAsVbwsoAAPj9OaQQwqwnAAA5JFThrCc5/Tkkp+6rp6QAAACT96un3f0AAPDk//8GAsVbBcv//0D/xVttvN9b8T/nrRzZ+XPJ+iaNWO3RjD8JgILdA16OQwyhhbz9+4KT9WyBev0ZikUD/4I1Ap+MRQSbhFII")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pwwka")
+
+[node name="oilstream" type="Node3D"]
+script = ExtResource("1_qwc5a")
+
+[node name="Paint_001" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.57688, 0, -0.44455, 0, 1.63835, 0, 0.44455, 0, 1.57688, 0, 0, 0)
+mesh = SubResource("ArrayMesh_3qfx6")
+skeleton = NodePath("")

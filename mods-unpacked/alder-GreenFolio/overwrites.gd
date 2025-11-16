@@ -6,7 +6,10 @@ const LOG_NAME := "alder-GreenFolio:Overwrites"
 var mod_dir_path := ""
 
 func _init():
-	pass
+	#pass
+	
+	var toonup := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/gag_loadouts/gag_tracks/toon_up.tres")
+	toonup.take_over_path("res://objects/battle/battle_resources/gag_loadouts/gag_tracks/toon_up.tres")
 	
 	#no longer needed, thanks evan!
 	#var everything := preload("res://mods-unpacked/alder-GreenFolio/overwrites/objects/items/pools/everything.tres")

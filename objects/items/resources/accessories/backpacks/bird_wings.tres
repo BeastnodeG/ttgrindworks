@@ -1,29 +1,29 @@
-[gd_resource type="Resource" script_class="ItemAccessory" load_steps=9 format=3 uid="uid://bywh4tc8sqocf"]
+[gd_resource type="Resource" script_class="ItemAccessory" load_steps=9 format=3]
 
-[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_n4erk"]
-[ext_resource type="Script" uid="uid://duxq3xtgnln43" path="res://objects/items/classes/body_placement.gd" id="2_olwse"]
-[ext_resource type="Texture2D" uid="uid://dv0raxow0q50w" path="res://models/accessories/backpacks/bird_wings/tt_m_chr_avt_acc_pac_birdWings.glb-pix-1.png" id="3_y2txo"]
-[ext_resource type="PackedScene" uid="uid://bnqj6gspshyto" path="res://models/accessories/backpacks/bird_wings/tt_m_chr_avt_acc_pac_birdWings.glb" id="4_n4erk"]
-[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="6_suwln"]
+[ext_resource type="Script" path="res://objects/items/classes/accessory_placement.gd" id="1_n4erk"]
+[ext_resource type="Script" path="res://objects/items/classes/body_placement.gd" id="2_olwse"]
+[ext_resource type="Texture2D" path="res://models/accessories/backpacks/bird_wings/tt_m_chr_avt_acc_pac_birdWings.glb-pix-1.png" id="3_y2txo"]
+[ext_resource type="PackedScene" path="res://models/accessories/backpacks/bird_wings/tt_m_chr_avt_acc_pac_birdWings.glb" id="4_n4erk"]
+[ext_resource type="Script" path="res://objects/items/classes/item_accessory.gd" id="6_suwln"]
 
 [sub_resource type="Resource" id="Resource_xqi40"]
 script = ExtResource("2_olwse")
-position = Vector3(0.01, 0.56, 0.92)
-rotation = Vector3(0, 180, 0)
+position = Vector3(0.01, 0.56, 3.03)
+rotation = Vector3(0, 360, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="Resource" id="Resource_bsqs6"]
 script = ExtResource("2_olwse")
 body_type = 1
-position = Vector3(0.01, 0.56, 0.75)
-rotation = Vector3(0, 180, 0)
+position = Vector3(0.01, 0.56, 2.86)
+rotation = Vector3(0, 360, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="Resource" id="Resource_n1he7"]
 script = ExtResource("2_olwse")
 body_type = 2
-position = Vector3(0.01, 0.78, 0.81)
-rotation = Vector3(0, 180, 0)
+position = Vector3(0.01, 0.78, 2.92)
+rotation = Vector3(0, 360, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [resource]

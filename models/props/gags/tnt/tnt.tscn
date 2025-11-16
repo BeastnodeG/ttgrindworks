@@ -361,7 +361,7 @@ skin = SubResource("Skin_jpsat")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.9015, 229.559, -88.4405)
 
 [node name="BigFuse" type="GPUParticles3D" parent="tnt/Skeleton3D/TheFuse/SPARK VFX"]
-transform = Transform3D(-0.00169746, 468.912, 0.00169746, 0, -0.00169746, 468.912, 468.912, 0.00169746, 6.14478e-09, 3.54778, -6.22244, 3.41549)
+transform = Transform3D(-0.0016974568, 468.912, 0.0016974568, 0, -0.0016974568, 468.912, 468.912, 0.0016974568, 6.1447767e-09, 3.54778, -6.22244, 3.41549)
 amount = 1
 lifetime = 0.15
 randomness = 0.67

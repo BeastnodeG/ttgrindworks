@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CogDNA" load_steps=10 format=3 uid="uid://d1mc6jsfw6jnq"]
+
+[ext_resource type="Script" uid="uid://bb27him60xtnk" path="res://objects/battle/battle_resources/cog_attacks/cog_attack.gd" id="1_gvi4f"]
+[ext_resource type="Resource" uid="uid://b4kaq7rjifwfc" path="res://objects/battle/battle_resources/cog_attacks/resources/liquidate.tres" id="3_fxdfa"]
+[ext_resource type="Resource" uid="uid://bxeasogxfcdk2" path="res://objects/battle/battle_resources/cog_attacks/resources/tabulate.tres" id="3_i3xnd"]
+[ext_resource type="PackedScene" uid="uid://dvhibmrq8p7i6" path="res://models/cogs/heads/sales_director.glb" id="5_vct63"]
+[ext_resource type="Texture2D" uid="uid://b3py3rutf5473" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/cog/WasteBroker.png" id="6_i3xnd"]
+[ext_resource type="Script" uid="uid://okjbx502s3r5" path="res://objects/cog/cogdna.gd" id="7_qhcyj"]
+[ext_resource type="Script" uid="uid://df7irk63ikx4k" path="res://objects/battle/battle_resources/status_effect.gd" id="8_e4p00"]
+[ext_resource type="Resource" uid="uid://k6o2iasesbfg" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/status_wb_hedged_assets.tres" id="9_i3xnd"]
+[ext_resource type="Resource" uid="uid://c8rs8upqmscoh" path="res://objects/battle/battle_resources/status_effects/resources/attentive.tres" id="9_i6db3"]
+
+[resource]
+script = ExtResource("7_qhcyj")
+department = 3
+suit = 2
+cog_name = "Waste Broker"
+name_plural = ""
+name_prefix = ""
+name_suffix = ""
+head = ExtResource("5_vct63")
+head_scale = Vector3(1, 1, 1)
+head_pos = Vector3(0, 0, 0)
+scale = 6.0
+head_textures = Array[Texture2D]([ExtResource("6_i3xnd")])
+hand_color = Color(0.921569, 0.682353, 0.647059, 1)
+head_color = Color(1, 1, 1, 1)
+custom_nametag_height = 0.0
+custom_nametag_suffix = ""
+can_speak = true
+attacks = Array[ExtResource("1_gvi4f")]([ExtResource("3_fxdfa"), ExtResource("3_i3xnd")])
+level_low = 1
+level_high = 20
+status_effects = Array[ExtResource("8_e4p00")]([ExtResource("9_i6db3"), ExtResource("9_i3xnd")])
+is_mod_cog = false
+is_admin = true
+health_mod = 2.0
+battle_phrases = Array[String](["I'd rather not waste this opporunity."])
+external_assets = {
+&"head_model": "",
+&"head_textures": []
+}

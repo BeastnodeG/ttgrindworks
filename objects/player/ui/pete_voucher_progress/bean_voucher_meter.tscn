@@ -17,7 +17,7 @@ content_margin_left = 2.0
 content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
-bg_color = Color(0.29853636, 0.40292725, 0.20146362, 1)
+bg_color = Color(0.26214695, 0.21035783, 0.5, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -39,7 +39,7 @@ content_margin_left = 2.0
 content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
-bg_color = Color(0.5970727, 0.8058545, 0.40292725, 1)
+bg_color = Color(0.5242939, 0.42071566, 1, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -213,8 +213,8 @@ size = Vector2i(614, 512)
 
 [node name="Voucher3D" type="Sprite3D" parent="SubViewport/World3D"]
 unique_name_in_owner = true
-transform = Transform3D(-0.34569737, 0.060955744, 0.9363625, 0.17364794, 0.9848075, -7.1176146e-08, -0.92213863, 0.16259764, -0.35102972, 0, 0, 0)
-modulate = Color(0.5970727, 0.8058545, 0.40292725, 1)
+transform = Transform3D(0.30485383, -0.0537538, 0.95087934, 0.17364794, 0.98480743, -7.268256e-08, -0.936435, 0.1651185, 0.30955616, 0, 0, 0)
+modulate = Color(0.5242939, 0.42071566, 1, 1)
 pixel_size = 0.007
 texture = ExtResource("2_s1xf2")
 

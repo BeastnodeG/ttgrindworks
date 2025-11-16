@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b05xw5id1vqml"]
+
+[ext_resource type="Script" uid="uid://c6itql0dvd0fk" path="res://objects/battle/battle_resources/cog_attacks/reinforcement_call.gd" id="1_vkmrl"]
+
+[resource]
+script = ExtResource("1_vkmrl")
+attack_lines = Array[String](["How about we up the stakes?"])
+action_name = "Reinforcements"

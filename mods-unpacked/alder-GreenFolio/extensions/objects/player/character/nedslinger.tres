@@ -15,21 +15,13 @@
 
 [sub_resource type="Resource" id="Resource_jj61k"]
 script = ExtResource("1_8trhd")
-damage = 0.45
-defense = 1.0
-evasiveness = 1.0
-accuracy = 1.0
+damage = 0.5
 speed = 1.1
-max_turns = 3
-max_hp = 25
-hp = 25
-turns = 1
 
 [sub_resource type="Resource" id="Resource_ugrs1"]
 script = ExtResource("2_auivi")
 texture = ExtResource("3_8trhd")
 base_color = Color(0.788235, 0.47451, 0.282353, 1)
-color_type = 0
 
 [sub_resource type="Resource" id="Resource_2lryd"]
 script = ExtResource("5_2kjxj")
@@ -37,15 +29,14 @@ shirt_texture = ExtResource("6_auivi")
 sleeve_texture = ExtResource("7_sfjra")
 base_color = Color(0.964706, 0.470588, 0.164706, 1)
 sleeve_color = Color(0.964706, 0.470588, 0.164706, 1)
-color_type = 0
 
 [sub_resource type="Resource" id="Resource_ax4gq"]
 script = ExtResource("4_x45ox")
 body_type = 1
+leg_type = 1
 species = 4
 head_index = 2
 eyelashes = false
-skirt = false
 head_color = Color(0.972549, 0.682353, 0.498039, 1)
 torso_color = Color(0.972549, 0.682353, 0.498039, 1)
 leg_color = Color(0.972549, 0.682353, 0.498039, 1)
@@ -55,17 +46,24 @@ bottoms = SubResource("Resource_ugrs1")
 [resource]
 script = ExtResource("9_y1yum")
 character_name = "Ned Slinger"
-character_summary = "- Attack is halved
-- No starting Luck
-- Double Turns and Gag Regen
-- Starts with 15 Gag Capacity
-- Starts with Lure, Squirt, and Throw"
+character_summary = "Attack is halved
+No starting Luck
+Double Moves and Gag Regen
+Starts with 15 Gag Capacity"
+character_blurb = "A talented baker from the heart of Toontown - this toon sure knows how to make pies fly!"
 dna = SubResource("Resource_ax4gq")
 gag_loadout = ExtResource("8_xo3ud")
 starting_laff = 30
 starting_items = Array[ExtResource("10_528jg")]([ExtResource("11_8trhd"), ExtResource("12_auivi")])
 base_stats = SubResource("Resource_jj61k")
-override_index = -1
-achievement_qualities = Dictionary[int, String]({})
-random_character_stored_name = ""
-achievement_index = 0
+starting_gags = Dictionary[String, int]({
+"Drop": 0,
+"Lure": 1,
+"Sound": 0,
+"Squirt": 1,
+"Throw": 1,
+"Trap": 0
+})
+additional_stats = Dictionary[String, Variant]({
+"luck": 1.0
+})

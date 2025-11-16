@@ -7,7 +7,7 @@ const POOL_SHORTHANDS := {
 	"res://objects/items/pools/jellybeans.tres": "Jellybean",
 	"res://objects/items/pools/super_candies.tres": "Super Candy",
 	"res://objects/items/pools/candies.tres": "Candy",
-	"res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/monarch_butterfly/toonup.tres": "Toonup",
+	"res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/monarch_butterfly/toonup12.tres": "Toonup",
 	"res://objects/items/pools/treasures.tres": "Treasure"
 }
 
@@ -30,7 +30,7 @@ func setup() -> void:
 		return
 
 	if not player.stats.has_item("MonarchEffects"):
-		var monarch = MONARCH_ITEM.duplicate()
+		var monarch = MONARCH_ITEM.duplicate(true)
 		ItemService.seen_item(monarch)
 		monarch.apply_item(player)
 
@@ -102,9 +102,9 @@ func use() -> void:
 			}
 			absorbed_list.append(entry)
 	elif item_name == "Monarch Butterfly":
-		for i in range(15):
+		for i in range(20):
 			var entry := {
-				"name": "Basic",
+				"name": "Random",
 				"qualitoon": 1
 			}
 			absorbed_list.append(entry)
@@ -142,7 +142,7 @@ func get_shorthand_label(item: Item) -> String:
 	return item.item_name
 
 func item_in_pool(item: Item, pool: ItemPool) -> bool:
-	for pool_item: Item in pool.items:
+	for pool_item: Item in pool:
 		if pool_item.item_name == item.item_name:
 			return true
 	return false

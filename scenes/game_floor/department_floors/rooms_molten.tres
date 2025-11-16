@@ -79,4 +79,4 @@ pre_final_rooms = Array[ExtResource("1_mrym8")]([SubResource("Resource_mrym8")])
 final_rooms = Array[ExtResource("1_mrym8")]([SubResource("Resource_y4456")])
 special_rooms = Array[ExtResource("1_mrym8")]([SubResource("Resource_n8i1b")])
 background_music = PackedStringArray("res://audio/music/molten_mint/molten_mint.ogg")
-battle_music = "res://audio/music/molten_mint/liquid_metal.ogg"
+battle_music = "uid://cquwt0pknhijt"

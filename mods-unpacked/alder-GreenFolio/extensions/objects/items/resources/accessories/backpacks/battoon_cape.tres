@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="ItemAccessory" load_steps=10 format=3 uid="uid://bmyyacj4d1dmo"]
+
+[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_jeqsf"]
+[ext_resource type="Script" uid="uid://duxq3xtgnln43" path="res://objects/items/classes/body_placement.gd" id="2_sibhq"]
+[ext_resource type="Texture2D" uid="uid://d4gi56kpqmmi3" path="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/backpacks/battoon_cape/battoncapcentered.png" id="3_4tsa1"]
+[ext_resource type="Script" uid="uid://f278si0tb3sp" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/backpacks/item_battoon_cape.gd" id="4_p4bn6"]
+[ext_resource type="PackedScene" uid="uid://bq4fluv342xva" path="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/backpacks/battoon_cape/cape_centered.tscn" id="4_uev5r"]
+[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="5_e3soa"]
+
+[sub_resource type="Resource" id="Resource_ryjws"]
+script = ExtResource("2_sibhq")
+position = Vector3(0.01, 0.42, 3.19)
+rotation = Vector3(0, 360, 0)
+scale = Vector3(0.4, 0.3, 0.5)
+
+[sub_resource type="Resource" id="Resource_2cphq"]
+script = ExtResource("2_sibhq")
+body_type = 1
+position = Vector3(0.01, 0.45, 3.01)
+rotation = Vector3(0, 360, 0)
+scale = Vector3(0.4, 0.3, 0.5)
+
+[sub_resource type="Resource" id="Resource_mw3is"]
+script = ExtResource("2_sibhq")
+body_type = 2
+position = Vector3(0.01, 0.85, 2.94)
+rotation = Vector3(0, 360, 0)
+scale = Vector3(0.3, 0.3, 0.4)
+
+[resource]
+script = ExtResource("5_e3soa")
+accessory_placements = Array[ExtResource("1_jeqsf")]([SubResource("Resource_ryjws"), SubResource("Resource_2cphq"), SubResource("Resource_mw3is")])
+qualitoon = 3
+rarity = 5
+slot = 3
+world_scale = 0.1
+item_name = "Bat-toon Cape"
+item_description = "Hero of the night"
+big_description = "- 1.1x speed multiplier
+- 1.1x evasion multiplier
+- 0.9x defense multiplier"
+model = ExtResource("4_uev5r")
+item_script = ExtResource("4_p4bn6")
+icon = ExtResource("3_4tsa1")
+shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)

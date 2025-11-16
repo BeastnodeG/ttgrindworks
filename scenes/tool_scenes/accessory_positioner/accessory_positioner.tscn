@@ -293,7 +293,6 @@ initial_position = 1
 size = Vector2i(348, 290)
 ok_button_text = "Open"
 file_mode = 0
-root_subfolder = "objects/items/resources/accessories"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mmvdr")

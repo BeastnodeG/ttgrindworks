@@ -17,7 +17,7 @@ func clean_up() -> void:
 
 func on_battle_finished() -> void:
 	if not is_instance_valid(Util.get_player()): return
-	Util.get_player().stats.charge_active_item(1)
+	Util.get_player().stats.charge_active_item(-1)
 	if RandomService.randi_channel("overcharged") % 4 == 0:
 		Util.get_player().boost_queue.queue_text("Power Outage!", Color(1, 0, 0))
 

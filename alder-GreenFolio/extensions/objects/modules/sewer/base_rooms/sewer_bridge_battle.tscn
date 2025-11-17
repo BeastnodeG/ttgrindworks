@@ -271,7 +271,7 @@ material = ExtResource("12_ygdn5")
 add_uv2 = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwl4e"]
-size = Vector3(9.7, 4, 8)
+size = Vector3(24, 4, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5c5y"]
 size = Vector3(39, 1.9, 33)
@@ -726,7 +726,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.5433
 cogs = [NodePath("Cogs/Cog4"), NodePath("Cogs/Cog5"), NodePath("Cogs/Cog6"), NodePath("Cogs/Cog7")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BattleNodeDynamic2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500031, 1.5, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.200003, 1.5, -0.5)
 shape = SubResource("BoxShape3D_uwl4e")
 
 [node name="OilFloor" parent="." node_paths=PackedStringArray("default_spawn_point") instance=ExtResource("10_bjhan")]

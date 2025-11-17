@@ -1,5 +1,6 @@
 extends Area3D
 
+
 enum LavaType {
 	DAMAGE_TICK,
 	TELEPORT
@@ -10,13 +11,14 @@ signal s_lava_hit
 @export var tick_delay := 2.0
 @export var base_damage := -1
 @export var damage_name: String = "Sewer Oil"
-@export var lava_type := LavaType.DAMAGE_TICK
+@export var lava_type := LavaType.TELEPORT
 @export var checkpoints : Dictionary[Area3D, Node3D] = {}
 @export var default_spawn_point : Node3D
 
 var active := true
 var timer: Timer
-var hp_tick := -1
+var hp_tick := -1:
+	get: return Util.get_hazard_damage(base_damage)
 var current_checkpoint : Node3D
 
 
@@ -25,9 +27,6 @@ func _ready() -> void:
 	add_child(timer)
 	timer.wait_time = tick_delay
 	timer.one_shot = true
-	
-	hp_tick = Util.get_hazard_damage() + base_damage + 1 #manually subtract +1 because im lazy
-	
 	
 	# Set up teleportation
 	if default_spawn_point:

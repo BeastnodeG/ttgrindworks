@@ -235,8 +235,7 @@ scale = Vector3(0.7, 0.7, 0.7)
 [resource]
 script = ExtResource("6_w8nxl")
 accessory_placements = Array[ExtResource("1_lova0")]([SubResource("Resource_ha20r"), SubResource("Resource_sic67"), SubResource("Resource_y8b6u"), SubResource("Resource_akm0w"), SubResource("Resource_1oxbp"), SubResource("Resource_jkv5u"), SubResource("Resource_4t44a"), SubResource("Resource_0snq8"), SubResource("Resource_gdx36"), SubResource("Resource_ydtmm"), SubResource("Resource_xg0u3"), SubResource("Resource_6ih24"), SubResource("Resource_tlmyw"), SubResource("Resource_kvbky"), SubResource("Resource_qoo4k"), SubResource("Resource_sma1l"), SubResource("Resource_eihia"), SubResource("Resource_5ss6p"), SubResource("Resource_s2ssm"), SubResource("Resource_hflui"), SubResource("Resource_taqhb"), SubResource("Resource_fpx6k"), SubResource("Resource_rlrdp"), SubResource("Resource_7p5sj"), SubResource("Resource_qa1i7"), SubResource("Resource_4iwcm"), SubResource("Resource_luo35"), SubResource("Resource_bth8t"), SubResource("Resource_08my1"), SubResource("Resource_2arqe"), SubResource("Resource_xut04"), SubResource("Resource_i02sp"), SubResource("Resource_hs7mc"), SubResource("Resource_ieafq")])
-qualitoon = 4
-rarity = 6
+qualitoon = 3
 slot = 1
 world_scale = 0.15
 world_y_offset = 0.25

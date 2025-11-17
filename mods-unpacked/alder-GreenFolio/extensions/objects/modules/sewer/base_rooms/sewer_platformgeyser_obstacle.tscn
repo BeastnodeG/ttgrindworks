@@ -449,6 +449,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08256, 1, 16)
 [node name="LavaFloor" parent="." instance=ExtResource("4_55pl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 16)
 script = ExtResource("5_vwfgi")
+base_damage = -2
 damage_name = "Sewer Oil"
 lava_type = 0
 

@@ -881,6 +881,7 @@ mesh = SubResource("PlaneMesh_can0m")
 [node name="OilFloor" parent="." instance=ExtResource("9_u1l7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7, -1.39419, 10.6)
 script = ExtResource("10_fxkw2")
+base_damage = -2
 damage_name = "Sewer Oil"
 lava_type = 0
 

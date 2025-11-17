@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dryvgc3ojog5v"]
+[gd_scene load_steps=55 format=3 uid="uid://dryvgc3ojog5v"]
 
 [ext_resource type="LightmapGIData" uid="uid://chpr6d5bbry85" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/base_rooms/lightmaps/alderGreenFolio.sewer_obstacle_doubleplatformgeyser.tres" id="1_yqfpp"]
 [ext_resource type="Material" uid="uid://c614gkwpxnouy" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/ceilingbricks.tres" id="2_p4nev"]
@@ -171,6 +171,10 @@ size = Vector3(65, 0.5, 26)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_52c8v"]
 size = Vector3(27, 3, 10)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_l3h74"]
+vertices = PackedVector3Array(-5, 0.999, -13.5, -5, 0.999, -10.5, 5, 0.999, -10.5, 5, 0.999, -13.5, -5, 0.999, 15.5, -5, 0.999, 18.5, 5, 0.999, 18.5, 5, 0.999, 15.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
 
 [node name="Root Scene" type="Node3D"]
 
@@ -550,3 +554,28 @@ transform = Transform3D(-0.25, 3.27836e-08, 1.09279e-08, 1.09279e-08, -4.28408e-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pipes_D6/StaticBody3D"]
 transform = Transform3D(1, -9.242925e-09, 4.2288583e-08, 5.5220113e-09, 0.9961968, 0.08715648, -4.2933152e-08, -0.08715648, 0.9961968, 2, -0.20837307, 1.1817703)
 shape = SubResource("BoxShape3D_52c8v")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_l3h74")
+
+[node name="CSGBox3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4995, 17)
+visible = false
+material_override = ExtResource("3_kc5ni")
+mesh = SubResource("BoxMesh_l3h74")
+
+[node name="CSGBox3D_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/CSGBox3D"]
+
+[node name="_CollisionShape3D_102408" type="CollisionShape3D" parent="NavigationRegion3D/CSGBox3D/CSGBox3D_StaticBody"]
+shape = SubResource("BoxShape3D_7sbit")
+
+[node name="CSGBox3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4995, -12)
+visible = false
+material_override = ExtResource("3_kc5ni")
+mesh = SubResource("BoxMesh_76quh")
+
+[node name="CSGBox3D2_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/CSGBox3D2"]
+
+[node name="_CollisionShape3D_102422" type="CollisionShape3D" parent="NavigationRegion3D/CSGBox3D2/CSGBox3D2_StaticBody"]
+shape = SubResource("BoxShape3D_gu7jg")

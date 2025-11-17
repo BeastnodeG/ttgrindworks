@@ -8,7 +8,6 @@
 [ext_resource type="Material" uid="uid://dudl0hmwxnjx0" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/anotheroilmat.tres" id="6_2f7gr"]
 [ext_resource type="PackedScene" uid="uid://hs03uk7edxbd" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/poil_geyser.tscn" id="7_2f7gr"]
 [ext_resource type="Material" uid="uid://brvurf61qhm4f" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/concrete.tres" id="7_bfcsi"]
-[ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="8_co8uj"]
 [ext_resource type="Material" uid="uid://bbwrvmn2bo4e4" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/darkbricks.tres" id="8_dy1eu"]
 [ext_resource type="Material" uid="uid://c50n4cvbhanfo" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/wallbricks.tres" id="9_wxv4o"]
 [ext_resource type="Material" uid="uid://c3r71c5qjnru8" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/xcrossmetal.tres" id="10_fs4en"]
@@ -269,6 +268,10 @@ size = Vector3(12, 1, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g012j"]
 size = Vector3(16, 7, 4.7)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_fs4en"]
+vertices = PackedVector3Array(-16, 1.9990001, 13, -16, 1.9990001, 19, -10, 1.9990001, 19, -10, 1.9990001, 13, 10, 1.9990001, 13, 10, 1.9990001, 19, 16, 1.9990001, 19, 16, 1.9990001, 13)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
 
 [node name="Root Scene" type="Node3D"]
 
@@ -776,9 +779,6 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -3, -1.8, 22.4)
 delay = 2.5
 offset = 4.0
 
-[node name="DebugPlayerPositionMarker" parent="." instance=ExtResource("8_co8uj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 14)
-
 [node name="treasure_chest" parent="." instance=ExtResource("14_wxv4o")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 1.2, 22.4)
 item_pool = ExtResource("15_fs4en")
@@ -807,3 +807,28 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -13.2, 1.5, 13.3)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pipes_C2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200001, 2.85, -0.449997)
 shape = SubResource("BoxShape3D_g012j")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_fs4en")
+
+[node name="CSGBox3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1.4995, 16)
+visible = false
+material_override = ExtResource("7_bfcsi")
+mesh = SubResource("BoxMesh_dy1eu")
+
+[node name="CSGBox3D_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/CSGBox3D"]
+
+[node name="_CollisionShape3D_127115" type="CollisionShape3D" parent="NavigationRegion3D/CSGBox3D/CSGBox3D_StaticBody"]
+shape = SubResource("BoxShape3D_wxv4o")
+
+[node name="CSGBox3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1.4995, 16)
+visible = false
+material_override = ExtResource("7_bfcsi")
+mesh = SubResource("BoxMesh_7sr5k")
+
+[node name="CSGBox3D2_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/CSGBox3D2"]
+
+[node name="_CollisionShape3D_127130" type="CollisionShape3D" parent="NavigationRegion3D/CSGBox3D2/CSGBox3D2_StaticBody"]
+shape = SubResource("BoxShape3D_ibdml")

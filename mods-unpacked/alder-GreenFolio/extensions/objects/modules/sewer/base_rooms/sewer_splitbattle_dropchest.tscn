@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://dwcdsuytkhmd3"]
+[gd_scene load_steps=111 format=3 uid="uid://dwcdsuytkhmd3"]
 
 [ext_resource type="LightmapGIData" uid="uid://c162iussay6a3" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/base_rooms/lightmaps/alderGreenFolio_sewer_splitbattle_dropchest.tres" id="1_lf63k"]
 [ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="2_3lj6x"]
@@ -370,6 +370,10 @@ size = Vector3(15, 2, 0.001)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3lj6x"]
 size = Vector3(13, 6.4, 4.7)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_8wpa0"]
+vertices = PackedVector3Array(-2.5, 0.999, 6.75, 2.5, 0.999, 6.75, 2.5, 0.999, 1, -2.5, 0.999, 1, 2.5, 0.999, 8.75, -2.5, 0.999, 8.75, 3.25, 0.999, 9, -3.25, 0.999, 9, -3, 0.999, 16, 3.25, 0.999, 16, -3.5, 0.999, 16.25, -12.5, 0.999, 9, -12.5, 0.999, 18.25, -3.5, 0.999, 18.25, 3.75, 0.999, 16.25, 12.5, 0.999, 17.5, 12.5, 0.999, 9, 3.75, 0.999, 17.75, -2.5, 6.999, 17, -2.5, 6.999, 24, 2.5, 6.999, 24, 2.5, 6.999, 17, -2.25, 0.999, 17.25, -2.25, 0.999, 24, 2.5, 0.999, 24, 2.5, 0.999, 17.25, 3.75, 0.999, 23.25, 12.5, 0.999, 23.5, -12.5, 0.999, 23, -3.5, 0.999, 23, -3.25, 0.999, 32, -3, 0.999, 25.25, -3.5, 0.999, 25, -12.5, 0.999, 32, 3.75, 0.999, 24.75, 3, 0.999, 25.25, 3.25, 0.999, 32, 12.5, 0.999, 32, -2.5, 0.999, 32.25, -2.5, 0.999, 34.25, 2.5, 0.999, 34.25, 2.5, 0.999, 32.25, -2.5, 0.999, 40, 2.5, 0.999, 40)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 0, 4), PackedInt32Array(4, 0, 1), PackedInt32Array(4, 6, 5), PackedInt32Array(5, 6, 7), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(8, 10, 7), PackedInt32Array(7, 10, 11), PackedInt32Array(11, 10, 12), PackedInt32Array(10, 13, 12), PackedInt32Array(9, 6, 14), PackedInt32Array(14, 6, 16), PackedInt32Array(14, 16, 15), PackedInt32Array(15, 17, 14), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(17, 15, 26), PackedInt32Array(26, 15, 27), PackedInt32Array(12, 13, 28), PackedInt32Array(28, 13, 29), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(32, 33, 28), PackedInt32Array(28, 29, 32), PackedInt32Array(35, 34, 36), PackedInt32Array(36, 34, 37), PackedInt32Array(37, 34, 27), PackedInt32Array(34, 26, 27), PackedInt32Array(41, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(38, 30, 41), PackedInt32Array(41, 30, 36), PackedInt32Array(36, 30, 31), PackedInt32Array(36, 31, 35), PackedInt32Array(43, 42, 40), PackedInt32Array(40, 42, 39)]
 
 [node name="Root Scene" type="Node3D"]
 
@@ -1183,3 +1187,49 @@ transform = Transform3D(-0.25, 0, -2.18556e-08, 0, 0.25, 0, 2.18556e-08, 0, -0.2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pipes_D5/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.900002, 2.7, -0.25)
 shape = SubResource("BoxShape3D_3lj6x")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_8wpa0")
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D"]
+visible = false
+
+[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4995, 4.5)
+material_override = ExtResource("3_8wpa0")
+mesh = SubResource("BoxMesh_r7p8r")
+
+[node name="floor_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/Node3D/floor"]
+
+[node name="_CollisionShape3D_117661" type="CollisionShape3D" parent="NavigationRegion3D/Node3D/floor/floor_StaticBody"]
+shape = SubResource("BoxShape3D_hntd7")
+
+[node name="floor2" type="MeshInstance3D" parent="NavigationRegion3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4995, 36.5)
+material_override = ExtResource("3_8wpa0")
+mesh = SubResource("BoxMesh_6d1ps")
+
+[node name="floor2_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/Node3D/floor2"]
+
+[node name="_CollisionShape3D_117662" type="CollisionShape3D" parent="NavigationRegion3D/Node3D/floor2/floor2_StaticBody"]
+shape = SubResource("BoxShape3D_mx0nr")
+
+[node name="floor3" type="MeshInstance3D" parent="NavigationRegion3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4995, 20.5)
+material_override = ExtResource("3_8wpa0")
+mesh = SubResource("BoxMesh_1sfv7")
+
+[node name="floor3_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/Node3D/floor3"]
+
+[node name="_CollisionShape3D_117663" type="CollisionShape3D" parent="NavigationRegion3D/Node3D/floor3/floor3_StaticBody"]
+shape = SubResource("BoxShape3D_isner")
+
+[node name="wall17" type="MeshInstance3D" parent="NavigationRegion3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 20.5)
+material_override = ExtResource("5_68exl")
+mesh = SubResource("BoxMesh_tq03r")
+
+[node name="wall17_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/Node3D/wall17"]
+
+[node name="_CollisionShape3D_117696" type="CollisionShape3D" parent="NavigationRegion3D/Node3D/wall17/wall17_StaticBody"]
+shape = SubResource("BoxShape3D_neq3p")

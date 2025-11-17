@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cy46fe0ioromu"]
+[gd_scene load_steps=36 format=3 uid="uid://cy46fe0ioromu"]
 
 [ext_resource type="BoxMesh" uid="uid://blmqs8jvy52wc" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/wall1box.tres" id="1_uxao3"]
 [ext_resource type="BoxMesh" uid="uid://d2q08oxlsxqxc" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/wall2box.tres" id="2_baasb"]
@@ -70,6 +70,10 @@ add_uv2 = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vluqx"]
 size = Vector3(2.1, 0.001, 2)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_vtiq2"]
+vertices = PackedVector3Array(-4.5, -0.60000086, -33, -4.5, -0.60000086, -29.25, 2.5, -0.60000086, -29.25, 2.5, -0.60000086, -33, -4.5, 4.399999, -28.25, -4.5, 4.399999, -24.75, 3.75, 4.399999, -24.75, 3.75, 4.399999, -28.25, -4.25, -0.60000086, -28, -4.25, -0.60000086, -24.75, 2.5, -0.60000086, -24.75, 2.5, -0.60000086, -28, -4.5, -0.60000086, -23.5, -4.5, -0.60000086, -3.5, 2.5, -0.60000086, -3.5, 2.5, -0.60000086, -23.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
 
 [node name="Root Scene" type="Node3D"]
 
@@ -450,3 +454,27 @@ mesh = SubResource("PlaneMesh_4cyrt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, 0.050001, 0.0489993, 3.57628e-07)
 shape = SubResource("BoxShape3D_vluqx")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_vtiq2")
+
+[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(4, 2.38418e-07, 0, -9.53674e-07, 1, 0, 0, 0, 15.25, -1, -1, -18.25)
+visible = false
+mesh = ExtResource("4_vluqx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49012e-08, -0.05, -1.19209e-07)
+shape = SubResource("BoxShape3D_my7ns")
+debug_color = Color(0.988671, 0, 0.299344, 0.42)
+
+[node name="blockwall" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(9.16635, 0, 0, 0, 5, 0, 0, 0, 4.5, -0.334487, 1.5, -26.5)
+mesh = ExtResource("1_uxao3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/blockwall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/blockwall/StaticBody3D"]
+shape = SubResource("BoxShape3D_6yctv")

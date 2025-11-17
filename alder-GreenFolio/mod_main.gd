@@ -40,7 +40,11 @@ func install_script_hook_files() -> void:
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_resources/status_effects/status_effect_budget_cuts.gd", extensions_dir_path.path_join("objects/battle/battle_resources/status_effects/status_effect_budget_cuts.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_resources/misc_movies/traffic_manager/status_effect_red_light.gd", extensions_dir_path.path_join("objects/battle/battle_resources/misc_movies/traffic_manager/status_effect_red_light.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://scenes/final_boss/penthouse_boss.gd", extensions_dir_path.path_join("scenes/final_boss/penthouse_boss.hooks.gd"))
-	ModLoaderMod.install_script_hooks("res://scenes/elevator_scene/elevator_scene.gd", extensions_dir_path.path_join("scenes/elevator_scene/elevator_scene.hooks.gd"))
+	if not ModLoaderMod.is_mod_loaded("CrazyMew37-EndlessMode"):
+		print("endless not installed, hooking elevator")
+		ModLoaderMod.install_script_hooks("res://scenes/elevator_scene/elevator_scene.gd", extensions_dir_path.path_join("scenes/elevator_scene/elevator_scene.hooks.gd"))
+	else:
+		print("endless mode installed, skipping elevator_scene hook")
 func add_translations() -> void:
 	translations_dir_path = mod_dir_path.path_join("translations")
 

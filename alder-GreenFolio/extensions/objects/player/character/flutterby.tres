@@ -49,7 +49,7 @@ character_name = "Flutterby"
 character_summary = "Low attack and speed, decent luck
 Lacks a starting offensive gag
 Starts with Monarch Butterfly"
-character_blurb = "A quaint toon with a an endless fascination for butterflies."
+character_blurb = "A quaint toon with an endless fascination for butterflies."
 dna = SubResource("Resource_ax4gq")
 gag_loadout = ExtResource("8_fev46")
 starting_laff = 30

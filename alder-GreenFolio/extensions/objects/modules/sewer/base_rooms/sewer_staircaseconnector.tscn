@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://dis6rybjaduct"]
+[gd_scene load_steps=81 format=3 uid="uid://dis6rybjaduct"]
 
 [ext_resource type="LightmapGIData" uid="uid://cfb72xcfeu8ab" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/base_rooms/lightmaps/alderGreenFolio_sewer_staircaseconnector.tres" id="1_6vuwj"]
 [ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="2_qfd7j"]
@@ -249,6 +249,26 @@ size = Vector3(16, 6.7, 4.7)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ubquq"]
 size = Vector3(4, 1.9, 1.6)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_uli5f"]
+vertices = PackedVector3Array(-10.35, 10, -9.5, -10.35, 10, -1.5, 0.6499996, 10, -1.5, 0.6499996, 10, -9.5, -10.35, 1, 1.5, -10.35, 1, 12.5, 0.6499996, 1, 12.5, 0.6499996, 1, 1.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_doc7a"]
+lightmap_size_hint = Vector2i(124, 76)
+add_uv2 = true
+size = Vector3(12, 1, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_26yt1"]
+size = Vector3(12, 1, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a7tbs"]
+lightmap_size_hint = Vector2i(79, 66)
+add_uv2 = true
+size = Vector3(12, 0.003, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f5dvs"]
+size = Vector3(12, 0.003, 3)
 
 [node name="Root Scene" type="Node3D"]
 
@@ -773,3 +793,29 @@ transform = Transform3D(-1.16136e-07, -0.25, 0, 2.65687, -1.09278e-08, 0, 0, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LargeStraightPipe2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.0500002, 0)
 shape = SubResource("BoxShape3D_ubquq")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_uli5f")
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D"]
+visible = false
+
+[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.85, 0, 7)
+material_override = ExtResource("3_lodwl")
+mesh = SubResource("BoxMesh_doc7a")
+
+[node name="floor_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/Node3D/floor"]
+
+[node name="_CollisionShape3D_146469" type="CollisionShape3D" parent="NavigationRegion3D/Node3D/floor/floor_StaticBody"]
+shape = SubResource("BoxShape3D_26yt1")
+
+[node name="floor11" type="MeshInstance3D" parent="NavigationRegion3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, -4.85, 9.4995, -5.5)
+material_override = ExtResource("3_lodwl")
+mesh = SubResource("BoxMesh_a7tbs")
+
+[node name="floor11_StaticBody" type="StaticBody3D" parent="NavigationRegion3D/Node3D/floor11"]
+
+[node name="_CollisionShape3D_146486" type="CollisionShape3D" parent="NavigationRegion3D/Node3D/floor11/floor11_StaticBody"]
+shape = SubResource("BoxShape3D_f5dvs")

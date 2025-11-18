@@ -609,6 +609,7 @@ mesh = SubResource("PlaneMesh_sgg6s")
 [node name="OilFloor" parent="." node_paths=PackedStringArray("default_spawn_point") instance=ExtResource("13_mcbum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.8, 42.0004, 61.6)
 script = ExtResource("14_m8m07")
+base_damage = -2
 damage_name = "Sewer Oil"
 default_spawn_point = NodePath("../PlayerPositions/FirstPos")
 

@@ -9,6 +9,15 @@ Changes:
 Sewers
 	- Fixed a certain battle being skippable.
 	- Tweaked the damage of the oil in a few rooms. (Mainly those that do not force damage)
+	- Hopefully fixed a crash related to the sewers not having enough obstacle rooms.
+	- Adjusted the battle music to loop better. (thanks blu!)
 Space Helmet
-	- Rarity 6->4
+	- Rarity 6->Nil
 	- Quality 5->4
+Paint Brush
+	- Now rerolls all items in the room.
+	- Removed from special pool.
+	- Added to rewards pool.
+Star Boots
+	- Rarity Nil->4
+	- Quality 4->3

@@ -29,7 +29,7 @@ func play() -> Tween:
 	
 	movie.tween_callback(player.set_animation.bind("neutral"))
 	movie.tween_callback(player.set_global_position.bind(directory.third_pos.global_position))
-	movie.tween_callback(cog.speak.bind("Take a good look, gentlemen. Every piece of waste is dividend well earned."))
+	movie.tween_callback(cog.speak.bind("Take a good look, everyone. Every piece of waste is dividend well earned."))
 	movie.tween_interval(3.5)
 	
 	# Camera 2 rise

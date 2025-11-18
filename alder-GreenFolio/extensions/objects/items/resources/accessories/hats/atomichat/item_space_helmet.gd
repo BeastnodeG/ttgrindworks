@@ -5,6 +5,9 @@ const POISON_EFFECT := preload("res://objects/battle/battle_resources/status_eff
 var gf : Node = null
 const ATOMIC_EFFECTS := ["plutonium", "actinium", "curium", "thorium"]
 
+func on_load(_item: Item) -> void:
+	setup()
+
 func setup() -> void:
 	getGF()
 	BattleService.s_round_started.connect(on_round_started)

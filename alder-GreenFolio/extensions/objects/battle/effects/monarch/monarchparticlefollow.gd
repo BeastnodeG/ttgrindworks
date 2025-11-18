@@ -3,7 +3,7 @@ extends Node3D
 @export var particle_node: GPUParticles3D
 @export var target_bone: Node3D
 
-func _process(delta):
+func _physics_process(delta):
 	if particle_node and target_bone:
 		var mat = particle_node.process_material as ShaderMaterial
 		if mat:

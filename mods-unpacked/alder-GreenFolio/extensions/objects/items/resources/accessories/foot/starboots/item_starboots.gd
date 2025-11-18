@@ -24,7 +24,7 @@ func on_battle_started(manager: BattleManager) -> void:
 	
 	var average := 0
 	if count > 0:
-		average = floori(float(total) / float(count))
+		average = roundi(float(total) / float(count))
 	
 	for track in gag_balance.keys():
 		gag_balance[track] = average

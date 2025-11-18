@@ -156,7 +156,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d5irn"]
-size = Vector3(25, 0.477173, 13.717)
+size = Vector3(26, 0.477173, 13.717)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3scqe"]
 lightmap_size_hint = Vector2i(399, 228)
@@ -516,7 +516,7 @@ damage_name = "Sewer Oil"
 lava_type = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LavaFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.399153, -0.505948, 0.15686)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100847006, -0.505948, 0.15686)
 shape = SubResource("BoxShape3D_d5irn")
 debug_color = Color(0.99, 0, 0.2805, 1)
 

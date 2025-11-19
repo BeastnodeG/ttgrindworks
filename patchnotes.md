@@ -10,6 +10,7 @@ Sewers
 	- Fixed a hitbox a certain room.
 	- Adjusted the audio balancing on the battle music.
 	- The Waste Broker is now DEI-certified. (Updated a line in the Waste Broker’s intro cutscene to be more gender-inclusive.)
+	- Adjusted geyser hitboxes to be a little bit more forgiving.
 Monarch Butterfly
 	- Fixed stuttering issues with the out of battle visual effect. (thanks evan!)
 Star Boots

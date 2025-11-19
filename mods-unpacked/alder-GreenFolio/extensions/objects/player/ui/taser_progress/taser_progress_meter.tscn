@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cup2yr5w7or1l" path="res://fonts/Minnie.TTF" id="3_vcxrs"]
 [ext_resource type="FontFile" uid="uid://815gwlftl5ik" path="res://fonts/impress-bt.ttf" id="4_gcui0"]
 [ext_resource type="Texture2D" uid="uid://dyvokb5m8a5v6" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/taser.png" id="4_o7k46"]
-[ext_resource type="AudioStream" uid="uid://bo4hr3d75hgb5" path="res://audio/sfx/items/tt_s_prp_sillyMeterArrow.ogg" id="5_i8sfa"]
+[ext_resource type="AudioStream" uid="uid://cd7iic8ter8gt" path="res://audio/sfx/misc/LB_capacitor_discharge_3.ogg" id="6_o7k46"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s1xf2"]
 font = ExtResource("3_vcxrs")
@@ -211,7 +211,7 @@ size = Vector2i(614, 512)
 
 [node name="Voucher3D" type="Sprite3D" parent="SubViewport/World3D"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9841574, 0.1735332, -0.036333926, 0.17364794, 0.98480725, -5.7910196e-08, 0.035781983, -0.006309377, -0.99933785, 0, 0, 0)
+transform = Transform3D(-0.9839841, 0.17350265, 0.04088795, 0.17364794, 0.98480725, -5.7910196e-08, -0.040266853, 0.0071000615, -0.9991619, 0, 0, 0)
 pixel_size = 0.014
 texture = ExtResource("2_o7k46")
 
@@ -224,8 +224,9 @@ size = 4.835
 
 [node name="TickSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("5_i8sfa")
-volume_db = -3.0
+stream = ExtResource("6_o7k46")
+volume_db = -15.0
+pitch_scale = 1.5
 bus = &"SFX"
 
 [node name="RewardCooldown" type="Timer" parent="."]

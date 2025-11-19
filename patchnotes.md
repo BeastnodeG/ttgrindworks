@@ -8,7 +8,13 @@ MacOS: Create a "mods" folder in the /Applications folder and the desired mod(s)
 Changes:
 Sewers
 	- Fixed a hitbox a certain room.
+	- Adjusted the audio balancing on the battle music.
+	- The Waste Broker is now DEI-certified. (Updated a line in the Waste Broker’s intro cutscene to be more gender-inclusive.)
 Monarch Butterfly
-	- Fixed stuttering issues with the visual effect.
+	- Fixed stuttering issues with the out of battle visual effect. (thanks evan!)
 Star Boots
-	- Average is now rounded instead of floored.
+	- Average gag points is now rounded instead of floored.
+Battoon Wings
+	- Fixed accessory placements.
+Taser
+	- Made the SFX less annoying.

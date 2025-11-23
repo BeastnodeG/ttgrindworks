@@ -85,20 +85,21 @@ func _ready() -> void:
 		"thegray": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/thegrey.tres",
 		"rewardoptions" : "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/carrossel_rewards.tres",
 		"progressoptions" : "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/carrossel_progressive.tres",
+		"monoalien" : "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/monoalien_glasses.tres",
 	}
 
 	var pool_memberships := {
 		"special_items.tres": ["battoon_cape", "alphabet_soup", "taser", "space_helmet"],
 		"shop_rewards.tres": ["progressoptions", "rewardoptions", "jollyboots", "taser", "opossum_tail", "lightbulb", "green_deal", "paint_brush"],
 		"shop_progressives.tres": ["cannon", "paintball"],
-		"rewards.tres": ["turn_box", "starboots", "lightbulb", "opossum_tail", "paint_brush"],
+		"rewards.tres": ["monoalien", "turn_box", "starboots", "lightbulb", "opossum_tail", "paint_brush"],
 		"progressives.tres": ["cannon", "paintball"],
 		"floor_clears.tres": ["jollyboots", "opossum_tail", "lightbulb"],
 		"everything.tres": ["thegray", "starboots", "jollyboots", "space_helmet", "turn_box", "battoon_cape", "lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal"],
 		"battle_clears.tres": [],
-		"active_items.tres": ["alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal", "turn_box"],
+		"active_items.tres": ["monoalien" ,"alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal", "turn_box"],
 		"accessories.tres": ["progressoptions", "rewardoptions", "thegray", "starboots", "jollyboots", "taser", "lightbulb", "opossum_tail", "battoon_cape", "space_helmet"],
-		"stranger_items.tres": ["thegray", "green_deal", "space_helmet", "battoon_cape", "monarch_butterfly"]
+		"stranger_items.tres": ["monoalien", "thegray", "green_deal", "space_helmet", "battoon_cape", "monarch_butterfly"]
 	}
 
 	for pool_name in pool_memberships:

@@ -7,17 +7,11 @@ var ITEM_CYCLER := load("res://mods-unpacked/alder-GreenFolio/extensions/objects
 func on_collect(_item: Item, _object: Node3D) -> void:
 	setup()
 
-
-func on_load(_item: Item) -> void:
-	setup()
-
-
 func on_item_removed() -> void:
 	gf.carrossel_progressive_item_count -= 4
 	gf.carrossel_progressive_cycle_duration = (gf.carrossel_progressive_cycle_duration*2)
 	gf.carrossel_reward_item_count -= 4
 	gf.carrossel_reward_cycle_duration = (gf.carrossel_reward_cycle_duration*2)
-
 
 func setup() -> void:
 	await getGF()

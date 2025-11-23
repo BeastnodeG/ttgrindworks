@@ -8,7 +8,6 @@
 [resource]
 script = ExtResource("4_34p5b")
 qualitoon = 2
-world_scale = 0.5
 item_name = "More Choices"
 item_description = "There's choices"
 big_description = "Silver and Bronze chests cycle between 2 items to choose from"

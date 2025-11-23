@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("4_bqj1p")
 qualitoon = 1
+world_scale = 1.25
 ui_cam_offset = 0.15
 item_name = "Opossum Charm"
 item_description = "Your luck weighs you down"

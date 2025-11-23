@@ -66,16 +66,13 @@ func getGF() -> void:
 	else:
 		print("GFglobal not found at", path)
 
+func validate_use() -> bool:
+	return ItemService.get_closest_item() != null
+
 func use() -> void:
 	var player := Util.get_player()
-	if not player or not gf:
-		cancel_use()
-		return
 
 	var world_item := ItemService.get_closest_item()
-	if not world_item or not world_item.has_node("CollisionShape3D"):
-		cancel_use()
-		return
 
 	var item_name := world_item.item.item_name
 	var absorbed_list: Array[Dictionary] = gf.monarch_absorbed_items

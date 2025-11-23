@@ -1,12 +1,17 @@
 extends Node
 class_name GFglobal
 
-var green_deal_strength = 2.5
+var green_deal_strength: float = 2.5
 var monarch_absorbed_items : Array[Dictionary] = [{ "name": "The Monarch", "qualitoon": 1 },]
-var squirt_splash = true
-var taser_count = 0
-var folio_level = 0
-var atomic_effect = "plutonium"
+var squirt_splash: bool = true
+var taser_count: int = 0
+var folio_level: int = 0
+var atomic_effect: String = "plutonium"
+
+var carrossel_progressive_item_count: int = 1
+var carrossel_progressive_cycle_duration: float = 2.0
+var carrossel_reward_item_count: int = 1
+var carrossel_reward_cycle_duration: float = 2.0
 
 func save_to():
 	var GFSaveData = preload("res://mods-unpacked/alder-GreenFolio/GFcurrent_save.gd")
@@ -19,6 +24,10 @@ func save_to():
 	current_save_data.squirt_splash = squirt_splash
 	current_save_data.folio_level = folio_level
 	current_save_data.atomic_effect = atomic_effect
+	current_save_data.carrossel_progressive_item_count = carrossel_progressive_item_count
+	current_save_data.carrossel_progressive_cycle_duration = carrossel_progressive_cycle_duration
+	current_save_data.carrossel_reward_item_count = carrossel_reward_item_count
+	current_save_data.carrossel_reward_cycle_duration = carrossel_reward_cycle_duration
 
 	ResourceSaver.save(current_save_data, SaveFileService.SAVE_FILE_PATH + file_name)
 	print("green folio saved to: ", SaveFileService.SAVE_FILE_PATH + file_name)
@@ -59,6 +68,12 @@ func reset_stats():
 	squirt_splash = true
 	folio_level = 0
 	atomic_effect = "plutonium"
+	
+	carrossel_progressive_item_count = 1
+	carrossel_progressive_cycle_duration = 2.0
+	carrossel_reward_item_count = 1
+	carrossel_reward_cycle_duration = 2.0
+	
 	var player = Util.get_player()
 	if player: #EVIL GREEN FOLIO - I WILL modify the VANILLA CURRENT SAVE file!!!!!!!!!!
 		player.stats.toonups[7] = 1

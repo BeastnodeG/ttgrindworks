@@ -6,16 +6,26 @@ Windows/Linux: Create a "mods" folder next to your "ToontownTheGrindworks.exe" a
 MacOS: Create a "mods" folder in the /Applications folder and the desired mod(s) .zip into it. (Do not extract the zip)
 
 Changes:
-Sewers
-	- Fixed a hitbox a certain room.
-	- Adjusted the audio balancing on the battle music.
-	- The Waste Broker is now DEI-certified. (Updated a line in the Waste Broker’s intro cutscene to be more gender-inclusive.)
-	- Adjusted geyser hitboxes to be a little bit more forgiving.
-Monarch Butterfly
-	- Fixed stuttering issues with the out of battle visual effect. (thanks evan!)
-Star Boots
-	- Average gag points is now rounded instead of floored.
-Battoon Wings
-	- Fixed accessory placements.
-Taser
-	- Made the SFX less annoying.
+- Items
+	- More Choices
+	- More Options
+	- ???
+- Tweaks
+	- Sewers
+		- Fixed a hitbox in a certain room.
+		- Adjusted the audio balancing on the battle music.
+		- The Waste Broker is now DEI-certified. (Updated a line in the Waste Broker’s intro cutscene to be more gender-inclusive.)
+		- Adjusted geyser hitboxes to be a little bit more forgiving.
+		- Adjusted the platforming in a certain room.
+	- Monarch Butterfly
+		- Fixed stuttering issues with the out-of-battle visual effect. (thanks evan!)
+	- Star Boots
+		- Average calculation now uses ceil instead of floor.
+	- Battoon Wings
+		- Fixed accessory placements. (hopefully?)
+	- Taser
+		- Made the SFX less annoying.
+	- Space Helmet
+		- Squirt Effectiveness reduction -65% → -60%
+	- Alphabet Soup, Paintball, Monarch Butterfly
+		- Now uses "validate_use" to prevent an exploit with Dilly Dial.

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cew6qsyark53w" path="res://scenes/game_floor/game_floor.gd" id="1_wq628"]
 [ext_resource type="Resource" uid="uid://bnubj377geur5" path="res://objects/cog/presets/pools/grunt_cogs.tres" id="3_6rlqe"]
-[ext_resource type="Environment" uid="uid://dfbffixgqukix" path="res://scenes/game_floor/default_environment.tres" id="4_7iyfh"]
+[ext_resource type="Environment" uid="uid://7y2mct3ex6ll" path="res://scenes/game_floor/default_environment.tres" id="4_7iyfh"]
 [ext_resource type="PackedScene" uid="uid://djs6mw66dxqp3" path="res://objects/general_ui/location_text/location_text.tscn" id="5_nggj6"]
 
 [node name="GameFloor" type="Node3D"]

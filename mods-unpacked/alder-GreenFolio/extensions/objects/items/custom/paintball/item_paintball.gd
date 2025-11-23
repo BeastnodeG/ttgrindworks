@@ -13,12 +13,11 @@ func on_collect(_item: Item, _object: Node3D) -> void:
 			#ItemService.seen_items.erase(i)
 			#print("we've found it!!! the paintball!!!")
 
+func validate_use() -> bool:
+	return ItemService.get_closest_item() != null
+
 func use() -> void:
 	var world_item := ItemService.get_closest_item()
-	
-	if not world_item:
-		cancel_use()
-		return
 	
 	AudioManager.play_sound(SFX)
 	world_item.override_replacement_rolls = true

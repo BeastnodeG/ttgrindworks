@@ -81,21 +81,24 @@ func _ready() -> void:
 		"jollyboots": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/foot/jollyboots/jollyboots.tres",
 		"cannon": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/toonups/cannon.tres",
 		"space_helmet": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/hats/atomichat/space_helmet.tres",
-		"starboots": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/foot/starboots/starboots.tres"
+		"starboots": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/foot/starboots/starboots.tres",
+		"thegray": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/thegrey.tres",
+		"rewardoptions" : "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/carrossel_rewards.tres",
+		"progressoptions" : "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/carrossel_progressive.tres",
 	}
 
 	var pool_memberships := {
 		"special_items.tres": ["battoon_cape", "alphabet_soup", "taser", "space_helmet"],
-		"shop_rewards.tres": ["jollyboots", "taser", "opossum_tail", "lightbulb", "green_deal", "paint_brush"],
+		"shop_rewards.tres": ["progressoptions", "rewardoptions", "jollyboots", "taser", "opossum_tail", "lightbulb", "green_deal", "paint_brush"],
 		"shop_progressives.tres": ["cannon", "paintball"],
 		"rewards.tres": ["turn_box", "starboots", "lightbulb", "opossum_tail", "paint_brush"],
 		"progressives.tres": ["cannon", "paintball"],
 		"floor_clears.tres": ["jollyboots", "opossum_tail", "lightbulb"],
-		"everything.tres": ["starboots", "jollyboots", "space_helmet", "turn_box", "battoon_cape", "lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal"],
+		"everything.tres": ["thegray", "starboots", "jollyboots", "space_helmet", "turn_box", "battoon_cape", "lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal"],
 		"battle_clears.tres": [],
 		"active_items.tres": ["alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal", "turn_box"],
-		"accessories.tres": ["starboots", "jollyboots", "taser", "lightbulb", "opossum_tail", "battoon_cape", "space_helmet"],
-		"stranger_items.tres": ["green_deal", "space_helmet", "battoon_cape", "monarch_butterfly"]
+		"accessories.tres": ["progressoptions", "rewardoptions", "thegray", "starboots", "jollyboots", "taser", "lightbulb", "opossum_tail", "battoon_cape", "space_helmet"],
+		"stranger_items.tres": ["thegray", "green_deal", "space_helmet", "battoon_cape", "monarch_butterfly"]
 	}
 
 	for pool_name in pool_memberships:

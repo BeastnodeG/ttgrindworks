@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=4 uid="uid://bohlnmo0j8igm"]
+[gd_scene load_steps=117 format=4 uid="uid://bohlnmo0j8igm"]
 
 [ext_resource type="LightmapGIData" uid="uid://g7nl75jkrb8r" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/base_rooms/lightmaps/alderGreenFolio_sewer_waterfallobstacle.tres" id="1_47ouv"]
 [ext_resource type="Material" uid="uid://c614gkwpxnouy" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/ceilingbricks.tres" id="2_5wscy"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://byrmf687ynghb" path="res://objects/props/mint/pipes/pipes_d1.tscn" id="17_pp4pj"]
 [ext_resource type="PackedScene" uid="uid://6q10lgmvy153" path="res://objects/props/mint/pipes/kit/small_elbow_pipe.tscn" id="18_wkb16"]
 [ext_resource type="PackedScene" uid="uid://cng2pebofco7w" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/oilstream.tscn" id="19_updw1"]
+[ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="20_hhuj5"]
 [ext_resource type="PackedScene" uid="uid://cfmtdq84k5wwh" path="res://objects/props/mint/pipes/kit/pipe_connector.tscn" id="20_l04fc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5mb8y"]
@@ -431,26 +432,12 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="Curve3D" id="Curve3D_11wcl"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -1.71, 0, 0, 0, 0, 0, 0, 0, 0, -1.7, 0, 0, 0, 0, 0, 0, 0, 0, -0.7, 0, 0, 0, 0, 0, 0, 0, 0, -0.71, 0),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
-}
-point_count = 4
-
 [sub_resource type="Curve3D" id="Curve3D_oft07"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -1.71, 0, 0, 0, 0, 0, 0, 0, 0, -0.71, 0, 0, 0, 0, 0, 0, 0, 0, -0.7, 0),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
-
-[sub_resource type="Curve3D" id="Curve3D_mgnb3"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -0.7, 0, 0, 0, 0, 0, 0, 0, 0, -0.71, 0, 0, 0, 0, 0, 0, 0, 0, -1.7, 0, 0, 0, 0, 0, 0, 0, 0, -1.71, 0),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
-}
-point_count = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_he55w"]
 size = Vector3(22, 0.419852, 32)
@@ -1140,20 +1127,17 @@ curve = SubResource("Curve3D_47ouv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 6.2, 10)
 
 [node name="ElevatingPlatform" parent="platform4" node_paths=PackedStringArray("path") instance=ExtResource("10_spjr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.71, 0)
-path = NodePath("../Path3D")
-speed = 1.75
-
-[node name="Path3D" type="Path3D" parent="platform4"]
-curve = SubResource("Curve3D_11wcl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+path = NodePath("../../platform6/Path3D")
+speed = 2.0
 
 [node name="platform5" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 6.2, -4)
 
 [node name="ElevatingPlatform" parent="platform5" node_paths=PackedStringArray("path") instance=ExtResource("10_spjr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.71, 0)
-path = NodePath("../../platform4/Path3D")
-speed = 1.75
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+path = NodePath("../../platform6/Path3D")
+speed = 2.0
 
 [node name="platform6" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 6.2, 3)
@@ -1161,7 +1145,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 6.2, 3)
 [node name="ElevatingPlatform" parent="platform6" node_paths=PackedStringArray("path") instance=ExtResource("10_spjr4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 path = NodePath("../Path3D")
-speed = 3.5
+speed = 2.0
 
 [node name="Path3D" type="Path3D" parent="platform6"]
 curve = SubResource("Curve3D_oft07")
@@ -1170,13 +1154,9 @@ curve = SubResource("Curve3D_oft07")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 6.2, 3)
 
 [node name="ElevatingPlatform" parent="platform7" node_paths=PackedStringArray("path") instance=ExtResource("10_spjr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.71, 0)
-path = NodePath("../Path3D")
-speed = 1.75
-
-[node name="Path3D" type="Path3D" parent="platform7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6999998, 0)
-curve = SubResource("Curve3D_mgnb3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+path = NodePath("../../platform6/Path3D")
+speed = 2.0
 
 [node name="treasure_chest" parent="." instance=ExtResource("10_47ouv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -12)
@@ -1307,3 +1287,6 @@ mesh = SubResource("BoxMesh_4n1ch")
 
 [node name="_CollisionShape3D_116029" type="CollisionShape3D" parent="NavigationRegion3D/navmesh/CSGBox3D29/CSGBox3D29_StaticBody"]
 shape = SubResource("BoxShape3D_537w8")
+
+[node name="DebugPlayerPositionMarker" parent="." instance=ExtResource("20_hhuj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 7, 3)

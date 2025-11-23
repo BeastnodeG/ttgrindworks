@@ -3,7 +3,7 @@ Green Folio v2.0.3 GW v1.2.2
 
 Installation:
 Windows/Linux: Create a "mods" folder next to your "ToontownTheGrindworks.exe" and place the desired mod(s) .zip into it. (Do not extract the zip)
-MacOS: Create a "mods" folder in the /Applications folder and the desired mod(s) .zip into it. (Do not extract the zip)
+MacOS: Create a "mods" folder in the /Applications folder and place the desired mod(s) .zip into it. (Do not extract the zip)
 
 Changes:
 - Items
@@ -24,7 +24,7 @@ Changes:
 	- Battoon Wings
 		- Fixed accessory placements. (hopefully?)
 	- Taser
-		- Made the SFX less annoying.
+		- Made the charge SFX less annoying.
 	- Space Helmet
 		- Squirt Effectiveness reduction -65% → -60%
 	- Alphabet Soup, Paintball, Monarch Butterfly

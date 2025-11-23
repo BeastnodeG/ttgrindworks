@@ -95,10 +95,10 @@ func _ready() -> void:
 		"rewards.tres": ["monoalien", "turn_box", "starboots", "lightbulb", "opossum_tail", "paint_brush"],
 		"progressives.tres": ["cannon", "paintball"],
 		"floor_clears.tres": ["jollyboots", "opossum_tail", "lightbulb"],
-		"everything.tres": ["thegray", "starboots", "jollyboots", "space_helmet", "turn_box", "battoon_cape", "lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal"],
+		"everything.tres": ["progressoptions", "rewardoptions", "monoalien", "thegray", "starboots", "jollyboots", "space_helmet", "turn_box", "battoon_cape", "lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal"],
 		"battle_clears.tres": [],
-		"active_items.tres": ["monoalien" ,"alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal", "turn_box"],
-		"accessories.tres": ["progressoptions", "rewardoptions", "thegray", "starboots", "jollyboots", "taser", "lightbulb", "opossum_tail", "battoon_cape", "space_helmet"],
+		"active_items.tres": ["alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal", "turn_box"],
+		"accessories.tres": ["monoalien", "progressoptions", "rewardoptions", "thegray", "starboots", "jollyboots", "taser", "lightbulb", "opossum_tail", "battoon_cape", "space_helmet"],
 		"stranger_items.tres": ["monoalien", "thegray", "green_deal", "space_helmet", "battoon_cape", "monarch_butterfly"]
 	}
 

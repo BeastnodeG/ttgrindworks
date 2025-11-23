@@ -44,6 +44,10 @@ func load_save():
 			squirt_splash = current_save_loaded.squirt_splash
 			folio_level = current_save_loaded.folio_level
 			atomic_effect = current_save_loaded.atomic_effect
+			carrossel_progressive_item_count = current_save_loaded.carrossel_progressive_item_count
+			carrossel_progressive_cycle_duration = current_save_loaded.carrossel_progressive_cycle_duration
+			carrossel_reward_item_count = current_save_loaded.carrossel_reward_item_count
+			carrossel_reward_cycle_duration = current_save_loaded.carrossel_reward_cycle_duration
 			print("green folio save loaded successfully")
 		else:
 			print("Failed to load green folio save file.")

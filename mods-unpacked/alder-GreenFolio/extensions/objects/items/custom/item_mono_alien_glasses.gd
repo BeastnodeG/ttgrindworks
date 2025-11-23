@@ -1,7 +1,5 @@
 extends ItemScript
 
-const DUPLICATE_ACTION_CHANCE := 0.05
-
 func on_collect(_item: Item, _object: Node3D) -> void:
 	setup()
 
@@ -16,7 +14,7 @@ func on_round_start(actions: Array[BattleAction]) -> void:
 	
 	for i in range(actions.size()):
 		var action = actions[i]
-		if action is ToonAttack and randf() < Util.get_relevant_player_stats().get_luck_weighted_chance(DUPLICATE_ACTION_CHANCE, 0.1, 2.0):
+		if action is ToonAttack and randf() < Util.get_relevant_player_stats().get_luck_weighted_chance(0.05, 0.15, 2.0): #5% -> 15% at 2.0 luck
 			var duplicated_action = duplicate_action(action)
 			if duplicated_action:
 				actions_to_insert.append({"index": i + 1, "action": duplicated_action})

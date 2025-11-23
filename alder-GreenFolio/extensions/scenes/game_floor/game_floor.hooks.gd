@@ -13,6 +13,6 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	
 	if gf.folio_level >= 1:
 		var debug_anomalies = chain.reference_object.debug_anomalies #this is hacky. oh well !
+		#debug_anomalies.append(load("res://mods-unpacked/alder-GreenFolio/extensions/scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_itemcycletest.gd"))
 		debug_anomalies.append(load("res://mods-unpacked/alder-GreenFolio/extensions/objects/thegreenfolio/floor_mod_thegreenfolio.gd"))
-		#debug_anomalies.append(load("res://mods-unpacked/alder-GreenFolio/extensions/scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_budgetsurplus.gd"))
 	chain.execute_next()

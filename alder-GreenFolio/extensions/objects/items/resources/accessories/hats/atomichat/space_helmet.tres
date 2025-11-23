@@ -242,10 +242,10 @@ world_y_offset = 0.25
 item_name = "Space Helmet"
 item_description = "Atomic blast!"
 big_description = "Squirt drenches the cogs with unstable atoms instead of a defense down.
--65% Squirt Effectiveness"
+-60% Squirt Effectiveness"
 model = ExtResource("5_1388q")
 stats_add = {
-"gag_boost:Squirt": -0.65
+"gag_boost:Squirt": -0.6
 }
 item_script = ExtResource("4_1388q")
 icon = ExtResource("3_1388q")

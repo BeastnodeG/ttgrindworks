@@ -24,7 +24,7 @@
 [ext_resource type="Script" uid="uid://b68uqtpqs73wk" path="res://objects/player/player_stats.gd" id="17_8fcps"]
 [ext_resource type="Script" uid="uid://ckypnf7t805p3" path="res://objects/battle/battle_resources/gag_loadouts/gag_loadout.gd" id="17_aepo7"]
 [ext_resource type="PackedScene" uid="uid://dxyq5lb5oineo" path="res://objects/interactables/treasure_chest/treasure_chest.tscn" id="23_16xtn"]
-[ext_resource type="Resource" uid="uid://wht6sr0htq3i" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/thegrey.tres" id="25_qncha"]
+[ext_resource type="Resource" uid="uid://cbq3vimkierco" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/monoalien_glasses.tres" id="25_qncha"]
 [ext_resource type="Resource" uid="uid://wfdgusu3acxl" path="res://objects/items/resources/active/paint_bucket.tres" id="26_qncha"]
 [ext_resource type="Resource" uid="uid://c3sjb3vivkvux" path="res://objects/items/resources/passive/laff_boost.tres" id="27_4p2an"]
 [ext_resource type="Resource" uid="uid://c1ieqc06wj6gp" path="res://objects/items/pools/rewards.tres" id="27_qncha"]

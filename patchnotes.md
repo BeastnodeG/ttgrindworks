@@ -7,6 +7,7 @@ MacOS: Create a "mods" folder in the /Applications folder and place the desired 
 
 Changes:
 - Items
+	- Alien Glasses?
 	- More Choices
 	- More Options
 	- ???

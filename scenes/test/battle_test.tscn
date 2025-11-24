@@ -187,7 +187,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 cogs = [NodePath("Cog")]
 
 [node name="Cog" parent="Root Scene/BattleNode2" instance=ExtResource("3_okjj0")]
-custom_level_range = Vector2i(15, 20)
+custom_level_range = Vector2i(7, 7)
 use_floor_pool = false
 dna = ExtResource("4_16xtn")
 

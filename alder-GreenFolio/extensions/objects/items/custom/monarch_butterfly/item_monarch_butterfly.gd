@@ -98,6 +98,13 @@ func use() -> void:
 				"qualitoon": 1
 			}
 			absorbed_list.append(entry)
+	elif item_name == "???":
+		for i in range(4):
+			var entry := {
+				"name": "Random",
+				"qualitoon": 1
+			}
+			absorbed_list.append(entry)
 	elif item_name == "Monarch Butterfly":
 		for i in range(20):
 			var entry := {
@@ -116,12 +123,7 @@ func use() -> void:
 		absorbed_list.append(entry)
 		print("Absorbed item: %s" % entry)
 
-	var dust_cloud = Globals.DUST_CLOUD.instantiate()
-	world_item.get_parent().add_child(dust_cloud)
-	dust_cloud.scale *= world_item.scale
-	dust_cloud.global_position = world_item.global_position
-
-	world_item.queue_free()
+	world_item.destroy_item()
 
 func get_shorthand_label(item: Item) -> String:
 	if "arbitrary_data" in item:

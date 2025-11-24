@@ -102,6 +102,9 @@ const EFFECT_MAP := {
 	"Dilly Dial": { effect = "Random", damage_multiplier = 1 },
 	"Moneybags Coin": { effect = "Random", damage_multiplier = 1 },
 	"Spinning Top": { effect = "Random", damage_multiplier = 2 },
+	"Alien Glasses?": { effect = "Random", damage_multiplier = 1.25 },
+	"More Choices": { effect = "Random", damage_multiplier = 1.25 },
+	"More Options": { effect = "Random", damage_multiplier = 1.25 },
 	
 	"Scuba Tank": { effect = "Soak", damage_multiplier = 1.25 },
 	"Shark Fin": { effect = "Soak", damage_multiplier = 1.1 },

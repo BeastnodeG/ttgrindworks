@@ -136,7 +136,7 @@ func setup_multi_item(chest: TreasureChest) -> void:
 	
 	for world_item in world_items:
 		world_item.s_collected.connect(stop_cycling.bind(chest))
-		world_item.tree_exiting.connect(on_world_item_destroyed.bind(chest))
+		world_item.s_destroyed.connect(on_world_item_destroyed.bind(chest))
 	
 	cycler.start_cycling()
 
@@ -152,6 +152,7 @@ func on_world_item_destroyed(chest: TreasureChest) -> void:
 		var cycler = chest_cyclers[chest]
 		cycler.destroy_all()
 		chest_cyclers.erase(chest)
+		print("WORLD ITEM DESTROYED")
 
 
 class ChestCycler extends Node:

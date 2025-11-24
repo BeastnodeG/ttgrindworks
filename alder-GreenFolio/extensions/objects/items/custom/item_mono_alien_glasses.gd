@@ -26,13 +26,27 @@ func on_round_start(actions: Array[BattleAction]) -> void:
 func duplicate_action(original: ToonAttack) -> ToonAttack:
 	var new_action = original.duplicate(true)
 	
+	new_action.user = original.user
+	new_action.track = original.track
+	new_action.manager = original.manager
+	
+	if original.icon:
+		new_action.icon = original.icon
+	
+	var valid_cogs = BattleService.ongoing_battle.cogs.filter(func(c): return c.stats.hp > 0)
+	
+	if valid_cogs.is_empty():
+		return null
+	
 	if original.target_type == BattleAction.ActionTarget.ENEMY:
-		new_action.targets = [BattleService.ongoing_battle.cogs.pick_random()]
+		new_action.targets = [valid_cogs.pick_random()]
 	else:
-		new_action.targets.clear()
-		new_action.reassess_splash_targets(randi() % BattleService.ongoing_battle.cogs.size(), BattleService.ongoing_battle)
+		var random_index = randi() % valid_cogs.size()
+		new_action.reassess_splash_targets(random_index, BattleService.ongoing_battle)
 	
 	new_action.special_action_exclude = true
-	Util.get_player().boost_queue.queue_text("Copied!", Color(0.49, 0.49, 0.49, 1.0))
+	
+	if is_instance_valid(Util.get_player()) and Util.get_player().boost_queue:
+		Util.get_player().boost_queue.queue_text("Copied!", Color(0.49, 0.49, 0.49, 1.0))
 	
 	return new_action

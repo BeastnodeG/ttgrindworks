@@ -17,3 +17,6 @@
 *.dmg
 
 *.zip
+patchnotes.md
+/mods/
+/mods-unpacked/

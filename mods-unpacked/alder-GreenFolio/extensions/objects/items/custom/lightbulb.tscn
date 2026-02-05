@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://fqhacvcpml71"]
-
-[ext_resource type="PackedScene" uid="uid://ba5jx1bfjtfr0" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/litbulb.tscn" id="1_kjviy"]
-
-[node name="monarch_butterfly" type="Node3D"]
-
-[node name="lightbulb2" parent="." instance=ExtResource("1_kjviy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30766863, 0)

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfff6pafwreyr"]
-
-[ext_resource type="PackedScene" uid="uid://dbu3521ipgi7l" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/taser.glb" id="1_0x8on"]
-
-[node name="monarch_butterfly" type="Node3D"]
-
-[node name="taser2" parent="." instance=ExtResource("1_0x8on")]
-transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, 0)

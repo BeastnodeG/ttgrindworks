@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ds7kdyt83ki11"]
-
-[ext_resource type="Texture2D" uid="uid://bir2r3dfo0m6d" path="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/glasses/monochrome_alien_glasses/tt_m_chr_avt_acc_msk_alienGlasses_tt_t_chr_avt_acc_msk_alienGlasses.png" id="1_w6kd4"]
-
-[resource]
-resource_name = "default.259"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_w6kd4")

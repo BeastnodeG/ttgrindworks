@@ -16,3 +16,5 @@ Create a `mods` folder in the `/Applications` folder and place the desired mod `
 - Atomic Concept (Space Helmet)  (https://toontowneventhorizon.com/)
 - Sewer Battle Theme (https://youtu.be/wWsq_iTZqVQ?si=LZ2teROxe-26jaoP)
 - Sewer Theme (https://youtu.be/VXGKwUdi9XQ?si=FjhxE9GwAWKD7gSg)
+- The Toontown Grindworks Team
+  - For making an awesome game ^_^

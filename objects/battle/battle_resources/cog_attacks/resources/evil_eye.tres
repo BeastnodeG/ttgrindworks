@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dwkmwkdn3ws4k"]
-
-[ext_resource type="Script" uid="uid://dn58fyc7cb1if" path="res://objects/battle/battle_resources/cog_attacks/evil_eye.gd" id="1_c7pnc"]
-
-[resource]
-script = ExtResource("1_c7pnc")
-damage = 5
-attack_lines = Array[String](["I'm giving you the evil eye.", "Could you eye-ball this for me?", "Wait. I've got something in my eye.", "I've got my eye on you!", "Could you keep an eye on this for me?", "I've got a real eye for evil.", "I'll poke you in the eye!"])
-action_name = "Evil Eye"

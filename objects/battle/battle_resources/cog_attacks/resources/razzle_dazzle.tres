@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c24yy1wqmg24o"]
-
-[ext_resource type="Script" uid="uid://c2qfjciw1gith" path="res://objects/battle/battle_resources/cog_attacks/razzle_dazzle.gd" id="1_onvw8"]
-
-[resource]
-script = ExtResource("1_onvw8")
-damage = 3
-attack_lines = Array[String](["Read my lips.", "How about these choppers?", "Aren't I charming?", "I'm going to wow you.", "My dentist does excellent work.", "Blinding aren't they?", "Hard to believe these aren't real.", "Shocking, aren't they?", "I'm going to cap this off.", "I floss after every meal.", "Say Cheese!"])
-action_name = "Razzle Dazzle"

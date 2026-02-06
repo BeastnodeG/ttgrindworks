@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="ItemPool" load_steps=2 format=3 uid="uid://bk0jiiuypfye1"]
-
-[ext_resource type="Script" uid="uid://bllywk0dq1ug3" path="res://objects/items/classes/item_pool.gd" id="2_actsy"]
-
-[resource]
-script = ExtResource("2_actsy")
-items = PackedStringArray("res://objects/items/resources/passive/ice_cream_treasure.tres", "res://objects/items/resources/passive/starfish_treasure.tres", "res://objects/items/resources/passive/flower_treasure.tres", "res://objects/items/resources/passive/music_treasure.tres", "res://objects/items/resources/passive/snowflake_treasure.tres", "res://objects/items/resources/passive/zzz_treasure.tres", "res://objects/items/resources/passive/laff_boost.tres", "res://objects/items/resources/passive/gag_voucher_small.tres", "res://objects/items/resources/passive/quest_reroll.tres", "res://objects/items/resources/passive/toonups/feather.tres", "res://objects/items/resources/passive/toonups/megaphone.tres", "res://objects/items/resources/passive/toonups/lipstick.tres", "res://objects/items/resources/passive/toonups/bamboo_cane.tres", "res://objects/items/resources/passive/toonups/pixie.tres", "res://objects/items/resources/passive/toonups/juggling.tres", "res://objects/items/resources/passive/toonups/high_dive.tres")
-low_roll_override = 7

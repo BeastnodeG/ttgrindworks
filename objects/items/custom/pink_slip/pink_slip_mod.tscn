@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d20abt3jbvx3r"]
-
-[ext_resource type="PackedScene" uid="uid://cxj4gdkxgwknm" path="res://models/props/cog_props/pink_slip/pink_slip.glb" id="1_p1xlr"]
-
-[node name="pink_slip2" instance=ExtResource("1_p1xlr")]
-
-[node name="pink_slip" parent="." index="0"]
-transform = Transform3D(0.01, 0, 0, 0, -0.01, 8.74228e-10, 0, -8.74228e-10, -0.01, -0.110522, -0.0601982, 0)

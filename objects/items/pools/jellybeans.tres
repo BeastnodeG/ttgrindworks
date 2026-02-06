@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="ItemPool" load_steps=2 format=3 uid="uid://7vnfo7oapgck"]
-
-[ext_resource type="Script" uid="uid://bllywk0dq1ug3" path="res://objects/items/classes/item_pool.gd" id="2_uusho"]
-
-[resource]
-script = ExtResource("2_uusho")
-items = PackedStringArray("res://objects/items/resources/passive/red_jellybean.tres", "res://objects/items/resources/passive/blue_jellybean.tres", "res://objects/items/resources/passive/green_jellybean.tres", "res://objects/items/resources/passive/light_blue_jellybean.tres", "res://objects/items/resources/passive/pink_jellybean.tres", "res://objects/items/resources/passive/yellow_jellybean.tres")

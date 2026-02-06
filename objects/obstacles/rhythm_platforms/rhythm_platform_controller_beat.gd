@@ -1,2 +1,0 @@
-extends RhythmPlatformController
-class_name RhythmPlatformControllerBeat

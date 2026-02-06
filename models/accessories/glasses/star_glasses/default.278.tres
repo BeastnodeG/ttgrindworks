@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://buwq4bjnby8li"]
-
-[ext_resource type="Texture2D" uid="uid://c83r185bqsv63" path="res://models/accessories/glasses/star_glasses/tt_m_chr_avt_acc_msk_starGlasses_tt_t_chr_avt_acc_msk_glassesStarYellow.png" id="1_q2jg3"]
-
-[resource]
-resource_name = "default.278"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_q2jg3")

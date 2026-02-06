@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvvma15ymq0yp"]
-
-[ext_resource type="PackedScene" uid="uid://b3pds0y6briet" path="res://models/cogs/heads/statueman.glb" id="1_cqivl"]
-
-[node name="statueman2" instance=ExtResource("1_cqivl")]
-
-[node name="statueman" parent="." index="0"]
-transform = Transform3D(0.67, 0, 0, 0, 0.67, 0, 0, 0, 0.67, 0, -0.15, 0.17)

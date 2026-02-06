@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="ItemPool" load_steps=2 format=3 uid="uid://behe2qpqivkvt"]
-
-[ext_resource type="Script" uid="uid://bllywk0dq1ug3" path="res://objects/items/classes/item_pool.gd" id="2_vdgus"]
-
-[resource]
-script = ExtResource("2_vdgus")
-items = PackedStringArray("res://objects/items/resources/passive/candies/candy_damage.tres", "res://objects/items/resources/passive/candies/candy_defense.tres", "res://objects/items/resources/passive/candies/candy_evasiveness.tres", "res://objects/items/resources/passive/candies/candy_luck.tres", "res://objects/items/resources/passive/candies/candy_speed.tres")

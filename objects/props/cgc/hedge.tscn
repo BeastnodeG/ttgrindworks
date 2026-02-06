@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://p8gvfa1hsxhc"]
-
-[ext_resource type="PackedScene" uid="uid://b3p8q3fhmuo35" path="res://objects/props/cgc/resizeable_hedge_cube.tscn" id="1_10ek5"]
-
-[node name="Hedge" type="Node3D"]
-
-[node name="ResizeableHedgeCube" parent="." instance=ExtResource("1_10ek5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.66469, 0)
-size = Vector2(4.545, 1.35)

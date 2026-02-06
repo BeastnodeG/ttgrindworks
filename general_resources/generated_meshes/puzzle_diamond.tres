@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="GeneratedMesh" load_steps=2 format=3 uid="uid://cmxju51qgwcvx"]
-
-[ext_resource type="Script" uid="uid://bs68gjgha43jt" path="res://general_resources/generated_meshes/generated_mesh.gd" id="1_u5scw"]
-
-[resource]
-script = ExtResource("1_u5scw")
-vertices = PackedVector3Array(0.5, 0, 0.7, 0.7, 0, 0.5, 0.5, 0, 0.3, 0.3, 0, 0.5, 0.5, 0, 0.7)
-primitive_type = 2

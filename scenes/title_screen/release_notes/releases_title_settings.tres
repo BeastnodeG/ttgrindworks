@@ -1,9 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b3ntt8m4wge8j"]
-
-[ext_resource type="FontFile" uid="uid://cup2yr5w7or1l" path="res://fonts/Minnie.TTF" id="1_nh4h6"]
-
-[resource]
-line_spacing = 1.5
-font = ExtResource("1_nh4h6")
-font_size = 30
-font_color = Color(0, 0, 0, 1)

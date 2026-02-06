@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ulji1om2heto"]
-
-[ext_resource type="PackedScene" uid="uid://ci8pxaissrh5k" path="res://models/accessories/backpacks/supertoon_cape/tt_m_chr_avt_acc_pac_supertoonCape.glb" id="1_4jjuc"]
-
-[node name="tt_m_chr_avt_acc_pac_supertoonCape" instance=ExtResource("1_4jjuc")]
-
-[node name="supertoonCape" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39799, 1.31775)

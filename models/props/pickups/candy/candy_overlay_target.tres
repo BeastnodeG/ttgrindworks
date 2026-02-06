@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bemfwtdcmeun5"]
-
-[ext_resource type="Texture2D" uid="uid://cf7848m2oy84s" path="res://models/props/pickups/candy/CandyOverlay_Target.png" id="1_vesda"]
-
-[resource]
-transparency = 1
-albedo_color = Color(0.51, 0.8775, 1, 1)
-albedo_texture = ExtResource("1_vesda")

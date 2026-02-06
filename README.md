@@ -2,7 +2,7 @@
 Alders mods for [Toontown: The Grindworks](https://github.com/ToontownGrindworks/grindworks)
 
 ## Installation
-Download the zip mod you want under [releases](https://github.com/BeastnodeG/ttgrindworks/releases)
+Download the zip for the mod you want under [releases](https://github.com/BeastnodeG/ttgrindworks/releases)
 (Do not download the source code)
 
 **Windows / Linux:**  

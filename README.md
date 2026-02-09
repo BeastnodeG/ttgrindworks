@@ -1,5 +1,6 @@
 # Toontown: The Grindworks
 Alders mods for [Toontown: The Grindworks](https://github.com/ToontownGrindworks/grindworks)
+(also the home of the source code for Green Folio!)
 
 ## Installation
 Download the zip for the mod you want under [releases](https://github.com/BeastnodeG/ttgrindworks/releases)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://h4r7aiy77ko3"]
+[gd_scene format=3 uid="uid://h4r7aiy77ko3"]
 
 [ext_resource type="Script" uid="uid://om28f6sp3ba4" path="res://objects/pause_menu/other_elements/gag_panel.gd" id="1_11w8s"]
 [ext_resource type="PackedScene" uid="uid://b530aevsguwxr" path="res://objects/battle/battle_ui/track_frame.tscn" id="2_n7m4o"]

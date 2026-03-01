@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://diqe4g48ssjl3"]
+[gd_scene format=4 uid="uid://diqe4g48ssjl3"]
 
 [ext_resource type="Script" uid="uid://cocerctap73uk" path="res://objects/items/resources/accessories/shoes/shoe_model.gd" id="1_rdw0f"]
 [ext_resource type="Texture2D" uid="uid://cllqft3akfpi2" path="res://models/accessories/shoe_textures/boots/tt_t_chr_avt_acc_sho_fashionBootsOrangeStars.png" id="2_ajl1l"]

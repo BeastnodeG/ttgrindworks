@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dy40hjdmf82ep"]
+[gd_scene format=3 uid="uid://dy40hjdmf82ep"]
 
 [ext_resource type="PackedScene" uid="uid://bbmpk0bcnkij1" path="res://objects/modules/cgc/base_rooms/cgc_long_room.tscn" id="1_drsjx"]
 [ext_resource type="Script" uid="uid://h0b48xrci8d6" path="res://objects/modules/cgc/variants/cgc_fence_gate.gd" id="2_hlgyn"]

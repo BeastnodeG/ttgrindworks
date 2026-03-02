@@ -95,16 +95,16 @@ func vanilla_398913244_toggle_camera_shake() -> void:
 	camera_shake_button.text = new_value
 	update_setting('camera_shake_setting', index as SettingsFile.CameraShakeSetting)
 
-func toggle_colorblind() -> void:
+func vanilla_398913244_toggle_colorblind() -> void:
 	var index: int = SaveFileService.settings_file.color_blind_mode + 1
 	if index >= SettingsFile.ColorBlindOptions.keys().size(): index = 0
 	SaveFileService.settings_file.color_blind_mode = index
 	%ColorBlindButton.text = SettingsFile.ColorBlindOptions.keys()[index]
 
-func colorblind_hover() -> void:
+func vanilla_398913244_colorblind_hover() -> void:
 	HoverManager.hover("Affects the puzzle colors in the D.A. Office.")
 
-func colorblind_unhover() -> void:
+func vanilla_398913244_colorblind_unhover() -> void:
 	HoverManager.stop_hover()
 
 ## AUDIO SETTINGS
@@ -138,7 +138,7 @@ func vanilla_398913244_set_bus_volume(volume: float, bus: String) -> void:
 		'SFX': slider = sfx_slider; label = %SFXLabel
 	label.set_text("%s Volume: %s" % [bus, Util.float_to_perc(slider.value)])
 	
-func get_bus_index(bus : String) -> int:
+func vanilla_398913244_get_bus_index(bus : String) -> int:
 	for i in AudioServer.bus_count:
 		if AudioServer.get_bus_name(i) == bus:
 			return i
@@ -204,15 +204,15 @@ func vanilla_398913244_toggle_item_reactions() -> void:
 	toggle_setting('item_reactions')
 	reaction_button.text = get_toggle_text(get_setting('item_reactions'))
 
-func toggle_item_popups() -> void:
+func vanilla_398913244_toggle_item_popups() -> void:
 	toggle_setting('item_popups')
 	popups_button.text = get_toggle_text(get_setting('item_popups'))
 
-func toggle_item_descriptions() -> void:
+func vanilla_398913244_toggle_item_descriptions() -> void:
 	toggle_setting('item_descriptions')
 	description_button.text = get_toggle_text(get_setting('item_descriptions'))
 
-func toggle_auto_sprint() -> void:
+func vanilla_398913244_toggle_auto_sprint() -> void:
 	toggle_setting('auto_sprint')
 	auto_sprint_button.text = get_toggle_text(get_setting('auto_sprint'))
 
@@ -498,6 +498,27 @@ func toggle_camera_shake():
 		vanilla_398913244_toggle_camera_shake()
 
 
+func toggle_colorblind():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_colorblind, [], 1653281189)
+	else:
+		vanilla_398913244_toggle_colorblind()
+
+
+func colorblind_hover():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398913244_colorblind_hover, [], 1703771015)
+	else:
+		vanilla_398913244_colorblind_hover()
+
+
+func colorblind_unhover():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398913244_colorblind_unhover, [], 3829574058)
+	else:
+		vanilla_398913244_colorblind_unhover()
+
+
 func _sync_audio_settings():
 	if _ModLoaderHooks.any_mod_hooked:
 		_ModLoaderHooks.call_hooks(vanilla_398913244__sync_audio_settings, [], 1401710329)
@@ -552,6 +573,20 @@ func toggle_item_reactions():
 		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_item_reactions, [], 2204418931)
 	else:
 		vanilla_398913244_toggle_item_reactions()
+
+
+func toggle_item_popups():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_item_popups, [], 1253282066)
+	else:
+		vanilla_398913244_toggle_item_popups()
+
+
+func toggle_item_descriptions():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398913244_toggle_item_descriptions, [], 2847574146)
+	else:
+		vanilla_398913244_toggle_item_descriptions()
 
 
 func toggle_auto_sprint():

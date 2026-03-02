@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemAccessory" load_steps=41 format=3 uid="uid://cbq3vimkierco"]
+[gd_resource type="Resource" script_class="ItemAccessory" format=3 uid="uid://cbq3vimkierco"]
 
 [ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_kd0tx"]
 [ext_resource type="Script" uid="uid://c4eyu1xvv7h2l" path="res://objects/items/classes/head_placement.gd" id="2_pt62n"]
@@ -243,7 +243,7 @@ scale = Vector3(0.3, 0.3, 0.3)
 [resource]
 script = ExtResource("6_ve5bv")
 accessory_placements = Array[ExtResource("1_kd0tx")]([SubResource("Resource_q57fn"), SubResource("Resource_q42nf"), SubResource("Resource_rd633"), SubResource("Resource_jtby2"), SubResource("Resource_e5qpi"), SubResource("Resource_u4vnh"), SubResource("Resource_f5d13"), SubResource("Resource_x4g72"), SubResource("Resource_2tnfx"), SubResource("Resource_woxkm"), SubResource("Resource_j2kcf"), SubResource("Resource_sh7m2"), SubResource("Resource_c4xdi"), SubResource("Resource_uorpx"), SubResource("Resource_svvjw"), SubResource("Resource_8j8f6"), SubResource("Resource_ymhoe"), SubResource("Resource_dkjt4"), SubResource("Resource_0qsk0"), SubResource("Resource_gh4uu"), SubResource("Resource_uwcri"), SubResource("Resource_qifjg"), SubResource("Resource_4v2d8"), SubResource("Resource_ckb4y"), SubResource("Resource_y4ho7"), SubResource("Resource_3pp7v"), SubResource("Resource_kocle"), SubResource("Resource_s3jjp"), SubResource("Resource_dyltl"), SubResource("Resource_6yeml"), SubResource("Resource_w3j28"), SubResource("Resource_4q183"), SubResource("Resource_ulkq3"), SubResource("Resource_uixbd")])
-qualitoon = 2
+qualitoon = 3
 slot = 2
 world_scale = 0.125
 ui_cam_offset = 0.2

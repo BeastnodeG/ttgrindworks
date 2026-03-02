@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckhvw8ng0jh5v"]
+[gd_scene format=3 uid="uid://ckhvw8ng0jh5v"]
 
 [ext_resource type="Texture2D" uid="uid://cpnsycbvhgjii" path="res://models/props/facility_objects/factory/paint_bucket/RainbowPaint.png" id="1_f04qf"]
 
@@ -10,5 +10,5 @@ material = SubResource("StandardMaterial3D_yog64")
 radial_segments = 10
 rings = 10
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1583754030]
 mesh = SubResource("SphereMesh_728le")

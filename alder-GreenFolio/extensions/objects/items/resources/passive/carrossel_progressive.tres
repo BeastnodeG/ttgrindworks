@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://376328a32fm8"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://376328a32fm8"]
 
 [ext_resource type="Texture2D" uid="uid://corxhthdgj8tb" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/options.png" id="1_oiqf3"]
 [ext_resource type="Script" uid="uid://citv3i68xegoa" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/item_carrossel_progressive.gd" id="2_oiqf3"]
@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("4_34p5b")
 qualitoon = 2
+rarity = 4
 item_name = "More Choices"
 item_description = "There's choices"
 big_description = "Silver and Bronze chests cycle between 2 items to choose from"

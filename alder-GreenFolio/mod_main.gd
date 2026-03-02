@@ -83,34 +83,42 @@ func _ready() -> void:
 		"space_helmet": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/hats/atomichat/space_helmet.tres",
 		"starboots": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/accessories/foot/starboots/starboots.tres",
 		"thegray": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/thegrey.tres",
-		"rewardoptions" : "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/carrossel_rewards.tres",
-		"progressoptions" : "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/carrossel_progressive.tres",
-		"monoalien" : "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/monoalien_glasses.tres",
+		"rewardoptions": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/carrossel_rewards.tres",
+		"progressoptions": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/carrossel_progressive.tres",
+		"monoalien": "res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/monoalien_glasses.tres",
 	}
 
-	var pool_memberships := {
-		"special_items.tres": ["battoon_cape", "alphabet_soup", "taser", "space_helmet"],
-		"shop_rewards.tres": ["progressoptions", "rewardoptions", "jollyboots", "taser", "opossum_tail", "lightbulb", "green_deal", "paint_brush"],
-		"shop_progressives.tres": ["cannon", "paintball"],
-		"rewards.tres": ["monoalien", "turn_box", "starboots", "lightbulb", "opossum_tail", "paint_brush"],
-		"progressives.tres": ["cannon", "paintball"],
-		"floor_clears.tres": ["jollyboots", "opossum_tail", "lightbulb"],
-		"everything.tres": ["progressoptions", "rewardoptions", "monoalien", "thegray", "starboots", "jollyboots", "space_helmet", "turn_box", "battoon_cape", "lightbulb", "taser", "joybuzzer", "opossum_tail", "paintball", "alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal"],
-		"battle_clears.tres": [],
-		"active_items.tres": ["alphabet_soup", "paint_brush", "monarch_butterfly", "green_deal", "turn_box"],
-		"accessories.tres": ["monoalien", "progressoptions", "rewardoptions", "thegray", "starboots", "jollyboots", "taser", "lightbulb", "opossum_tail", "battoon_cape", "space_helmet"],
-		"stranger_items.tres": ["monoalien", "thegray", "green_deal", "space_helmet", "battoon_cape", "monarch_butterfly"]
+	var item_pools := {
+		"taser": ["special_items", "shop_rewards", "accessories", "everything"],
+		"opossum_tail": ["shop_rewards", "progressives", "accessories", "everything"],
+		"lightbulb": ["shop_rewards", "floor_clears", "accessories", "everything"],
+		"joybuzzer": ["everything"],
+		"parry_glower": [],
+		"paint_brush": ["shop_rewards", "rewards", "active_items", "everything"],
+		"paintball": ["battle_clears", "everything"],
+		"monarch_butterfly": ["stranger_items", "active_items", "everything"],
+		"green_deal": ["rewards", "stranger_items", "active_items", "everything"],
+		"alphabet_soup": ["special_items", "stranger_items", "active_items", "everything"],
+		"battoon_cape": ["special_items", "floor_clears", "rewards", "accessories", "everything"],
+		"turn_box": ["rewards", "active_items", "everything"],
+		"jollyboots": ["rewards", "progressives", "floor_clears", "accessories", "everything"],
+		"cannon": ["shop_progressives", "progressives"],
+		"space_helmet": ["special_items", "stranger_items", "accessories", "everything"],
+		"starboots": ["rewards", "progressives", "accessories", "everything"],
+		"thegray": ["stranger_items", "accessories", "everything"],
+		"rewardoptions": ["rewards", "shop_rewards", "accessories", "everything"],
+		"progressoptions": ["shop_progressives", "progressives", "shop_rewards", "accessories", "everything"],
+		"monoalien": ["special_items", "stranger_items", "accessories", "everything"],
 	}
 
-	for pool_name in pool_memberships:
-		var pool: Object = ItemService.pool_from_path("res://objects/items/pools/%s" % pool_name)
-		if not pool:
-			push_error("Missing pool: %s" % pool_name)
-			continue
-
-		for item_name in pool_memberships[pool_name]:
-			var item_path = item_paths.get(item_name, "")
-			if item_path and item_path not in pool.items:
+	for item_name in item_pools:
+		var item_path = item_paths.get(item_name, "")
+		for pool_name in item_pools[item_name]:
+			var pool: Object = ItemService.pool_from_path("res://objects/items/pools/%s.tres" % pool_name)
+			if not pool:
+				push_error("Missing pool: %s" % pool_name)
+				continue
+			if item_path not in pool.items:
 				pool.items.append(item_path)
 				var item = load(item_path)
 				if item:

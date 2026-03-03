@@ -157,7 +157,10 @@ func apply_dissension(boost_value: float) -> void:
 		dissension.boost = boost_value
 		dissension.target = boss
 		manager.add_status_effect(dissension)
-
+		if boost_value >= 0:
+			await Task.delay(0.3)
+			manager.battle_text(boss, "Desperation!", Color(0.693, 0.247, 1.0, 1.0), Color(0.528, 0.002, 0.798, 1.0))
+		
 func try_add_cogs(_actions: Array[BattleAction]) -> void: #i literally do not want to talk about this at all - not having access to classes makes things miserable and this was the best i could come up with
 	print("try add cogs")
 	var cooldown := 2
@@ -256,7 +259,7 @@ func on_boss_hp_changed(_hp) -> void:
 	if hp_percent <= 0.45 and not triggered_50_percent:
 		on_50_percent_threshold()
 	
-	if hp_percent <= 0.15 and not triggered_25_percent:
+	if hp_percent <= 0.25 and not triggered_25_percent:
 		on_25_percent_threshold()
 
 func on_75_percent_threshold() -> void:

@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://o3ad2pfvl86w" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/oil_floor.gd" id="10_bvde5"]
 [ext_resource type="PackedScene" uid="uid://dxyq5lb5oineo" path="res://objects/interactables/treasure_chest/treasure_chest.tscn" id="11_bvde5"]
 [ext_resource type="Resource" uid="uid://c1ieqc06wj6gp" path="res://objects/items/pools/rewards.tres" id="12_acj5o"]
-[ext_resource type="Resource" uid="uid://j75am6rbrvrj" path="res://objects/items/pools/progressives.tres" id="12_himjy"]
 [ext_resource type="PackedScene" uid="uid://bsb5ku08jbkdy" path="res://objects/props/mint/pipes/pipes_e.tscn" id="15_kive3"]
 [ext_resource type="PackedScene" uid="uid://byrmf687ynghb" path="res://objects/props/mint/pipes/pipes_d1.tscn" id="16_prj3x"]
 [ext_resource type="PackedScene" uid="uid://bx6mubx7yx00x" path="res://objects/props/mint/pipes/pipes_corner.tscn" id="17_giudm"]
@@ -741,11 +740,9 @@ debug_color = Color(0.9791, 0, 0.390816, 0.42)
 
 [node name="treasure_chest" parent="." unique_id=1800779694 instance=ExtResource("11_bvde5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.5, -25)
-item_pool = ExtResource("12_himjy")
 
 [node name="treasure_chest2" parent="." unique_id=535305026 instance=ExtResource("11_bvde5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -25)
-item_pool = ExtResource("12_himjy")
 
 [node name="treasure_chest3" parent="." unique_id=1454083362 instance=ExtResource("11_bvde5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.5, -25)

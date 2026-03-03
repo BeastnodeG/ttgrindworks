@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cxqhci1nkwtbf"]
+[gd_resource type="Resource" format=3 uid="uid://cxqhci1nkwtbf"]
 
 [ext_resource type="Script" uid="uid://croinsp8yjrbl" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/effects/directorboost/status_effect_dissension.gd" id="1_16ppc"]
 

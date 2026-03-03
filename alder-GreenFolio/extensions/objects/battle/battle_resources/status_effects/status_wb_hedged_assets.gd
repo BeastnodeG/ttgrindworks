@@ -72,7 +72,7 @@ func renew() -> void:
 				if status.status_name == "Liability":
 					has_liability = true
 			if has_liability and cog.stats.hp < cog.stats.max_hp:
-				heal_amount += ceil(cogcheck.stats.hp * 0.15)
+				heal_amount += ceil(cogcheck.stats.hp * 0.25)
 
 	# If there’s healing to do, play animation
 	if heal_amount > 0:
@@ -119,6 +119,6 @@ func get_description() -> String:
 	var defense_bonus := liability_count * DEFENSE_PER_LIABILITY * 100
 	var desc := "wow you shouldn't see this"
 	if liability_count > 0:
-		desc = "Regenerating HP equal to 15% of each Liable cog's current HP."
+		desc = "Regenerating HP equal to 25% of each Liable cog's current HP."
 		desc += "\n+%d%% Defense" % defense_bonus
 	return desc

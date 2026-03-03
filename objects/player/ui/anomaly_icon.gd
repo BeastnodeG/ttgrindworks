@@ -44,14 +44,14 @@ var hover_seq: Tween:
 			hover_seq.kill()
 		hover_seq = x
 
-func _ready() -> void:
+func vanilla_1444728763__ready() -> void:
 	if Engine.is_editor_hint():
 		return
 
 	mouse_entered.connect(hover)
 	mouse_exited.connect(stop_hover)
 
-func update_anomaly() -> void:
+func vanilla_1444728763_update_anomaly() -> void:
 	if not instantiated_anomaly:
 		return
 	
@@ -64,7 +64,7 @@ func update_anomaly() -> void:
 		background.self_modulate = Color.DIM_GRAY
 		obscured_label.show()
 
-func hover() -> void:
+func vanilla_1444728763_hover() -> void:
 	if not instantiated_anomaly:
 		return
 
@@ -74,27 +74,79 @@ func hover() -> void:
 	]).as_tween(self)
 	AudioManager.play_sound(HOVER_SFX, 6.0)
 
-func stop_hover() -> void:
+func vanilla_1444728763_stop_hover() -> void:
 	HoverManager.stop_hover()
 	hover_seq = Parallel.new([
 		LerpProperty.new(self, ^"scale", 0.1, Vector2.ONE).interp(Tween.EASE_IN_OUT, Tween.TRANS_QUAD),
 	]).as_tween(self)
 
 
-func get_anomaly_name() -> String:
+func vanilla_1444728763_get_anomaly_name() -> String:
 	if not instantiated_anomaly:
 		return ""
 	
 	if obscured: return "???"
 	else: return instantiated_anomaly.get_mod_name()
 
-func get_anomaly_description() -> String:
+func vanilla_1444728763_get_anomaly_description() -> String:
 	if not instantiated_anomaly:
 		return ""
 	
 	if obscured: return "???"
 	else: return instantiated_anomaly.get_description()
 
-func get_anomaly_color() -> Color:
+func vanilla_1444728763_get_anomaly_color() -> Color:
 	if obscured or not instantiated_anomaly: return Color.BLACK
 	else: return QualityColors[quality].darkened(0.5)
+
+
+# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
+
+
+func _ready():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_1444728763__ready, [], 4075321711)
+	else:
+		vanilla_1444728763__ready()
+
+
+func update_anomaly():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_1444728763_update_anomaly, [], 4244030446)
+	else:
+		vanilla_1444728763_update_anomaly()
+
+
+func hover():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_1444728763_hover, [], 524530303)
+	else:
+		vanilla_1444728763_hover()
+
+
+func stop_hover():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_1444728763_stop_hover, [], 2797545316)
+	else:
+		vanilla_1444728763_stop_hover()
+
+
+func get_anomaly_name() -> String:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_1444728763_get_anomaly_name, [], 1984427531)
+	else:
+		return vanilla_1444728763_get_anomaly_name()
+
+
+func get_anomaly_description() -> String:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_1444728763_get_anomaly_description, [], 726032814)
+	else:
+		return vanilla_1444728763_get_anomaly_description()
+
+
+func get_anomaly_color() -> Color:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_1444728763_get_anomaly_color, [], 1049056425)
+	else:
+		return vanilla_1444728763_get_anomaly_color()

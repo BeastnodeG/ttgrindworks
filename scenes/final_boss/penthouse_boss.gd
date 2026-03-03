@@ -41,7 +41,7 @@ var boss_two_alive := true
 
 var darkened_sky := false
 
-func _init():
+func vanilla_3040390416__init():
 	# GameLoader Requirement:
 	# - cog.tscn has a very large dependency chain.
 	#   Since this script extends Node and has a class_name, the editor will try
@@ -51,7 +51,7 @@ func _init():
 	})
 
 
-func _ready() -> void:
+func vanilla_3040390416__ready() -> void:
 	Globals.s_entered_barrel_room.emit()
 	
 	set_caged_toon_dna(get_caged_toon_dna())
@@ -92,7 +92,7 @@ func _ready() -> void:
 	boss_cog_2.stats.hp_changed.connect(on_boss_hp_changed)
 
 
-func try_add_cogs(_actions: Array[BattleAction]) -> void:
+func vanilla_3040390416_try_add_cogs(_actions: Array[BattleAction]) -> void:
 	var cooldown := 2
 	
 	if BattleService.ongoing_battle.current_round % cooldown == 1 and (boss_one_alive or boss_two_alive):
@@ -100,7 +100,7 @@ func try_add_cogs(_actions: Array[BattleAction]) -> void:
 		new_reinforcements.user = self
 		BattleService.ongoing_battle.round_end_actions.append(new_reinforcements)
 
-func participant_died(who: Node3D) -> void:
+func vanilla_3040390416_participant_died(who: Node3D) -> void:
 	if who == boss_cog:
 		boss_one_alive = false
 		a_boss_died()
@@ -108,7 +108,7 @@ func participant_died(who: Node3D) -> void:
 		boss_two_alive = false
 		a_boss_died()
 
-func battle_ending() -> void:
+func vanilla_3040390416_battle_ending() -> void:
 	Util.get_player().game_timer_tick = false
 	Util.get_player().lock_game_timer = true
 	Util.get_player().game_timer.become_full_visible()
@@ -118,7 +118,7 @@ func battle_ending() -> void:
 	if win_time < SaveFileService.progress_file.best_time or is_equal_approx(0.0, SaveFileService.progress_file.best_time):
 		SaveFileService.progress_file.best_time = Util.get_player().game_timer.time
 
-func to_dusk() -> void:
+func vanilla_3040390416_to_dusk() -> void:
 	$WorldEnvironment.environment = $WorldEnvironment.environment.duplicate(true)
 	var env: Environment = $WorldEnvironment.environment
 	
@@ -127,14 +127,14 @@ func to_dusk() -> void:
 	dusk_tween.parallel().tween_property(env, "ambient_light_color", Color("c3a192"), 15.0)
 	dusk_tween.finished.connect(dusk_tween.kill)
 	
-func a_boss_died() -> void:
+func vanilla_3040390416_a_boss_died() -> void:
 	if not darkened_sky:
 		darkened_sky = true
 		to_dusk()
 		# to unlock-loop
 		AudioManager.set_clip(2)
 
-func on_boss_hp_changed(_hp) -> void:
+func vanilla_3040390416_on_boss_hp_changed(_hp) -> void:
 	if not both_bosses_alive() or darkened_sky: return
 	
 	var maximum_hp := boss_cog.stats.max_hp + boss_cog_2.stats.max_hp
@@ -142,11 +142,11 @@ func on_boss_hp_changed(_hp) -> void:
 	if float(current_hp) / float(maximum_hp) < 0.5:
 		a_boss_died()
 
-func set_caged_toon_dna(dna: ToonDNA) -> void:
+func vanilla_3040390416_set_caged_toon_dna(dna: ToonDNA) -> void:
 	caged_toon.construct_toon(dna)
 	caged_toon.set_animation('neutral')
 
-func get_caged_toon_dna() -> ToonDNA:
+func vanilla_3040390416_get_caged_toon_dna() -> ToonDNA:
 	var unlock_index: int = SaveFileService.progress_file.characters_unlocked
 	var can_unlock: bool = unlock_index < 5
 	if not SaveFileService.is_achievement_unlocked(ProgressFile.GameAchievement.UNLOCK_RANDOM):
@@ -159,7 +159,7 @@ func get_caged_toon_dna() -> ToonDNA:
 	unlock_toon = true
 	return Globals.fetch_toon_unlock_order()[unlock_index].dna
 
-func on_battle_finished() -> void:
+func vanilla_3040390416_on_battle_finished() -> void:
 	if unlock_toon:
 		Globals.s_character_unlocked.emit(Globals.fetch_toon_unlock_order()[SaveFileService.progress_file.characters_unlocked])
 		SaveFileService.progress_file.characters_unlocked += 1
@@ -167,7 +167,7 @@ func on_battle_finished() -> void:
 		SaveFileService.progress_file.unlock_achievement(ProgressFile.GameAchievement.UNLOCK_RANDOM)
 	win_game()
 
-func end_game() -> void:
+func vanilla_3040390416_end_game() -> void:
 	match Util.get_player().character.character_id:
 		PlayerCharacter.Character.MYSTERY:
 			if not SaveFileService.progress_file.mystery_toon_win:
@@ -180,7 +180,7 @@ func end_game() -> void:
 	SceneLoader.change_scene_to_file('res://objects/player/ui/win_menu/win_menu.tscn')
 	
 
-func fill_elevator(cog_count: int, dna: CogDNA = null) -> Array[Cog]:
+func vanilla_3040390416_fill_elevator(cog_count: int, dna: CogDNA = null) -> Array[Cog]:
 	var roll_for_proxies : bool = SaveFileService.progress_file.proxies_unlocked and darkened_sky
 	var new_cogs: Array[Cog]
 	for i in cog_count:
@@ -194,10 +194,10 @@ func fill_elevator(cog_count: int, dna: CogDNA = null) -> Array[Cog]:
 		new_cogs.append(cog)
 	return new_cogs
 
-func get_char_position(pos: String) -> Vector3:
+func vanilla_3040390416_get_char_position(pos: String) -> Vector3:
 	return $CharPositions.get_node(pos).global_position
 
-func both_bosses_alive() -> bool:
+func vanilla_3040390416_both_bosses_alive() -> bool:
 	return boss_one_alive and boss_two_alive
 
 #region Final sequence
@@ -207,7 +207,7 @@ signal s_caged_toon_finished_walking
 
 const FinalSpd := 3.0
 
-func win_game() -> void:
+func vanilla_3040390416_win_game() -> void:
 	AudioManager.set_music(load("res://audio/music/encntr_hall_of_fame.ogg"))
 	var player := Util.get_player()
 	player.state = Player.PlayerState.STOPPED
@@ -259,7 +259,7 @@ func win_game() -> void:
 	scene.kill()
 	end_game()
 
-func do_move_player_seq() -> void:
+func vanilla_3040390416_do_move_player_seq() -> void:
 	var player: Player = Util.get_player()
 	await player.turn_to_position(%InFrontElevatorPos.global_position, 1.0)
 	await player.move_to(%InFrontElevatorPos.global_position, FinalSpd).finished
@@ -269,7 +269,7 @@ func do_move_player_seq() -> void:
 	await player.turn_to_position(Vector3.ZERO, 1.5)
 	s_player_finished_walking.emit()
 
-func do_move_caged_toon_seq() -> void:
+func vanilla_3040390416_do_move_caged_toon_seq() -> void:
 	await Task.delay(0.5)
 	await caged_toon.move_to(%PlayerWinPos.global_position, FinalSpd).finished
 	await caged_toon.turn_to_position(%InFrontElevatorPos.global_position, 1.0)
@@ -280,3 +280,132 @@ func do_move_caged_toon_seq() -> void:
 	s_caged_toon_finished_walking.emit()
 
 #endregion
+
+
+# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
+
+
+func _init():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416__init, [], 1894900899)
+	else:
+		vanilla_3040390416__init()
+
+
+func _ready():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_3040390416__ready, [], 2412528260)
+	else:
+		await vanilla_3040390416__ready()
+
+
+func try_add_cogs(_actions: Array[BattleAction]):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_try_add_cogs, [_actions], 3023363778)
+	else:
+		vanilla_3040390416_try_add_cogs(_actions)
+
+
+func participant_died(who: Node3D):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_participant_died, [who], 318517412)
+	else:
+		vanilla_3040390416_participant_died(who)
+
+
+func battle_ending():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_battle_ending, [], 2608772992)
+	else:
+		vanilla_3040390416_battle_ending()
+
+
+func to_dusk():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_to_dusk, [], 3530649353)
+	else:
+		vanilla_3040390416_to_dusk()
+
+
+func a_boss_died():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_a_boss_died, [], 1063108796)
+	else:
+		vanilla_3040390416_a_boss_died()
+
+
+func on_boss_hp_changed(_hp):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_on_boss_hp_changed, [_hp], 791119651)
+	else:
+		vanilla_3040390416_on_boss_hp_changed(_hp)
+
+
+func set_caged_toon_dna(dna: ToonDNA):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_set_caged_toon_dna, [dna], 2405044160)
+	else:
+		vanilla_3040390416_set_caged_toon_dna(dna)
+
+
+func get_caged_toon_dna() -> ToonDNA:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_3040390416_get_caged_toon_dna, [], 1716549172)
+	else:
+		return vanilla_3040390416_get_caged_toon_dna()
+
+
+func on_battle_finished():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_on_battle_finished, [], 3246751665)
+	else:
+		vanilla_3040390416_on_battle_finished()
+
+
+func end_game():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3040390416_end_game, [], 118550944)
+	else:
+		vanilla_3040390416_end_game()
+
+
+func fill_elevator(cog_count: int, dna: CogDNA=null) -> Array[Cog]:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_3040390416_fill_elevator, [cog_count, dna], 340671512)
+	else:
+		return vanilla_3040390416_fill_elevator(cog_count, dna)
+
+
+func get_char_position(pos: String) -> Vector3:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_3040390416_get_char_position, [pos], 2002614305)
+	else:
+		return vanilla_3040390416_get_char_position(pos)
+
+
+func both_bosses_alive() -> bool:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_3040390416_both_bosses_alive, [], 200213147)
+	else:
+		return vanilla_3040390416_both_bosses_alive()
+
+
+func win_game():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_3040390416_win_game, [], 975327223)
+	else:
+		await vanilla_3040390416_win_game()
+
+
+func do_move_player_seq():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_3040390416_do_move_player_seq, [], 2323739053)
+	else:
+		await vanilla_3040390416_do_move_player_seq()
+
+
+func do_move_caged_toon_seq():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_3040390416_do_move_caged_toon_seq, [], 3602127955)
+	else:
+		await vanilla_3040390416_do_move_caged_toon_seq()

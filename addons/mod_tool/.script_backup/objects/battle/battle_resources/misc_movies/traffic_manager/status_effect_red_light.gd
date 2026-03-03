@@ -16,7 +16,7 @@ var retaliation_queued := false
 var traffic_man: Cog
 
 
-func vanilla_3448601791_apply() -> void:
+func apply() -> void:
 	traffic_man = logic_effect.traffic_man
 	trimmed_list = track_list.duplicate(true)
 	
@@ -31,7 +31,7 @@ func vanilla_3448601791_apply() -> void:
 	manager.s_round_ended.connect(on_round_ended)
 	BattleService.s_battle_participant_died.connect(participant_died)
 
-func vanilla_3448601791_cleanup() -> void:
+func cleanup() -> void:
 	if banned_effect and is_instance_valid(banned_effect):
 		manager.expire_status_effect(banned_effect)
 		banned_effect = null
@@ -39,21 +39,21 @@ func vanilla_3448601791_cleanup() -> void:
 	manager.s_round_started.disconnect(ban_random_track)
 	BattleService.s_battle_participant_died.disconnect(participant_died)
 
-func vanilla_3448601791_participant_died(who: Node3D) -> void:
+func participant_died(who: Node3D) -> void:
 	if who == traffic_man:
 		manager.expire_status_effect(self)
 
-func vanilla_3448601791_on_round_ended() -> void:
+func on_round_ended() -> void:
 	retaliation_queued = false
 
-func vanilla_3448601791_ban_random_track(_actions: Array[BattleAction] = []) -> void:
+func ban_random_track(_actions: Array[BattleAction] = []) -> void:
 	trimmed_list.shuffle()
 	var new_track: Track = trimmed_list.pop_back()
 	for gag in new_track.gags:
 		banned_effect.gags.append(gag)
 	banned_tracks.append(new_track)
 
-func vanilla_3448601791_get_description() -> String:
+func get_description() -> String:
 	var desc := "Using "
 	for i in banned_tracks.size():
 		if i == banned_tracks.size() - 1:
@@ -66,59 +66,7 @@ func vanilla_3448601791_get_description() -> String:
 	desc += "will result in harsh retaliation"
 	return desc
 
-func vanilla_3448601791_on_banned_gag_used(_action: ToonAttack) -> void:
+func on_banned_gag_used(_action: ToonAttack) -> void:
 	if not retaliation_queued:
 		retaliation_queued = true
 		logic_effect.queue_retaliation()
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func apply():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3448601791_apply, [], 1375660613)
-	else:
-		vanilla_3448601791_apply()
-
-
-func cleanup():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3448601791_cleanup, [], 1563767175)
-	else:
-		vanilla_3448601791_cleanup()
-
-
-func participant_died(who: Node3D):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3448601791_participant_died, [who], 3825237587)
-	else:
-		vanilla_3448601791_participant_died(who)
-
-
-func on_round_ended():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3448601791_on_round_ended, [], 1031953698)
-	else:
-		vanilla_3448601791_on_round_ended()
-
-
-func ban_random_track(_actions: Array[BattleAction]=[]):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3448601791_ban_random_track, [_actions], 2225522020)
-	else:
-		vanilla_3448601791_ban_random_track(_actions)
-
-
-func get_description() -> String:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3448601791_get_description, [], 3181910306)
-	else:
-		return vanilla_3448601791_get_description()
-
-
-func on_banned_gag_used(_action: ToonAttack):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3448601791_on_banned_gag_used, [_action], 2897881825)
-	else:
-		vanilla_3448601791_on_banned_gag_used(_action)

@@ -55,7 +55,7 @@ var has_existing_run: bool:
 
 var is_loading := true
 
-func _init():
+func vanilla_398685313__init():
 	GameLoader.queue_into(GameLoader.Phase.GAME_START, self, {
 		'SETTINGS_MENU': 'res://objects/general_ui/settings_menu/settings_menu.tscn',
 		'EXTRAS_MENU': 'res://scenes/title_screen/extras_menu.tscn',
@@ -71,7 +71,7 @@ func _init():
 	
 	GameLoader.load_all()
 
-func _ready() -> void:
+func vanilla_398685313__ready() -> void:
 	Engine.time_scale = 1.0
 	
 	Util.stuck_lock = false
@@ -136,7 +136,7 @@ func _ready() -> void:
 	if OS.has_feature('release'):
 		check_for_new_version()
 
-func _process(delta: float) -> void:
+func vanilla_398685313__process(delta: float) -> void:
 	if state == MenuState.ROTATING:
 		spring_arm.rotation_degrees.y += CAMERA_SPEED * delta
 		if spring_arm.rotation_degrees.y - 360.0 > 0:
@@ -147,7 +147,7 @@ func _process(delta: float) -> void:
 			%ClickLabel.label_settings.font_color = Color.WHITE
 			%ClickLabel.text = click_label_text
 
-func _input_rotating(event) -> void:
+func vanilla_398685313__input_rotating(event) -> void:
 	if is_loading:
 		return
 	
@@ -155,11 +155,11 @@ func _input_rotating(event) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			play_pressed()
 
-func gui_input(event: InputEvent) -> void:
+func vanilla_398685313_gui_input(event: InputEvent) -> void:
 	if state == MenuState.ROTATING:
 		_input_rotating(event)
 
-func play_pressed() -> void:
+func vanilla_398685313_play_pressed() -> void:
 	$GUI/Logo.hide()
 	state = MenuState.TRANSITIONING
 	var center_tween := create_tween()
@@ -172,10 +172,10 @@ func play_pressed() -> void:
 	state = MenuState.NEW_GAME
 	new_game_menu.show()
 
-func get_character_list() -> Array[PlayerCharacter]:
+func vanilla_398685313_get_character_list() -> Array[PlayerCharacter]:
 	return Globals.get_unlocked_toons()
 
-func new_game() -> void:
+func vanilla_398685313_new_game() -> void:
 	%FullBlock.show()
 	state = MenuState.TRANSITIONING
 	await character_select_fsm.finish()
@@ -201,11 +201,11 @@ func new_game() -> void:
 	else:
 		begin_game(selected_character)
 
-func make_toon_look(toon: Toon, where: Vector3) -> void:
+func vanilla_398685313_make_toon_look(toon: Toon, where: Vector3) -> void:
 	toon.look_at(where)
 	toon.rotation_degrees = Vector3(0, toon.rotation_degrees.y - 180.0 , 0)
 
-func begin_game(character: PlayerCharacter, falling_scene := false) -> void:
+func vanilla_398685313_begin_game(character: PlayerCharacter, falling_scene := false) -> void:
 	if has_existing_run and SaveFileService.progress_file.win_streak > 0:
 		SaveFileService.progress_file.win_streak = 0
 
@@ -244,7 +244,7 @@ func begin_game(character: PlayerCharacter, falling_scene := false) -> void:
 	else:
 		SceneLoader.load_into_scene("res://scenes/cog_building/cog_building_floor.tscn", GameLoader.Phase.COG_BLDG_FLOOR)
 
-func show_secret_seed(secret: String) -> void:
+func vanilla_398685313_show_secret_seed(secret: String) -> void:
 	%SecretSeedLabel.set_text("Secret Seed: %s" % secret)
 	var secret_tween := create_tween().set_trans(Tween.TRANS_QUAD)
 	secret_tween.tween_callback(AudioManager.play_sound.bind(load("res://audio/sfx/misc/MG_pairing_match_bonus_both.ogg")))
@@ -252,22 +252,22 @@ func show_secret_seed(secret: String) -> void:
 	secret_tween.tween_property(%SecretSeedLabel, 'modulate:a', 0.0, 2.0)
 	secret_tween.finished.connect(secret_tween.kill)
 
-func update_state() -> void:
+func vanilla_398685313_update_state() -> void:
 	new_game_menu.visible = (state == MenuState.TOON_SELECT or state == MenuState.NEW_GAME)
 
-func open_settings() -> void:
+func vanilla_398685313_open_settings() -> void:
 	get_tree().get_root().add_child(SETTINGS_MENU.instantiate())
 
-func open_extras() -> void:
+func vanilla_398685313_open_extras() -> void:
 	get_tree().get_root().add_child(EXTRAS_MENU.instantiate())
 
-func open_releases() -> void:
+func vanilla_398685313_open_releases() -> void:
 	if not releases_menu:
 		releases_menu = RELEASES_MENU.instantiate()
 		get_tree().get_root().add_child(releases_menu)
 		releases_menu.tree_exited.connect(func(): releases_menu = null)
 
-func load_game() -> void:
+func vanilla_398685313_load_game() -> void:
 	SaveFileService.load_run()
 	%NewGameButton.disabled = true
 	%ContinueButton.disabled = true
@@ -283,17 +283,17 @@ func load_game() -> void:
 		GameLoader.Phase.GAMEPLAY
 	)
 
-func new_game_pressed() -> void:
+func vanilla_398685313_new_game_pressed() -> void:
 	middle_buttons.hide()
 	transition_char_select()
 
-func back_pressed() -> void:
+func vanilla_398685313_back_pressed() -> void:
 	if not middle_buttons.visible:
 		transition_out_char_select()
 	else:
 		back_out_logo()
 
-func transition_char_select() -> void:
+func vanilla_398685313_transition_char_select() -> void:
 	%FullBlock.show()
 	state = MenuState.TRANSITIONING
 	new_game_menu.hide()
@@ -308,7 +308,7 @@ func transition_char_select() -> void:
 	%FullBlock.hide()
 	clipboard_in()
 
-func transition_out_char_select() -> void:
+func vanilla_398685313_transition_out_char_select() -> void:
 	state = MenuState.TRANSITIONING
 	new_game_menu.hide()
 	clipboard_out()
@@ -321,7 +321,7 @@ func transition_out_char_select() -> void:
 	middle_buttons.show()
 	new_game_menu.show()
 
-func back_out_logo() -> void:
+func vanilla_398685313_back_out_logo() -> void:
 	state = MenuState.TRANSITIONING
 	new_game_menu.hide()
 	var tween := create_tween().set_trans(Tween.TRANS_QUAD)
@@ -335,14 +335,14 @@ func back_out_logo() -> void:
 			state = MenuState.ROTATING
 	)
 
-func clipboard_in() -> void:
+func vanilla_398685313_clipboard_in() -> void:
 	if clipboard_tween and clipboard_tween.is_running():
 		clipboard_tween.kill()
 	clipboard_tween = create_tween().set_trans(Tween.TRANS_QUAD)
 	clipboard_tween.tween_property(clipboard, 'position:y', 0.0, 0.25)
 	clipboard_tween.finished.connect(clipboard_tween.kill)
 
-func clipboard_out() -> void:
+func vanilla_398685313_clipboard_out() -> void:
 	if clipboard_tween and clipboard_tween.is_running():
 		clipboard_tween.kill()
 	clipboard_tween = create_tween().set_trans(Tween.TRANS_QUAD)
@@ -350,7 +350,7 @@ func clipboard_out() -> void:
 	clipboard_tween.finished.connect(clipboard_tween.kill)
 
 @onready var elevator_floor := $World3D/CogBuilding/suit_landmark_new_corp/locators/suit_landmark_new_corp_door_origin/GeometryTransformHelper11/sellbot_elevator/suit_elevator_1/ground
-func alt_opening(tween : Tween) -> void:
+func vanilla_398685313_alt_opening(tween : Tween) -> void:
 	tween.set_trans(Tween.TRANS_QUART)
 	tween.tween_property(elevator_floor, 'rotation_degrees:x', -90.0, 0.25)
 	tween.set_trans(Tween.TRANS_LINEAR)
@@ -373,11 +373,11 @@ func alt_opening(tween : Tween) -> void:
 	tween.tween_callback(selected_toon.anim_seek.bind(2.0))
 	tween.tween_property(selected_toon, 'position:y', -10.0, 0.6)
 
-func check_for_new_version() -> void:
+func vanilla_398685313_check_for_new_version() -> void:
 	$HTTPRequest.request_completed.connect(_on_request_completed)
 	$HTTPRequest.request("https://api.github.com/repos/ToontownGrindworks/grindworks/releases/latest")
 
-func _on_request_completed(_result, _response_code, _headers, body) -> void:
+func vanilla_398685313__on_request_completed(_result, _response_code, _headers, body) -> void:
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	if not json:
 		print("Failed to check latest game version.")
@@ -386,32 +386,259 @@ func _on_request_completed(_result, _response_code, _headers, body) -> void:
 	if version != Globals.VERSION_NUMBER:
 		%NewVersionLabel.show()
 
-func discord_hover() -> void:
+func vanilla_398685313_discord_hover() -> void:
 	HoverManager.hover("Join the Discord!")
 	%DiscordButton.mouse_exited.connect(HoverManager.stop_hover, CONNECT_ONE_SHOT)
 	on_social_hover(%DiscordButton, Color("#5865f2"))
 
-func bluesky_hover() -> void:
+func vanilla_398685313_bluesky_hover() -> void:
 	HoverManager.hover("Follow us on Bluesky!")
 	%BlueskyButton.mouse_exited.connect(HoverManager.stop_hover, CONNECT_ONE_SHOT)
 	on_social_hover(%BlueskyButton, Color("#1185fe"))
 
-func wiki_hover() -> void:
+func vanilla_398685313_wiki_hover() -> void:
 	HoverManager.hover("Check out the Wiki!")
 	%WikiButton.mouse_exited.connect(HoverManager.stop_hover, CONNECT_ONE_SHOT)
 	on_social_hover(%WikiButton, Color("#ff1985"))
 
-func on_social_hover(social: GeneralButton, color: Color) -> void:
+func vanilla_398685313_on_social_hover(social: GeneralButton, color: Color) -> void:
 	var tween_time := 0.4
 	var social_popup := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	social_popup.tween_property(social.get_parent(), 'scale', Vector2(1.1, 1.1), tween_time)
 	social_popup.parallel().tween_property(social, 'self_modulate', color, tween_time)
 
-func on_social_unhover(social: GeneralButton) -> void:
+func vanilla_398685313_on_social_unhover(social: GeneralButton) -> void:
 	var tween_time := 0.4
 	var social_popdown := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	social_popdown.tween_property(social.get_parent(), 'scale', Vector2.ONE, tween_time)
 	social_popdown.parallel().tween_property(social, 'self_modulate', Color.WHITE, tween_time)
 
-func on_social_click(url: String) -> void:
+func vanilla_398685313_on_social_click(url: String) -> void:
 	OS.shell_open(url) 
+
+
+# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
+
+
+func _init():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313__init, [], 870841012)
+	else:
+		vanilla_398685313__init()
+
+
+func _ready():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313__ready, [], 2978290357)
+	else:
+		vanilla_398685313__ready()
+
+
+func _process(delta: float):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313__process, [delta], 2895230847)
+	else:
+		vanilla_398685313__process(delta)
+
+
+func _input_rotating(event):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313__input_rotating, [event], 1700274135)
+	else:
+		vanilla_398685313__input_rotating(event)
+
+
+func gui_input(event: InputEvent):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_gui_input, [event], 2789744981)
+	else:
+		vanilla_398685313_gui_input(event)
+
+
+func play_pressed():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_398685313_play_pressed, [], 2467713932)
+	else:
+		await vanilla_398685313_play_pressed()
+
+
+func get_character_list() -> Array[PlayerCharacter]:
+	if _ModLoaderHooks.any_mod_hooked:
+		return _ModLoaderHooks.call_hooks(vanilla_398685313_get_character_list, [], 3537590472)
+	else:
+		return vanilla_398685313_get_character_list()
+
+
+func new_game():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_398685313_new_game, [], 1077344036)
+	else:
+		await vanilla_398685313_new_game()
+
+
+func make_toon_look(toon: Toon, where: Vector3):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_make_toon_look, [toon, where], 390713778)
+	else:
+		vanilla_398685313_make_toon_look(toon, where)
+
+
+func begin_game(character: PlayerCharacter, falling_scene: =false):
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_398685313_begin_game, [character, falling_scene], 1193816735)
+	else:
+		await vanilla_398685313_begin_game(character, falling_scene)
+
+
+func show_secret_seed(secret: String):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_show_secret_seed, [secret], 3216666919)
+	else:
+		vanilla_398685313_show_secret_seed(secret)
+
+
+func update_state():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_update_state, [], 2769323460)
+	else:
+		vanilla_398685313_update_state()
+
+
+func open_settings():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_open_settings, [], 1382569923)
+	else:
+		vanilla_398685313_open_settings()
+
+
+func open_extras():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_open_extras, [], 1597752073)
+	else:
+		vanilla_398685313_open_extras()
+
+
+func open_releases():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_open_releases, [], 1382645830)
+	else:
+		vanilla_398685313_open_releases()
+
+
+func load_game():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_398685313_load_game, [], 105525658)
+	else:
+		await vanilla_398685313_load_game()
+
+
+func new_game_pressed():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_new_game_pressed, [], 4093065177)
+	else:
+		vanilla_398685313_new_game_pressed()
+
+
+func back_pressed():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_back_pressed, [], 3557974695)
+	else:
+		vanilla_398685313_back_pressed()
+
+
+func transition_char_select():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_398685313_transition_char_select, [], 3008059560)
+	else:
+		await vanilla_398685313_transition_char_select()
+
+
+func transition_out_char_select():
+	if _ModLoaderHooks.any_mod_hooked:
+		await _ModLoaderHooks.call_hooks_async(vanilla_398685313_transition_out_char_select, [], 2280372447)
+	else:
+		await vanilla_398685313_transition_out_char_select()
+
+
+func back_out_logo():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_back_out_logo, [], 1922786553)
+	else:
+		vanilla_398685313_back_out_logo()
+
+
+func clipboard_in():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_clipboard_in, [], 1874158887)
+	else:
+		vanilla_398685313_clipboard_in()
+
+
+func clipboard_out():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_clipboard_out, [], 1717708008)
+	else:
+		vanilla_398685313_clipboard_out()
+
+
+func alt_opening(tween: Tween):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_alt_opening, [tween], 3881829713)
+	else:
+		vanilla_398685313_alt_opening(tween)
+
+
+func check_for_new_version():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_check_for_new_version, [], 2637326771)
+	else:
+		vanilla_398685313_check_for_new_version()
+
+
+func _on_request_completed(_result, _response_code, _headers, body):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313__on_request_completed, [_result, _response_code, _headers, body], 68592257)
+	else:
+		vanilla_398685313__on_request_completed(_result, _response_code, _headers, body)
+
+
+func discord_hover():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_discord_hover, [], 2382495212)
+	else:
+		vanilla_398685313_discord_hover()
+
+
+func bluesky_hover():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_bluesky_hover, [], 1100512643)
+	else:
+		vanilla_398685313_bluesky_hover()
+
+
+func wiki_hover():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_wiki_hover, [], 4238960728)
+	else:
+		vanilla_398685313_wiki_hover()
+
+
+func on_social_hover(social: GeneralButton, color: Color):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_on_social_hover, [social, color], 243737179)
+	else:
+		vanilla_398685313_on_social_hover(social, color)
+
+
+func on_social_unhover(social: GeneralButton):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_on_social_unhover, [social], 2990626174)
+	else:
+		vanilla_398685313_on_social_unhover(social)
+
+
+func on_social_click(url: String):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_398685313_on_social_click, [url], 237685533)
+	else:
+		vanilla_398685313_on_social_click(url)

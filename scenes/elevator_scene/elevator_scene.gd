@@ -12,7 +12,7 @@ const ALT_FLOOR_CHANCE := 0.15
 var player: Player
 var next_floors: Array[FloorVariant] = []
 
-func _init():
+func vanilla_3602457373__init():
 	# GameLoader Requirement:
 	# - final_boss_floor.tres has a very large dependency chain.
 	#   Since this script extends Node and has a class_name, the editor will try
@@ -21,7 +21,7 @@ func _init():
 		'FINAL_FLOOR_VARIANT': 'res://scenes/game_floor/floor_variants/alt_floors/final_boss_floor.tres'
 	})
 
-func _ready():
+func vanilla_3602457373__ready():
 	if Util.floor_number == 5:
 		$ElevatorUI.arrow_left.hide()
 		$ElevatorUI.arrow_right.hide()
@@ -60,7 +60,7 @@ func _ready():
 	# Get the next random floor
 	get_next_floors()
 
-func start_floor(floor_var: FloorVariant):
+func vanilla_3602457373_start_floor(floor_var: FloorVariant):
 	SaveFileService.run_file.floor_choice = floor_var
 	SaveFileService.save()
 	elevator.animator.play('open')
@@ -70,7 +70,7 @@ func start_floor(floor_var: FloorVariant):
 	
 	start_game_floor(floor_var)
 
-func start_game_floor(floor_var : FloorVariant) -> void:
+func vanilla_3602457373_start_game_floor(floor_var : FloorVariant) -> void:
 	player.scale = Vector3(1, 1, 1)
 	player.game_timer_tick = true
 	if floor_var.override_scene:
@@ -82,7 +82,7 @@ func start_game_floor(floor_var : FloorVariant) -> void:
 		
 
 ## Selects 3 random floors to give to the player
-func get_next_floors() -> void:
+func vanilla_3602457373_get_next_floors() -> void:
 	if Util.floor_number == 5:
 		final_boss_time_baby()
 		return
@@ -105,9 +105,54 @@ func get_next_floors() -> void:
 	$ElevatorUI.floors = next_floors
 	$ElevatorUI.set_floor_index(0)
 
-func final_boss_time_baby() -> void:
+func vanilla_3602457373_final_boss_time_baby() -> void:
 	var final_floor := FINAL_FLOOR_VARIANT.duplicate(true)
 	final_floor.level_range = Vector2i(10, 16)
 	next_floors = [final_floor]
 	$ElevatorUI.floors = next_floors
 	$ElevatorUI.set_floor_index(0)
+
+
+# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
+
+
+func _init():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3602457373__init, [], 3783207632)
+	else:
+		vanilla_3602457373__init()
+
+
+func _ready():
+	if _ModLoaderHooks.any_mod_hooked:
+		return await _ModLoaderHooks.call_hooks_async(vanilla_3602457373__ready, [], 302141009)
+	else:
+		return await vanilla_3602457373__ready()
+
+
+func start_floor(floor_var: FloorVariant):
+	if _ModLoaderHooks.any_mod_hooked:
+		return await _ModLoaderHooks.call_hooks_async(vanilla_3602457373_start_floor, [floor_var], 1053172268)
+	else:
+		return await vanilla_3602457373_start_floor(floor_var)
+
+
+func start_game_floor(floor_var: FloorVariant):
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3602457373_start_game_floor, [floor_var], 605481413)
+	else:
+		vanilla_3602457373_start_game_floor(floor_var)
+
+
+func get_next_floors():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3602457373_get_next_floors, [], 1679184399)
+	else:
+		vanilla_3602457373_get_next_floors()
+
+
+func final_boss_time_baby():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_3602457373_final_boss_time_baby, [], 1246151368)
+	else:
+		vanilla_3602457373_final_boss_time_baby()

@@ -7,9 +7,7 @@
 				"alder"
 			],
 			"compatible_game_version": [
-				"1.2.0",
-				"1.2.1",
-				"1.2.2"
+				"1.2.6"
 			],
 			"compatible_mod_loader_version": [
 				"7.0.0",
@@ -28,6 +26,6 @@
 	},
 	"name": "GreenFolio",
 	"namespace": "alder",
-	"version_number": "2.1.1",
-	"website_url": "https://github.com/BeastnodeG/ttgrindworks/tree/modloadermods"
+	"version_number": "2.2.0",
+	"website_url": "https://github.com/BeastnodeG/ttgrindworks"
 }

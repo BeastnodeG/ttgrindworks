@@ -9,7 +9,7 @@ func on_chest_spawned(chest: TreasureChest) -> void:
 func roll_for_deletion(chest: TreasureChest) -> void:
 	if chest.scripted_progression:
 		return
-	if RandomService.randi_channel("chestboom") % 10 == 0:
+	if RandomService.randf_channel("chestboom") < Util.get_relevant_player_stats().get_luck_weighted_chance(0.15, 0.05, 2.0):
 		destroy_chest(chest)
 
 func destroy_chest(chest: TreasureChest) -> void:

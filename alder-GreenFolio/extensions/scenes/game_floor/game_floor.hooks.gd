@@ -16,3 +16,7 @@ func _ready(chain: ModLoaderHookChain) -> void:
 		#debug_anomalies.append(load("res://mods-unpacked/alder-GreenFolio/extensions/scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_itemcycletest.gd"))
 		debug_anomalies.append(load("res://mods-unpacked/alder-GreenFolio/extensions/objects/thegreenfolio/floor_mod_thegreenfolio.gd"))
 	chain.execute_next()
+	
+func append_room(chain: ModLoaderHookChain, room: PackedScene, room_type) -> void:
+	print("loading room:", room.resource_path)
+	chain.execute_next([room, room_type])

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemActive" load_steps=6 format=3 uid="uid://cikp7tlx5pb6f"]
+[gd_resource type="Resource" script_class="ItemActive" format=3 uid="uid://cikp7tlx5pb6f"]
 
 [ext_resource type="Texture2D" uid="uid://b55rvmga2gjws" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/remastered_green_deal.png" id="1_fi58s"]
 [ext_resource type="Script" uid="uid://di7h8b2kniuhe" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/green_deal/green_deal.gd" id="2_43rii"]
@@ -14,9 +14,9 @@ current_charge = 1
 qualitoon = 2
 item_name = "Green Deal"
 item_description = "Impending doom"
-big_description = "Applies a status that increases your damage but sets a laff threshold that greens your laff falls below it. 
-The status scales each turn. 
-Using the prank resets it and deals the laff thresholds damage to you."
+big_description = "Passively grants a status that increases your damage but sets a laff threshold that instantly greens you if your laff falls below it.
+Each turn the status scales.
+Activating the prank resets the status but instantly deals the laff thresholds damage to you."
 model = ExtResource("3_on8dc")
 pickup_sfx = ExtResource("4_0ojdb")
 item_script = ExtResource("2_43rii")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FloorVariant" load_steps=5 format=3 uid="uid://clrwuu8uyf443"]
+[gd_resource type="Resource" script_class="FloorVariant" format=3 uid="uid://clrwuu8uyf443"]
 
 [ext_resource type="Texture2D" uid="uid://boq38fhrubyl2" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/floorsewercap.png" id="1_c6aek"]
 [ext_resource type="Resource" uid="uid://bk1jawbj2sfo0" path="res://mods-unpacked/alder-GreenFolio/extensions/scenes/game_floor/department_floors/rooms_sewer.tres" id="3_tke4i"]

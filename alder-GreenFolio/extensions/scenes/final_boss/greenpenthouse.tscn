@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://owyrt77pgbob" path="res://mods-unpacked/alder-GreenFolio/extensions/scenes/final_boss/greenfinal_boss_intro.gd" id="14_hc4sn"]
 [ext_resource type="PackedScene" uid="uid://dflwjcy6fj0av" path="res://objects/cog/cog.tscn" id="15_rgrox"]
 [ext_resource type="Resource" uid="uid://c5dbwjk742di6" path="res://objects/cog/presets/bossbot/flunky.tres" id="16_356xl"]
-[ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="18_hc4sn"]
 [ext_resource type="PackedScene" uid="uid://rd3cif0wap2n" path="res://models/misc_zones/field_office/ImportantPortrait.fbx" id="18_jj6w2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lrhb"]
@@ -386,11 +385,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
-
-[node name="DebugPlayerPositionMarker" parent="." index="13" unique_id=1870785567 instance=ExtResource("18_hc4sn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.81495035, 0.32552743, 16.00764)
-invulnerable = true
-infinite_gag_points = true
 
 [connection signal="s_battle_end" from="BattleNode" to="." method="on_battle_finished"]
 

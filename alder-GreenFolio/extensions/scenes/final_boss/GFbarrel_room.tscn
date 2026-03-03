@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dxyq5lb5oineo" path="res://objects/interactables/treasure_chest/treasure_chest.tscn" id="9_mwarw"]
 [ext_resource type="Resource" uid="uid://3ujyepgnvej5" path="res://objects/items/resources/passive/track_frame.tres" id="10_c73dq"]
 [ext_resource type="Resource" uid="uid://c1ieqc06wj6gp" path="res://objects/items/pools/rewards.tres" id="11_hrqln"]
-[ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="12_k8pb2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e42x2"]
 resource_name = "barrel_room_16"
@@ -277,6 +276,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3l2fh")
 surface_material_override/0 = SubResource("StandardMaterial3D_tq42v")
 
 [node name="SteelWalls" parent="barrel_room" index="8"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 1.4210855e-14, 1.0000001, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_4c4b1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/SteelWalls" index="0" unique_id=217312820]
@@ -345,8 +345,3 @@ skeleton = NodePath("")
 [node name="pCube35" type="MeshInstance3D" parent="Navigation" index="2" unique_id=2084777595]
 mesh = SubResource("ArrayMesh_2mflf")
 skeleton = NodePath("")
-
-[node name="DebugPlayerPositionMarker" parent="." index="10" unique_id=280123005 instance=ExtResource("12_k8pb2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3824, 2.34052, 32.3538)
-invulnerable = true
-infinite_gag_points = true

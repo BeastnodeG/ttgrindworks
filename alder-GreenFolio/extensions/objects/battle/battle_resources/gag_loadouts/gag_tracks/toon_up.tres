@@ -126,7 +126,7 @@ action_name = "High Dive"
 [sub_resource type="Resource" id="Resource_hp4u0"]
 script = ExtResource("14_36u0u")
 movie_type = 7
-custom_description = "Extra Turn"
+custom_description = "Extra Move"
 status_effect = ExtResource("16_vrb3l")
 icon = ExtResource("14_6uvnk")
 target_type = 4

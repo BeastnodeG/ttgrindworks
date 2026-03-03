@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemActive" load_steps=5 format=3 uid="uid://c88pde3e6lih5"]
+[gd_resource type="Resource" script_class="ItemActive" format=3 uid="uid://c88pde3e6lih5"]
 
 [ext_resource type="Texture2D" uid="uid://ba45pe2mo0qtw" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/boxoffriendsnoonewillknow.png" id="1_g5ahq"]
 [ext_resource type="Script" uid="uid://du5w5iqupwmmd" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/turn_box/item_turn_box.gd" id="2_g5ahq"]
@@ -13,7 +13,7 @@ current_charge = 4
 qualitoon = 2
 item_name = "Box Of Moves"
 item_description = "Unleash your potential!"
-big_description = "Doubles your current amount of turns for 1 turn."
+big_description = "Doubles your current amount of moves for 1 turn."
 model = ExtResource("3_g5ahq")
 item_script = ExtResource("2_g5ahq")
 icon = ExtResource("1_g5ahq")

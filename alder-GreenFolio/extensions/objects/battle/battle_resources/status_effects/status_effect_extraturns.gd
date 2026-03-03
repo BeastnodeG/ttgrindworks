@@ -11,8 +11,8 @@ func apply() -> void:
 
 func get_description() -> String:
 	if extra_turns == 1:
-		return "+1 turn"
-	return "+%s turns" % extra_turns
+		return "+1 move"
+	return "+%s moves" % extra_turns
 
 func cleanup() -> void:
 	if not target: return

@@ -124,7 +124,7 @@ func _ready() -> void:
 		await BattleService.s_battle_started
 
 	# Every 2 rounds, starting on round 2: Spawn in 2 more cogs
-	BattleService.ongoing_battle.s_round_started.connect(try_add_cogs)
+	BattleService.ongoing_battle.s_round_ended.connect(func(): try_add_cogs([]))
 	BattleService.ongoing_battle.s_participant_died.connect(participant_died)
 	BattleService.ongoing_battle.s_battle_ending.connect(battle_ending)
 
@@ -136,14 +136,6 @@ func _ready() -> void:
 	total_boss_max_hp = boss_cog.stats.max_hp + boss_cog_2.stats.max_hp + boss_cog_3.stats.max_hp + boss_cog_4.stats.max_hp
 	
 	apply_dissension(-0.5)
-	
-	BattleService.ongoing_battle.s_actions_ended.connect(func():
-		print("========== ACTIONS ENDED - round_end_actions size: ", BattleService.ongoing_battle.round_end_actions.size())
-)
-
-	BattleService.ongoing_battle.s_round_ended.connect(func():
-		print("========== ROUND ENDED - round_end_actions size: ", BattleService.ongoing_battle.round_end_actions.size())
-)
 	
 func apply_dissension(boost_value: float) -> void:
 	var manager = BattleService.ongoing_battle
@@ -167,25 +159,23 @@ func apply_dissension(boost_value: float) -> void:
 		manager.add_status_effect(dissension)
 
 func try_add_cogs(_actions: Array[BattleAction]) -> void: #i literally do not want to talk about this at all - not having access to classes makes things miserable and this was the best i could come up with
+	print("try add cogs")
 	var cooldown := 2
-	for cog: Cog in battle.cogs:
-		if cog.dna.cog_name == "Union Buster":
-			cooldown = 1
-	
+	if battle.cogs.size() >= 4: 
+		for cog: Cog in battle.cogs:
+			if cog.dna.cog_name == "Union Buster":
+				cooldown = 1
+	print(BattleService.ongoing_battle.current_round % cooldown, " ", get_alive_boss_count())
 	if BattleService.ongoing_battle.current_round % cooldown == 0 and get_alive_boss_count() > 0:
 		print("PENTHOUSE REINFORCEMENT: trying to add cogs")
+		print("there are currently: ", battle.cogs.size())
 		var new_reinforcements := GreenElevatorReinforcements.new()
 		new_reinforcements.user = self
 		new_reinforcements.manager = BattleService.ongoing_battle
 		new_reinforcements.battle_node = battle
-		
-		await BattleService.ongoing_battle.s_actions_ended
-		
-		await new_reinforcements.action()
-		
+		BattleService.ongoing_battle.round_end_actions.append(new_reinforcements)
 		print("round_end_actions size after append: ", BattleService.ongoing_battle.round_end_actions.size())
 		
-
 func participant_died(who: Node3D) -> void:
 	if who == boss_cog:
 		boss_one_alive = false

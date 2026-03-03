@@ -34,6 +34,7 @@ func _ready() -> void:
 func play_intro(player : Player) -> void:
 	var intro_tween := create_tween()
 	intro_tween.tween_callback(AudioManager.stop_music.bind(true))
+	intro_tween.tween_callback(AudioManager.set_music.bind(load("res://audio/music/encntr_penultimate/pre_getw.ogg")))
 	intro_tween.tween_interval(5.0)
 	intro_tween.tween_callback(entrance_elevator.open)
 	intro_tween.tween_interval(2.0)

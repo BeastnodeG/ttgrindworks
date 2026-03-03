@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://ce0qso4steby2"]
+[gd_scene format=4 uid="uid://ce0qso4steby2"]
 
 [ext_resource type="PackedScene" uid="uid://ckmb6yt5n6p60" path="res://models/misc_zones/field_office/barrel_room/barrel_room.fbx" id="1_6d5pv"]
 [ext_resource type="Script" uid="uid://da8gwax6edefu" path="res://mods-unpacked/alder-GreenFolio/extensions/scenes/final_boss/GFbarrel_room.gd" id="2_0wws3"]
@@ -124,7 +124,6 @@ ssao_power = 1000000.0
 glow_normalized = true
 glow_intensity = 8.0
 glow_bloom = 1.0
-glow_blend_mode = 1
 glow_hdr_threshold = 4.0
 glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 28.2
@@ -245,7 +244,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xqtj6")
 
-[node name="barrel_room" instance=ExtResource("1_6d5pv")]
+[node name="barrel_room" unique_id=126283194 instance=ExtResource("1_6d5pv")]
 script = ExtResource("2_0wws3")
 
 [node name="Barrels" parent="barrel_room" index="0"]
@@ -257,9 +256,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qmiye")
 [node name="Collision" parent="barrel_room" index="2"]
 visible = false
 
-[node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/Collision" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/Collision" index="0" unique_id=976075212]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel_room/Collision/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel_room/Collision/StaticBody3D" index="0" unique_id=1668483928]
 shape = SubResource("ConcavePolygonShape3D_qmiye")
 
 [node name="CrushedBarrels" parent="barrel_room" index="3"]
@@ -280,9 +279,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tq42v")
 [node name="SteelWalls" parent="barrel_room" index="8"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4c4b1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/SteelWalls" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/SteelWalls" index="0" unique_id=217312820]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel_room/SteelWalls/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel_room/SteelWalls/StaticBody3D" index="0" unique_id=1282348979]
 shape = SubResource("ConcavePolygonShape3D_ox528")
 
 [node name="StomperShadows" parent="barrel_room" index="9"]
@@ -294,58 +293,60 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rj40l")
 [node name="skybox" parent="barrel_room" index="13"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qd10m")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1" unique_id=112019367]
 environment = SubResource("Environment_gnvju")
 
-[node name="EntranceElevator" parent="." index="2" instance=ExtResource("8_yx76o")]
+[node name="EntranceElevator" parent="." index="2" unique_id=116228906 instance=ExtResource("8_yx76o")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.45351, 1.97856, 31.2098)
 monitoring = false
 
-[node name="ExitElevator" parent="." index="3" instance=ExtResource("8_yx76o")]
+[node name="ExitElevator" parent="." index="3" unique_id=1586646312 instance=ExtResource("8_yx76o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049744, -7.8793)
 scene_path = "res://scenes/final_boss/penthouse.tscn"
 opened = true
 
-[node name="ElevatorCam" type="Camera3D" parent="." index="4"]
+[node name="ElevatorCam" type="Camera3D" parent="." index="4" unique_id=1249647711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45, 3.25, 34.22)
 fov = 52.0
 
-[node name="PlayerWalkPos" type="Node3D" parent="." index="5"]
+[node name="PlayerWalkPos" type="Node3D" parent="." index="5" unique_id=473900004]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.454, 2.012, 28.566)
 
-[node name="treasure_chest" parent="." index="6" instance=ExtResource("9_mwarw")]
+[node name="treasure_chest" parent="." index="6" unique_id=453788731 instance=ExtResource("9_mwarw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.3126)
 override_replacement_rolls = true
 override_item = ExtResource("10_c73dq")
 item_pool = ExtResource("11_hrqln")
 
-[node name="treasure_chest2" parent="." index="7" instance=ExtResource("9_mwarw")]
+[node name="treasure_chest2" parent="." index="7" unique_id=1443107079 instance=ExtResource("9_mwarw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.5402)
 override_replacement_rolls = true
 override_item = ExtResource("10_c73dq")
 item_pool = ExtResource("11_hrqln")
 
-[node name="treasure_chest3" parent="." index="8" instance=ExtResource("9_mwarw")]
+[node name="treasure_chest3" parent="." index="8" unique_id=399701781 instance=ExtResource("9_mwarw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.117662)
 override_replacement_rolls = true
 override_item = ExtResource("10_c73dq")
 item_pool = ExtResource("11_hrqln")
 
-[node name="Navigation" type="NavigationRegion3D" parent="." index="9"]
+[node name="Navigation" type="NavigationRegion3D" parent="." index="9" unique_id=1977179006]
 visible = false
 navigation_mesh = SubResource("NavigationMesh_jsch6")
 
-[node name="pCube27" type="MeshInstance3D" parent="Navigation" index="0"]
+[node name="pCube27" type="MeshInstance3D" parent="Navigation" index="0" unique_id=1444092569]
 mesh = SubResource("ArrayMesh_rkw55")
 skeleton = NodePath("")
 
-[node name="pCube28" type="MeshInstance3D" parent="Navigation" index="1"]
+[node name="pCube28" type="MeshInstance3D" parent="Navigation" index="1" unique_id=607744935]
 mesh = SubResource("ArrayMesh_rvgbo")
 skeleton = NodePath("")
 
-[node name="pCube35" type="MeshInstance3D" parent="Navigation" index="2"]
+[node name="pCube35" type="MeshInstance3D" parent="Navigation" index="2" unique_id=2084777595]
 mesh = SubResource("ArrayMesh_2mflf")
 skeleton = NodePath("")
 
-[node name="DebugPlayerPositionMarker" parent="." index="10" instance=ExtResource("12_k8pb2")]
+[node name="DebugPlayerPositionMarker" parent="." index="10" unique_id=280123005 instance=ExtResource("12_k8pb2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3824, 2.34052, 32.3538)
+invulnerable = true
+infinite_gag_points = true

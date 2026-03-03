@@ -4,11 +4,6 @@ extends EditorContextMenuPlugin
 const GAME_FLOOR_SCENE_PATH := "res://scenes/test/game_floor_test.tscn"
 var debugger: ToonlikeEditorDebuggerPlugin
 
-const FLOOR_MOD_PATHS := [
-	'res://scenes/game_floor/floor_modifiers/scripts/anomalies/',
-	'res://mods-unpacked/alder-GreenFolio/extensions/scenes/game_floor/floor_modifiers/scripts/anomalies/'
-]
-
 func _init(_debugger: ToonlikeEditorDebuggerPlugin):
 	debugger = _debugger
 	debugger.disable_persistent_injection.connect(_disable_persistent_injection)
@@ -20,10 +15,7 @@ func _disable_persistent_injection():
 
 
 func is_floor_mod_script(path: String) -> bool:
-	for base_path in FLOOR_MOD_PATHS:
-		if path.begins_with(base_path):
-			return true
-	return false
+	return path.begins_with('res://scenes/game_floor/floor_modifiers/scripts/anomalies/')
 
 
 func _popup_menu(paths: PackedStringArray):

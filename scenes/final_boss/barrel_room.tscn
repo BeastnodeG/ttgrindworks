@@ -244,7 +244,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xqtj6")
 
-[node name="barrel_room" unique_id=1641741323 instance=ExtResource("1_5rygu")]
+[node name="barrel_room" instance=ExtResource("1_5rygu")]
 script = ExtResource("2_cvi7d")
 
 [node name="Barrels" parent="barrel_room" index="0"]
@@ -256,9 +256,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qmiye")
 [node name="Collision" parent="barrel_room" index="2"]
 visible = false
 
-[node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/Collision" index="0" unique_id=1471946153]
+[node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/Collision" index="0"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel_room/Collision/StaticBody3D" index="0" unique_id=199070614]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel_room/Collision/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_qmiye")
 
 [node name="CrushedBarrels" parent="barrel_room" index="3"]
@@ -279,9 +279,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tq42v")
 [node name="SteelWalls" parent="barrel_room" index="8"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4c4b1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/SteelWalls" index="0" unique_id=1030165548]
+[node name="StaticBody3D" type="StaticBody3D" parent="barrel_room/SteelWalls" index="0"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel_room/SteelWalls/StaticBody3D" index="0" unique_id=1993391796]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel_room/SteelWalls/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ox528")
 
 [node name="StomperShadows" parent="barrel_room" index="9"]
@@ -293,58 +293,58 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rj40l")
 [node name="skybox" parent="barrel_room" index="13"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qd10m")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1" unique_id=1231176722]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
 environment = SubResource("Environment_gnvju")
 
-[node name="EntranceElevator" parent="." index="2" unique_id=322103311 instance=ExtResource("5_bolby")]
+[node name="EntranceElevator" parent="." index="2" instance=ExtResource("5_bolby")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.45351, 1.97856, 31.2098)
 monitoring = false
 
-[node name="ExitElevator" parent="." index="3" unique_id=711900535 instance=ExtResource("5_bolby")]
+[node name="ExitElevator" parent="." index="3" instance=ExtResource("5_bolby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049744, -7.8793)
 scene_path = "res://scenes/final_boss/penthouse.tscn"
 opened = true
 
-[node name="ElevatorCam" type="Camera3D" parent="." index="4" unique_id=76504949]
+[node name="ElevatorCam" type="Camera3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45, 3.25, 34.22)
 fov = 52.0
 
-[node name="PlayerWalkPos" type="Node3D" parent="." index="5" unique_id=979045107]
+[node name="PlayerWalkPos" type="Node3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.454, 2.012, 28.566)
 
-[node name="treasure_chest" parent="." index="6" unique_id=292534782 instance=ExtResource("4_kub1n")]
+[node name="treasure_chest" parent="." index="6" instance=ExtResource("4_kub1n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.3126)
 override_replacement_rolls = true
 override_item = ExtResource("8_vhj4i")
 item_pool = ExtResource("9_e42x2")
 
-[node name="treasure_chest2" parent="." index="7" unique_id=1194826790 instance=ExtResource("4_kub1n")]
+[node name="treasure_chest2" parent="." index="7" instance=ExtResource("4_kub1n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.5402)
 override_replacement_rolls = true
 override_item = ExtResource("8_vhj4i")
 item_pool = ExtResource("9_e42x2")
 
-[node name="treasure_chest3" parent="." index="8" unique_id=1762442039 instance=ExtResource("4_kub1n")]
+[node name="treasure_chest3" parent="." index="8" instance=ExtResource("4_kub1n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.117662)
 override_replacement_rolls = true
 override_item = ExtResource("8_vhj4i")
 item_pool = ExtResource("9_e42x2")
 
-[node name="Navigation" type="NavigationRegion3D" parent="." index="9" unique_id=1275068255]
+[node name="Navigation" type="NavigationRegion3D" parent="." index="9"]
 visible = false
 navigation_mesh = SubResource("NavigationMesh_jsch6")
 
-[node name="pCube27" type="MeshInstance3D" parent="Navigation" index="0" unique_id=429580024]
+[node name="pCube27" type="MeshInstance3D" parent="Navigation" index="0"]
 mesh = SubResource("ArrayMesh_rkw55")
 skeleton = NodePath("")
 
-[node name="pCube28" type="MeshInstance3D" parent="Navigation" index="1" unique_id=381516159]
+[node name="pCube28" type="MeshInstance3D" parent="Navigation" index="1"]
 mesh = SubResource("ArrayMesh_rvgbo")
 skeleton = NodePath("")
 
-[node name="pCube35" type="MeshInstance3D" parent="Navigation" index="2" unique_id=2041417722]
+[node name="pCube35" type="MeshInstance3D" parent="Navigation" index="2"]
 mesh = SubResource("ArrayMesh_2mflf")
 skeleton = NodePath("")
 
-[node name="DebugPlayerPositionMarker" parent="." index="10" unique_id=1288972191 instance=ExtResource("9_5gb2m")]
+[node name="DebugPlayerPositionMarker" parent="." index="10" instance=ExtResource("9_5gb2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3824, 2.34052, 32.3538)

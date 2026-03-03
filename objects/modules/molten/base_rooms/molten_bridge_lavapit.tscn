@@ -247,12 +247,10 @@ shape = SubResource("ConcavePolygonShape3D_4p5io")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="BridgeSupports/StaticBody3D" index="1" unique_id=1504765471]
 transform = Transform3D(1, 0, 0, 0, 1, -2.84217e-14, 0, 2.84217e-14, 1, -0.0801001, -3.87034e-09, 0.0593222)
 shape = SubResource("BoxShape3D_4jp1u")
-debug_color = Color(0.98, 0, 0.40833318, 1)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="BridgeSupports/StaticBody3D" index="2" unique_id=75019148]
 transform = Transform3D(1, 0, 0, 0, 1, -2.84217e-14, 0, 2.84217e-14, 1, 0.0804653, -3.87034e-09, 0.0593222)
 shape = SubResource("BoxShape3D_4jp1u")
-debug_color = Color(0.98, 0, 0.40833318, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Chain Supports" index="0" unique_id=620961257]
 

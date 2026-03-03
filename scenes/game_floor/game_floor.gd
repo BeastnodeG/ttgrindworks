@@ -60,11 +60,11 @@ var debug_modifiers: Array[Script]
 var debug_anomalies: Array[Script]
 var debug_floor_variant: FloorVariant
 
-func vanilla_3374219701__init() -> void:
+func _init() -> void:
 	EngineDebugger.register_message_capture('toonlike', _capture_debug_message)
 	EngineDebugger.send_message('toonlike:ready_for', ['game_floor'])
 
-func vanilla_3374219701__ready() -> void:
+func _ready() -> void:
 	floor_variant.load_all()
 	unloaded_rooms = Node3D.new()
 	Util.floor_manager = self
@@ -80,7 +80,7 @@ func vanilla_3374219701__ready() -> void:
 		interactive_music_player.interactive_stream = floor_variant.dynamic_music
 		add_child(interactive_music_player)
 
-func vanilla_3374219701_generate_floor() -> void:
+func generate_floor() -> void:
 	if debug_floor_variant:
 		floor_variant = debug_floor_variant
 	if not floor_variant:
@@ -175,7 +175,7 @@ func vanilla_3374219701_generate_floor() -> void:
 	if not floor_rooms.background_music.is_empty():
 		AudioManager.set_default_music(load(floor_rooms.background_music[randi() % floor_rooms.background_music.size()]))
 
-func vanilla_3374219701_spawn_player(player: Player) -> void:
+func spawn_player(player: Player) -> void:
 	var entrance = room_node.get_child(0)
 	player.global_position = entrance.get_node('SPAWNPOINT').global_position
 	player.state = Player.PlayerState.WALK
@@ -183,10 +183,10 @@ func vanilla_3374219701_spawn_player(player: Player) -> void:
 	player.face_position(entrance.get_node('EXIT').global_position)
 	player.recenter_camera(true)
 
-func vanilla_3374219701_get_random_connector_room() -> PackedScene:
+func get_random_connector_room() -> PackedScene:
 	return load(floor_rooms.connectors[randi() % floor_rooms.connectors.size()])
 
-func vanilla_3374219701_inject_room_pack(dept_floor: DepartmentFloor, room_pack: RoomPack) -> void:
+func inject_room_pack(dept_floor: DepartmentFloor, room_pack: RoomPack) -> void:
 	var room_types: Dictionary[String, String] = {
 		'entrances': 'entrance_mode',
 		'battle_rooms': 'battle_mode',
@@ -204,7 +204,7 @@ func vanilla_3374219701_inject_room_pack(dept_floor: DepartmentFloor, room_pack:
 			rooms.append_array(room_pack.get(room_type))
 			dept_floor.set(room_type, rooms)
 
-func vanilla_3374219701_add_random_room():
+func add_random_room():
 	var index := room_order.size()
 	var new_room: PackedScene
 	var room_type := RoomType.CONNECTOR
@@ -216,9 +216,7 @@ func vanilla_3374219701_add_random_room():
 		room_type = RoomType.ONE_TIME
 	elif index < room_count - 1:
 		if index % 2 == 0:
-			# Roll a random room type based on the remaining roo
-			print("printing rooms remaining i suppose", rooms_remaining[0] + rooms_remaining[1])
-			print(rooms_remaining[0], " ", rooms_remaining[1])
+			# Roll a random room type based on the remaining rooms
 			var room_roll := RNG.channel(RNG.ChannelRemainingRooms).randi() % (rooms_remaining[0] + rooms_remaining[1])
 			if room_roll < rooms_remaining[0]:
 				new_room = roll_for_room(floor_rooms.battle_rooms, 'battle_rooms')
@@ -241,7 +239,7 @@ func vanilla_3374219701_add_random_room():
 		render_rooms += 1
 	append_room(new_room, room_type)
 
-func vanilla_3374219701_append_room(room: PackedScene, room_type: RoomType):
+func append_room(room: PackedScene, room_type: RoomType):
 	var new_module: Node3D = room.instantiate()
 	room_node.add_child(new_module)
 	new_module.name = str(room_order.size())
@@ -292,12 +290,12 @@ func vanilla_3374219701_append_room(room: PackedScene, room_type: RoomType):
 	storage.room_type = room_type
 	room_order.append(storage)
 
-func vanilla_3374219701_body_entered_room(body, index: int):
+func body_entered_room(body, index: int):
 	if body is Player:
 		room_index = index
 		adjust_view(room_index)
 
-func vanilla_3374219701_roll_for_room(rooms: Array[FacilityRoom], seed_channel := RNG.ChannelTrueRandom) -> PackedScene:
+func roll_for_room(rooms: Array[FacilityRoom], seed_channel := RNG.ChannelTrueRandom) -> PackedScene:
 	rooms = rooms.duplicate(true)
 	for room in previous_rooms:
 		if room in rooms:
@@ -313,7 +311,7 @@ func vanilla_3374219701_roll_for_room(rooms: Array[FacilityRoom], seed_channel :
 	previous_rooms.append(rooms[room_idx])
 	return load(rooms[room_idx].room)
 
-func vanilla_3374219701_adjust_view(index: int = 0):
+func adjust_view(index: int = 0):
 	if room_order.is_empty():
 		return
 		
@@ -338,22 +336,22 @@ func vanilla_3374219701_adjust_view(index: int = 0):
 			add_random_room()
 		t += 1
 
-func vanilla_3374219701_get_current_room() -> Node3D:
+func get_current_room() -> Node3D:
 	return room_order[room_index].room
 
-func vanilla_3374219701_get_current_room_type() -> RoomType:
+func get_current_room_type() -> RoomType:
 	var stored_room := room_order[room_index]
 	if stored_room.room_type:
 		return stored_room.room_type
 	return RoomType.CONNECTOR
 
-func vanilla_3374219701__notification(what):
+func _notification(what):
 	# Free unloaded rooms when scene is being freed
 	if what == NOTIFICATION_PREDELETE:
 		unloaded_rooms.queue_free()
 		EngineDebugger.unregister_message_capture('toonlike')
 
-func vanilla_3374219701_player_out_of_bounds(player : Player) -> void:
+func player_out_of_bounds(player : Player) -> void:
 	var entrance_node: Node3D
 	if get_current_room().has_node('SPAWNPOINT'):
 		entrance_node = get_current_room().get_node('SPAWNPOINT')
@@ -362,7 +360,7 @@ func vanilla_3374219701_player_out_of_bounds(player : Player) -> void:
 	player.global_position = entrance_node.global_position
 	player.fall_in(true)
 
-func vanilla_3374219701_initialize_floor_mod(modifier : Script) -> FloorModifier:
+func initialize_floor_mod(modifier : Script) -> FloorModifier:
 	var new_mod := Node.new()
 	new_mod.set_script(modifier)
 	if new_mod is FloorModifier:
@@ -374,13 +372,13 @@ func vanilla_3374219701_initialize_floor_mod(modifier : Script) -> FloorModifier
 		return new_mod
 	return null
 
-func vanilla_3374219701_show_anomalies(new_anomalies : Array[FloorModifier] = anomalies) -> void:
+func show_anomalies(new_anomalies : Array[FloorModifier] = anomalies) -> void:
 	var tracker := ANOMALY_TRACKER.instantiate()
 	tracker.anomalies = new_anomalies
 	add_child(tracker)
 	tracker.play()
 
-func vanilla_3374219701_spawn_new_anomalies(count : int) -> Array[FloorModifier]:
+func spawn_new_anomalies(count : int) -> Array[FloorModifier]:
 	var new_anomalies : Array[FloorModifier] = []
 	for i in count:
 		var new_anomaly := floor_variant.get_new_anomaly()
@@ -393,21 +391,21 @@ func vanilla_3374219701_spawn_new_anomalies(count : int) -> Array[FloorModifier]
 			Util.get_player().stats.stranger_chance += Util.get_player().stats.stranger_chance_per_anomaly
 	return new_anomalies
 
-func vanilla_3374219701_remove_anomaly(anomaly : FloorModifier) -> void:
+func remove_anomaly(anomaly : FloorModifier) -> void:
 	if anomaly in anomalies:
 		anomaly.clean_up()
 		anomalies.erase(anomaly)
 		floor_variant.anomalies.erase(anomaly.get_script())
 		anomaly.queue_free()
 
-func vanilla_3374219701_get_special_room_chance() -> float:
+func get_special_room_chance() -> float:
 	var luck := 1.0
 	var base_chance := 0.12
 	if is_instance_valid(Util.get_player()):
 		luck = Util.get_player().stats.luck
 	return base_chance + (luck - 1.0)
 
-func vanilla_3374219701__capture_debug_message(message: String, data: Array) -> bool:
+func _capture_debug_message(message: String, data: Array) -> bool:
 	if message == 'game_floor:add_floor_mods':
 		var anomalies_list = (
 			FloorVariant.ANOMALIES_POSITIVE +
@@ -428,153 +426,3 @@ func vanilla_3374219701__capture_debug_message(message: String, data: Array) -> 
 ## Game Signals
 signal s_cog_spawned(cog: Cog)
 #endregion
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func _init():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3374219701__init, [], 3263129704)
-	else:
-		vanilla_3374219701__init()
-
-
-func _ready():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3374219701__ready, [], 319438569)
-	else:
-		vanilla_3374219701__ready()
-
-
-func generate_floor():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3374219701_generate_floor, [], 3831448481)
-	else:
-		vanilla_3374219701_generate_floor()
-
-
-func spawn_player(player: Player):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3374219701_spawn_player, [player], 2383863626)
-	else:
-		vanilla_3374219701_spawn_player(player)
-
-
-func get_random_connector_room() -> PackedScene:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_get_random_connector_room, [], 2457549339)
-	else:
-		return vanilla_3374219701_get_random_connector_room()
-
-
-func inject_room_pack(dept_floor: DepartmentFloor, room_pack: RoomPack):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3374219701_inject_room_pack, [dept_floor, room_pack], 2036016140)
-	else:
-		vanilla_3374219701_inject_room_pack(dept_floor, room_pack)
-
-
-func add_random_room():
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_add_random_room, [], 1506947194)
-	else:
-		return vanilla_3374219701_add_random_room()
-
-
-func append_room(room: PackedScene, room_type: RoomType):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_append_room, [room, room_type], 3580427177)
-	else:
-		return vanilla_3374219701_append_room(room, room_type)
-
-
-func body_entered_room(body, index: int):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_body_entered_room, [body, index], 296979813)
-	else:
-		return vanilla_3374219701_body_entered_room(body, index)
-
-
-func roll_for_room(rooms: Array[FacilityRoom], seed_channel: =RNG.ChannelTrueRandom) -> PackedScene:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_roll_for_room, [rooms, seed_channel], 3263626256)
-	else:
-		return vanilla_3374219701_roll_for_room(rooms, seed_channel)
-
-
-func adjust_view(index: int=0):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_adjust_view, [index], 1414833850)
-	else:
-		return vanilla_3374219701_adjust_view(index)
-
-
-func get_current_room() -> Node3D:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_get_current_room, [], 1923375923)
-	else:
-		return vanilla_3374219701_get_current_room()
-
-
-func get_current_room_type() -> GameFloor.RoomType:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_get_current_room_type, [], 634003572)
-	else:
-		return vanilla_3374219701_get_current_room_type()
-
-
-func _notification(what):
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701__notification, [what], 4195835707)
-	else:
-		return vanilla_3374219701__notification(what)
-
-
-func player_out_of_bounds(player: Player):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3374219701_player_out_of_bounds, [player], 1709563479)
-	else:
-		vanilla_3374219701_player_out_of_bounds(player)
-
-
-func initialize_floor_mod(modifier: Script) -> FloorModifier:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_initialize_floor_mod, [modifier], 3350551015)
-	else:
-		return vanilla_3374219701_initialize_floor_mod(modifier)
-
-
-func show_anomalies(new_anomalies: Array[FloorModifier]=anomalies):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3374219701_show_anomalies, [new_anomalies], 1991733230)
-	else:
-		vanilla_3374219701_show_anomalies(new_anomalies)
-
-
-func spawn_new_anomalies(count: int) -> Array[FloorModifier]:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_spawn_new_anomalies, [count], 3073284159)
-	else:
-		return vanilla_3374219701_spawn_new_anomalies(count)
-
-
-func remove_anomaly(anomaly: FloorModifier):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_3374219701_remove_anomaly, [anomaly], 3845825075)
-	else:
-		vanilla_3374219701_remove_anomaly(anomaly)
-
-
-func get_special_room_chance() -> float:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701_get_special_room_chance, [], 3806148850)
-	else:
-		return vanilla_3374219701_get_special_room_chance()
-
-
-func _capture_debug_message(message: String, data: Array) -> bool:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_3374219701__capture_debug_message, [message, data], 2863008978)
-	else:
-		return vanilla_3374219701__capture_debug_message(message, data)

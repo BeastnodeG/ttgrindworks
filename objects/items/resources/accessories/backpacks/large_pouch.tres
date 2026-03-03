@@ -1,30 +1,30 @@
 [gd_resource type="Resource" script_class="ItemAccessory" format=3 uid="uid://dkk2fyypdps0o"]
 
-[ext_resource type="Script" path="res://objects/items/classes/accessory_placement.gd" id="1_2c17e"]
-[ext_resource type="Script" path="res://objects/items/classes/body_placement.gd" id="2_ifqk1"]
-[ext_resource type="Texture2D" path="res://models/accessories/backpacks/standard_backpack/small_pouch-pix-2.png" id="3_2c17e"]
-[ext_resource type="PackedScene" path="res://models/accessories/backpacks/standard_backpack/large_pouch.tscn" id="4_ifqk1"]
-[ext_resource type="AudioStream" path="res://audio/sfx/items/SZ_MM_fanfare.ogg" id="5_ifqk1"]
-[ext_resource type="Script" path="res://objects/items/classes/item_accessory.gd" id="5_usal2"]
+[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_2c17e"]
+[ext_resource type="Script" uid="uid://duxq3xtgnln43" path="res://objects/items/classes/body_placement.gd" id="2_ifqk1"]
+[ext_resource type="Texture2D" uid="uid://b1pr5x4odsso3" path="res://models/accessories/backpacks/standard_backpack/small_pouch-pix-2.png" id="3_2c17e"]
+[ext_resource type="PackedScene" uid="uid://v36kuhbfnv5b" path="res://models/accessories/backpacks/standard_backpack/large_pouch.tscn" id="4_ifqk1"]
+[ext_resource type="AudioStream" uid="uid://8vjo40mj15u4" path="res://audio/sfx/items/SZ_MM_fanfare.ogg" id="5_ifqk1"]
+[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="5_usal2"]
 
 [sub_resource type="Resource" id="Resource_6vjhu"]
 script = ExtResource("2_ifqk1")
 body_type = 2
-position = Vector3(0.01, 0.72, 2.91)
-rotation = Vector3(-8.28, 360, 0)
+position = Vector3(0.01, 0.72, 0.8)
+rotation = Vector3(-8.28, 180, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="Resource" id="Resource_4scxt"]
 script = ExtResource("2_ifqk1")
 body_type = 1
-position = Vector3(0.01, 0.35, 2.8899999)
-rotation = Vector3(0, 360, 0)
+position = Vector3(0.01, 0.35, 0.78)
+rotation = Vector3(0, 180, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="Resource" id="Resource_pj1q4"]
 script = ExtResource("2_ifqk1")
-position = Vector3(0.11, 0.46, 3.19)
-rotation = Vector3(8.28, 360, 0)
+position = Vector3(0.11, 0.46, 1.08)
+rotation = Vector3(8.28, 180, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [resource]

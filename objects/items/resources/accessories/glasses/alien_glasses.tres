@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_4dai8"]
 [ext_resource type="Script" uid="uid://c4eyu1xvv7h2l" path="res://objects/items/classes/head_placement.gd" id="2_usai5"]
-[ext_resource type="Texture2D" uid="uid://vle5e3nk3oe" path="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/glasses/monochrome_alien_glasses/tt_m_chr_avt_acc_msk_alien_glasses-pix-2.png" id="3_4dai8"]
+[ext_resource type="Texture2D" uid="uid://vle5e3nk3oe" path="res://models/accessories/glasses/alien_glasses/tt_m_chr_avt_acc_msk_alien_glasses-pix-2.png" id="3_4dai8"]
 [ext_resource type="PackedScene" uid="uid://cj1r8j44xbq5i" path="res://models/accessories/glasses/alien_glasses/tt_m_chr_avt_acc_msk_alienGlasses.glb" id="4_4dai8"]
 [ext_resource type="Script" uid="uid://cnr3ok5awe3y2" path="res://objects/items/custom/item_alien_glasses.gd" id="4_usai5"]
 [ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="5_0ocmf"]

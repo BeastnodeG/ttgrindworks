@@ -3,13 +3,13 @@ extends ItemScriptActive
 const HYDRANT := preload("res://models/props/gags/firehose/betterhydrant.tscn")
 const DRENCHED := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_drenched.tres")
 
-func vanilla_1800682447_use() -> void:
+func use() -> void:
 	
 	BattleService.ongoing_battle.battle_ui.cog_panels.reset(0)
 	await cutscene(BattleService.ongoing_battle.cogs)
 	BattleService.ongoing_battle.battle_ui.cog_panels.assign_cogs(BattleService.ongoing_battle.cogs)
 
-func vanilla_1800682447_cutscene(cogs : Array[Cog]) -> void:
+func cutscene(cogs : Array[Cog]) -> void:
 	var battle := BattleService.ongoing_battle
 	var battle_node := battle.battle_node
 	
@@ -76,20 +76,3 @@ func vanilla_1800682447_cutscene(cogs : Array[Cog]) -> void:
 	
 	if is_instance_valid(battle.battle_ui.timer):
 		battle.battle_ui.timer.timer.set_paused(false)
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func use():
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_1800682447_use, [], 3147947612)
-	else:
-		await vanilla_1800682447_use()
-
-
-func cutscene(cogs: Array[Cog]):
-	if _ModLoaderHooks.any_mod_hooked:
-		await _ModLoaderHooks.call_hooks_async(vanilla_1800682447_cutscene, [cogs], 12657321)
-	else:
-		await vanilla_1800682447_cutscene(cogs)

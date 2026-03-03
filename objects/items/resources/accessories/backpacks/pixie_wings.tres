@@ -8,22 +8,22 @@
 
 [sub_resource type="Resource" id="Resource_xqi40"]
 script = ExtResource("2_vk0wk")
-position = Vector3(0, 0.23, 3.25)
-rotation = Vector3(17.6, 360, 0)
+position = Vector3(0, 0.23, 1.14)
+rotation = Vector3(17.6, 180, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="Resource" id="Resource_bsqs6"]
 script = ExtResource("2_vk0wk")
 body_type = 1
-position = Vector3(0, 0.3, 3.09)
-rotation = Vector3(24.25, 360, 0)
+position = Vector3(0, 0.3, 0.98)
+rotation = Vector3(24.25, 180, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [sub_resource type="Resource" id="Resource_n1he7"]
 script = ExtResource("2_vk0wk")
 body_type = 2
-position = Vector3(0, 0.56, 3.01)
-rotation = Vector3(14.29, 360, 0)
+position = Vector3(0, 0.56, 0.9)
+rotation = Vector3(14.29, 180, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
 [resource]

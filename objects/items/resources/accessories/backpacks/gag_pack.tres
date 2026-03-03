@@ -9,20 +9,20 @@
 
 [sub_resource type="Resource" id="Resource_lhhvb"]
 script = ExtResource("2_tr8t1")
-position = Vector3(0, 0.34, 3.19)
-rotation = Vector3(0, 360, 0)
+position = Vector3(0, 0.34, 1.08)
+rotation = Vector3(0, 180, 0)
 
 [sub_resource type="Resource" id="Resource_sl4s4"]
 script = ExtResource("2_tr8t1")
 body_type = 1
-position = Vector3(0, 0.23, 2.81)
-rotation = Vector3(0, 360, 0)
+position = Vector3(0, 0.23, 0.7)
+rotation = Vector3(0, 180, 0)
 
 [sub_resource type="Resource" id="Resource_by7s7"]
 script = ExtResource("2_tr8t1")
 body_type = 2
-position = Vector3(0.03, 0.45, 2.82)
-rotation = Vector3(0, 360, 0)
+position = Vector3(0.03, 0.45, 0.71)
+rotation = Vector3(0, 180, 0)
 
 [resource]
 script = ExtResource("1_ltiyy")

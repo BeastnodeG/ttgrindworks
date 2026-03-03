@@ -9,21 +9,21 @@
 [sub_resource type="Resource" id="Resource_3frid"]
 script = ExtResource("2_fdplg")
 body_type = 2
-position = Vector3(0.01, 0.61, 2.92)
-rotation = Vector3(2.07, 360, 0)
+position = Vector3(0.01, 0.61, 0.81)
+rotation = Vector3(2.07, 180, 0)
 scale = Vector3(0.36, 0.36, 0.36)
 
 [sub_resource type="Resource" id="Resource_3jk26"]
 script = ExtResource("2_fdplg")
 body_type = 1
-position = Vector3(0.01, 0.72, 2.83)
-rotation = Vector3(10.34, 360, 0)
+position = Vector3(0.01, 0.72, 0.72)
+rotation = Vector3(10.34, 180, 0)
 scale = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="Resource" id="Resource_cixyy"]
 script = ExtResource("2_fdplg")
-position = Vector3(0, 0.83, 3)
-rotation = Vector3(12.41, 360, 0)
+position = Vector3(0, 0.83, 0.89)
+rotation = Vector3(12.41, 180, 0)
 scale = Vector3(0.3, 0.3, 0.3)
 
 [resource]

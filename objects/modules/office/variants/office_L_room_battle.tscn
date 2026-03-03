@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://cng3jffjmwdv8" path="res://objects/props/office/couch.tscn" id="15_mtvhr"]
 [ext_resource type="PackedScene" uid="uid://c1rus4vu8jrlg" path="res://objects/battle/battle_node/dynamic/battle_node_dynamic.tscn" id="17_s50cb"]
 [ext_resource type="PackedScene" uid="uid://b8786m8c0wm1o" path="res://objects/obstacles/spotlight/spotlight.tscn" id="20_olsst"]
-[ext_resource type="PackedScene" uid="uid://c1g5f6yxujvef" path="res://addons/toonlike_tools/injectors/player/debug_player_position_marker.tscn" id="20_s50cb"]
 [ext_resource type="PackedScene" uid="uid://dxyq5lb5oineo" path="res://objects/interactables/treasure_chest/treasure_chest.tscn" id="21_nxy5u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbvsn"]
@@ -215,6 +214,3 @@ transform = Transform3D(-0.99765, 0, 0.0685202, 0, 1, 0, -0.0685202, 0, -0.99765
 
 [node name="treasure_chest2" parent="." index="12" instance=ExtResource("21_nxy5u")]
 transform = Transform3D(-0.99765, 0, 0.0685202, 0, 1, 0, -0.0685202, 0, -0.99765, 8.91149, 0, 6.06384)
-
-[node name="DebugPlayerPositionMarker" parent="." index="13" instance=ExtResource("20_s50cb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)

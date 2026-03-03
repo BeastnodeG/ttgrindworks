@@ -59,7 +59,7 @@ mouse_cursor/custom_image="res://ui_assets/cursor.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/graphedit2/plugin.cfg", "res://addons/intervals/plugin.cfg", "res://addons/mod_loader/_export_plugin/plugin.cfg", "res://addons/mod_tool/plugin.cfg", "res://addons/moon-dfx/plugin.cfg", "res://addons/node_screenshot_tool/plugin.cfg", "res://addons/scene_lock/plugin.cfg", "res://addons/script-tabs/plugin.cfg", "res://addons/task/plugin.cfg", "res://addons/toonlike_tools/plugin.cfg")
+enabled=PackedStringArray("res://addons/graphedit2/plugin.cfg", "res://addons/intervals/plugin.cfg", "res://addons/mod_loader/_export_plugin/plugin.cfg", "res://addons/moon-dfx/plugin.cfg", "res://addons/node_screenshot_tool/plugin.cfg", "res://addons/scene_lock/plugin.cfg", "res://addons/script-tabs/plugin.cfg", "res://addons/task/plugin.cfg", "res://addons/toonlike_tools/plugin.cfg")
 
 [file_customization]
 
@@ -250,5 +250,5 @@ rendering_device/driver.windows="d3d12"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_3d=2
 environment/glow/upscale_mode=0
-environment/defaults/default_clear_color=Color(1, 1, 1, 1)
 mesh_lod/lod_change/threshold_pixels=0.0
+environment/defaults/default_environment="res://scenes/game_floor/default_environment.tres"

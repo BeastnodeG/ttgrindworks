@@ -88,13 +88,13 @@ static var LEVEL_RANGES: Dictionary[int, Array] = {
 var has_power_out := false
 var anomaly_count := 0
 
-func vanilla_421875816__init():
+func _init():
 	GameLoader.queue_into(GameLoader.Phase.GAMEPLAY, self, {
 		'FALLBACK_REWARD_POOL': 'res://objects/items/pools/floor_clears.tres',
 		'FALLBACK_COG_POOL': 'res://objects/cog/presets/pools/grunt_cogs.tres',
 	})
 
-func vanilla_421875816_get_anomalies() -> Array[Script]:
+func get_anomalies() -> Array[Script]:
 	var mods: Array[Script] = []
 	
 	# Append a random amount of anomalies to the array
@@ -142,7 +142,7 @@ func vanilla_421875816_get_anomalies() -> Array[Script]:
 
 	return mods
 
-func vanilla_421875816_randomize_details(roll_anomalies := true) -> void:
+func randomize_details(roll_anomalies := true) -> void:
 	clear()
 	
 	if roll_anomalies:
@@ -174,12 +174,12 @@ func vanilla_421875816_randomize_details(roll_anomalies := true) -> void:
 ## Simple failsafe backend for mods or if we're ever testing on floors > 5
 ## I will not be testing how well balanced this is
 ## You modders can do that one yourselves I believe in you
-func vanilla_421875816_get_calculated_level_range(_difficulty: int) -> Vector2i:
+func get_calculated_level_range(_difficulty: int) -> Vector2i:
 	var base_range := Vector2i(LEVEL_RANGES[5][0], LEVEL_RANGES[5][1])
 	base_range *= (Util.floor_number ** Globals.floor_difficulty_increase)
 	return base_range
 
-func vanilla_421875816_randomize_item() -> void:
+func randomize_item() -> void:
 	if not reward_pool:
 		reward_pool = FALLBACK_REWARD_POOL
 	reward = ItemService.get_random_item(reward_pool,true)
@@ -200,10 +200,10 @@ func vanilla_421875816_randomize_item() -> void:
 			model.setup(reward)
 		model.queue_free()
 
-func vanilla_421875816_reward_rerolled() -> void:
+func reward_rerolled() -> void:
 	randomize_item()
 
-func vanilla_421875816_clear() -> void:
+func clear() -> void:
 	for i in range(anomalies.size() - 1, -1, -1):
 		if modifiers.size() > i:
 			modifiers.remove_at(i)
@@ -222,7 +222,7 @@ static var NEW_ANOMALY_BLOCKLIST := [
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_inflation.gd",
 ]
 ## Returns a new, compatible anomaly during a game floor
-func vanilla_421875816_get_new_anomaly() -> Script:
+func get_new_anomaly() -> Script:
 	var new_anomaly: Script
 	var no_negative: bool = Util.get_player().no_negative_anomalies
 	var possible_anomalies: Array[String] = []
@@ -243,74 +243,8 @@ func vanilla_421875816_get_new_anomaly() -> Script:
 				break
 	return new_anomaly
 
-func vanilla_421875816_load_all() -> void:
+func load_all() -> void:
 	if floor_type:
 		floor_type.load_all()
 	if room_pack:
 		room_pack.load_all()
-
-
-# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
-
-
-func _init():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_421875816__init, [], 780295931)
-	else:
-		vanilla_421875816__init()
-
-
-func get_anomalies() -> Array[Script]:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_421875816_get_anomalies, [], 1809357952)
-	else:
-		return vanilla_421875816_get_anomalies()
-
-
-func randomize_details(roll_anomalies: =true):
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_421875816_randomize_details, [roll_anomalies], 2810948246)
-	else:
-		vanilla_421875816_randomize_details(roll_anomalies)
-
-
-func get_calculated_level_range(_difficulty: int) -> Vector2i:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_421875816_get_calculated_level_range, [_difficulty], 33611164)
-	else:
-		return vanilla_421875816_get_calculated_level_range(_difficulty)
-
-
-func randomize_item():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_421875816_randomize_item, [], 3589870623)
-	else:
-		vanilla_421875816_randomize_item()
-
-
-func reward_rerolled():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_421875816_reward_rerolled, [], 1663041925)
-	else:
-		vanilla_421875816_reward_rerolled()
-
-
-func clear():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_421875816_clear, [], 785137359)
-	else:
-		vanilla_421875816_clear()
-
-
-func get_new_anomaly() -> Script:
-	if _ModLoaderHooks.any_mod_hooked:
-		return _ModLoaderHooks.call_hooks(vanilla_421875816_get_new_anomaly, [], 590136193)
-	else:
-		return vanilla_421875816_get_new_anomaly()
-
-
-func load_all():
-	if _ModLoaderHooks.any_mod_hooked:
-		_ModLoaderHooks.call_hooks(vanilla_421875816_load_all, [], 2580879712)
-	else:
-		vanilla_421875816_load_all()

@@ -17,6 +17,7 @@ func _ready():
 		SceneLoader.add_persistent_node(player)
 		player.stats.debug_invulnerable = invulnerable
 		player.state = state
+		player.stats.toonups[7] = 1
 		if infinite_gag_points:
 			player.stats.gag_cap = 100
 			player.stats.debug_gag_points = true

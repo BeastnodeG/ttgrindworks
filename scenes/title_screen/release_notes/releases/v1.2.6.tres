@@ -38,5 +38,8 @@ Minor text fixes
 Added in the back-end for a canceled expansion to gags, includes:
   The ability to swap out individual gags for new ones
   Gag Shops that roll and offer random \"alt gags\" for the player to choose
-  Some miscellaneous additions to gag scripts (Throw gags now have the optional ability to apply status effects)"
+  Some miscellaneous additions to gag scripts (Throw gags now have the optional ability to apply status effects)
+[TITLE]Hotfix #1
+Fixed a regression in Lure's damage/accuracy nerf values
+Fixed the Gag Panel on the pause menu not responding to player input"
 metadata/_custom_type_script = "uid://d1j0hh6tsgy0r"

@@ -9,6 +9,7 @@
 script = ExtResource("2_omt53")
 lure_type = 1
 knockback_effect = 80
+damage_nerf = -1.25
 quality = 1
 id = 2
 

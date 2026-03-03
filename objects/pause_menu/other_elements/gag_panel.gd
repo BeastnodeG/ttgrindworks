@@ -1,8 +1,8 @@
 extends Control
 
-@onready var gag_icon : Control = %GagIcon
-@onready var gag_name : Control = %GagName
-@onready var gag_stats : Control  = %GagStats
+@onready var gag_icon: Control = %GagIcon
+@onready var gag_name: Control = %GagName
+@onready var gag_stats: Control  = %GagStats
 
 
 func _ready() -> void:
@@ -10,7 +10,7 @@ func _ready() -> void:
 	sync_player_info()
 	refresh()
 
-func display_gag(gag: ToonAttack = null) -> void:
+func display_gag(gag: Resource = null) -> void:
 	if not gag:
 		gag_icon.set_texture(null)
 		gag_name.set_text("")
@@ -32,11 +32,11 @@ func sync_player_info() -> void:
 	)
 
 func refresh() -> void:
-	for track: TrackElement in %Tracks.get_children():
+	for track: Control in %Tracks.get_children():
 		track.refresh()
 		if not track.track:
 			continue
-		for button: GagButton in track.gag_buttons:
+		for button: TextureButton in track.gag_buttons:
 			if button.mouse_entered.is_connected(display_gag):
 				button.mouse_entered.disconnect(display_gag)
 				button.mouse_exited.disconnect(display_gag)
@@ -46,11 +46,11 @@ func refresh() -> void:
 			button.pressed.connect(gag_pressed.bind(track.track, track.gag_buttons.find(button)))
 	
 
-func gag_pressed(track: Track, idx: int) -> void:
+func gag_pressed(track: Resource, idx: int) -> void:
 	if not is_instance_valid(Util.get_player()): return
 	if not Util.get_player().alt_gag_hotswap: return
 	
-	var gag_variants := track.get_gag_variants(idx)
+	var gag_variants: Array = track.get_gag_variants(idx)
 	if gag_variants.size() == 1: return
 	
 	var gag_index := gag_variants.find(track.gags[idx])
@@ -59,9 +59,9 @@ func gag_pressed(track: Track, idx: int) -> void:
 	track.swap_gag(gag_variants[new_index])
 	refresh()
 
-func get_buttons() -> Dictionary[GagButton, ToonAttack]:
-	var buttons: Dictionary[GagButton, ToonAttack] = {}
-	for track: TrackElement in %Tracks.get_children():
-		for button: GagButton in track.gag_buttons:
+func get_buttons() -> Dictionary:
+	var buttons: Dictionary = {}
+	for track: Control in %Tracks.get_children():
+		for button: TextureButton in track.gag_buttons:
 			buttons[button] = track.gags[track.gag_buttons.find(button)]
 	return buttons

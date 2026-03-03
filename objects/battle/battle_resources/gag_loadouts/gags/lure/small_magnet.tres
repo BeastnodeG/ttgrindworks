@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_orvgm"]
 script = ExtResource("2_7wllb")
 lure_type = 1
+damage_nerf = -0.25
 quality = 1
 id = 2
 

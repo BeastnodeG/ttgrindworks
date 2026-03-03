@@ -9,6 +9,7 @@
 script = ExtResource("2_uv4ns")
 lure_type = 1
 knockback_effect = 30
+damage_nerf = -0.75
 quality = 1
 id = 2
 

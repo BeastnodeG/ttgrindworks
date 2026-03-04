@@ -24,8 +24,8 @@
 [ext_resource type="Script" uid="uid://b68uqtpqs73wk" path="res://objects/player/player_stats.gd" id="17_8fcps"]
 [ext_resource type="Script" uid="uid://ckypnf7t805p3" path="res://objects/battle/battle_resources/gag_loadouts/gag_loadout.gd" id="17_aepo7"]
 [ext_resource type="PackedScene" uid="uid://dxyq5lb5oineo" path="res://objects/interactables/treasure_chest/treasure_chest.tscn" id="23_16xtn"]
-[ext_resource type="Resource" uid="uid://c8xt0naden1hv" path="res://objects/items/resources/accessories/shoes/super_toon_boots.tres" id="24_16xtn"]
 [ext_resource type="Resource" uid="uid://klobdj40hb36" path="res://objects/items/resources/accessories/backpacks/medium_pouch.tres" id="25_1xuw6"]
+[ext_resource type="Resource" uid="uid://bynk8pha4n8u" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/toonups/cannon.tres" id="25_66vty"]
 [ext_resource type="Resource" uid="uid://b73ax0fohafiu" path="res://objects/items/resources/accessories/hats/toonosaur_hat.tres" id="26_16xtn"]
 [ext_resource type="Resource" uid="uid://c3sjb3vivkvux" path="res://objects/items/resources/passive/laff_boost.tres" id="27_4p2an"]
 [ext_resource type="Resource" uid="uid://ca25j75xttg4p" path="res://objects/items/resources/active/moneybags_coin.tres" id="28_16xtn"]
@@ -139,7 +139,8 @@ toonups = Dictionary[int, int]({
 3: 10,
 4: 10,
 5: 10,
-6: 10
+6: 10,
+7: 10
 })
 character = SubResource("Resource_br8l0")
 pink_slips = 10
@@ -198,7 +199,7 @@ stats = SubResource("Resource_vs51t")
 
 [node name="treasure_chest" parent="." unique_id=943058125 instance=ExtResource("23_16xtn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0877, 0, -5.41882)
-override_item = ExtResource("24_16xtn")
+override_item = ExtResource("25_66vty")
 
 [node name="treasure_chest2" parent="." unique_id=499844087 instance=ExtResource("23_16xtn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9695, 0, -5.41882)

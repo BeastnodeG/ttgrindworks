@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Track" format=3 uid="uid://cybbq2u7vog8b"]
+[gd_resource type="Resource" script_class="Track" format=3 uid="uid://bebiq38cif48s"]
 
 [ext_resource type="Script" uid="uid://cwnjrxjvy5kc3" path="res://objects/battle/battle_resources/toon_attacks/toon_attack.gd" id="1_qokjh"]
 [ext_resource type="Texture2D" uid="uid://d287ggcuhiolk" path="res://ui_assets/battle/gags/inventory_feather.png" id="2_a4m7g"]
@@ -123,7 +123,7 @@ icon = ExtResource("13_sy5f8")
 target_type = 4
 action_name = "High Dive"
 
-[sub_resource type="Resource" id="Resource_hp4u0"]
+[sub_resource type="Resource" id="Resource_vrb3l"]
 script = ExtResource("14_36u0u")
 movie_type = 7
 custom_description = "Extra Move"
@@ -138,4 +138,4 @@ script = ExtResource("14_7e4pg")
 track_type = 1
 track_name = "Toon-Up"
 track_color = Color(0.819608, 0.556863, 0.988235, 1)
-gags = Array[ExtResource("1_qokjh")]([SubResource("Resource_654rw"), SubResource("Resource_f160u"), SubResource("Resource_hlwc4"), SubResource("Resource_n8qmn"), SubResource("Resource_l5wod"), SubResource("Resource_bci3h"), SubResource("Resource_w75b6"), SubResource("Resource_hp4u0")])
+gags = Array[ExtResource("1_qokjh")]([SubResource("Resource_654rw"), SubResource("Resource_f160u"), SubResource("Resource_hlwc4"), SubResource("Resource_n8qmn"), SubResource("Resource_l5wod"), SubResource("Resource_bci3h"), SubResource("Resource_w75b6"), SubResource("Resource_vrb3l")])

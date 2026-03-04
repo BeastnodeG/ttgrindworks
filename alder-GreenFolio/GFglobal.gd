@@ -81,3 +81,4 @@ func reset_stats():
 	var player = Util.get_player()
 	if player: #EVIL GREEN FOLIO - I WILL modify the VANILLA CURRENT SAVE file!!!!!!!!!!
 		player.stats.toonups[7] = 1
+		pass

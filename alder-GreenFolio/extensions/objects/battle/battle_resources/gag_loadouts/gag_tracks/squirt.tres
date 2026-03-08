@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Track" load_steps=24 format=3 uid="uid://md2xqjlsyb3v"]
+[gd_resource type="Resource" script_class="Track" format=3 uid="uid://md2xqjlsyb3v"]
 
 [ext_resource type="Script" uid="uid://cwnjrxjvy5kc3" path="res://objects/battle/battle_resources/toon_attacks/toon_attack.gd" id="1_qp6c8"]
 [ext_resource type="Texture2D" uid="uid://b8m26tjpxrgid" path="res://ui_assets/battle/gags/inventory_squirt_flower.png" id="2_aykcy"]
@@ -21,64 +21,50 @@
 script = ExtResource("2_mcmea")
 icon = ExtResource("2_aykcy")
 damage = 5
-crit_chance_mod = 1.0
 target_type = 7
 action_name = "Squirting Flower"
-one_time_use = false
 
 [sub_resource type="Resource" id="Resource_teoux"]
 script = ExtResource("3_buvgm")
 icon = ExtResource("4_amuo7")
 damage = 10
-crit_chance_mod = 1.0
 target_type = 7
 action_name = "Glass of Water"
-one_time_use = false
 
 [sub_resource type="Resource" id="Resource_0fqpw"]
 script = ExtResource("4_xwpkh")
 icon = ExtResource("6_iy3ts")
 damage = 18
-crit_chance_mod = 1.0
 target_type = 7
 action_name = "Squirt Gun"
-one_time_use = false
 
 [sub_resource type="Resource" id="Resource_we2gn"]
 script = ExtResource("5_fog4r")
 icon = ExtResource("8_splg6")
 damage = 30
-crit_chance_mod = 1.0
 target_type = 7
 action_name = "Seltzer Bottle"
-one_time_use = false
 
 [sub_resource type="Resource" id="Resource_qj0t3"]
 script = ExtResource("6_gtgkb")
 icon = ExtResource("10_j3b28")
 damage = 45
-crit_chance_mod = 1.0
 target_type = 7
 action_name = "Fire Hose"
-one_time_use = false
 
 [sub_resource type="Resource" id="Resource_mgg2q"]
 script = ExtResource("7_grmqv")
 icon = ExtResource("12_fifcn")
 damage = 60
-crit_chance_mod = 1.0
 target_type = 7
 action_name = "Storm Cloud"
-one_time_use = false
 
 [sub_resource type="Resource" id="Resource_lmjjy"]
 script = ExtResource("8_aykcy")
 icon = ExtResource("14_lg1dm")
 damage = 80
-crit_chance_mod = 1.0
 target_type = 7
 action_name = "Geyser"
-one_time_use = false
 
 [resource]
 script = ExtResource("9_amuo7")

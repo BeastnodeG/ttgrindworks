@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bquhutd2t3uq6"]
+
+[ext_resource type="PackedScene" uid="uid://yh180gwia0q0" path="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/glasses/monochrome_alien_glasses/tt_m_chr_avt_acc_msk_monoalienGlasses.glb" id="1_37qo4"]
+[ext_resource type="Material" uid="uid://ds7kdyt83ki11" path="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/glasses/monochrome_alien_glasses/alien_glasses.tres" id="2_1y04j"]
+
+[node name="tt_m_chr_avt_acc_msk_monoalienGlasses" unique_id=1032619565 instance=ExtResource("1_37qo4")]
+
+[node name="alienGlasses" parent="." index="0" unique_id=1412181966]
+surface_material_override/0 = ExtResource("2_1y04j")

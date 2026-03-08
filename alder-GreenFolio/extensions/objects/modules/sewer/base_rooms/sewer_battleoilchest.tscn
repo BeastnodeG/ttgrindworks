@@ -21,7 +21,7 @@
 [ext_resource type="Material" uid="uid://c614gkwpxnouy" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/modules/sewer/assets/ceilingbricks.tres" id="21_baasb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5mb8y"]
-size = Vector3(7.49646, 6.18954, 3.82903)
+size = Vector3(6.3074646, 6.18954, 19.27525)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6yctv"]
 
@@ -88,8 +88,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33817, -0.2, -7.10331)
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomArea" unique_id=2049369392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.506775, 1.50359, 0.212453)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1012727, 1.50359, -6.113789)
 shape = SubResource("BoxShape3D_5mb8y")
+debug_color = Color(0.96187145, 0.15099996, 0.31818303, 1)
 
 [node name="PlayerStartPos" type="Node3D" parent="." unique_id=739781490]
 unique_name_in_owner = true

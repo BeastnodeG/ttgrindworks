@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://yh180gwia0q0"
-path="res://.godot/imported/tt_m_chr_avt_acc_msk_alienGlasses.glb-3e943e74f883f562bc7590a39062bae9.scn"
+path="res://.godot/imported/tt_m_chr_avt_acc_msk_monoalienGlasses.glb-80941f899afadc5c52fe9f1eda5f4757.scn"
 
 [deps]
 
-source_file="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/glasses/monochrome_alien_glasses/tt_m_chr_avt_acc_msk_alienGlasses.glb"
-dest_files=["res://.godot/imported/tt_m_chr_avt_acc_msk_alienGlasses.glb-3e943e74f883f562bc7590a39062bae9.scn"]
+source_file="res://mods-unpacked/alder-GreenFolio/extensions/models/accessories/glasses/monochrome_alien_glasses/tt_m_chr_avt_acc_msk_monoalienGlasses.glb"
+dest_files=["res://.godot/imported/tt_m_chr_avt_acc_msk_monoalienGlasses.glb-80941f899afadc5c52fe9f1eda5f4757.scn"]
 
 [params]
 

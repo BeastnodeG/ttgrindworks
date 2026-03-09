@@ -1,4 +1,5 @@
 extends Object
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 var gf: Node = null
 
@@ -17,7 +18,7 @@ func get_stats(chain: ModLoaderHookChain) -> String:
 	var atom_stacks: int = floori(gag_level / 2) + 1
 	if Util.get_player().stats.has_item("Space Helmet"):
 		
-		getGF()
+		gf = GFUTIL.get_gf()
 		
 		var new_string := []
 		for line in string_text.split("\n"):
@@ -38,10 +39,3 @@ func get_gag_level(action: ToonAttack) -> int:
 			if track.gags[i].action_name == action.action_name:
 				return i
 	return -1
-
-func getGF() -> void:
-	var tree := Engine.get_main_loop() as SceneTree
-	var root := tree.get_root()
-	gf = root.get_node_or_null("/root/ModLoader/alder-GreenFolio/GFglobal")
-	if gf:
-		print("gf test, ", gf.atomic_effect)

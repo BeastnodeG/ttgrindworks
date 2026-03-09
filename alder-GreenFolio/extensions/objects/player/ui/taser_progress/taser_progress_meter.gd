@@ -1,5 +1,6 @@
 @tool
 extends Control
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 @export_category('Demo')
 @export_tool_button("Add 8") var add5 = add_5
@@ -36,7 +37,7 @@ func _ready() -> void:
 		voucher_tween.parallel().tween_property(%ProgressBar['theme_override_styles/background'], 'bg_color', colors[key].darkened(0.5), 2.0)
 	%ProgressBar.max_value = REWARD_QUOTA
 	excess_taser = 0
-	getGF()
+	gf = GFUTIL.get_gf()
 	if gf:
 		excess_taser = gf.taser_count
 
@@ -137,14 +138,6 @@ func do_taser_effect() -> void:
 		excess_taser = 0
 	Util.get_player().stats.charge_active_item(1)
 	Util.get_player().boost_queue.queue_text("Bzzt!", Color(0.996, 0.922, 0.365))
-
-func getGF() -> void:
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	if get_tree().get_root().has_node(path):
-		gf = get_tree().get_root().get_node(path)
-		print("Loaded GFglobal")
-	else:
-		print("GFglobal not found at", path)
 
 func add_5() -> void:
 	increase_taser(8)

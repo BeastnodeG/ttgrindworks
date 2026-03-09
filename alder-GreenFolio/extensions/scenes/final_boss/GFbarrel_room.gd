@@ -1,5 +1,5 @@
 extends Node3D
-
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 @onready var entrance_elevator : Elevator = $EntranceElevator
 @onready var exit_elevator : Elevator = $ExitElevator
@@ -8,11 +8,9 @@ extends Node3D
 
 func _ready() -> void:
 	print("running modded barrel_room")
-	var gf_path = "/root/ModLoader/alder-GreenFolio/GFglobal"
-	var tree := Engine.get_main_loop()
-	if tree == null or not tree is SceneTree:
+	var gf = GFUTIL.get_gf()
+	if gf == null:
 		return
-	var gf = tree.get_root().get_node_or_null(gf_path)
 	print("folio level is: ", gf.folio_level)
 	if gf.folio_level >= 10:
 		print("gf is 10 putting in evil")

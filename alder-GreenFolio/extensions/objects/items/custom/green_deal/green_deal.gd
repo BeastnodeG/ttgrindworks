@@ -2,7 +2,9 @@ extends ItemScriptActive
 
 var SFX := load("res://mods-unpacked/alder-GreenFolio/extensions/audio/sfx/items/green_deal.ogg")
 var STATUS := load("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/status_green_deal.tres")
-var gf : Node = null
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
+
+var gf: Node = null
 
 var player: Player
 var greendeal_status: StatusEffect
@@ -19,15 +21,7 @@ func setup(_player: Player) -> void:
 	player = _player
 	BattleService.s_battle_started.connect(apply_status)
 	BattleService.s_round_ended.connect(end_round)
-	getGF()
-	
-func getGF() -> void:
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	if get_tree().get_root().has_node(path):
-		gf = get_tree().get_root().get_node(path)
-		print("Loaded GFglobal")
-	else:
-		print("GFglobal not found at", path)
+	gf = GFUTIL.get_gf()
 
 func end_round(manager: BattleManager) -> void:
 	increase_strength()

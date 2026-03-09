@@ -1,4 +1,5 @@
 extends ItemScript
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 var chest_cyclers: Dictionary = {}
 var gf: Node = null
@@ -26,21 +27,10 @@ func on_item_removed() -> void:
 
 
 func setup() -> void:
-	await getGF()
+	gf = GFUTIL.get_gf()
 	Globals.s_chest_spawned.connect(on_chest_spawned)
 	await get_tree().process_frame
 	hook_existing_chests()
-
-
-func getGF() -> void:
-	if not is_inside_tree():
-		await ready
-	if not get_tree():
-		return
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	var root := get_tree().get_root()
-	if root and root.has_node(path):
-		gf = root.get_node(path)
 
 
 func hook_existing_chests() -> void:

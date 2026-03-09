@@ -1,15 +1,16 @@
 extends ItemScript
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 const ATOMIC_EFFECT := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/status_effect_atom.tres")
 const POISON_EFFECT := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_poison.tres")
-var gf : Node = null
+var gf: Node = null
 const ATOMIC_EFFECTS := ["plutonium", "actinium", "curium", "thorium"]
 
 func on_load(_item: Item) -> void:
 	setup()
 
 func setup() -> void:
-	getGF()
+	gf = GFUTIL.get_gf()
 	BattleService.s_round_started.connect(on_round_started)
 	BattleService.s_round_ended.connect(on_round_end)
 
@@ -149,14 +150,6 @@ func play_explosion_effect(cog: Node3D) -> void:
 
 func get_damage(gag_damage : int) -> int:
 	return ceili(gag_damage)
-
-func getGF() -> void:
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	if get_tree().get_root().has_node(path):
-		gf = get_tree().get_root().get_node(path)
-		print("Loaded GFglobal")
-	else:
-		print("GFglobal not found at", path)
 
 
 func on_collect(_item : Item, model : Node3D) -> void:

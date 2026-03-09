@@ -1,16 +1,12 @@
 extends Object
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 func reset_stats(chain: ModLoaderHookChain) -> void:
 	chain.execute_next()
 	
-	var gf_path = "/root/ModLoader/alder-GreenFolio/GFglobal"
-	var tree := Engine.get_main_loop()
-	if tree == null or not tree is SceneTree:
-		return
-	
-	var gf = tree.get_root().get_node_or_null(gf_path)
+	var gf = GFUTIL.get_gf()
 	if gf == null:
-		print("GFglobal not found at", gf_path)
+		print("GFglobal not found")
 		return
 	
 	print("Current folio level:", gf.folio_level)

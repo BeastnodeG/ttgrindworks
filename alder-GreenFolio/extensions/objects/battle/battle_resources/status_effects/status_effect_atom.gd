@@ -1,6 +1,7 @@
 @tool
 extends StatEffectRegeneration
 class_name StatEffectAtomi
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 var STAT_ICONS := {
 	'damage': load("res://ui_assets/battle/statuses/damage.png"),
@@ -30,7 +31,7 @@ func apply() -> void:
 		create_particles()
 		target.set_animation("pie-small")
 		BattleService.s_round_ended.connect(shift_atomic_effect)
-		getGF()
+		gf = GFUTIL.get_gf()
 		amount = target.level
 		if gf:
 			current_atomic_effect = gf.atomic_effect
@@ -41,7 +42,7 @@ func shift_atomic_effect(manager: BattleManager) -> void:
 	await manager.get_tree().process_frame
 	
 	if not gf:
-		getGF()
+		gf = GFUTIL.get_gf()
 	
 	var new_atomic_effect: String = gf.atomic_effect
 	if current_atomic_effect != new_atomic_effect and current_atomic_effect != "":
@@ -161,7 +162,7 @@ func trigger_thorium_effect() -> void:
 func renew() -> void:
 	if not is_instance_valid(target) or target.stats.hp <= 0:
 		return
-	getGF()
+	gf = GFUTIL.get_gf()
 	
 	match gf.atomic_effect:
 		"curium":
@@ -174,13 +175,6 @@ func renew() -> void:
 	
 	if is_instance_valid(particles):
 		particles.amount = rounds
-
-func getGF() -> void:
-	var tree := Engine.get_main_loop() as SceneTree
-	var root := tree.get_root()  # this is a Node (Viewport)
-	gf = root.get_node_or_null("/root/ModLoader/alder-GreenFolio/GFglobal")
-	if gf:
-		print("gf test, ", gf.atomic_effect)
 
 func expire() -> void:
 	print("atomic expired")
@@ -212,7 +206,7 @@ func get_player_stats() -> PlayerStats:
 		return Util.get_player().stats
 
 func get_status_name() -> String:
-	getGF()
+	gf = GFUTIL.get_gf()
 	
 	if gf and gf.atomic_effect:
 		return "Atom - " + gf.atomic_effect.capitalize()
@@ -223,7 +217,7 @@ func get_description() -> String:
 		return description
 	var full_description = ""
 	
-	getGF()
+	gf = GFUTIL.get_gf()
 	
 	var effect_cycle := ["plutonium", "actinium", "curium", "thorium"]
 	var next_effect := ""
@@ -271,5 +265,5 @@ func combine(effect: StatusEffect) -> bool:
 	return true
 	
 func get_icon() -> Texture2D:
-	getGF()
+	gf = GFUTIL.get_gf()
 	return ATOMIC_ICONS[gf.atomic_effect]

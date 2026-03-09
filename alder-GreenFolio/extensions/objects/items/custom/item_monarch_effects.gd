@@ -1,11 +1,12 @@
 extends ItemScript
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 var MONARCH_STATUS := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/battle_resources/status_effects/resources/status_effect_monarch.tres")
+var player: Player
 
 const QUALITOON_DAMAGE := [4, 5, 7, 10, 13, 16] # q5 doesn't exist but we include it for safety... don't i sound so smart
 
-var player: Player
-var gf : Node = null
+var gf: Node = null
 
 const PARTICLE := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/effects/monarch/monarchorbit.tscn")
 const MonarchParticleFollow := preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/effects/monarch/monarchparticlefollow.gd")
@@ -153,7 +154,7 @@ func on_load(item: Item) -> void:
 
 func setup(_player: Player) -> void:
 	player = _player
-	getGF()
+	gf = GFUTIL.get_gf()
 	BattleService.s_battle_started.connect(sendtheswarm)
 	BattleService.s_round_ended.connect(sendtheswarm)
 	BattleService.s_battle_started.connect(_on_battle_started)
@@ -162,13 +163,6 @@ func setup(_player: Player) -> void:
 	call_deferred("_update_player_particles")
 	# Start polling for absorbed item changes since no signal exists and im too lazy/dont think i can add one
 	call_deferred("_start_polling_timer")
-
-func getGF() -> void:
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	if get_tree().get_root().has_node(path):
-		gf = get_tree().get_root().get_node(path)
-	else:
-		pass
 
 func _on_battle_started(manager: BattleManager) -> void:
 	is_battle_active = true

@@ -1,4 +1,5 @@
 extends Object
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 func player_out_of_bounds(chain: ModLoaderHookChain, player: Player) -> void:	
 	if player.has_meta("stuck") or player.global_position.y <= -1000:
@@ -6,10 +7,7 @@ func player_out_of_bounds(chain: ModLoaderHookChain, player: Player) -> void:
 		chain.execute_next([player])
 
 func _ready(chain: ModLoaderHookChain) -> void:
-	var owner_node = chain.reference_object as Node
-	var gf = owner_node.get_tree().get_root().get_node_or_null("/root/ModLoader/alder-GreenFolio/GFglobal")
-	if not gf:
-		print("amazing job.")
+	var gf = GFUTIL.get_gf()
 	
 	if gf.folio_level >= 1:
 		var debug_anomalies = chain.reference_object.debug_anomalies #this is hacky. oh well !

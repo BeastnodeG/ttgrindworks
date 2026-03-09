@@ -1,4 +1,5 @@
 extends ItemScript
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 var gf: Node = null
 var ITEM_CYCLER := load("res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/itemcycler.tres")
@@ -14,13 +15,13 @@ func on_item_removed() -> void:
 	gf.carrossel_reward_cycle_duration = (gf.carrossel_reward_cycle_duration*2)
 
 func setup() -> void:
-	await getGF()
+	gf = GFUTIL.get_gf()
 	
 	var player := Util.get_player()
 	if not player:
 		return
 	
-	if not player.stats.has_item("Item Cycler"): #hidden items are cool res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/itemcycler.tres
+	if not player.stats.has_item("Item Cycler"):
 		var cycler = ITEM_CYCLER.duplicate(true)
 		ItemService.seen_item(cycler)
 		cycler.apply_item(player)
@@ -29,14 +30,3 @@ func setup() -> void:
 	gf.carrossel_progressive_cycle_duration = (gf.carrossel_progressive_cycle_duration/2)
 	gf.carrossel_reward_item_count += 4
 	gf.carrossel_reward_cycle_duration = (gf.carrossel_reward_cycle_duration/2)
-
-
-func getGF() -> void:
-	if not is_inside_tree():
-		await ready
-	if not get_tree():
-		return
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	var root := get_tree().get_root()
-	if root and root.has_node(path):
-		gf = root.get_node(path)

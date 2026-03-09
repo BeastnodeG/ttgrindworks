@@ -10,8 +10,8 @@ func clean_up() -> void:
 
 func on_battle_finished() -> void:
 	if not is_instance_valid(Util.get_player()): return
-	Util.get_player().stats.charge_active_item(1)
 	if RandomService.randi_channel("overcharged") % 4 == 0:
+		Util.get_player().stats.charge_active_item(1)
 		Util.get_player().boost_queue.queue_text("Overcharged!", Color(0.996, 0.922, 0.365))
 
 func get_mod_quality() -> ModType:

@@ -1,13 +1,14 @@
 extends Node3D
 class_name GreenFinalBossScene
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 #like most things in this mod, PLEASE AVERT YOUR EYES
 
 const TITLE_SCREEN_SCENE := "res://scenes/title_screen/title_screen.tscn"
 const SKY_SPEED := 3.0
 var COG_SCENE: PackedScene
-var gfp : Node = null
-var gf : Node = null
+var gfp: Node = null
+var gf: Node = null
 
 const SFX_CAGE_LOWER := preload("res://audio/sfx/misc/CHQ_SOS_cage_lower.ogg")
 const SFX_CAGE_LAND := preload("res://audio/sfx/misc/CHQ_SOS_cage_land.ogg")
@@ -299,8 +300,8 @@ func get_caged_toon_dna() -> ToonDNA:
 	return Globals.fetch_toon_unlock_order()[unlock_index].dna
 
 func on_battle_finished() -> void:
-	getGFP()
-	getGF()
+	gfp = GFUTIL.get_progress()
+	gf = GFUTIL.get_gf()
 	if gfp.folio_unlocked <= gf.folio_level:
 		gfp.folio_unlocked += 1
 		print("folio level increased!")
@@ -321,10 +322,7 @@ func end_game() -> void:
 	Globals.s_game_win.emit()
 	for partner in Util.get_player().partners:
 		partner.queue_free()
-	Util.get_player().queue_free()
-	SaveFileService.delete_run_file()
-	SaveFileService._save_progress()
-	SceneLoader.load_into_scene(TITLE_SCREEN_SCENE)
+	SceneLoader.change_scene_to_file('res://objects/player/ui/win_menu/win_menu.tscn')
 
 func fill_elevator(cog_count: int, dna: CogDNA = null) -> Array[Cog]:
 	var roll_for_proxies : bool = SaveFileService.progress_file.proxies_unlocked and darkened_sky
@@ -422,21 +420,7 @@ func do_move_caged_toon_seq() -> void:
 	await caged_toon.turn_to_position(Vector3.ZERO, 1.5)
 	s_caged_toon_finished_walking.emit()
 	
-func getGFP() -> void:
-	var path := "/root/ModLoader/alder-GreenFolio/GFprogress"
-	if get_tree().get_root().has_node(path):
-		gfp = get_tree().get_root().get_node(path)
-		print("Loaded GFprogress")
-	else:
-		print("GFprogress not found at", path)
 
-func getGF() -> void:
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	if get_tree().get_root().has_node(path):
-		gf = get_tree().get_root().get_node(path)
-		print("Loaded GFglobal")
-	else:
-		print("GFglobal not found at", path)
 
 
 # inline reinforcements because screw modloader

@@ -1,7 +1,8 @@
 extends ItemScriptActive
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 var MONARCH_ITEM := load("res://mods-unpacked/alder-GreenFolio/extensions/objects/items/resources/passive/monarch_effects.tres")
-var gf : Node = null
+var gf: Node = null
 
 const POOL_SHORTHANDS := {
 	"res://objects/items/pools/jellybeans.tres": "Jellybean",
@@ -24,7 +25,7 @@ func on_collect(_item: Item, _object: Node3D) -> void:
 	setup()
 
 func setup() -> void:
-	getGF()
+	gf = GFUTIL.get_gf()
 	var player := Util.get_player()
 	if not player or not gf:
 		return
@@ -50,21 +51,6 @@ func setup() -> void:
 			else:
 				print("Skipped duplicate butterfly: %s" % butterfly)
 
-
-func getGF() -> void:
-	if not is_inside_tree():
-		await ready
-	if not get_tree():
-		print("get_tree() is null!")
-		return
-
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	var root := get_tree().get_root()
-	if root and root.has_node(path):
-		gf = root.get_node(path)
-		print("Loaded GFglobal")
-	else:
-		print("GFglobal not found at", path)
 
 func validate_use() -> bool:
 	return ItemService.get_closest_item() != null

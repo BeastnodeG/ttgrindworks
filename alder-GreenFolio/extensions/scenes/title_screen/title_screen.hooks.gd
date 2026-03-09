@@ -1,4 +1,6 @@
 extends Object
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
+
 var GreenFolioPanel: PackedScene = preload("res://mods-unpacked/alder-GreenFolio/extensions/objects/thegreenfolio/greenfoliopanel.tscn")
 var greenfolio_instance: Control
 var folio_texts: Array = []
@@ -43,13 +45,12 @@ func begin_game(chain: ModLoaderHookChain, character: PlayerCharacter, falling_s
 	if greenfolio_instance:
 		greenfolio_instance.hide()
 		
-	var owner_node = chain.reference_object as Node
-	var gf = owner_node.get_tree().get_root().get_node_or_null("/root/ModLoader/alder-GreenFolio/GFglobal")
+	var gf = GFUTIL.get_gf()
 	if gf:
 		gf.save_to()
 		print("GFglobal data saved.")
 	else:
-		print("GFglobal not found at /root/ModLoader/alder-GreenFolio/GFglobal")
+		print("GFglobal not found")
 	
 	print("foliosetup")
 	print(gf.folio_level)
@@ -66,8 +67,7 @@ func clipboard_in(chain: ModLoaderHookChain) -> void:
 	if folio_texts.is_empty():
 		_load_folio_texts()
 	
-	var owner_node = chain.reference_object as Node
-	var gfp = owner_node.get_tree().get_root().get_node_or_null("/root/ModLoader/alder-GreenFolio/GFprogress")
+	var gfp = GFUTIL.get_progress()
 	max_unlocked_index = 1
 	if gfp:
 		max_unlocked_index = gfp.folio_unlocked

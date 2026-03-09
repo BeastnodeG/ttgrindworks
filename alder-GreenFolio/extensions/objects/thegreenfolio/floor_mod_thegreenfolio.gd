@@ -1,6 +1,7 @@
 extends FloorModifier
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
-var gf : Node = null
+var gf: Node = null
 var floor_num := Util.floor_number
 
 var proxy_effect : StatusEffect = preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/status_effect_mod_cog.gd").new()
@@ -20,7 +21,7 @@ const FLOOR_TAG := 'shop_inflation'
 #folio 7?
 
 func modify_floor() -> void:
-	getGF()
+	gf = GFUTIL.get_gf()
 	print("um... i'd.. like... to introduce-you to my gf!!: ", gf) #i'm... so proud of him
 	
 	if gf.folio_level >= 5:
@@ -152,21 +153,6 @@ func apply_folio9(cog: Cog) -> void: # folio 9, add a random defense, damage, or
 
 func apply_random_effect(cog : Cog) -> void:
 	pass
-
-func getGF() -> void:
-	if not is_inside_tree():
-		await ready
-	if not get_tree():
-		print("get_tree() is null!")
-		return
-
-	var path := "/root/ModLoader/alder-GreenFolio/GFglobal"
-	var root := get_tree().get_root()
-	if root and root.has_node(path):
-		gf = root.get_node(path)
-		print("Loaded GFglobal")
-	else:
-		print("GFglobal not found at", path)
 
 func get_mod_name() -> String:
 	return "Folio - %d" % gf.folio_level

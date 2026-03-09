@@ -1,11 +1,11 @@
 extends Object
+const GFUTIL := preload("res://mods-unpacked/alder-GreenFolio/GFsave_utils.gd")
 
 func get_anomalies(chain: ModLoaderHookChain) -> Array[Script]:
 	var mods: Array[Script] = chain.execute_next()
 	var anomalies_negative: Array[String] = chain.reference_object.get_script().ANOMALIES_NEGATIVE.duplicate(true)
 	
-	var tree := Engine.get_main_loop() as SceneTree
-	var gf = tree.root.get_node_or_null("/root/ModLoader/alder-GreenFolio/GFglobal")
+	var gf = GFUTIL.get_gf()
 	
 	if gf.folio_level >= 4:
 		print("attempting to force an additiona negative anomaly because green folio")

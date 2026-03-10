@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemActive" load_steps=6 format=3 uid="uid://dwo8eldqx4wsy"]
+[gd_resource type="Resource" script_class="ItemActive" format=3 uid="uid://dwo8eldqx4wsy"]
 
 [ext_resource type="Texture2D" uid="uid://doyqxlj8q7rs2" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/remastered_paintbrush.png" id="1_t6po2"]
 [ext_resource type="Script" uid="uid://cxt0fg34g4f84" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/paint_brush/item_paint_brush.gd" id="2_g5b23"]
@@ -14,7 +14,7 @@ current_charge = 2
 qualitoon = 3
 item_name = "Paint Brush"
 item_description = "Repaint your destiny... sometimes!"
-big_description = "Rerolls all items in the room. Has a 25% chance to each item rerolled."
+big_description = "Rerolls all items in the room. Has a 25% chance to destroy each item rerolled."
 model = ExtResource("3_xmefk")
 pickup_sfx = ExtResource("4_2ufyn")
 item_script = ExtResource("2_g5b23")

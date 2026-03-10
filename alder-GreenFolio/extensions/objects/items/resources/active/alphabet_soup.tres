@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemActive" load_steps=6 format=3 uid="uid://du50oyjoyaslo"]
+[gd_resource type="Resource" script_class="ItemActive" format=3 uid="uid://du50oyjoyaslo"]
 
 [ext_resource type="Texture2D" uid="uid://b31fq1eplel2t" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/remastered_alphabet soup.png" id="1_jy4ck"]
 [ext_resource type="Script" uid="uid://dpq10l4voo0ed" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/alphabet_soup/item_alphabet_soup.gd" id="2_yysnd"]
@@ -14,7 +14,7 @@ current_charge = 4
 qualitoon = 4
 item_name = "Alphabet Soup"
 item_description = "Stir up the next letter!"
-big_description = "Reroll an item from the nearest chest to the next item in the pool alphabetically."
+big_description = "Rerolls all items in the room to the next item in the pool alphabetically."
 model = ExtResource("3_pvlbm")
 pickup_sfx = ExtResource("4_q5lky")
 item_script = ExtResource("2_yysnd")

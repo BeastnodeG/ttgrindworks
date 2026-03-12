@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemActive" load_steps=5 format=3 uid="uid://dte8uk3guasuw"]
+[gd_resource type="Resource" script_class="ItemActive" format=3 uid="uid://dte8uk3guasuw"]
 
 [ext_resource type="Texture2D" uid="uid://drs11pbafmj0x" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/player_ui/pocket_prank_icons/remastered_monarch_butterfly.png" id="1_0s86u"]
 [ext_resource type="Script" uid="uid://bdsfdojblix73" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/items/custom/monarch_butterfly/item_monarch_butterfly.gd" id="2_yv1ru"]
@@ -13,8 +13,10 @@ current_charge = 4
 qualitoon = 3
 item_name = "Monarch Butterfly"
 item_description = "Lord of the butterflies."
-big_description = "Absorbs the nearest item in exchange for a butterfly that damages cogs randomly.
-Damage of the butterflies scale with the star rating of item absorbed."
+big_description = "Absorbs the nearest item in exchange for a butterfly that damages cogs.
+Certain absorbed items have special effects.
+Damage of the butterflies scale with the star rating of item absorbed.
+Evergreen items have a damage penalty."
 model = ExtResource("3_6d8yh")
 item_script = ExtResource("2_yv1ru")
 icon = ExtResource("1_0s86u")

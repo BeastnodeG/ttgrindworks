@@ -4,9 +4,9 @@ shader_type particles;
 uniform vec3 bone_pos = vec3(0.0);               // bone position offset
 uniform float seed = 0.0;                        // per-system random seed
 uniform float HEIGHT = 1.5;
+uniform float ORBIT_SPEED  = 0.25;
+uniform float RADIUS       = 1.0;
 // Constants for default behavior
-const float ORBIT_SPEED  = 0.25;
-const float RADIUS       = 1.0;
 const float FLOAT_AMP    = 0.1;
 const float FLOAT_SPEED  = 1.5;
 const float SCALE_MIN    = 0.2;

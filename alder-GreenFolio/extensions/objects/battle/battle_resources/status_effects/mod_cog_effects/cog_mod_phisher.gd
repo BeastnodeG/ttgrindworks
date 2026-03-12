@@ -7,6 +7,7 @@ func apply() -> void:
 	for track in gagregen.keys():
 		if player.gags_cost_beans:
 			gagregen[track] += 1
+			print("increasing cost of gags")
 		else:
 			gagregen[track] -= 1
 		print("decreased to ", gagregen[track])
@@ -16,7 +17,8 @@ func cleanup() -> void:
 	var gagregen = player.stats.gag_regeneration
 	for track in gagregen.keys():
 		if player.gags_cost_beans:
-			gagregen[track] -+ 1
+			gagregen[track] -= 1
+			print("reducing cost again")
 		else:
 			gagregen[track] += 1
 		print("increased to ", gagregen[track])

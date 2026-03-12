@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://xjkmx0pe45pc"]
+
+[ext_resource type="Shader" uid="uid://dl55cveqo0d5" path="res://mods-unpacked/alder-GreenFolio/extensions/objects/battle/effects/monarch/monarch_rainbow.gdshader" id="1_cd84j"]
+[ext_resource type="Texture2D" uid="uid://xvyeqtdbqn7j" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_basic.png" id="2_ofutq"]
+[ext_resource type="Texture2D" uid="uid://cg78p5r7jp5eq" path="res://mods-unpacked/alder-GreenFolio/extensions/ui_assets/battle/statuses/monarch_butterfly/monarch_butterfly_colormask.png" id="3_ofutq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kel87"]
+render_priority = 0
+shader = ExtResource("1_cd84j")
+shader_parameter/albedo_texture = ExtResource("2_ofutq")
+shader_parameter/mask_texture = ExtResource("3_ofutq")
+shader_parameter/speed = 0.1450000068875
+shader_parameter/angle = 153.0000072675
+shader_parameter/scale = 0.25000000861512
+
+[sub_resource type="QuadMesh" id="QuadMesh_g0lik"]
+material = SubResource("ShaderMaterial_kel87")
+
+[node name="Rainbowtest" type="Node3D" unique_id=303478169]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1570875932]
+mesh = SubResource("QuadMesh_g0lik")

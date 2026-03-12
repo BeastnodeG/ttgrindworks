@@ -1,6 +1,6 @@
 {
 	"dependencies": [],
-	"description": "this description isn't accessible ingame why are you reading this\n\nthis mod is like if greening was in a blender instead of IN REAL LIFE\nisn't that so true??????????????????\nthis mod is like... if corporate clash zap was... like 1.2\nwow!\nthis this this mod is like if\nTRUE!!!!!!!!!\n\ngreen folio more like THE LIQUIADATORRRRRRRRR",
+	"description": "this description isn't accessible ingame why are you reading this\n\nthis mod is like if greening was in a blender instead of IN REAL LIFE\nisn't that so true??????????????????\nthis mod is like... if corporate clash zap was... like 1.2\nwow!\nthis this this mod is like if\nTRUE!!!!!!!!!\n\ngreen folio more like THE LIQUIADATORRRRRRRRR\n\nbutterflies are so cool",
 	"extra": {
 		"godot": {
 			"authors": [
@@ -26,6 +26,6 @@
 	},
 	"name": "GreenFolio",
 	"namespace": "alder",
-	"version_number": "2.2.0",
+	"version_number": "2.3.0",
 	"website_url": "https://github.com/BeastnodeG/ttgrindworks"
 }

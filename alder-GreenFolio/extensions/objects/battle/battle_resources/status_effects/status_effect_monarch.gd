@@ -172,7 +172,7 @@ func get_icon() -> Texture2D:
 func get_status_name() -> String:
 	match SpecialEffect:
 		"Vampire":
-			return "Vampire Butterfly"
+			return "Vampire Batterfly"
 		"Hex":
 			return "Hexarch Butterfly"
 		"Poison":
@@ -192,7 +192,7 @@ func get_status_name() -> String:
 		"Lightning":
 			return "Lightningfly"
 		"Dapper":
-			return "Dapper Butterfly"
+			return "Inquisitive Butterfly"
 		"Booming":
 			return "Booming Butterfly"
 		_:
